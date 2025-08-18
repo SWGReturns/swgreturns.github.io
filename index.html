@@ -2,15 +2,27 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>SWGReturns — Star Wars Galaxies Private Server</title>
+
+  <!-- SEO / Social -->
+  <meta name="description" content="SWGReturns brings back Star Wars Galaxies. Choose the classic Pre-CU sandbox or the action-driven NGE. Download the launcher and play.">
+  <meta property="og:title" content="SWGReturns — Star Wars Galaxies Private Server">
+  <meta property="og:description" content="Two eras. One community. Build, fight, craft, trade — your story, your way.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/logo.png">
+  <meta name="theme-color" content="#ffd54a">
+
+  <link rel="icon" href="assets/logo.png">
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <header class="site-header">
     <div class="wrap nav-wrap">
       <div class="brand">
-        <!-- You can add your logo here later -->
+        <!-- Drop your logo at assets/logo.png -->
+        <img src="assets/logo.png" class="logo" alt="SWGReturns Logo" onerror="this.style.display='none'">
         <span class="wordmark">SWGReturns</span>
       </div>
       <nav class="top-nav">
@@ -22,7 +34,8 @@
     </div>
   </header>
 
-  <section class="hero">
+  <!-- Hero pulls background from assets/background.jpg via styles.css -->
+  <section class="hero" aria-label="Hero">
     <div class="wrap hero-inner">
       <h1>Return to the Galaxy</h1>
       <p class="subtitle">Two eras. One community. Build, fight, craft, trade — your story, your way.</p>
@@ -32,23 +45,25 @@
     </div>
   </section>
 
-  <section id="downloads" class="section">
+  <section id="downloads" class="section" aria-labelledby="downloads-title">
     <div class="wrap">
-      <h2>Download</h2>
+      <h2 id="downloads-title">Download</h2>
       <p>Choose your path. Links go to Google Drive (you can add mirrors later).</p>
       <div class="cards">
-        <article id="download-precu" class="card">
-          <h3>Pre-CU Client</h3>
+        <article id="download-precu" class="card" aria-labelledby="precu-title">
+          <h3 id="precu-title">Pre-CU Client</h3>
           <p>Classic, skill-based sandbox.</p>
           <a class="btn primary" href="#" target="_blank" rel="noopener">Download Pre-CU Client</a>
         </article>
-        <article id="download-nge" class="card">
-          <h3>NGE Client</h3>
+
+        <article id="download-nge" class="card" aria-labelledby="nge-title">
+          <h3 id="nge-title">NGE Client</h3>
           <p>Action combat and streamlined professions.</p>
           <a class="btn primary" href="#" target="_blank" rel="noopener">Download NGE Client</a>
         </article>
-        <article class="card">
-          <h3>Launcher</h3>
+
+        <article id="download-launcher" class="card" aria-labelledby="launcher-title">
+          <h3 id="launcher-title">Launcher</h3>
           <p>Auto-patch, news, and easy server selection.</p>
           <a class="btn primary" href="#" target="_blank" rel="noopener">Download Launcher</a>
         </article>
@@ -56,9 +71,9 @@
     </div>
   </section>
 
-  <section id="versions" class="section alt">
+  <section id="versions" class="section alt" aria-labelledby="versions-title">
     <div class="wrap">
-      <h2>Pre-CU vs NGE</h2>
+      <h2 id="versions-title">Pre-CU vs NGE</h2>
       <div class="columns">
         <div>
           <h3>Pre-CU</h3>
@@ -72,16 +87,20 @@
     </div>
   </section>
 
-  <section id="patch-notes" class="section">
+  <section id="patch-notes" class="section" aria-labelledby="patch-title">
     <div class="wrap">
-      <h2>Patch Notes</h2>
-      <div class="tabs">
-        <button class="tab active" data-target="precu-notes">Pre-CU</button>
-        <button class="tab" data-target="nge-notes">NGE</button>
+      <h2 id="patch-title">Patch Notes</h2>
+      <div class="tabs" role="tablist" aria-label="Patch notes tabs">
+        <button class="tab active" data-target="precu-notes" role="tab" aria-selected="true">Pre-CU</button>
+        <button class="tab" data-target="nge-notes" role="tab" aria-selected="false">NGE</button>
       </div>
       <div class="notes">
-        <article id="precu-notes" class="note-pane show"><pre id="precu-content">Loading Pre-CU notes…</pre></article>
-        <article id="nge-notes" class="note-pane"><pre id="nge-content">Loading NGE notes…</pre></article>
+        <article id="precu-notes" class="note-pane show" role="tabpanel" aria-labelledby="precu-tab">
+          <pre id="precu-content">Loading Pre-CU notes…</pre>
+        </article>
+        <article id="nge-notes" class="note-pane" role="tabpanel" aria-labelledby="nge-tab">
+          <pre id="nge-content">Loading NGE notes…</pre>
+        </article>
       </div>
     </div>
   </section>
@@ -90,6 +109,7 @@
     <p>&copy; 2025 SWGReturns. Fan project.</p>
   </footer>
 
-  <script src="site.js"></script>
+  <script src="site.js" defer></script>
 </body>
 </html>
+
