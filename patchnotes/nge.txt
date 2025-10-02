@@ -1,2 +1,8 @@
 SWGReturns NGE Patch Notes
-- Placeholder
+- Increased Jedi Holocron Collection drop/loot chance to max
+- Increased exp gain to x25
+- Increased expertise points to 135
+- added updated textures and visuals mod, enabled by default
+- enabled ILM enhancements by default
+- increased crafting and RE chance
+- 2x heroic and other token payouts
