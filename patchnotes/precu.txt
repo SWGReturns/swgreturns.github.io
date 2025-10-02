@@ -1,2 +1,2 @@
 SWGReturns Pre-CU Patch Notes
-- Placeholder
+- added mandalore as a planet.
