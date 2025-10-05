@@ -1,7 +1,7 @@
 SWGReturns Pre-CU Patch Notes
 - added mandalore as a planet.
 - added Jedi as a starting profession
-- reduced village unlock, 2 hours per phase, 4 fs trees to unlock.
+- reduced village unlock, 2 hours per phase, 6 fs trees pre-unlocked upon village entry.
 - WIP JTL
 - force shrines, jabba's palace, fs village, and many other locations added to starship and ticket terminals
 - dark star vendor added for buffs and other QOL items e.g. armors, jedi holocrons, and more outside starports in e.g. coronet, theed, and mos eisley
