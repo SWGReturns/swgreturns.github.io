@@ -1,6 +1,5 @@
 SWGReturns Pre-CU Patch Notes
 - added mandalore as a planet.
-- added Jedi as a starting profession
 - reduced holocron unlock, 3 professions to unlock 1 profession shown per holocron, reduced jedi knight trials to 3, no padawan trials needed.
 - WIP JTL
 - force shrines, jabba's palace, fs village, and many other locations added to starship and ticket terminals
