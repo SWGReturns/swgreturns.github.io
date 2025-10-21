@@ -1,8 +1,10 @@
 SWGReturns Pre-CU Patch Notes
 - added mandalore as a planet.
-- reduced holocron unlock, 3 professions to unlock 1 profession shown per holocron, reduced jedi knight trials to 3, no padawan trials needed.
+- reduced holocron unlock, 3 professions to unlock 1 profession shown per holocron, reduced jedi knight trials to 3, no padawan trials needed, after 2 holocrons the 3rd holocron does NOT tell you what profession to unlock it is random like OG swg.
 - WIP JTL
 - force shrines, jabba's palace, fs village, and many other locations added to starship and ticket terminals
 - dark star vendor added for buffs and other QOL items e.g. armors, jedi holocrons, and more outside starports in e.g. coronet, theed, and mos eisley
 - increased EXP gain, 8x solo as well as in groups. Spin groups are enabled, and xp is enhanced in groups too.
 - 6 missions at a time
+- Pre publish 9 jedi + FRS enabled + 5th gen sabers and other perks e.g. custom frs skills available.
+- jedi is a seperate character slot, you do not become jedi on an existing character.
