@@ -7,4 +7,3 @@ SWGReturns Pre-CU Patch Notes
 - increased EXP gain, 8x solo as well as in groups. Spin groups are enabled, and xp is enhanced in groups too.
 - 6 missions at a time
 - Pre publish 9 jedi + FRS enabled + 5th gen sabers and other perks e.g. custom frs skills available.
-- jedi is a seperate character slot, you do not become jedi on an existing character.
