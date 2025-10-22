@@ -15,84 +15,72 @@
   <meta name="theme-color" content="#ffd54a">
 
   <link rel="icon" href="assets/logo.png">
-  <link rel="stylesheet" href="styles.css?v=11" />
+  <link rel="stylesheet" href="styles.css?v=12" />
   <style>
-    /* Lightweight EULA + gating styles */
-    .eula { padding: 3rem 0; line-height: 1.6; }
-    .eula h2 { margin-bottom: .75rem; }
-    .eula h3 { margin: 2rem 0 .5rem; }
-    .eula .meta { color: #888; font-size: .95rem; margin-bottom: 1rem; }
-    .eula .cardish {
-      background: #101318;
-      border: 1px solid #1e2430;
-      border-radius: 12px;
-      padding: 1.25rem 1.5rem;
-      margin: 1rem 0;
+    /* ----- Bottom-sheet EULA modal ----- */
+    .sheet-overlay {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,.5);
+      backdrop-filter: saturate(120%) blur(3px);
+      opacity: 0; pointer-events: none;
+      transition: opacity .18s ease-out;
+      z-index: 9997;
     }
-    .eula .accept-row {
-      display: flex; gap: .5rem; flex-wrap: wrap; align-items: center; margin-top: 1rem;
+    .sheet {
+      position: fixed; left: 0; right: 0; bottom: 0;
+      max-height: 80vh;
+      background: #0f141c;
+      border-top-left-radius: 16px;
+      border-top-right-radius: 16px;
+      box-shadow: 0 -20px 50px rgba(0,0,0,.45);
+      transform: translateY(100%);
+      transition: transform .24s cubic-bezier(.2,.8,.2,1);
+      z-index: 9998;
+      color: #eaf1ff;
     }
-    .center { text-align: center; }
-    .muted { color: #a0a7b5; }
-    .small { font-size: .92rem; }
-    .note { font-size: .92rem; color: #9aa3b2; }
-    .list-compact li { margin:.25rem 0; }
-    .divider { height: 1px; background:#1e2430; margin:1.5rem 0; border:0; }
+    .sheet.active { transform: translateY(0); }
+    .sheet-overlay.active { opacity: 1; pointer-events: auto; }
 
-    /* Gating styles */
-    .gated[aria-disabled="true"] {
-      pointer-events: none;
-      opacity: .55;
-      filter: grayscale(0.2);
-      position: relative;
+    .sheet-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 18px; border-bottom: 1px solid #1e2430;
     }
-    .gated[aria-disabled="true"]::after {
-      content: attr(data-tooltip);
-      position: absolute;
-      left: 50%;
-      bottom: calc(100% + 8px);
-      transform: translateX(-50%);
-      background: #1e2430;
-      color: #dbe4ff;
-      font-size: .8rem;
-      padding: .35rem .5rem;
-      border-radius: 6px;
-      white-space: nowrap;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity .2s ease, transform .2s ease;
+    .sheet-title { font-size: 1.05rem; font-weight: 600; }
+    .sheet-close {
+      appearance: none; border: 0; background: transparent; color: #a9b4c7;
+      font-size: 1.2rem; cursor: pointer; padding: 6px 8px;
     }
-    .gated[aria-disabled="true"]:hover::after,
-    .gated[aria-disabled="true"]:focus::after {
-      opacity: 1;
-      transform: translateX(-50%) translateY(-2px);
+    .sheet-content {
+      padding: 14px 18px 18px;
+      overflow: auto; max-height: calc(80vh - 56px);
     }
+    .sheet-actions {
+      display: flex; gap: 10px; padding: 12px 18px 18px;
+      border-top: 1px solid #1e2430;
+      position: sticky; bottom: 0; background: #0f141c;
+    }
+    .btn { cursor: pointer; }
+    .btn.secondary { background: #1a2230; border: 1px solid #263349; }
+    .btn.primary { background: #2250ff; border: 1px solid #2a57ff; }
+    .btn.primary:hover { filter: brightness(1.05); }
+
+    .eula h3 { margin: 1rem 0 .5rem; }
+    .eula .meta { color: #9aa3b2; margin: .25rem 0 1rem; font-size: .95rem; }
+    .list-compact li { margin: .25rem 0; }
 
     /* Toast */
     .toast {
-      position: fixed;
-      left: 50%;
-      bottom: 24px;
-      transform: translateX(-50%);
-      background: #0c111b;
-      border: 1px solid #20304a;
-      color: #d8facc;
-      padding: .75rem 1rem;
-      border-radius: 10px;
-      box-shadow: 0 10px 30px rgba(0,0,0,.35);
-      display: none;
-      z-index: 9999;
+      position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%);
+      background: #0c111b; border: 1px solid #20304a; color: #d8facc;
+      padding: .75rem 1rem; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,.35);
+      display: none; z-index: 9999;
     }
-    .toast.show {
-      display: block;
-      animation: toast-in .2s ease-out, toast-out .25s ease-in 3.2s forwards;
-    }
-    @keyframes toast-in { from { opacity: 0; transform: translateX(-50%) translateY(6px); } to { opacity: 1; transform: translateX(-50%) translateY(0); } }
-    @keyframes toast-out { to { opacity: 0; transform: translateX(-50%) translateY(6px); } }
+    .toast.show { display: block; animation: toast-in .2s ease-out, toast-out .25s ease-in 2.8s forwards; }
+    @keyframes toast-in { from { opacity: 0; transform: translateX(-50%) translateY(6px);} to { opacity: 1; transform: translateX(-50%) translateY(0);} }
+    @keyframes toast-out { to { opacity: 0; transform: translateX(-50%) translateY(6px);} }
 
-    @media (max-width: 800px) {
-      .eula .cardish { padding: 1rem; }
-    }
+    /* Small help text */
+    .note { font-size: .92rem; color: #9aa3b2; }
   </style>
 </head>
 <body>
@@ -103,12 +91,16 @@
         <span class="wordmark">SWGReturns</span>
       </a>
       <nav class="top-nav">
-        <a href="#downloads" class="nav-downloads">Download</a>
-        <a href="#versions">Pre-CU vs NGE</a>
-        <a href="#patch-notes">Patch Notes</a>
-        <a href="#eula">EULA</a>
-        <a class="btn small discord gated" id="discord-link" href="https://discord.gg/5TbKEyAaMf" target="_blank" rel="noopener"
-           aria-disabled="true" data-tooltip="Read & Accept EULA to enable">Join Discord</a>
+        <a href="#downloads" class="nav-downloads" data-track="nav-downloads">Download</a>
+        <a href="#versions" data-track="nav-versions">Pre-CU vs NGE</a>
+        <a href="#patch-notes" data-track="nav-patchnotes">Patch Notes</a>
+        <a href="#eula" data-track="nav-eula">EULA</a>
+        <a class="btn small discord"
+           id="discord-link"
+           href="https://discord.gg/5TbKEyAaMf"
+           target="_blank" rel="noopener"
+           data-track="discord"
+           data-eula="required">Join Discord</a>
       </nav>
     </div>
   </header>
@@ -116,12 +108,12 @@
   <main id="top">
     <!-- HERO -->
     <section id="hero" class="hero" aria-label="Hero"
-      style="min-height:68vh;background-image:url('assets/background.png?v=11');background-position:center center;background-size:cover;background-repeat:no-repeat;">
+      style="min-height:68vh;background-image:url('assets/background.png?v=12');background-position:center center;background-size:cover;background-repeat:no-repeat;">
       <div class="wrap hero-inner hero-content">
         <h1>Return to the Galaxy</h1>
         <p class="subtitle">Two eras. One community. Build, fight, craft, trade — your story, your way.</p>
         <div class="cta-row">
-          <a class="btn primary glow" href="#downloads">Get Started</a>
+          <a class="btn primary glow" href="#downloads" data-track="hero-get-started">Get Started</a>
         </div>
       </div>
     </section>
@@ -136,8 +128,9 @@
             <h3>Pre-CU Client</h3>
             <p>Classic, skill-based sandbox.</p>
             <div class="actions">
-              <a class="btn download-btn glow gated"
-                 aria-disabled="true" data-tooltip="Read & Accept EULA to enable"
+              <a class="btn download-btn glow"
+                 data-eula="required"
+                 data-track="download-precu"
                  href="https://drive.google.com/file/d/1_Rx8rS_XMCcTchFLHwfV6jUJLzCIaiuk/view?usp=sharing"
                  target="_blank" rel="noopener">Download Pre-CU Client</a>
             </div>
@@ -146,8 +139,9 @@
             <h3>NGE Client</h3>
             <p>Action combat and streamlined professions.</p>
             <div class="actions">
-              <a class="btn download-btn glow gated"
-                 aria-disabled="true" data-tooltip="Read & Accept EULA to enable"
+              <a class="btn download-btn glow"
+                 data-eula="required"
+                 data-track="download-nge"
                  href="https://drive.google.com/file/d/1eeYd3do0jNekdEOkIfZvlAEzVq_H1b0k/view?usp=sharing"
                  target="_blank" rel="noopener">Download NGE Client</a>
             </div>
@@ -156,13 +150,15 @@
             <h3>Launcher</h3>
             <p>Auto-patch, news, and easy server selection. Recommended for all players.</p>
             <div class="actions">
-              <a class="btn download-btn glow gated"
-                 aria-disabled="true" data-tooltip="Read & Accept EULA to enable"
+              <a class="btn download-btn glow"
+                 data-eula="required"
+                 data-track="download-launcher"
                  href="https://drive.google.com/file/d/19n5bABNfN1V0-iWpKYO1f3bLAVWmfTqM/view?usp=sharing"
                  target="_blank" rel="noopener">Download Launcher</a>
             </div>
           </article>
         </div>
+        <p class="note">When you click a download, the EULA will appear. Accept to continue automatically.</p>
       </div>
     </section>
 
@@ -210,154 +206,188 @@
         </div>
       </div>
     </section>
-
-    <!-- EULA (embedded, not a separate page) -->
-    <section id="eula" class="section eula" aria-labelledby="eula-title">
-      <div class="wrap">
-        <h2 id="eula-title">SWG Returns — End User License Agreement (EULA)</h2>
-        <p class="meta">Effective Date: <strong>October 21, 2025</strong> &nbsp;·&nbsp; Last Updated: <strong>October 21, 2025</strong></p>
-
-        <div class="cardish">
-          <h3>1. Legal Disclaimer</h3>
-          <ul class="list-compact">
-            <li><strong>Non-Commercial Project.</strong> SWG Returns is a non-profit, fan-run emulator built on the <em>SWGEmu Core3</em> framework (licensed under the GNU AGPLv3).</li>
-            <li><strong>Not Affiliated.</strong> This project is not affiliated with Lucasfilm Ltd., Disney, Sony Online Entertainment, Daybreak Game Company, or LucasArts. All Star Wars–related IP remains with its owners.</li>
-            <li><strong>Use at Your Own Risk.</strong> The service is provided “AS IS.” No warranties are made regarding uptime, data integrity, or availability.</li>
-          </ul>
-
-          <h3>2. Age & Conduct</h3>
-          <ul class="list-compact">
-            <li>You must be <strong>13 years or older</strong> to play. If under 18, parental or guardian consent is required.</li>
-            <li>Treat other players and staff with respect. Harassment, hate speech, cheating, and exploiting bugs are prohibited.</li>
-            <li>Real-money trading of accounts or items is not allowed.</li>
-          </ul>
-
-          <h3>3. Accounts & Data</h3>
-          <ul class="list-compact">
-            <li>All accounts remain property of SWG Returns; access is a revocable license for non-commercial entertainment.</li>
-            <li>Player data is used solely for gameplay administration and is not sold or shared externally.</li>
-            <li>Accounts may be suspended or removed for violations, inactivity, or maintenance.</li>
-          </ul>
-
-          <h3>4. SWGEmu Core3 Compliance</h3>
-          <ul class="list-compact">
-            <li>SWG Returns runs on the <strong>SWGEmu Core3</strong> engine and complies with the <strong>AGPLv3</strong> license.</li>
-            <li>Any public redistribution of modified server code must remain open source and include complete source access.</li>
-            <li>Custom scripts and Lua modules are released under compatible open-source terms.</li>
-          </ul>
-
-          <h3>5. Liability & Indemnification</h3>
-          <p class="small">You agree to hold harmless SWG Returns staff and contributors for any losses or claims arising from your use of the service. Gameplay progress may reset without notice. Use is at your own risk.</p>
-
-          <h3>6. Agreement Acceptance</h3>
-          <p class="small">By connecting to SWG Returns or creating an account, you confirm that you have read and agree to this EULA, meet the minimum age requirement (13+), and understand this is a fan-run emulator, not an official service. If you do not agree, disconnect and do not use the server.</p>
-
-          <hr class="divider" />
-
-          <p class="muted small">Contact: <a href="mailto:bentonus@gmail.com">bentonus@gmail.com</a></p>
-
-          <div class="accept-row">
-            <a class="btn primary glow" href="#downloads" aria-label="I accept and want to download">I Accept</a>
-            <span class="note">Acceptance here is informational. In-game acceptance is enforced on first login.</span>
-          </div>
-        </div>
-      </div>
-    </section>
   </main>
 
   <footer class="site-footer">
     <div class="wrap">
-      <p>&copy; 2025 SWGReturns. Fan-made project. Star Wars™ is property of its respective owners. · <a href="#eula">EULA</a></p>
+      <p>&copy; 2025 SWGReturns. Fan-made project. Star Wars™ is property of its respective owners. · <a href="#eula" data-track="footer-eula">EULA</a></p>
     </div>
   </footer>
 
+  <!-- Bottom-sheet EULA modal -->
+  <div class="sheet-overlay" id="eulaOverlay" aria-hidden="true"></div>
+  <aside class="sheet" id="eulaSheet" role="dialog" aria-modal="true" aria-labelledby="eulaTitle" aria-hidden="true">
+    <header class="sheet-header">
+      <div class="sheet-title" id="eulaTitle">SWG Returns — EULA</div>
+      <button class="sheet-close" type="button" id="eulaClose" aria-label="Close">✕</button>
+    </header>
+    <div class="sheet-content">
+      <div class="eula">
+        <p class="meta">Effective Date: <strong>October 21, 2025</strong> · Last Updated: <strong>October 21, 2025</strong></p>
+
+        <h3>1. Legal Disclaimer</h3>
+        <ul class="list-compact">
+          <li><strong>Non-Commercial Project.</strong> SWG Returns is a non-profit, fan-run emulator built on the SWGEmu Core3 framework (GNU AGPLv3).</li>
+          <li><strong>Not Affiliated.</strong> Not affiliated with Lucasfilm Ltd., Disney, SOE/Daybreak, or LucasArts. All Star Wars IP remains with its owners.</li>
+          <li><strong>Use at Your Own Risk.</strong> Service is provided “AS IS” without warranties of any kind.</li>
+        </ul>
+
+        <h3>2. Age & Conduct</h3>
+        <ul class="list-compact">
+          <li>You must be <strong>13+</strong>. If under 18, parental/guardian consent is required.</li>
+          <li>No harassment, hate speech, cheating, exploiting, or real-money trading.</li>
+        </ul>
+
+        <h3>3. Accounts & Data</h3>
+        <ul class="list-compact">
+          <li>Accounts remain property of SWG Returns; access is a revocable license.</li>
+          <li>Player data is used for gameplay/admin only; not sold or shared externally.</li>
+          <li>Accounts may be suspended/removed for violations, inactivity, or maintenance.</li>
+        </ul>
+
+        <h3>4. SWGEmu Core3 Compliance</h3>
+        <ul class="list-compact">
+          <li>Server runs on SWGEmu Core3 and complies with AGPLv3.</li>
+          <li>Public redistribution of modified server code must remain open-source with complete source access.</li>
+          <li>Custom scripts/Lua modules are released under compatible open-source terms.</li>
+        </ul>
+
+        <h3>5. Liability & Indemnification</h3>
+        <p>You agree to hold harmless SWG Returns staff and contributors for any losses or claims arising from your use of the service.</p>
+
+        <h3>6. Agreement Acceptance</h3>
+        <p>By connecting to SWG Returns or creating an account, you confirm that you have read and agree to this EULA, meet the minimum age requirement, and understand this is a fan-run emulator.</p>
+
+        <p class="note">Contact: <a href="mailto:bentonus@gmail.com">bentonus@gmail.com</a></p>
+      </div>
+    </div>
+    <div class="sheet-actions">
+      <button type="button" class="btn secondary" id="eulaCancel">Cancel</button>
+      <button type="button" class="btn primary" id="eulaAccept">I Accept</button>
+    </div>
+  </aside>
+
   <!-- Toast -->
-  <div class="toast" id="toast">✅ EULA viewed — downloads unlocked</div>
+  <div class="toast" id="toast">✅ EULA accepted — continuing download…</div>
 
-  <script src="site.js?v=11" defer></script>
+  <script src="site.js?v=12" defer></script>
   <script>
-    // Gating logic: disable all .gated links until user scrolls through 90% of the EULA section
-    (function() {
-      const gatedLinks = Array.from(document.querySelectorAll('.gated'));
-      const toast = document.getElementById('toast');
-      const eula = document.getElementById('eula');
-      let unlocked = false;
-
-      // Prevent navigation while gated
-      function clickBlocker(e) {
-        const a = e.currentTarget;
-        if (a.getAttribute('aria-disabled') === 'true') {
-          e.preventDefault();
-          e.stopPropagation();
-          // Nudge them to EULA
-          document.querySelector('a[href="#eula"]').focus();
-          document.getElementById('eula-title').scrollIntoView({behavior:'smooth', block:'start'});
-        }
+    // ===== Analytics Beacon =====
+    (function(){
+      const ENDPOINT = '/log';
+      const sid = (crypto && crypto.randomUUID) ? crypto.randomUUID() :
+                  Math.random().toString(36).slice(2) + Date.now();
+      function sendBeacon(event, target, extra) {
+        const payload = { event, target, ts: new Date().toISOString(), ua: navigator.userAgent, sid, ...extra };
+        const blob = new Blob([JSON.stringify(payload)], { type: 'application/json' });
+        if (navigator.sendBeacon) navigator.sendBeacon(ENDPOINT, blob);
+        else fetch(ENDPOINT, { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify(payload), keepalive: true }).catch(()=>{});
       }
-      gatedLinks.forEach(a => a.addEventListener('click', clickBlocker));
-
-      function setGated(state) {
-        gatedLinks.forEach(a => {
-          if (state) {
-            a.setAttribute('aria-disabled','true');
-            a.dataset.tooltip = a.dataset.tooltip || 'Read & Accept EULA to enable';
-          } else {
-            a.removeAttribute('aria-disabled');
-            // remove tooltip, but leave a hint in title if you want
-            delete a.dataset.tooltip;
-            a.classList.add('glow');
-          }
-        });
-      }
-
-      setGated(true);
-
-      function showToast() {
-        if (!toast) return;
-        toast.classList.add('show');
-        setTimeout(() => toast.classList.remove('show'), 3600);
-      }
-
-      function checkEulaProgress() {
-        if (unlocked || !eula) return;
-        const rect = eula.getBoundingClientRect();
-        const eulaTop = window.scrollY + rect.top;
-        const eulaHeight = rect.height;
-        const viewportBottom = window.scrollY + window.innerHeight;
-
-        // Has the user scrolled past 90% of the section's height?
-        if (viewportBottom >= (eulaTop + eulaHeight * 0.9)) {
-          unlocked = true;
-          setGated(false);     // silent unlock
-          showToast();         // toast confirmation
-          window.removeEventListener('scroll', checkEulaProgress);
-          window.removeEventListener('resize', checkEulaProgress);
-        }
-      }
-
-      // Also unlock if they click "I Accept" (UI hint)
-      const acceptBtn = document.querySelector('#eula .accept-row .btn');
-      if (acceptBtn) {
-        acceptBtn.addEventListener('click', () => {
-          if (!unlocked) {
-            unlocked = true;
-            setGated(false);
-            showToast();
-          }
-        });
-      }
-
-      window.addEventListener('scroll', checkEulaProgress, { passive: true });
-      window.addEventListener('resize', checkEulaProgress);
-      // initial check (in case EULA is short or viewport is tall)
-      checkEulaProgress();
+      document.addEventListener('click', (e)=>{
+        const el = e.target.closest('[data-track]');
+        if (!el) return;
+        sendBeacon('click', el.getAttribute('data-track'), { href: el.getAttribute('href') || null });
+      });
+      window.__swgrTrack = sendBeacon;
     })();
 
-    // Optional: focus EULA when #eula is in URL on load
+    // ===== EULA Bottom-Sheet Modal Flow =====
     (function(){
+      const sheet = document.getElementById('eulaSheet');
+      const overlay = document.getElementById('eulaOverlay');
+      const btnClose = document.getElementById('eulaClose');
+      const btnCancel = document.getElementById('eulaCancel');
+      const btnAccept = document.getElementById('eulaAccept');
+      const toast = document.getElementById('toast');
+
+      let pendingLink = null; // { href, target, rel }
+
+      function openSheet(forLink) {
+        pendingLink = forLink;
+        overlay.classList.add('active');
+        sheet.classList.add('active');
+        sheet.setAttribute('aria-hidden', 'false');
+        overlay.setAttribute('aria-hidden', 'false');
+        // focus management
+        btnAccept.focus();
+      }
+      function closeSheet() {
+        sheet.classList.remove('active');
+        overlay.classList.remove('active');
+        sheet.setAttribute('aria-hidden', 'true');
+        overlay.setAttribute('aria-hidden', 'true');
+      }
+      function showToast(msg) {
+        if (!toast) return;
+        if (msg) toast.textContent = msg;
+        toast.classList.add('show');
+        setTimeout(()=> toast.classList.remove('show'), 3000);
+      }
+      function proceedLink() {
+        if (!pendingLink) return;
+        const { href, target, rel } = pendingLink;
+        // open in new tab by default if target has _blank or attribute exists
+        const win = window.open(href, target || '_blank', 'noopener');
+        if (win) { try { win.opener = null; } catch(e){} }
+        pendingLink = null;
+      }
+
+      // Intercept clicks on links that require EULA
+      document.addEventListener('click', (e) => {
+        const a = e.target.closest('a[data-eula="required"]');
+        if (!a) return;
+
+        // If already accepted in this session, just let it continue
+        if (sessionStorage.getItem('eulaAccepted') === '1') {
+          return; // allow native navigation
+        }
+
+        // Open modal instead of navigating
+        e.preventDefault();
+        e.stopPropagation();
+        const toOpen = {
+          href: a.getAttribute('href'),
+          target: a.getAttribute('target'),
+          rel: a.getAttribute('rel')
+        };
+        openSheet(toOpen);
+      });
+
+      // Accept -> record + continue
+      btnAccept.addEventListener('click', () => {
+        sessionStorage.setItem('eulaAccepted', '1');
+        if (window.__swgrTrack) window.__swgrTrack('eula_accept', 'sheet');
+        closeSheet();
+        showToast('✅ EULA accepted — continuing download…');
+        proceedLink();
+      });
+
+      // Cancel / Close
+      function cancelSheet() {
+        if (window.__swgrTrack) window.__swgrTrack('eula_cancel', 'sheet');
+        pendingLink = null;
+        closeSheet();
+      }
+      btnCancel.addEventListener('click', cancelSheet);
+      btnClose.addEventListener('click', cancelSheet);
+      overlay.addEventListener('click', cancelSheet);
+
+      // Escape closes
+      document.addEventListener('keydown', (e)=>{
+        if (e.key === 'Escape' && overlay.classList.contains('active')) cancelSheet();
+      });
+
+      // If user navigates directly to #eula, open the sheet for reading
       if (location.hash === '#eula') {
-        const el = document.getElementById('eula-title');
-        if (el) el.focus({preventScroll:true});
+        openSheet(null);
+      }
+    })();
+
+    // Optional: focus section on anchor load (non-modal sections)
+    (function(){
+      if (location.hash && location.hash !== '#eula') {
+        const el = document.querySelector(location.hash);
+        if (el) el.setAttribute('tabindex','-1'), el.focus({ preventScroll: true });
       }
     })();
   </script>
