@@ -1,5 +1,5 @@
 SWGReturns Pre-CU Patch Notes
-- added mandalore as a planet.
+- added mandalore, hoth, and dromund kaas as planets.
 - unique holocron unlock, you accumulate force points via gameplay or via professions (old way), you start with 3 holocrons from the custom Dark Star vendor, accumulate 10k force points to unlock, you don't grind professions the original old school way to unlock, reduced jedi knight trials to 3, no padawan trials needed.
 - WIP JTL
 - force shrines, jabba's palace, fs village, and many other locations added to starship and ticket terminals
@@ -8,3 +8,4 @@ SWGReturns Pre-CU Patch Notes
 - 6 missions at a time
 - Pre publish 9 jedi + FRS enabled + 5th gen sabers and other perks e.g. custom frs skills available.
 - Jedi are an alpha class.
+- added heroic instances for extra content.
