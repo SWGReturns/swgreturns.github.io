@@ -17,5 +17,4 @@
       .catch(() => { document.getElementById(elId).textContent = "No notes yet."; });
   }
   loadNotes('patchnotes/precu.txt','precu-content');
-  loadNotes('patchnotes/nge.txt','nge-content');
 })();
