@@ -82,7 +82,7 @@
     /* Small help text */
     .note { font-size: .92rem; color: #9aa3b2; }
 
-    /* ----- Patch Notes tabs (light styles in case site.css lacks them) ----- */
+    /* ----- Patch Notes tabs ----- */
     .tabs { display: flex; gap: 8px; margin-bottom: 10px; flex-wrap: wrap; }
     .tab {
       appearance: none; border: 1px solid #2a3345; background: #141b26; color: #eaf1ff;
@@ -96,6 +96,9 @@
     .changelist { margin: 8px 0 0 0; padding-left: 20px; }
     .changelist li + li { margin-top: 6px; }
     .badge { display: inline-block; font-size: .8rem; padding: 2px 8px; border: 1px solid #33486e; border-radius: 999px; background: #12203a; margin-left: 6px; }
+    .archive-label { font-size: .95rem; color: #a7b3c7; margin: 12px 0 4px; }
+    details.patch-archive summary { cursor: pointer; padding: 6px 0; color: #c9d6ff; }
+    details.patch-archive[open] summary { opacity: .9; }
   </style>
 </head>
 <body>
@@ -177,8 +180,10 @@
 
         <!-- Panels -->
         <div id="precu-notes" class="tabpanel active" role="tabpanel" aria-labelledby="tab-precu">
-          <article class="patch-group" id="swgr-precu-notes">
+          <!-- LATEST -->
+          <article class="patch-group" id="precu-2025-10-29" data-release="2025-10-29">
             <h3>SWGReturns Pre-CU Patch Notes <span class="badge">Live</span></h3>
+            <div class="patch-meta">Released: October 29, 2025</div>
             <ul class="changelist">
               <li>Added <strong>Mandalore</strong> as a planet.</li>
               <li><strong>Unique Holocron Unlock:</strong> accumulate Force Points via gameplay or via professions (old way). You start with <strong>3 holocrons</strong> from the custom Dark Star vendor. Accumulate <strong>10,000 Force Points</strong> to unlock. You do <em>not</em> need to grind professions the original old-school way to unlock. <strong>Jedi Knight trials reduced to 3</strong>; no Padawan trials needed.</li>
@@ -191,6 +196,24 @@
               <li><strong>Balance:</strong> Jedi are an <strong>alpha class</strong>.</li>
             </ul>
           </article>
+
+          <!-- ARCHIVE -->
+          <div class="archive-label">Previous Releases</div>
+          <details class="patch-archive">
+            <summary>Open archive</summary>
+
+            <!-- Example older entry (duplicate this block to add history)
+            <article class="patch-group" id="precu-YYYY-MM-DD" data-release="YYYY-MM-DD">
+              <h3>Version / Title <span class="badge">Archive</span></h3>
+              <div class="patch-meta">Released: Month DD, YYYY</div>
+              <ul class="changelist">
+                <li>[Change 1]</li>
+                <li>[Change 2]</li>
+              </ul>
+            </article>
+            -->
+
+          </details>
         </div>
       </div>
     </section>
@@ -296,7 +319,6 @@
         sheet.classList.add('active');
         sheet.setAttribute('aria-hidden', 'false');
         overlay.setAttribute('aria-hidden', 'false');
-        // focus management
         btnAccept.focus();
       }
       function closeSheet() {
