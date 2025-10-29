@@ -81,6 +81,21 @@
 
     /* Small help text */
     .note { font-size: .92rem; color: #9aa3b2; }
+
+    /* ----- Patch Notes tabs (light styles in case site.css lacks them) ----- */
+    .tabs { display: flex; gap: 8px; margin-bottom: 10px; flex-wrap: wrap; }
+    .tab {
+      appearance: none; border: 1px solid #2a3345; background: #141b26; color: #eaf1ff;
+      padding: 8px 12px; border-radius: 8px; cursor: pointer; font: inherit;
+    }
+    .tab[aria-selected="true"], .tab.active { background: #1d2840; border-color: #3a4e7a; }
+    .tabpanel { display: none; border: 1px solid #1f2b43; border-radius: 12px; padding: 14px; background: #0e1520; }
+    .tabpanel.active { display: block; }
+    .patch-group { margin: 0 0 14px; border-bottom: 1px dashed #25324a; padding-bottom: 12px; }
+    .patch-meta { color: #a7b3c7; font-size: .92rem; margin: 4px 0 10px; }
+    .changelist { margin: 8px 0 0 0; padding-left: 20px; }
+    .changelist li + li { margin-top: 6px; }
+    .badge { display: inline-block; font-size: .8rem; padding: 2px 8px; border: 1px solid #33486e; border-radius: 999px; background: #12203a; margin-left: 6px; }
   </style>
 </head>
 <body>
@@ -154,8 +169,29 @@
     <section id="patch-notes" class="section" aria-labelledby="patch-title">
       <div class="wrap">
         <h2 id="patch-title">Patch Notes</h2>
+
+        <!-- Tabs -->
         <div class="tabs" role="tablist" aria-label="Patch notes tabs">
-          <button class="tab active" data-target="precu-notes" role="tab" aria-selected="true">Pre-CU</button>
+          <button class="tab active" id="tab-precu" data-target="precu-notes" role="tab" aria-selected="true" aria-controls="precu-notes">Pre-CU</button>
+        </div>
+
+        <!-- Panels -->
+        <div id="precu-notes" class="tabpanel active" role="tabpanel" aria-labelledby="tab-precu">
+          <article class="patch-group" id="swgr-precu-notes">
+            <h3>SWGReturns Pre-CU Patch Notes <span class="badge">Live</span></h3>
+            <ul class="changelist">
+              <li>Added <strong>Mandalore</strong> as a planet.</li>
+              <li><strong>Unique Holocron Unlock:</strong> accumulate Force Points via gameplay or via professions (old way). You start with <strong>3 holocrons</strong> from the custom Dark Star vendor. Accumulate <strong>10,000 Force Points</strong> to unlock. You do <em>not</em> need to grind professions the original old-school way to unlock. <strong>Jedi Knight trials reduced to 3</strong>; no Padawan trials needed.</li>
+              <li><strong>WIP JTL.</strong></li>
+              <li><strong>Travel:</strong> Force Shrines, Jabba’s Palace, FS Village, and many other locations added to starship and ticket terminals.</li>
+              <li><strong>Dark Star Vendor:</strong> added for buffs and other QoL items (e.g., armors, Jedi and Sith holocrons, and more) outside starports in locations like <em>Coronet</em>, <em>Theed</em>, and <em>Mos Eisley</em>.</li>
+              <li><strong>XP:</strong> increased EXP gain — <strong>8×</strong> solo as well as in groups. Spin groups are enabled; XP is enhanced in groups too.</li>
+              <li><strong>Missions:</strong> take up to <strong>6 missions</strong> at a time.</li>
+              <li><strong>Jedi:</strong> Pre-publish 9 Jedi + <strong>FRS enabled</strong> + <strong>5th-gen sabers</strong> and other perks (e.g., custom FRS skills available).</li>
+              <li><strong>Balance:</strong> Jedi are an <strong>alpha class</strong>.</li>
+            </ul>
+          </article>
+        </div>
       </div>
     </section>
   </main>
@@ -278,7 +314,6 @@
       function proceedLink() {
         if (!pendingLink) return;
         const { href, target, rel } = pendingLink;
-        // open in new tab by default if target has _blank or attribute exists
         const win = window.open(href, target || '_blank', 'noopener');
         if (win) { try { win.opener = null; } catch(e){} }
         pendingLink = null;
@@ -289,12 +324,10 @@
         const a = e.target.closest('a[data-eula="required"]');
         if (!a) return;
 
-        // If already accepted in this session, just let it continue
         if (sessionStorage.getItem('eulaAccepted') === '1') {
           return; // allow native navigation
         }
 
-        // Open modal instead of navigating
         e.preventDefault();
         e.stopPropagation();
         const toOpen = {
@@ -341,6 +374,42 @@
         const el = document.querySelector(location.hash);
         if (el) el.setAttribute('tabindex','-1'), el.focus({ preventScroll: true });
       }
+    })();
+
+    // ===== Patch Notes tab behavior =====
+    (function(){
+      const tabs = document.querySelectorAll('.tabs .tab[role="tab"]');
+      const panels = document.querySelectorAll('.tabpanel[role="tabpanel"]');
+      if (!tabs.length) return;
+
+      function activate(id){
+        tabs.forEach(t=>{
+          const isSel = t.dataset.target === id;
+          t.setAttribute('aria-selected', isSel ? 'true' : 'false');
+          t.classList.toggle('active', isSel);
+        });
+        panels.forEach(p=>{
+          const isActive = p.id === id;
+          p.classList.toggle('active', isActive);
+          p.hidden = !isActive;
+        });
+      }
+
+      tabs.forEach(tab=>{
+        tab.addEventListener('click', ()=>{
+          activate(tab.dataset.target);
+        });
+        tab.addEventListener('keydown', (e)=>{
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            activate(tab.dataset.target);
+          }
+        });
+      });
+
+      // Ensure initial state
+      const current = document.querySelector('.tabs .tab.active')?.dataset.target || tabs[0].dataset.target;
+      activate(current);
     })();
   </script>
 </body>
