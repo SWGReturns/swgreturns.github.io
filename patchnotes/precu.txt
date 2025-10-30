@@ -1,6 +1,6 @@
 SWGReturns Pre-CU Patch Notes
 - added mandalore as a planet.
-- unique holocron unlock, you accumulate force points via gameplay or via professions (old way), you start with 3 holocrons from the custom Dark Star vendor, accumulate 10k force points to unlock, you don't grind professions the original old school way to unlock, reduced jedi knight trials to 3, no padawan trials needed.
+- reduced and custom village unlock, auto-granted fs skills upon arrival to the village. NO need to do fs quests, those are optional. reduced jedi knight trials to 3.
 - WIP JTL
 - force shrines, jabba's palace, fs village, and many other locations added to starship and ticket terminals
 - dark star vendor added for buffs and other QOL items e.g. armors, jedi and sith holocrons, and more outside starports in e.g. coronet, theed, and mos eisley
