@@ -1,10 +1,9 @@
 SWGReturns Pre-CU Patch Notes
 - added mandalore as a planet.
-- reduced and custom village unlock, auto-granted fs skills upon arrival to the village. NO need to do fs quests, those are optional. reduced jedi knight trials to 10, padawan trials reduced to two.
+- custom holocron jedi unlock, you accumlate force points via missions, themeparks, dungeons, and kills, no padawan trials needed, knight trials reduced to 3.
 - WIP JTL
 - force shrines, jabba's palace, fs village, and many other locations added to starship and ticket terminals
 - dark star vendor added for buffs and other QOL items e.g. armors, jedi and sith holocrons, and more outside starports in e.g. coronet, theed, and mos eisley
 - increased EXP gain, 8x solo as well as in groups. Spin groups are enabled, and xp is enhanced in groups too.
 - 6 missions at a time
-- Pre publish 9 jedi + FRS enabled + 5th gen sabers and other perks e.g. custom frs skills available.
 - Jedi are an alpha class.
