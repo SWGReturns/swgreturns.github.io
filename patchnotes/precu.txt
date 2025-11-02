@@ -8,3 +8,4 @@ SWGReturns Pre-CU Patch Notes
 - 6 missions at a time
 - Jedi are an alpha class.
 - Jedi are also a starting profession option.
+- pre publish 9 jedi + frs + post 9 frs skills and e.g. 5th gen lightsabers
