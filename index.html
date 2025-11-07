@@ -141,7 +141,19 @@
         <h2 id="downloads-title">Download</h2>
         <p class="lead">Choose your path. Links use direct Google Drive downloads.</p>
         <div class="cards">
-          <!-- Only the launcher download is kept -->
+          <!-- Manual / client download (re-added) -->
+          <article id="download-precu" class="card">
+            <h3>Manual Client Download</h3>
+            <p>Full game client. Use if launcher can’t download or you want a manual setup.</p>
+            <div class="actions">
+              <a class="btn download-btn glow"
+                 data-eula="required"
+                 data-track="download-precu"
+                 href="https://drive.google.com/file/d/1_Rx8rS_XMCcTchFLHwfV6jUJLzCIaiuk/view?usp=sharing"
+                 target="_blank" rel="noopener">Download Client</a>
+            </div>
+          </article>
+          <!-- Launcher download (kept) -->
           <article id="download-launcher" class="card">
             <h3>Launcher</h3>
             <p>Auto-patch, news, and easy server selection. Recommended for all players.</p>
@@ -175,7 +187,7 @@
             <h3>SWGReturns Pre-CU Patch Notes <span class="badge">Live</span></h3>
             <div class="patch-meta">Released: October 29, 2025</div>
             <ul class="changelist">
-              <li><strong>Unique Village Unlock:</strong> 4 trees to unlock, 2 hours per village phase, auto-granted fs trees upon village entry, you grind the village with jedi padawan. The Jedi Knight trials are reduced to 8.</li>
+              <li><strong>Unique Village Unlock:</strong> 4 trees to unlock, 2 hours per village phase, auto-granted FS trees upon village entry, you grind the village with Jedi Padawan. The Jedi Knight trials are reduced to 8.</li>
               <li><strong>Travel:</strong> FS Village, and many other locations added to ticket terminals.</li>
               <li><strong>XP:</strong> increased EXP gain — <strong>8×</strong> solo as well as in groups. Spin groups are enabled; XP is enhanced in groups too.</li>
               <li><strong>Missions:</strong> take up to <strong>6 missions</strong> at a time.</li>
@@ -269,147 +281,4 @@
         const payload = { event, target, ts: new Date().toISOString(), ua: navigator.userAgent, sid, ...extra };
         const blob = new Blob([JSON.stringify(payload)], { type: 'application/json' });
         if (navigator.sendBeacon) navigator.sendBeacon(ENDPOINT, blob);
-        else fetch(ENDPOINT, { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify(payload), keepalive: true }).catch(()=>{});
-      }
-      document.addEventListener('click', (e)=>{
-        const el = e.target.closest('[data-track]');
-        if (!el) return;
-        sendBeacon('click', el.getAttribute('data-track'), { href: el.getAttribute('href') || null });
-      });
-      window.__swgrTrack = sendBeacon;
-    })();
-
-    // ===== EULA Bottom-Sheet Modal Flow =====
-    (function(){
-      const sheet = document.getElementById('eulaSheet');
-      const overlay = document.getElementById('eulaOverlay');
-      const btnClose = document.getElementById('eulaClose');
-      const btnCancel = document.getElementById('eulaCancel');
-      const btnAccept = document.getElementById('eulaAccept');
-      const toast = document.getElementById('toast');
-
-      let pendingLink = null; // { href, target, rel }
-
-      function openSheet(forLink) {
-        pendingLink = forLink;
-        overlay.classList.add('active');
-        sheet.classList.add('active');
-        sheet.setAttribute('aria-hidden', 'false');
-        overlay.setAttribute('aria-hidden', 'false');
-        btnAccept.focus();
-      }
-      function closeSheet() {
-        sheet.classList.remove('active');
-        overlay.classList.remove('active');
-        sheet.setAttribute('aria-hidden', 'true');
-        overlay.setAttribute('aria-hidden', 'true');
-      }
-      function showToast(msg) {
-        if (!toast) return;
-        if (msg) toast.textContent = msg;
-        toast.classList.add('show');
-        setTimeout(()=> toast.classList.remove('show'), 3000);
-      }
-      function proceedLink() {
-        if (!pendingLink) return;
-        const { href, target, rel } = pendingLink;
-        const win = window.open(href, target || '_blank', 'noopener');
-        if (win) { try { win.opener = null; } catch(e){} }
-        pendingLink = null;
-      }
-
-      // Intercept clicks on links that require EULA
-      document.addEventListener('click', (e) => {
-        const a = e.target.closest('a[data-eula="required"]');
-        if (!a) return;
-
-        if (sessionStorage.getItem('eulaAccepted') === '1') {
-          return; // allow native navigation
-        }
-
-        e.preventDefault();
-        e.stopPropagation();
-        const toOpen = {
-          href: a.getAttribute('href'),
-          target: a.getAttribute('target'),
-          rel: a.getAttribute('rel')
-        };
-        openSheet(toOpen);
-      });
-
-      // Accept -> record + continue
-      btnAccept.addEventListener('click', () => {
-        sessionStorage.setItem('eulaAccepted', '1');
-        if (window.__swgrTrack) window.__swgrTrack('eula_accept', 'sheet');
-        closeSheet();
-        showToast('✅ EULA accepted — continuing download…');
-        proceedLink();
-      });
-
-      // Cancel / Close
-      function cancelSheet() {
-        if (window.__swgrTrack) window.__swgrTrack('eula_cancel', 'sheet');
-        pendingLink = null;
-        closeSheet();
-      }
-      btnCancel.addEventListener('click', cancelSheet);
-      btnClose.addEventListener('click', cancelSheet);
-      overlay.addEventListener('click', cancelSheet);
-
-      // Escape closes
-      document.addEventListener('keydown', (e)=>{
-        if (e.key === 'Escape' && overlay.classList.contains('active')) cancelSheet();
-      });
-
-      // If user navigates directly to #eula, open the sheet for reading
-      if (location.hash === '#eula') {
-        openSheet(null);
-      }
-    })();
-
-    // Optional: focus section on anchor load (non-modal sections)
-    (function(){
-      if (location.hash && location.hash !== '#eula') {
-        const el = document.querySelector(location.hash);
-        if (el) el.setAttribute('tabindex','-1'), el.focus({ preventScroll: true });
-      }
-    })();
-
-    // ===== Patch Notes tab behavior =====
-    (function(){
-      const tabs = document.querySelectorAll('.tabs .tab[role="tab"]');
-      const panels = document.querySelectorAll('.tabpanel[role="tabpanel"]');
-      if (!tabs.length) return;
-
-      function activate(id){
-        tabs.forEach(t=>{
-          const isSel = t.dataset.target === id;
-          t.setAttribute('aria-selected', isSel ? 'true' : 'false');
-          t.classList.toggle('active', isSel);
-        });
-        panels.forEach(p=>{
-          const isActive = p.id === id;
-          p.classList.toggle('active', isActive);
-          p.hidden = !isActive;
-        });
-      }
-
-      tabs.forEach(tab=>{
-        tab.addEventListener('click', ()=>{
-          activate(tab.dataset.target);
-        });
-        tab.addEventListener('keydown', (e)=>{
-          if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            activate(tab.dataset.target);
-          }
-        });
-      });
-
-      // Ensure initial state
-      const current = document.querySelector('.tabs .tab.active')?.dataset.target || tabs[0].dataset.target;
-      activate(current);
-    })();
-  </script>
-</body>
-</html>
+        else fetch(ENDPOINT, { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify(payload), keepalive
