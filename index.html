@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,267 +7,179 @@
   <title>SWGReturns — Star Wars Galaxies Private Server</title>
 
   <!-- SEO / Social -->
-  <meta name="description" content="SWGReturns brings back the legendary Star Wars Galaxies experience. classic Pre-CU gameplay. Download the launcher and play.">
+  <meta name="description" content="SWGReturns is a Star Wars Galaxies Pre-CU private server featuring custom planets, extended races, Grey Jedi, world bosses, and improved progression.">
   <meta property="og:title" content="SWGReturns — Star Wars Galaxies Private Server">
-  <meta property="og:description" content="Classic eras. Great community. Build, fight, craft, trade — your story, your way.">
+  <meta property="og:description" content="Pre-CU gameplay with extended content, custom planets, Grey Jedi, world bosses, and quality-of-life improvements.">
   <meta property="og:type" content="website">
   <meta property="og:image" content="assets/logo.png">
   <meta name="theme-color" content="#ffd54a">
 
   <link rel="icon" href="assets/logo.png">
   <link rel="stylesheet" href="styles.css?v=12" />
+
   <style>
-    /* ----- Bottom-sheet EULA modal ----- */
-    .sheet-overlay {
-      position: fixed; inset: 0;
-      background: rgba(0,0,0,.5);
-      backdrop-filter: saturate(120%) blur(3px);
-      opacity: 0; pointer-events: none;
-      transition: opacity .18s ease-out;
-      z-index: 9997;
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 18px;
+      margin-top: 24px;
     }
-    .sheet {
-      position: fixed; left: 0; right: 0; bottom: 0;
-      max-height: 80vh;
-      background: #0f141c;
-      border-top-left-radius: 16px;
-      border-top-right-radius: 16px;
-      box-shadow: 0 -20px 50px rgba(0,0,0,.45);
-      transform: translateY(100%);
-      transition: transform .24s cubic-bezier(.2,.8,.2,1);
-      z-index: 9998;
-      color: #eaf1ff;
+    .feature-card {
+      background: #0e1520;
+      border: 1px solid #1f2b43;
+      border-radius: 14px;
+      padding: 18px;
     }
-    .sheet.active { transform: translateY(0); }
-    .sheet-overlay.active { opacity: 1; pointer-events: auto; }
-
-    .sheet-header {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 14px 18px; border-bottom: 1px solid #1e2430;
+    .feature-card h3 {
+      margin: 0 0 8px;
+      font-size: 1.05rem;
     }
-    .sheet-title { font-size: 1.05rem; font-weight: 600; }
-    .sheet-close {
-      appearance: none; border: 0; background: transparent; color: #a9b4c7;
-      font-size: 1.2rem; cursor: pointer; padding: 6px 8px;
+    .feature-card ul {
+      margin: 0;
+      padding-left: 18px;
     }
-    .sheet-content {
-      padding: 14px 18px 18px;
-      overflow: auto; max-height: calc(80vh - 56px);
+    .feature-card li {
+      margin: 6px 0;
     }
-    .sheet-actions {
-      display: flex; gap: 10px; padding: 12px 18px 18px;
-      border-top: 1px solid #1e2430;
-      position: sticky; bottom: 0; background: #0f141c;
-    }
-    .btn { cursor: pointer; }
-    .btn.secondary { background: #1a2230; border: 1px solid #263349; }
-    .btn.primary { background: #2250ff; border: 1px solid #2a57ff; }
-    .btn.primary:hover { filter: brightness(1.05); }
-
-    .eula h3 { margin: 1rem 0 .5rem; }
-    .eula .meta { color: #9aa3b2; margin: .25rem 0 1rem; font-size: .95rem; }
-    .list-compact li { margin: .25rem 0; }
-
-    /* Toast */
-    .toast {
-      position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%);
-      background: #0c111b; border: 1px solid #20304a; color: #d8facc;
-      padding: .75rem 1rem; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,.35);
-      display: none; z-index: 9999;
-    }
-    .toast.show { display: block; animation: toast-in .2s ease-out, toast-out .25s ease-in 2.8s forwards; }
-    @keyframes toast-in { from { opacity: 0; transform: translateX(-50%) translateY(6px);} to { opacity: 1; transform: translateX(-50%) translateY(0);} }
-    @keyframes toast-out { to { opacity: 0; transform: translateX(-50%) translateY(6px);} }
-
-    /* Small help text */
-    .note { font-size: .92rem; color: #9aa3b2; }
-
-    /* ----- Patch Notes tabs ----- */
-    .tabs { display: flex; gap: 8px; margin-bottom: 10px; flex-wrap: wrap; }
-    .tab {
-      appearance: none; border: 1px solid #2a3345; background: #141b26; color: #eaf1ff;
-      padding: 8px 12px; border-radius: 8px; cursor: pointer; font: inherit;
-    }
-    .tab[aria-selected="true"], .tab.active { background: #1d2840; border-color: #3a4e7a; }
-    .tabpanel { display: none; border: 1px solid #1f2b43; border-radius: 12px; padding: 14px; background: #0e1520; }
-    .tabpanel.active { display: block; }
-    .patch-group { margin: 0 0 14px; border-bottom: 1px dashed #25324a; padding-bottom: 12px; }
-    .patch-meta { color: #a7b3c7; font-size: .92rem; margin: 4px 0 10px; }
-    .changelist { margin: 8px 0 0 0; padding-left: 20px; }
-    .changelist li + li { margin-top: 6px; }
-    .badge { display: inline-block; font-size: .8rem; padding: 2px 8px; border: 1px solid #33486e; border-radius: 999px; background: #12203a; margin-left: 6px; }
-    .archive-label { font-size: .95rem; color: #a7b3c7; margin: 12px 0 4px; }
-    details.patch-archive summary { cursor: pointer; padding: 6px 0; color: #c9d6ff; }
-    details.patch-archive[open] summary { opacity: .9; }
   </style>
 </head>
+
 <body>
-  <header class="site-header">
-    <div class="wrap nav-wrap">
-      <a class="brand" href="#top" aria-label="SWGReturns home">
-        <img src="assets/logo.png" class="logo" alt="SWGReturns Logo" onerror="this.style.display='none'">
-        <span class="wordmark">SWGReturns</span>
-      </a>
-      <nav class="top-nav">
-        <a href="#downloads" class="nav-downloads" data-track="nav-downloads">Download</a>
-        <a href="#patch-notes" data-track="nav-patchnotes">Patch Notes</a>
-        <a href="#eula" data-track="nav-eula">EULA</a>
-        <a class="btn small discord"
-           id="discord-link"
-           href="https://discord.gg/H2tVtpj8k8"
-           target="_blank" rel="noopener"
-           data-track="discord"
-           data-eula="required">Join Discord</a>
-      </nav>
+<header class="site-header">
+  <div class="wrap nav-wrap">
+    <a class="brand" href="#top">
+      <img src="assets/logo.png" class="logo" alt="SWGReturns Logo">
+      <span class="wordmark">SWGReturns</span>
+    </a>
+    <nav class="top-nav">
+      <a href="#downloads">Download</a>
+      <a href="#features">Features</a>
+      <a href="#patch-notes">Patch Notes</a>
+      <a href="#eula">EULA</a>
+      <a class="btn small discord"
+         href="https://discord.gg/H2tVtpj8k8"
+         target="_blank" rel="noopener">Join Discord</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero"
+    style="min-height:68vh;background-image:url('assets/background.png?v=12');background-size:cover;">
+    <div class="wrap hero-inner">
+      <h1>Return to the Galaxy</h1>
+      <p class="subtitle">
+        Pre-CU Star Wars Galaxies — expanded, refined, and built for long-term play.
+      </p>
+      <a class="btn primary glow" href="#downloads">Get Started</a>
     </div>
-  </header>
+  </section>
 
-  <main id="top">
-    <!-- HERO -->
-    <section id="hero" class="hero" aria-label="Hero"
-      style="min-height:68vh;background-image:url('assets/background.png?v=12');background-position:center center;background-size:cover;background-repeat:no-repeat;">
-      <div class="wrap hero-inner hero-content">
-        <h1>Return to the Galaxy</h1>
-        <p class="subtitle">PreCU era. Great community. Build, fight, craft, trade — your story, your way.</p>
-        <div class="cta-row">
-          <a class="btn primary glow" href="#downloads" data-track="hero-get-started">Get Started</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- DOWNLOADS -->
-    <section id="downloads" class="section" aria-labelledby="downloads-title">
-      <div class="wrap">
-        <h2 id="downloads-title">Download</h2>
-        <p class="lead">Choose your path. Links use direct Google Drive downloads.</p>
-        <div class="cards">
-          <!-- Launcher download (kept) -->
-          <article id="download-launcher" class="card">
-            <h3>Launcher</h3>
-            <p>Auto-patch, news, and easy server selection. Recommended for all players.</p>
-            <div class="actions">
-              <a class="btn download-btn glow"
-                 data-eula="required"
-                 data-track="download-launcher"
-                 href="https://drive.google.com/file/d/19n5bABNfN1V0-iWpKYO1f3bLAVWmfTqM/view?usp=sharing"
-                 target="_blank" rel="noopener">Download Launcher</a>
-            </div>
-          </article>
-        </div>
-        <p class="note">When you click a download, the EULA will appear. Accept to continue automatically.</p>
-      </div>
-    </section>
-
-    <!-- PATCH NOTES -->
-    <section id="patch-notes" class="section" aria-labelledby="patch-title">
-      <div class="wrap">
-        <h2 id="patch-title">Patch Notes</h2>
-
-        <!-- Tabs -->
-        <div class="tabs" role="tablist" aria-label="Patch notes tabs">
-          <button class="tab active" id="tab-precu" data-target="precu-notes" role="tab" aria-selected="true" aria-controls="precu-notes">Pre-CU</button>
-        </div>
-
-        <!-- Panels -->
-        <div id="precu-notes" class="tabpanel active" role="tabpanel" aria-labelledby="tab-precu">
-          <!-- LATEST -->
-          <article class="patch-group" id="precu-2025-10-29" data-release="2025-10-29">
-            <h3>SWGReturns Pre-CU Patch Notes <span class="badge">Live</span></h3>
-            <div class="patch-meta">Released: October 29, 2025</div>
-            <ul class="changelist">
-              <li><strong>Holocron Unlock:</strong> Holocron jedi unlock, 4 professions to unlock, 1 profession listed per holocron, no need to do padawan trials. 8 knight trials.</li>
-              <li><strong>Travel:</strong> FS Village, and many other locations added to ticket terminals.</li>
-              <li><strong>XP:</strong> increased EXP gain — <strong>10×</strong> solo and 12x in groups. Spin groups are enabled; XP is enhanced in groups too.</li>
-              <li><strong>Missions:</strong> take up to <strong>6 missions</strong> at a time.</li>
-              <li><strong>Balance:</strong> Jedi are an <strong>alpha class</strong>.</li>
-              <li><strong>Jedi:</strong> Gray Jedi + <strong>FRS enabled</strong> + <strong>5th-gen sabers</strong> and other perks (e.g., custom FRS skills available). Even start as a jedi if you want to.</li>
-              <li><strong>Vendor:</strong> Custom vendor added for buffs, armor, weapons, and other goodies outside major starports and cities, etc.</li>
-              <li><strong>Planet additions:</strong> dromund kaas, taanab and other planets to come.</li>
-            </ul>
-          </article>
-
-          <!-- ARCHIVE -->
-          <div class="archive-label">Previous Releases</div>
-          <details class="patch-archive">
-            <summary>Open archive</summary>
-            <!-- Add older patch notes here -->
-          </details>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="site-footer">
+  <!-- FEATURES -->
+  <section id="features" class="section">
     <div class="wrap">
-      <p>&copy; 2025 SWGReturns. Fan-made project. Star Wars™ is property of its respective owners. · <a href="#eula" data-track="footer-eula">EULA</a></p>
-    </div>
-  </footer>
+      <h2>Server Features</h2>
+      <p class="lead">
+        SWG Returns modernizes the Pre-CU experience while respecting the original game’s spirit.
+      </p>
 
-  <!-- Bottom-sheet EULA modal -->
-  <div class="sheet-overlay" id="eulaOverlay" aria-hidden="true"></div>
-  <aside class="sheet" id="eulaSheet" role="dialog" aria-modal="true" aria-labelledby="eulaTitle" aria-hidden="true">
-    <header class="sheet-header">
-      <div class="sheet-title" id="eulaTitle">SWG Returns — EULA</div>
-      <button class="sheet-close" type="button" id="eulaClose" aria-label="Close">✕</button>
-    </header>
-    <div class="sheet-content">
-      <div class="eula">
-        <p class="meta">Effective Date: <strong>October 21, 2025</strong> · Last Updated: <strong>October 21, 2025</strong></p>
+      <div class="feature-grid">
 
-        <h3>1. Legal Disclaimer</h3>
-        <ul class="list-compact">
-          <li><strong>Non-Commercial Project.</strong> SWG Returns is a non-profit, fan-run emulator built on the SWGEmu Core3 framework (GNU AGPLv3).</li>
-          <li><strong>Not Affiliated.</strong> Not affiliated with Lucasfilm Ltd., Disney, SOE/Daybreak, or LucasArts. All Star Wars IP remains with its owners.</li>
-          <li><strong>Use at Your Own Risk.</strong> Service is provided “AS IS” without warranties of any kind.</li>
-        </ul>
+        <div class="feature-card">
+          <h3>Progression & Balance</h3>
+          <ul>
+            <li>Improved EXP rates</li>
+            <li>4 professions required to unlock Jedi</li>
+            <li>Holocron grind (no Village)</li>
+            <li>Grey Jedi supported</li>
+            <li>World bosses with improved loot</li>
+          </ul>
+        </div>
 
-        <h3>2. Age & Conduct</h3>
-        <ul class="list-compact">
-          <li>You must be <strong>13+</strong>. If under 18, parental/guardian consent is required.</li>
-          <li>No harassment, hate speech, cheating, exploiting, or real-money trading.</li>
-        </ul>
+        <div class="feature-card">
+          <h3>Characters & Races</h3>
+          <ul>
+            <li>45 playable races</li>
+            <li>Extended armor sets</li>
+            <li>Extended weapon sets</li>
+            <li>NGE house support</li>
+          </ul>
+        </div>
 
-        <h3>3. Accounts & Data</h3>
-        <ul class="list-compact">
-          <li>Accounts remain property of SWG Returns; access is a revocable license.</li>
-          <li>Player data is used for gameplay/admin only; not sold or shared externally.</li>
-          <li>Accounts may be suspended/removed for violations, inactivity, or maintenance.</li>
-        </ul>
+        <div class="feature-card">
+          <h3>Planets & Exploration</h3>
+          <ul>
+            <li>Mandalore</li>
+            <li>Nal Hutta</li>
+            <li>Kashyyyk</li>
+            <li>Korriban</li>
+            <li>Hoth</li>
+            <li>Geonosis</li>
+            <li>Bespin</li>
+            <li>Mustafar</li>
+            <li>Dromund Kaas</li>
+          </ul>
+        </div>
 
-        <h3>4. SWGEmu Core3 Compliance</h3>
-        <ul class="list-compact">
-          <li>Server runs on SWGEmu Core3 and complies with AGPLv3.</li>
-          <li>Public redistribution of modified server code must remain open-source with complete source access.</li>
-          <li>Custom scripts/Lua modules are released under compatible open-source terms.</li>
-        </ul>
+        <div class="feature-card">
+          <h3>Quality of Life</h3>
+          <ul>
+            <li>5,000 items per character (houses or inventory)</li>
+            <li>Improved slicing</li>
+            <li>Improved drop rates</li>
+            <li>Junk dealers buy all items</li>
+          </ul>
+        </div>
 
-        <h3>5. Liability & Indemnification</h3>
-        <p>You agree to hold harmless SWG Returns staff and contributors for any losses or claims arising from your use of the service.</p>
-
-        <h3>6. Agreement Acceptance</h3>
-        <p>By connecting to SWG Returns or creating an account, you confirm that you have read and agree to this EULA, meet the minimum age requirement, and understand this is a fan-run emulator.</p>
-
-        <p class="note">Contact: <a href="mailto:bentonus@gmail.com">bentonus@gmail.com</a></p>
       </div>
     </div>
-    <div class="sheet-actions">
-      <button type="button" class="btn secondary" id="eulaCancel">Cancel</button>
-      <button type="button" class="btn primary" id="eulaAccept">I Accept</button>
+  </section>
+
+  <!-- DOWNLOADS -->
+  <section id="downloads" class="section">
+    <div class="wrap">
+      <h2>Download</h2>
+      <p class="lead">Download the launcher to connect to SWG Returns.</p>
+      <article class="card">
+        <h3>Game Launcher</h3>
+        <p>Auto-patching, server news, and easy access.</p>
+        <a class="btn primary glow"
+           href="https://drive.google.com/file/d/19n5bABNfN1V0-iWpKYO1f3bLAVWmfTqM/view"
+           target="_blank">Download Launcher</a>
+      </article>
     </div>
-  </aside>
+  </section>
 
-  <!-- Toast -->
-  <div class="toast" id="toast">✅ EULA accepted — continuing download…</div>
+  <!-- PATCH NOTES -->
+  <section id="patch-notes" class="section">
+    <div class="wrap">
+      <h2>Patch Notes</h2>
+      <article class="patch-group">
+        <h3>Pre-CU Patch Notes <span class="badge">Live</span></h3>
+        <div class="patch-meta">Latest Release</div>
+        <ul class="changelist">
+          <li>Jedi unlock via holocrons (4 professions)</li>
+          <li>Improved EXP and group scaling</li>
+          <li>Custom vendors and added travel locations</li>
+          <li>Additional planets and content updates</li>
+        </ul>
+      </article>
+    </div>
+  </section>
 
-  <script src="site.js?v=12" defer></script>
-  <script>
-    // ===== Analytics Beacon =====
-    (function(){
-      const ENDPOINT = '/log';
-      const sid = (crypto && crypto.randomUUID) ? crypto.randomUUID() :
-                  Math.random().toString(36).slice(2) + Date.now();
-      function sendBeacon(event, target, extra) {
-        const payload = { event, target, ts: new Date().toISOString(), ua: navigator.userAgent, sid, ...extra };
-        const blob = new Blob([JSON.stringify(payload)], { type: 'application/json' });
-        if (navigator.sendBeacon) navigator.sendBeacon(ENDPOINT, blob);
-        else fetch(ENDPOINT, { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify(payload), keepalive
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>
+      &copy; 2025 SWGReturns — Fan-made Star Wars Galaxies emulator.
+      Star Wars™ is property of its respective owners.
+    </p>
+  </div>
+</footer>
+
+<script src="site.js?v=12" defer></script>
+</body>
+</html>
