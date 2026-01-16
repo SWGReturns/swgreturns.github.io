@@ -1,266 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-  <title>SWGReturns — Star Wars Galaxies Private Server</title>
-
-  <!-- SEO / Social -->
-  <meta name="description" content="SWGReturns is a Star Wars Galaxies Pre-CU private server featuring full Pre-CU, CU, and NGE assets, custom professions, pre publish 9 Jedi systems, and long-term progression.">
-  <meta property="og:title" content="SWGReturns — Star Wars Galaxies Private Server">
-  <meta property="og:description" content="Pre-CU gameplay with full NGE assets, custom professions, pre publish 9 Jedi systems, and massive content support.">
-  <meta property="og:type" content="website">
-  <meta property="og:image" content="assets/logo.png">
-  <meta name="theme-color" content="#ffd54a">
-
+  <meta charset="UTF-8">
+  <title>SWGReturns — Star Wars Galaxies</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="SWGReturns — Pre-CU Star Wars Galaxies with expanded content and modern stability.">
+  <link rel="stylesheet" href="styles.css">
   <link rel="icon" href="assets/logo.png">
-  <link rel="stylesheet" href="styles.css?v=12" />
-
-  <style>
-    .feature-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 18px;
-      margin-top: 24px;
-    }
-    .feature-card {
-      background: #0e1520;
-      border: 1px solid #1f2b43;
-      border-radius: 14px;
-      padding: 18px;
-    }
-    .feature-card h3 {
-      margin: 0 0 8px;
-      font-size: 1.05rem;
-    }
-    .feature-card ul {
-      margin: 0;
-      padding-left: 18px;
-    }
-    .feature-card li {
-      margin: 6px 0;
-    }
-    code {
-      background: #0b1220;
-      padding: 2px 6px;
-      border-radius: 6px;
-      font-size: 0.9em;
-    }
-  </style>
 </head>
 
 <body>
 
 <header class="site-header">
-  <div class="wrap nav-wrap">
-    <a class="brand" href="#top">
-      <img src="assets/logo.png" class="logo" alt="SWGReturns Logo">
-      <span class="wordmark">SWGReturns</span>
-    </a>
-    <nav class="top-nav">
-      <a href="#downloads">Download</a>
-      <a href="#launcher-setup">Setup</a>
-      <a href="#features">Features</a>
-      <a href="#discord-guide">Discord</a>
-      <a class="btn small discord"
-         href="https://discord.gg/H2tVtpj8k8"
-         target="_blank" rel="noopener">Join Discord</a>
-    </nav>
+  <div class="wrap">
+    <h1>SWGReturns</h1>
+    <a class="btn discord" href="https://discord.gg/H2tVtpj8k8">Join Discord</a>
   </div>
 </header>
 
-<main id="top">
+<main>
 
-<!-- HERO -->
-
-<section class="hero"
-  style="min-height:68vh;background-image:url('assets/background.png?v=12');background-size:cover;">
-  <div class="wrap hero-inner">
-    <h1>Return to the Galaxy</h1>
-    <p class="subtitle">
-      Pre-CU Star Wars Galaxies — expanded, uncompromised, and built for long-term play.
-    </p>
-    <a class="btn primary glow" href="#downloads">Get Started</a>
-  </div>
+<section class="hero">
+  <h2>Return to the Galaxy</h2>
+  <p>Classic Pre-CU gameplay with expanded content and long-term progression.</p>
+  <a href="#get-started" class="btn primary">Get Started</a>
 </section>
 
-<!-- FEATURES -->
+<section id="get-started" class="section">
+  <h2>Getting Started</h2>
 
-<section id="features" class="section">
-  <div class="wrap">
-    <h2>Server Features</h2>
-    <p class="lead">
-      SWGReturns delivers the classic Pre-CU experience with massive content support and modern stability.
-    </p>
+  <h3>1️⃣ Download the Launcher</h3>
+  <p>
+    Download and install the SWGReturns launcher. It handles patching and server connection.
+  </p>
+  <a class="btn primary"
+     href="https://drive.google.com/file/d/19n5bABNfN1V0-iWpKYO1f3bLAVWmfTqM/view">
+     Download Launcher
+  </a>
 
-    <div class="feature-grid">
+  <h3>2️⃣ Create Your Account (Discord)</h3>
+  <p>
+    Account registration is handled securely through Discord.
+  </p>
 
-      <div class="feature-card">
-        <h3>Content & Assets</h3>
-        <ul>
-          <li>All standard Pre-CU assets</li>
-          <li>All CU armor sets</li>
-          <li>All Post-14.1 weapons</li>
-          <li>Mustafar & Kashyyyk NPCs</li>
-          <li>All NGE backpacks, wings, halos</li>
-          <li>All NGE vehicles, housing, decorations</li>
-          <li>TCG items and veteran rewards (1–10 year)</li>
-        </ul>
-      </div>
+  <ol>
+    <li>Join our Discord</li>
+    <li>Use <code>/register</code></li>
+    <li>Enter your username and password</li>
+    <li>Launch the game and log in</li>
+  </ol>
 
-      <div class="feature-card">
-        <h3>Custom Professions</h3>
-        <ul>
-          <li>Spy</li>
-          <li>Melee Bounty Hunter</li>
-          <li>Gray Jedi progression (Novice → Grand Master)</li>
-          <li>Unique force alignment paths</li>
-        </ul>
-      </div>
+  <p>
+    Passwords are never visible to staff and are securely hashed.
+  </p>
 
-      <div class="feature-card">
-        <h3>Jedi Systems</h3>
-        <ul>
-          <li>Pre-Publish 9 Jedi additions</li>
-          <li>Holocron-based unlock system</li>
-          <li>Optional permadeath</li>
-          <li>Configurable by staff</li>
-        </ul>
-      </div>
+  <a class="btn discord" href="https://discord.gg/H2tVtpj8k8">
+    Join Discord to Register
+  </a>
 
-      <div class="feature-card">
-        <h3>Quality of Life</h3>
-        <ul>
-          <li>5,000 items per character</li>
-          <li>Improved slicing & drop rates</li>
-          <li>Universal junk dealer support</li>
-        </ul>
-      </div>
-
-    </div>
-  </div>
+  <h3>3️⃣ Launch & Play</h3>
+  <p>
+    Start the launcher, log in with your credentials, and enter the galaxy.
+  </p>
 </section>
 
-<!-- DOWNLOADS -->
-
-<section id="downloads" class="section">
-  <div class="wrap">
-    <h2>Download</h2>
-    <p class="lead">Download the launcher to connect to SWGReturns.</p>
-
-    <article class="card">
-      <h3>SWGReturns Launcher</h3>
-      <p>Auto-patching, server news, and easy access.</p>
-      <a class="btn primary glow"
-         href="https://drive.google.com/file/d/19n5bABNfN1V0-iWpKYO1f3bLAVWmfTqM/view"
-         target="_blank">Download Launcher</a>
-    </article>
-  </div>
-</section>
-
-<!-- LAUNCHER SETUP -->
-
-<section id="launcher-setup" class="section">
-  <div class="wrap">
-    <h2>Launcher Setup Guide</h2>
-    <p class="lead">Follow these steps to install and connect.</p>
-
-    <div class="feature-grid">
-
-      <div class="feature-card">
-        <h3>1. Disclaimer</h3>
-        <ul>
-          <li>Do not run the original SOE launcher</li>
-        </ul>
-      </div>
-
-      <div class="feature-card">
-        <h3>2. Install Launcher</h3>
-        <ul>
-          <li>Extract into a directory of your choice, doesn't matter where</li>
-          <li>Example: <code>C:\StarWarsGalaxies\</code></li>
-        </ul>
-      </div>
-
-      <div class="feature-card">
-        <h3>3. Patch</h3>
-        <ul>
-          <li>Run the launcher</li>
-          <li>Allow full patching to complete</li>
-        </ul>
-      </div>
-
-      <div class="feature-card">
-        <h3>4. Create Account</h3>
-        <ul>
-          <li>Create account via ingame, doesn't matter what, it's automatic registration</li>
-          <li>No email verification required</li>
-        </ul>
-      </div>
-
-      <div class="feature-card">
-        <h3>5. Play</h3>
-        <ul>
-          <li>Click Play</li>
-          <li>Log in and enjoy</li>
-        </ul>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- DISCORD GUIDE -->
-
-<section id="discord-guide" class="section">
-  <div class="wrap">
-    <h2>Discord Guide</h2>
-    <p class="lead">Community, support, and updates.</p>
-
-    <div class="feature-grid">
-
-      <div class="feature-card">
-        <h3>Support</h3>
-        <ul>
-          <li>#support — launcher & connection issues</li>
-          <li>#bug-reports — in-game bugs</li>
-        </ul>
-      </div>
-
-      <div class="feature-card">
-        <h3>Updates</h3>
-        <ul>
-          <li>#announcements — patches & downtime</li>
-          <li>#server-status — live status</li>
-        </ul>
-      </div>
-
-      <div class="feature-card">
-        <h3>Community</h3>
-        <ul>
-          <li>#general — discussion</li>
-          <li>#trade — player trading</li>
-          <li>#guild-recruitment</li>
-        </ul>
-      </div>
-
-    </div>
-  </div>
+<section class="section">
+  <h2>Need Help?</h2>
+  <p>
+    Visit our Discord for support, patch notes, and announcements.
+  </p>
 </section>
 
 </main>
 
-<footer class="site-footer">
-  <div class="wrap">
-    <p>
-      &copy; 2025 SWGReturns — Fan-made Star Wars Galaxies emulator.
-      Star Wars™ is property of its respective owners.
-    </p>
-  </div>
+<footer>
+  <p>
+    &copy; 2025 SWGReturns — Fan-made Star Wars Galaxies emulator.
+  </p>
 </footer>
 
-<script src="site.js?v=12" defer></script>
 </body>
 </html>
