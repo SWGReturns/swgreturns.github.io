@@ -7,6 +7,26 @@
   <meta name="description" content="SWGReturns — New Game Experience (NGE) Star Wars Galaxies with expanded content, modern stability, and a living galaxy.">
   <link rel="stylesheet" href="styles.css">
   <link rel="icon" href="assets/logo.png">
+  <style>
+    /* Inline styles for the new Jedi update cards */
+    .jedi-update {
+      background: rgba(0,0,0,0.6);
+      border-left: 4px solid #ffc107;
+      padding: 20px;
+      margin: 20px 0;
+      border-radius: 12px;
+    }
+    .jedi-update h3 {
+      color: #ffc107;
+      margin-top: 0;
+    }
+    .jedi-update ul {
+      margin-left: 20px;
+    }
+    .jedi-update li {
+      margin: 8px 0;
+    }
+  </style>
 </head>
 
 <body>
@@ -20,6 +40,7 @@
 
     <nav class="top-nav" aria-label="Top navigation">
       <a href="#features">Features</a>
+      <a href="#jedi-update">Jedi Balance</a>
       <a href="#get-started">Get Started</a>
       <a href="#patch-notes">Patch Notes</a>
       <a href="#need-help">Help</a>
@@ -75,7 +96,7 @@
     </div>
   </section>
 
-  <!-- FEATURES (no Jedi) -->
+  <!-- FEATURES (includes Jedi mentions now) -->
   <section id="features" class="section">
     <div class="wrap">
       <h2>Features</h2>
@@ -97,14 +118,25 @@
         <div class="card">
           <h3>Custom Loot & Collections</h3>
           <ul>
+            <li>Revan's Robes, SWTOR Robes, Star Forge Robes</li>
             <li>Many rare drops and collection rewards</li>
             <li>Expanded loot tables for all content</li>
           </ul>
         </div>
 
         <div class="card">
+          <h3>9+ Extra Planets</h3>
+          <ul>
+            <li><strong>9+ additional planets</strong> beyond the base game</li>
+            <li>New areas to explore, grind, and build</li>
+            <li>All content retains NGE mechanics</li>
+          </ul>
+        </div>
+
+        <div class="card">
           <h3>Quality of Life</h3>
           <ul>
+            <li>5,000 item cap per character</li>
             <li>Improved loot and drop rates</li>
             <li>Improved slicing functionality</li>
             <li>Junk dealers accept all items</li>
@@ -133,6 +165,67 @@
       <p class="center tip" style="margin-top: 14px;">
         Want updates and the full feature list? Join our Discord for announcements, patch notes, and support.
       </p>
+    </div>
+  </section>
+
+  <!-- JEDI BALANCE & EXPERTISE UPDATE SECTION (new) -->
+  <section id="jedi-update" class="section">
+    <div class="wrap">
+      <h2>⚔️ Jedi Balance & Expertise Update</h2>
+      <p class="center lead">Major improvements to Light Side support, Dark Side damage scaling, core Jedi progression, and Heroic Jewelry sets.</p>
+
+      <div class="jedi-update">
+        <h3>🛡️ Light Side Support</h3>
+        <ul>
+          <li>Fixed <strong>Soothing Aura</strong> threshold values so Light path healing buffs apply correctly.</li>
+          <li>Increased Soothing Aura healing bonuses, allowing full Light path Force Regeneration to heal for approximately <strong>15K</strong>.</li>
+          <li>Added a controlled <strong>Forsake Fear</strong> group health HoT while preserving the existing action‑heal channel behavior.</li>
+          <li>Reworked the unused Lethargy line into <strong>Improved Forsake Fear</strong> functionality.</li>
+          <li>Improved Forsake Fear now reduces cooldown, increases HoT strength, and expands group radius.</li>
+          <li>Preserved existing behavior for <strong>Cloud Minds</strong>, <strong>Expansive Trickery</strong>, and <strong>Mind Trick</strong>.</li>
+        </ul>
+      </div>
+
+      <div class="jedi-update">
+        <h3>🌑 Dark Side Damage Scaling</h3>
+        <ul>
+          <li>Fixed Dark Side threshold‑gated expertise values for <strong>Tempt Hatred</strong> and <strong>Wracking Energy</strong>.</li>
+          <li>Added direct Dark Side Force power damage scaling through active Jedi path expertise.</li>
+          <li>Increased scaling for <strong>Dark Lightning</strong>, <strong>Maelstrom</strong>, <strong>Force Drain</strong>, and <strong>Improved Force Choke</strong>.</li>
+          <li>Avoided shared NPC combat data changes – these buffs only affect intended player Jedi paths.</li>
+        </ul>
+      </div>
+
+      <div class="jedi-update">
+        <h3>✨ Core Jedi Progression</h3>
+        <ul>
+          <li>Increased Force Sensitive core stat progression from levels <strong>1–90</strong>.</li>
+          <li>Added baseline Jedi innate protections to phase master rows.</li>
+          <li>Increased selected Jedi expertise bonuses for damage, block, armor bypass, and healing.</li>
+          <li>Regenerated active Jedi skill and expertise files from clean source to clear stale FRS test mismatches.</li>
+        </ul>
+      </div>
+
+      <div class="jedi-update">
+        <h3>💍 Heroic Jewelry Update</h3>
+        <h4 style="color:#ffc107;">Guardian Set</h4>
+        <ul>
+          <li>Buffed Guardian heroic jewelry defensive stats.</li>
+          <li>Reworked the <strong>3‑piece, 4‑piece, and 5‑piece</strong> Guardian bonuses within the five‑effect buff limit.</li>
+          <li>Increased Guardian full‑set heroic token cost to <strong>120 tokens</strong>.</li>
+        </ul>
+        <h4 style="color:#ffc107;">Lightsaber Duelist Set</h4>
+        <ul>
+          <li>Buffed Lightsaber Duelist per‑piece stats.</li>
+          <li>Added true lightsaber weapon damage mods to the Saber DPS set.</li>
+          <li>Reworked the <strong>3‑piece, 4‑piece, and 5‑piece</strong> Duelist bonuses within the five‑effect buff limit.</li>
+          <li>Increased Lightsaber Duelist full‑set heroic token cost to <strong>120 tokens</strong>.</li>
+        </ul>
+      </div>
+
+      <div class="center" style="margin-top: 20px;">
+        <p class="tip">These updates are live on the server. Join our Discord to discuss builds and provide feedback.</p>
+      </div>
     </div>
   </section>
 
@@ -165,8 +258,15 @@
         <div>
           <h3>2️⃣ Register Your Account</h3>
           <p class="lead">
-            You can register <strong>in-game</strong> on first login</strong>.
+            You can register either <strong>in-game</strong> on first login, or via the <strong>Discord bot</strong>.
           </p>
+
+          <ul>
+            <li><strong>Discord bot:</strong> join the Discord and run <code>/register</code> to create your account.</li>
+          </ul>
+
+          <p class="tip">
+            Passwords are securely hashed. Staff cannot view your credentials.
           </p>
         </div>
 
@@ -186,7 +286,7 @@
     </div>
   </section>
 
-  <!-- PATCH NOTES (no Jedi) -->
+  <!-- PATCH NOTES (includes Jedi item) -->
   <section id="patch-notes" class="section alt">
     <div class="wrap">
       <h2>Patch Notes</h2>
@@ -212,13 +312,14 @@
         </div>
 
         <div class="card">
-          <h3>Quality of Life</h3>
+          <h3>Quality of Life & Jedi Balance</h3>
           <ul>
             <li>5,000 item cap per character</li>
             <li>Improved loot and drop rates</li>
             <li>Improved slicing functionality</li>
             <li>Junk dealers accept all items</li>
             <li>Custom launcher with advanced settings (FPS cap, downscaling, etc.)</li>
+            <li><strong>Jedi Expertise overhaul:</strong> Light Side healing, Dark Side damage, core progression, and Heroic jewelry updates (see Jedi Balance section).</li>
           </ul>
         </div>
       </div>
