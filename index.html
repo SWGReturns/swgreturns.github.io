@@ -26,6 +26,17 @@
     .jedi-update li {
       margin: 8px 0;
     }
+    .unlock-notice {
+      background: rgba(255,193,7,0.15);
+      border: 1px solid #ffc107;
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+    .unlock-notice strong {
+      color: #ffc107;
+    }
   </style>
 </head>
 
@@ -40,7 +51,7 @@
 
     <nav class="top-nav" aria-label="Top navigation">
       <a href="#features">Features</a>
-      <a href="#jedi-update">Jedi Balance</a>
+      <a href="#jedi-update">Jedi</a>
       <a href="#get-started">Get Started</a>
       <a href="#patch-notes">Patch Notes</a>
       <a href="#need-help">Help</a>
@@ -96,7 +107,7 @@
     </div>
   </section>
 
-  <!-- FEATURES (includes Jedi mentions now) -->
+  <!-- FEATURES (includes Jedi unlock note) -->
   <section id="features" class="section">
     <div class="wrap">
       <h2>Features</h2>
@@ -112,6 +123,7 @@
             <li>All NGE professions fully functional</li>
             <li>Revised skill trees for better balance</li>
             <li>Endgame specialization paths</li>
+            <li><strong>Jedi is NOT a starting profession</strong> – unlock it through achievements.</li>
           </ul>
         </div>
 
@@ -168,11 +180,24 @@
     </div>
   </section>
 
-  <!-- JEDI BALANCE & EXPERTISE UPDATE SECTION (new) -->
+  <!-- JEDI BALANCE & EXPERTISE UPDATE SECTION (with unlock explanation) -->
   <section id="jedi-update" class="section">
     <div class="wrap">
-      <h2>⚔️ Jedi Balance & Expertise Update</h2>
-      <p class="center lead">Major improvements to Light Side support, Dark Side damage scaling, core Jedi progression, and Heroic Jewelry sets.</p>
+      <h2>⚔️ Jedi – Unlock & Balance</h2>
+      <p class="center lead">Jedi is a prestigious endgame path, not a starting profession. Unlock it through dedication.</p>
+
+      <!-- Unlock notice -->
+      <div class="unlock-notice">
+        <strong>🔓 HOW TO UNLOCK JEDI</strong><br>
+        Jedi is <strong>not available</strong> at character creation. To unlock the Jedi profession, you must:
+        <ul style="margin-top: 10px; list-style: none; padding-left: 0;">
+          <li>✓ Earn <strong>badges</strong> from exploration, quests, and achievements</li>
+          <li>✓ Complete <strong>collections</strong> scattered across the galaxy</li>
+          <li>✓ Conquer <strong>endgame heroic encounters</strong> and high‑level content</li>
+          <li>✓ Reach the highest tiers of <strong>reputation and progression</strong></li>
+        </ul>
+        Once unlocked, you begin your journey as a Jedi Padawan and work your way through the advanced expertise system.
+      </div>
 
       <div class="jedi-update">
         <h3>🛡️ Light Side Support</h3>
@@ -197,7 +222,7 @@
       </div>
 
       <div class="jedi-update">
-        <h3>✨ Core Jedi Progression</h3>
+        <h3>✨ Core Jedi Progression (Post‑Unlock)</h3>
         <ul>
           <li>Increased Force Sensitive core stat progression from levels <strong>1–90</strong>.</li>
           <li>Added baseline Jedi innate protections to phase master rows.</li>
@@ -286,7 +311,7 @@
     </div>
   </section>
 
-  <!-- PATCH NOTES (includes Jedi item) -->
+  <!-- PATCH NOTES -->
   <section id="patch-notes" class="section alt">
     <div class="wrap">
       <h2>Patch Notes</h2>
@@ -319,7 +344,8 @@
             <li>Improved slicing functionality</li>
             <li>Junk dealers accept all items</li>
             <li>Custom launcher with advanced settings (FPS cap, downscaling, etc.)</li>
-            <li><strong>Jedi Expertise overhaul:</strong> Light Side healing, Dark Side damage, core progression, and Heroic jewelry updates (see Jedi Balance section).</li>
+            <li><strong>Jedi Expertise overhaul:</strong> Light Side healing, Dark Side damage, core progression, and Heroic jewelry updates (see Jedi section).</li>
+            <li><strong>Jedi unlock system:</strong> Jedi is not a starting profession – unlock via badges, collections, and heroic endgame content.</li>
           </ul>
         </div>
       </div>
