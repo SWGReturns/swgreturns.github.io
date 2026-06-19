@@ -310,7 +310,20 @@ strong { color: var(--text); }
 .gold-link { color: var(--gold); text-decoration: none; }
 .gold-link:hover { text-decoration: underline; }
 
-/* ── Discord layout ──────────────────────────────────────────── */
+/* ── Discord top section ─────────────────────────────────────────── */
+.discord-top { background: var(--panel); }
+.discord-top-layout {
+  display: grid; grid-template-columns: 1fr 380px;
+  gap: 40px; align-items: center;
+}
+.discord-top-text h2 { text-align: left; margin-bottom: 12px; }
+.discord-top-text p  { margin: 0 0 20px; }
+.discord-top-widget iframe {
+  width: 100%; display: block; border-radius: var(--rad);
+  border: 1px solid var(--border);
+}
+
+/* ── Discord bottom layout ─────────────────────────────────────── */
 .discord-layout {
   display: grid; grid-template-columns: 1fr 320px;
   gap: 32px; align-items: start; margin-top: 28px;
@@ -340,9 +353,13 @@ strong { color: var(--text); }
 /* ── Mobile ──────────────────────────────────────────────────── */
 @media (max-width: 960px) {
   .cards.cols-3,
-  .get-started-cols { grid-template-columns: 1fr; }
-  .discord-layout   { grid-template-columns: 1fr; }
-  .discord-widget-col { position: static; }
+  .get-started-cols      { grid-template-columns: 1fr; }
+  .discord-layout        { grid-template-columns: 1fr; }
+  .discord-widget-col    { position: static; }
+  .discord-top-layout    { grid-template-columns: 1fr; }
+  .discord-top-text h2   { text-align: center; }
+  .discord-top-text p    { text-align: center; }
+  .discord-top-text      { text-align: center; }
 }
 
 @media (max-width: 768px) {
