@@ -5,109 +5,376 @@
   <title>SWGReturns — Classic Pre-CU Star Wars Galaxies</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="SWGReturns — Classic Pre-CU Star Wars Galaxies with expanded content, modern stability, and a living galaxy.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <link rel="icon" href="assets/logo.png">
 </head>
 <body>
 
+<!-- ═══════════════════════════════════════════════════════ HEADER -->
 <header class="site-header">
+  <canvas id="header-stars" aria-hidden="true"></canvas>
   <div class="wrap nav-wrap">
     <a class="brand" href="#">
       <img class="logo" src="assets/logo.png" alt="SWGReturns logo">
       <span class="wordmark">SWGReturns</span>
     </a>
-    <nav class="top-nav" aria-label="Top navigation">
+    <button class="hamburger" id="hamburger" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="top-nav" id="top-nav" aria-label="Top navigation">
       <a href="#features">Features</a>
-      <a href="#jedi-guide">Jedi Guide</a>
+      <a href="#jedi-guide">Jedi</a>
       <a href="#get-started">Get Started</a>
       <a href="#patch-notes">Patch Notes</a>
-      <a href="#need-help">Help</a>
-      <a class="btn small discord" href="https://discord.gg/xY5WuwfcFD">Join Discord</a>
-      <a class="btn small register" href="http://212.227.73.161/register" target="_blank">Register for Test Center</a>
+      <a href="#need-help">Community</a>
+      <a class="btn nav-discord" href="https://discord.gg/xY5WuwfcFD" target="_blank">Discord</a>
+      <a class="btn nav-register" href="http://212.227.73.161/register" target="_blank">Register</a>
     </nav>
   </div>
 </header>
 
-<main>
-  <section class="hero" style="background-image:url('assets/hero.jpg');">
-    <div class="wrap">
-      <h1>Return to the Galaxy</h1>
-      <p class="subtitle">Classic Pre-CU gameplay with expanded content, faster progression, and long-term endgame.</p>
-      <div class="cta-row">
-        <a href="#get-started" class="btn primary glow">Get Started</a>
-        <a href="https://discord.gg/xY5WuwfcFD" class="btn glow" style="border:1px solid var(--gold); color:var(--text);">Join Discord</a>
+<!-- ═══════════════════════════════════════════════════════ HERO -->
+<section class="hero">
+  <div class="hero-stars" aria-hidden="true"></div>
+  <div class="wrap hero-inner">
+    <p class="hero-eyebrow">Pre-CU Star Wars Galaxies Emulator</p>
+    <h1>Return to the Galaxy</h1>
+    <p class="hero-sub">Classic Pre-CU gameplay with expanded content, faster progression, and long-term endgame.</p>
+    <div class="cta-row">
+      <a href="#get-started" class="btn btn-gold glow">Get Started</a>
+      <a href="https://discord.gg/xY5WuwfcFD" class="btn btn-outline glow" target="_blank">Join Discord</a>
+      <a href="http://212.227.73.161/register" class="btn btn-register glow" target="_blank">Register for Test Center</a>
+    </div>
+  </div>
+  <div class="hero-fade"></div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ WHAT YOU GET -->
+<section class="section alt">
+  <div class="wrap">
+    <h2>What You Get</h2>
+    <div class="cards cols-3">
+      <div class="card">
+        <div class="card-icon">⚔️</div>
+        <h3>Pre-CU Purist Core</h3>
+        <p class="muted">Original Pre-CU combat, professions, and pacing — no CU or NGE mechanics.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🌌</div>
+        <h3>Expanded Content Library</h3>
+        <p class="muted">Full access to CU and NGE-era assets without altering Pre-CU gameplay balance.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🏆</div>
+        <h3>Long-Term Progression</h3>
+        <p class="muted">Built for longevity: stable economy, meaningful investment, and real endgame goals.</p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="section alt">
-    <div class="wrap">
-      <h2>What You Get</h2>
-      <div class="cards">
-        <div class="card"><h3>Pre-CU Purist Core</h3><p class="lead">Original Pre-CU combat, professions, and pacing — no CU or NGE mechanics.</p></div>
-        <div class="card"><h3>Expanded Content Library</h3><p class="lead">Full access to CU and NGE-era assets without altering Pre-CU gameplay balance.</p></div>
-        <div class="card"><h3>Long-Term Progression</h3><p class="lead">Built for longevity: stable economy, meaningful investment, and real endgame goals.</p></div>
+<!-- ═══════════════════════════════════════════════════════ FEATURES -->
+<section id="features" class="section">
+  <div class="wrap">
+    <h2>Features</h2>
+    <p class="section-lead">A classic Pre-CU foundation — powered up with expanded planets, custom loot, and serious Jedi progression.</p>
+    <div class="cards">
+      <div class="card">
+        <h3>Jedi System</h3>
+        <ul>
+          <li>Classic pre-Publish 9 Hologrind unlock path</li>
+          <li>Padawan → Journeyman → Master progression</li>
+          <li>Force Ranking System (FRS) endgame</li>
+          <li>Jedi Elder prestige progression</li>
+          <li>No death penalty on Jedi status</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>5th Gen Lightsabers</h3>
+        <ul>
+          <li>5th generation sabers supported</li>
+          <li>Endgame crafting &amp; loot chase potential</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Custom Loot</h3>
+        <ul>
+          <li>Revan's Robes, SWTOR Robes, Star Forge Robes</li>
+          <li>More rare drops and rewards</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>9+ Extra Planets</h3>
+        <ul>
+          <li>Expanded galaxy with <strong>9+ additional planets</strong></li>
+          <li>Content expansion without CU/NGE mechanics</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Fast XP Rates</h3>
+        <ul>
+          <li><strong>20× XP</strong> solo</li>
+          <li><strong>4.0× XP</strong> grouped</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Quality of Life</h3>
+        <ul>
+          <li>200 item cap per character</li>
+          <li>Improved loot and drop rates</li>
+          <li>Improved slicing functionality</li>
+          <li>Junk dealers accept all items</li>
+        </ul>
       </div>
     </div>
-  </section>
-
-  <section id="features" class="section">
-    <div class="wrap">
-      <h2>Features</h2>
-      <p class="center lead">A classic Pre-CU foundation — powered up with expanded planets, custom loot, and serious Jedi progression.</p>
-      <div class="cards">
-        <div class="card"><h3>Jedi System: Hologrind → Force Shrine</h3><ul><li>Classic pre-Publish 9 inspired unlock path</li><li>Padawan → Journeyman → Master progression</li><li>Force Ranking System (FRS) endgame</li><li>Jedi Elder prestige progression</li><li>No death penalty on Jedi status</li></ul></div>
-        <div class="card"><h3>5th Gen Lightsabers</h3><ul><li>5th generation sabers supported</li><li>Endgame crafting/loot chase potential</li></ul></div>
-        <div class="card"><h3>Custom Loot</h3><ul><li>Revan's Robes, SWTOR Robes, Star Forge Robes</li><li>More rare drops and rewards</li></ul></div>
-        <div class="card"><h3>9+ Extra Planets</h3><ul><li>Expanded galaxy with <strong>9+ additional planets</strong></li><li>Content expansion without CU/NGE mechanics</li></ul></div>
-        <div class="card"><h3>Fast XP Rates</h3><ul><li><strong>20× XP</strong> solo</li><li><strong>4.0× XP</strong> grouped</li></ul></div>
-        <div class="card"><h3>Quality of Life</h3><ul><li>200 item cap per character</li><li>Improved loot and drop rates</li><li>Improved slicing functionality</li><li>Junk dealers accept all items</li></ul></div>
-      </div>
-      <div class="center"><a class="btn primary glow" href="#get-started">Get Started</a><a class="btn glow" href="https://discord.gg/xY5WuwfcFD" style="margin-left:10px;">Join Discord</a></div>
+    <div class="section-cta">
+      <a class="btn btn-gold glow" href="#get-started">Get Started</a>
+      <a class="btn btn-outline glow" href="https://discord.gg/xY5WuwfcFD" target="_blank">Join Discord</a>
     </div>
-  </section>
+  </div>
+</section>
 
- <section id="jedi-guide" class="section jedi-guide"> <div class="wrap"> <h2>🌟 JEDI UNLOCK GUIDE (Pre-CU)</h2> <div class="step"> <h3>🔵 Force Sensitive Character Slot (FSCS)</h3> <ul> <li>SWGReturns uses a classic Hologrind-inspired Jedi system.</li> <li>Holocrons reveal hidden professions required for Jedi unlock.</li> <li>Master all required professions to unlock a <strong>Force Sensitive Character Slot</strong>.</li> <li><strong>Your existing character does NOT become Jedi.</strong></li> <li>Log out and create a brand-new Jedi character after unlocking.</li> <li><strong>One Jedi character is permitted per account.</strong></li> </ul> </div> <div class="step"> <h3>🟡 Starting Your Jedi Journey</h3> <ul> <li>New Jedi characters begin as <strong>Jedi Padawan</strong>.</li> <li>Train Lightsaber and Force abilities.</li> <li>Craft and customize your own lightsabers.</li> <li>Advance through Padawan, Journeyman, and Master ranks.</li> </ul> </div> <div class="step"> <h3>⚔️ Force Ranking System (FRS)</h3> <ul> <li>After reaching Jedi Master, enter the Force Ranking System.</li> <li>Choose the Light Side or Dark Side path.</li> <li>Compete for rank, power, and prestige.</li> <li>Earn powerful rewards and unique progression.</li> </ul> </div> <div class="step"> <h3>✨ Jedi Elder</h3> <ul> <li>The ultimate stage of Jedi progression.</li> <li>Reserved for the most dedicated Force users.</li> </ul> </div> <div class="note"> <p> ⚠️ <strong>Important</strong><br> • Jedi unlocks are account-based.<br> • Only one Jedi per account is allowed.<br> • No Jedi death penalty.<br> • Hologrind unlocks a new character slot—not Jedi on your current character.<br> • FRS progression begins after Jedi Knight. </p> <p>May the Force be with you.</p> </div> </div> </section>
-
-  <section id="get-started" class="section">
-    <div class="wrap">
-      <h2>Getting Started</h2>
-      <div class="columns">
-        <div><h3>1️⃣ Download the Launcher</h3><p class="lead">Download and install the SWGReturns launcher.</p><div class="actions"><a class="btn primary download-btn glow" href="https://github.com/bfitzgit23/SWG-Returns-Launcher/releases/download/1.2.2/SWG-Returns.Launcher.Setup.1.2.2.exe" target="_blank">Download Launcher</a></div><p class="tip">You'll need a legal SWG client install.</p></div>
-        <div><h3>2️⃣ Register Your Account</h3><p class="lead">Create your account on the <a href="http://212.227.73.161/register" target="_blank" style="color:var(--gold)">registration page</a>, then log in with those credentials in-game.</p></div>
-        <div><h3>3️⃣ Launch &amp; Play</h3><p class="lead">Patch, log in, and enter the galaxy.</p><ul><li>Automatic patching</li><li>Create your character</li><li>Head planetside</li></ul></div>
+<!-- ═══════════════════════════════════════════════════════ JEDI GUIDE -->
+<section id="jedi-guide" class="section alt">
+  <div class="wrap">
+    <h2>Jedi Unlock Guide</h2>
+    <p class="section-lead">The classic pre-Publish 9 Hologrind path — rebuilt for SWGReturns.</p>
+    <div class="steps">
+      <div class="step-card">
+        <span class="step-num">01</span>
+        <h3>Force Sensitive Character Slot</h3>
+        <ul>
+          <li>SWGReturns uses a classic Hologrind-inspired Jedi system</li>
+          <li>Holocrons reveal hidden professions required for Jedi unlock</li>
+          <li>Master all required professions to unlock a Force Sensitive Character Slot</li>
+          <li><strong>Your existing character does NOT become Jedi</strong></li>
+          <li>Log out and create a brand-new Jedi character after unlocking</li>
+          <li><strong>One Jedi character is permitted per account</strong></li>
+        </ul>
+      </div>
+      <div class="step-card">
+        <span class="step-num">02</span>
+        <h3>Starting Your Jedi Journey</h3>
+        <ul>
+          <li>New Jedi characters begin as <strong>Jedi Padawan</strong></li>
+          <li>Train Lightsaber and Force abilities</li>
+          <li>Craft and customize your own lightsabers</li>
+          <li>Advance through Padawan, Journeyman, and Master ranks</li>
+        </ul>
+      </div>
+      <div class="step-card">
+        <span class="step-num">03</span>
+        <h3>Force Ranking System</h3>
+        <ul>
+          <li>After reaching Jedi Master, enter the Force Ranking System</li>
+          <li>Choose the Light Side or Dark Side path</li>
+          <li>Compete for rank, power, and prestige</li>
+          <li>Earn powerful rewards and unique progression</li>
+        </ul>
+      </div>
+      <div class="step-card">
+        <span class="step-num">04</span>
+        <h3>Jedi Elder</h3>
+        <ul>
+          <li>The ultimate stage of Jedi progression</li>
+          <li>Reserved for the most dedicated Force users</li>
+        </ul>
       </div>
     </div>
-  </section>
+    <div class="jedi-note">
+      <strong>Important:</strong> Jedi unlocks are account-based. Only one Jedi per account. No Jedi death penalty.
+      Hologrind unlocks a new character slot — not Jedi on your current character. FRS progression begins after Jedi Knight.
+      <br><br><em>May the Force be with you.</em>
+    </div>
+  </div>
+</section>
 
-  <section id="patch-notes" class="section alt">
-    <div class="wrap">
-      <h2>Patch Notes</h2>
-      <div class="cards">
-        <div class="card"><h3>Core Systems</h3><ul><li>Pre-CU combat and profession systems preserved</li><li>No CU or NGE mechanics enabled</li><li>Stability and performance improvements</li></ul></div>
-        <div class="card"><h3>Content &amp; Assets</h3><ul><li>All Pre-CU assets enabled</li><li>CU and NGE weapons, armor, vehicles, and decorations added</li><li>Mustafar and Kashyyyk NPCs and content supported</li><li>NGE-era housing deeds and schematics enabled</li></ul></div>
-        <div class="card"><h3>Quality of Life</h3><ul><li>200 item cap per character</li><li>Improved loot and drop rates</li><li>Improved slicing functionality</li><li>Junk dealers accept all items</li></ul></div>
+<!-- ═══════════════════════════════════════════════════════ GET STARTED -->
+<section id="get-started" class="section">
+  <div class="wrap">
+    <h2>Getting Started</h2>
+    <div class="get-started-cols">
+      <div class="gs-step">
+        <div class="gs-num">01</div>
+        <h3>Download the Launcher</h3>
+        <p class="muted">Download and install the SWGReturns launcher.</p>
+        <a class="btn btn-gold download-btn glow" href="https://github.com/bfitzgit23/SWG-Returns-Launcher/releases/download/1.2.2/SWG-Returns.Launcher.Setup.1.2.2.exe" target="_blank">Download Launcher</a>
+        <p class="tip">You'll need a legal SWG client install.</p>
+      </div>
+      <div class="gs-step">
+        <div class="gs-num">02</div>
+        <h3>Register Your Account</h3>
+        <p class="muted">Create your account on the <a class="gold-link" href="http://212.227.73.161/register" target="_blank">registration page</a>, then log in with those credentials in-game.</p>
+        <a class="btn btn-register glow" href="http://212.227.73.161/register" target="_blank">Register Now</a>
+      </div>
+      <div class="gs-step">
+        <div class="gs-num">03</div>
+        <h3>Launch &amp; Play</h3>
+        <p class="muted">Patch, log in, and enter the galaxy.</p>
+        <ul>
+          <li>Automatic patching</li>
+          <li>Create your character</li>
+          <li>Head planetside</li>
+        </ul>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section id="need-help" class="section">
-    <div class="wrap">
-      <h2>Discord</h2>
-      <p class="center lead">Announcements, patch notes, support, events, and the community hub — all in one place.</p>
-      <div class="cards">
-        <div class="card"><h3>✅ Server Updates</h3><ul><li>Announcements + downtime notices</li><li>Patch notes and changelogs</li></ul><p class="tip">#announcements, #patch-notes</p></div>
-        <div class="card"><h3>🧰 Support &amp; Help</h3><ul><li>Launcher help and install fixes</li><li>Account/login troubleshooting</li><li>Report bugs</li></ul><p class="tip">#support, #help, #bug-reports</p></div>
-        <div class="card"><h3>🗺️ Guides &amp; Community</h3><ul><li>New player questions</li><li>Builds, professions, and Jedi info</li><li>Player economy</li></ul><p class="tip">#new-players, #guides, #trade</p></div>
-        <div class="card"><h3>⚔️ PvP, FRS, &amp; Events</h3><ul><li>FRS discussion and rank chase</li><li>Event announcements</li><li>Guild recruiting</li></ul><p class="tip">#pvp, #frs, #events, #recruitment</p></div>
+<!-- ═══════════════════════════════════════════════════════ PATCH NOTES -->
+<section id="patch-notes" class="section alt">
+  <div class="wrap">
+    <h2>Patch Notes</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>Core Systems</h3>
+        <ul>
+          <li>Pre-CU combat and profession systems preserved</li>
+          <li>No CU or NGE mechanics enabled</li>
+          <li>Stability and performance improvements</li>
+        </ul>
       </div>
-      <div class="center"><a class="btn glow" href="https://discord.gg/xY5WuwfcFD">Join Discord</a></div>
+      <div class="card">
+        <h3>Content &amp; Assets</h3>
+        <ul>
+          <li>All Pre-CU assets enabled</li>
+          <li>CU and NGE weapons, armor, vehicles, and decorations added</li>
+          <li>Mustafar and Kashyyyk NPCs and content supported</li>
+          <li>NGE-era housing deeds and schematics enabled</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Quality of Life</h3>
+        <ul>
+          <li>200 item cap per character</li>
+          <li>Improved loot and drop rates</li>
+          <li>Improved slicing functionality</li>
+          <li>Junk dealers accept all items</li>
+        </ul>
+      </div>
     </div>
-  </section>
-</main>
+  </div>
+</section>
 
+<!-- ═══════════════════════════════════════════════════════ COMMUNITY / DISCORD -->
+<section id="need-help" class="section">
+  <div class="wrap">
+    <h2>Community</h2>
+    <p class="section-lead">Announcements, support, guides, and events — all in one place.</p>
+    <div class="discord-layout">
+      <div class="discord-info">
+        <div class="cards cols-2">
+          <div class="card">
+            <h3>✅ Server Updates</h3>
+            <ul><li>Announcements + downtime notices</li><li>Patch notes and changelogs</li></ul>
+            <p class="tip">#announcements, #patch-notes</p>
+          </div>
+          <div class="card">
+            <h3>🧰 Support &amp; Help</h3>
+            <ul><li>Launcher help and install fixes</li><li>Account/login troubleshooting</li><li>Report bugs</li></ul>
+            <p class="tip">#support, #help, #bug-reports</p>
+          </div>
+          <div class="card">
+            <h3>🗺️ Guides &amp; Community</h3>
+            <ul><li>New player questions</li><li>Builds, professions, and Jedi info</li><li>Player economy</li></ul>
+            <p class="tip">#new-players, #guides, #trade</p>
+          </div>
+          <div class="card">
+            <h3>⚔️ PvP, FRS &amp; Events</h3>
+            <ul><li>FRS discussion and rank chase</li><li>Event announcements</li><li>Guild recruiting</li></ul>
+            <p class="tip">#pvp, #frs, #events, #recruitment</p>
+          </div>
+        </div>
+        <div class="section-cta">
+          <a class="btn btn-outline glow" href="https://discord.gg/xY5WuwfcFD" target="_blank">Join Discord</a>
+        </div>
+      </div>
+      <div class="discord-widget-col">
+        <p class="widget-label">Who's Online</p>
+        <iframe
+          src="https://discord.com/widget?id=1384702301624733787&theme=dark"
+          width="100%" height="420"
+          allowtransparency="true"
+          frameborder="0"
+          sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"
+          title="SWGReturns Discord — who's online">
+        </iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ FOOTER -->
 <footer class="site-footer">
-  <div class="wrap"><p>&copy; 2025 SWGReturns — Fan-made Star Wars Galaxies Pre-CU emulator.</p></div>
+  <div class="wrap">
+    <p class="footer-brand">SWGReturns</p>
+    <p>&copy; 2025 SWGReturns — Fan-made Star Wars Galaxies Pre-CU emulator. Not affiliated with Disney, LucasArts, or Sony Online Entertainment.</p>
+  </div>
 </footer>
+
+<script>
+// ── Animated starfield in header ──────────────────────────────────
+(function () {
+  const canvas = document.getElementById('header-stars');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let stars = [], W = 0, H = 0, raf;
+
+  function resize() {
+    W = canvas.width  = canvas.offsetWidth;
+    H = canvas.height = canvas.offsetHeight;
+    initStars();
+  }
+
+  function initStars() {
+    stars = Array.from({ length: 180 }, () => ({
+      x:     Math.random() * W,
+      y:     Math.random() * H,
+      r:     Math.random() * 1.1 + 0.2,
+      phase: Math.random() * Math.PI * 2,
+      speed: Math.random() * 0.005 + 0.0015
+    }));
+  }
+
+  function draw(t) {
+    ctx.clearRect(0, 0, W, H);
+    for (const s of stars) {
+      const a = 0.25 + 0.75 * (0.5 + 0.5 * Math.sin(s.phase + t * s.speed));
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(255,255,255,${a.toFixed(2)})`;
+      ctx.fill();
+    }
+    raf = requestAnimationFrame(draw);
+  }
+
+  resize();
+  window.addEventListener('resize', resize);
+  raf = requestAnimationFrame(draw);
+})();
+
+// ── Mobile hamburger toggle ───────────────────────────────────────
+(function () {
+  const btn = document.getElementById('hamburger');
+  const nav = document.getElementById('top-nav');
+  if (!btn || !nav) return;
+
+  btn.addEventListener('click', () => {
+    const open = nav.classList.toggle('open');
+    btn.classList.toggle('active', open);
+    btn.setAttribute('aria-expanded', String(open));
+  });
+
+  nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    nav.classList.remove('open');
+    btn.classList.remove('active');
+    btn.setAttribute('aria-expanded', 'false');
+  }));
+})();
+</script>
+
 </body>
 </html>
