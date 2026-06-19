@@ -17,6 +17,8 @@ html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:
 .top-nav a:hover{color:var(--gold)}
 .top-nav .btn.small.discord{padding:8px 12px;border:1px solid var(--gold);border-radius:8px;margin-left:22px}
 .top-nav .btn.small.discord:hover{background:rgba(255,213,74,.1)}
+.top-nav .btn.small.register{padding:8px 14px;background:var(--gold);color:#121217;border-radius:8px;margin-left:10px;font-weight:700}
+.top-nav .btn.small.register:hover{background:var(--gold-soft)}
 
 /* Hero */
 .hero{position:relative;padding-top:calc(var(--header-h) + 28px);padding-bottom:120px;min-height:68vh;
