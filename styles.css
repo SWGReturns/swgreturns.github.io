@@ -105,6 +105,8 @@ strong { color: var(--text); }
 .download-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 24px rgba(0,0,0,.6); }
 .glow:hover { box-shadow: 0 0 22px rgba(255,213,74,.35); }
 
+.nav-guides  { padding: 7px 12px; border: 1px solid rgba(255,213,74,.35); border-radius: 7px; margin-left: 6px; }
+.nav-guides:hover { background: var(--gold-dim); color: var(--gold); }
 .nav-discord  { padding: 7px 12px; border: 1px solid rgba(255,213,74,.35); border-radius: 7px; margin-left: 6px; }
 .nav-discord:hover { background: var(--gold-dim); color: var(--gold); }
 .nav-register { padding: 7px 13px; background: var(--gold); color: #111 !important; border-radius: 7px; margin-left: 6px; font-weight: 800; }
