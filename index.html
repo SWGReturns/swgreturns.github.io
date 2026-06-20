@@ -40,7 +40,35 @@
 <section class="hero">
   <div class="hero-stars" aria-hidden="true"></div>
   <div class="wrap hero-inner">
-    <p class="hero-eyebrow">Pre-CU Star Wars Galaxies Emulator</p>
+    <!-- ═══ SERVER STATUS STRIP ═══ -->
+    <div class="server-strip">
+      <div class="sv-card" id="sv-precu">
+        <div class="sv-name">Pre-CU Main</div>
+        <div class="sv-indicator" id="ind-precu">⟳</div>
+        <div class="sv-players"><span id="pl-precu">--</span> online</div>
+        <div class="sv-peak">Peak: <span id="pk-precu">--</span></div>
+      </div>
+      <div class="sv-card" id="sv-tc">
+        <div class="sv-name">Test Center</div>
+        <div class="sv-indicator" id="ind-tc">⟳</div>
+        <div class="sv-players"><span id="pl-tc">--</span> online</div>
+        <div class="sv-peak">Peak: <span id="pk-tc">--</span></div>
+      </div>
+      <div class="sv-card" id="sv-nge">
+        <div class="sv-name">NGE Main</div>
+        <div class="sv-indicator" id="ind-nge">⟳</div>
+        <div class="sv-players"><span id="pl-nge">--</span> online</div>
+        <div class="sv-peak">Peak: <span id="pk-nge">--</span></div>
+      </div>
+      <div class="sv-card" id="sv-nge-tc">
+        <div class="sv-name">NGE TC</div>
+        <div class="sv-indicator" id="ind-nge-tc">⟳</div>
+        <div class="sv-players"><span id="pl-nge-tc">--</span> online</div>
+        <div class="sv-peak">Peak: <span id="pk-nge-tc">--</span></div>
+      </div>
+    </div>
+
+    <p class="hero-eyebrow">Pre-CU Star Or NGE Jump to Light Speed Star Wars Galaxies Emulator</p>
     <h1>Return to the Galaxy</h1>
     <p class="hero-sub">Classic Pre-CU gameplay with expanded content, faster progression, and long-term endgame.</p>
     <div class="cta-row">
@@ -528,6 +556,47 @@
     btn.classList.remove('active');
     btn.setAttribute('aria-expanded', 'false');
   }));
+})();
+
+// ── Server Status Strip ─────────────────────────────────────────
+(function() {
+  const STATS_URL = 'assets/stats.json';
+  const SERVERS = [
+    {key:'precu',   name:'Pre-CU Main'},
+    {key:'tc',      name:'Test Center'},
+    {key:'nge',     name:'NGE Main'},
+    {key:'nge-tc',  name:'NGE TC'}
+  ];
+
+  async function refresh() {
+    try {
+      const r = await fetch(STATS_URL + '?_=' + Date.now());
+      const all = await r.json();
+      for (const s of SERVERS) {
+        const d = all[s.key] || {};
+        const ind = document.getElementById('ind-' + s.key);
+        const pl  = document.getElementById('pl-' + s.key);
+        const pk  = document.getElementById('pk-' + s.key);
+        if (!ind) continue;
+        if (d.online) {
+          ind.className = 'sv-indicator online';
+          ind.textContent = '●';
+          if (pl) pl.textContent = d.players || '0';
+          if (pk) pk.textContent = d.peak || 'N/A';
+        } else {
+          ind.className = 'sv-indicator offline';
+          ind.textContent = '○';
+          if (pl) pl.textContent = '0';
+          if (pk) pk.textContent = 'N/A';
+        }
+      }
+    } catch(e) {
+      console.warn('Stats fetch failed', e);
+    }
+  }
+
+  refresh();
+  setInterval(refresh, 30000);
 })();
 </script>
 

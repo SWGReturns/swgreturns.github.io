@@ -1,0 +1,30 @@
+name: Fetch Server Stats
+on:
+  schedule:
+    - cron: '*/5 * * * *'
+  workflow_dispatch:
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fetch stats from proxy
+        run: |
+          mkdir -p assets
+          curl -s --max-time 30 'http://82.165.250.176/chat/stats.php' > assets/stats.json.tmp
+          if [ -s assets/stats.json.tmp ]; then
+            # Validate it's JSON
+            python3 -m json.tool assets/stats.json.tmp > /dev/null 2>&1 && \
+              mv assets/stats.json.tmp assets/stats.json || \
+              echo "Invalid JSON, keeping existing file"
+          else
+            echo "Empty response, skipping"
+          fi
+          rm -f assets/stats.json.tmp
+      - name: Commit stats
+        run: |
+          git config user.name "swgreturns-bot"
+          git config user.email "bot@swgreturns.com"
+          git add assets/stats.json
+          git diff --cached --quiet || git commit -m "Update server stats [skip ci]"
+          git push
