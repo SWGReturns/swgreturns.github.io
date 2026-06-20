@@ -268,6 +268,38 @@ strong { color: var(--text); }
 .card h3 { margin: 0 0 10px; color: var(--gold); font-size: 15px; }
 .card-icon { font-size: 26px; margin-bottom: 10px; }
 
+/* ── Donation Section ───────────────────────────────────────── */
+.donate-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px; margin-top: 28px;
+}
+.donate-box {
+  background: var(--card-bg); border: 1px solid var(--border);
+  border-radius: var(--rad); padding: 28px; text-align: center;
+  transition: border-color .2s, transform .2s, box-shadow .2s;
+}
+.donate-box:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 28px rgba(0,0,0,.45);
+}
+.donate-box h3 { color: var(--gold); font-size: 18px; margin: 0 0 10px; }
+.donate-box .muted { font-size: 14px; line-height: 1.6; margin-bottom: 18px; }
+.donate-btn {
+  background: transparent; border: 1px solid var(--gold);
+  color: var(--gold) !important; padding: 12px 24px; border-radius: 7px;
+  font-size: 14px; font-weight: 700; display: inline-block;
+  transition: background .2s, color .2s, box-shadow .2s;
+}
+.donate-btn:hover {
+  background: var(--gold); color: #111 !important;
+  box-shadow: 0 0 20px rgba(255,213,74,.4);
+}
+.thank-you {
+  text-align: center; color: var(--muted); font-size: 15px;
+  font-style: italic; margin-top: 24px;
+}
+
 /* ── Server Comparison Boxes ─────────────────────────────────── */
 .server-cols {
   display: grid;
@@ -411,6 +443,7 @@ strong { color: var(--text); }
 @media (max-width: 960px) {
   .cards.cols-3,
   .server-cols,
+  .donate-cols,
   .get-started-cols      { grid-template-columns: 1fr; }
   .discord-layout        { grid-template-columns: 1fr; }
   .discord-widget-col    { position: static; }
