@@ -479,3 +479,76 @@ strong { color: var(--text); }
 
   .cards.cols-2 { grid-template-columns: 1fr; }
 }
+
+/* ── Splash Screen ──────────────────────────────────────────── */
+#splashOverlay {
+  position: fixed; inset: 0; z-index: 99999;
+  background: #0a0a0a;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  cursor: pointer; opacity: 1; transition: opacity .8s;
+}
+#splashOverlay.hidden { opacity: 0; pointer-events: none; }
+.splash-inner { text-align: center; }
+.splash-icon { font-size: 64px; color: var(--gold); margin-bottom: 16px; }
+.splash-icon svg { width: 64px; height: 64px; fill: var(--gold); }
+.splash-title {
+  font-family: 'Orbitron', sans-serif; font-size: 42px; font-weight: 900;
+  color: var(--gold); margin: 0 0 8px; letter-spacing: 3px;
+}
+.splash-sub {
+  font-family: 'Orbitron', sans-serif; font-size: 14px; font-weight: 400;
+  color: var(--muted); letter-spacing: 4px; text-transform: uppercase;
+  margin: 0 0 28px;
+}
+.splash-bar {
+  width: 200px; height: 2px; background: rgba(255,213,74,.15);
+  margin: 0 auto 24px; border-radius: 2px; overflow: hidden;
+}
+.splash-bar-fill {
+  width: 0%; height: 100%; background: var(--gold);
+  animation: splashLoad 2s ease forwards;
+}
+@keyframes splashLoad { to { width: 100%; } }
+.splash-status {
+  display: flex; gap: 24px; justify-content: center; margin-bottom: 32px;
+}
+.splash-stat { font-size: 12px; letter-spacing: 1px; color: var(--muted); display: flex; align-items: center; gap: 6px; }
+.splash-stat .dot { width: 6px; height: 6px; border-radius: 50%; display: inline-block; }
+.splash-stat .dot.on { background: #4de08a; box-shadow: 0 0 6px #4de08a; }
+.splash-stat .dot.off { background: #555; }
+.splash-click {
+  font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+  color: rgba(255,213,74,.5);
+  animation: splashPulse 1.5s ease-in-out infinite;
+}
+@keyframes splashPulse { 0%,100% { opacity: .3; } 50% { opacity: 1; } }
+
+/* ── Disclaimer Modal ───────────────────────────────────────── */
+#disclaimerOverlay {
+  position: fixed; inset: 0; z-index: 99998;
+  background: rgba(5,5,8,.97);
+  display: none; align-items: center; justify-content: center;
+  padding: 24px 16px; overflow-y: auto;
+}
+#disclaimerOverlay.show { display: flex; }
+.disclaimer-card {
+  background: #111116; border: 1px solid rgba(255,213,74,.15);
+  border-radius: 14px; padding: 36px; max-width: 640px; width: 100%;
+  max-height: 90vh; overflow-y: auto;
+}
+.disclaimer-card h2 {
+  font-family: 'Orbitron', sans-serif; font-size: 20px; font-weight: 700;
+  color: var(--gold); margin: 0 0 16px; text-align: center;
+}
+.disclaimer-card p, .disclaimer-card li {
+  color: var(--muted); font-size: 13px; line-height: 1.7;
+}
+.disclaimer-card ul { padding-left: 18px; margin: 10px 0; }
+.disclaimer-card ul li { margin-bottom: 4px; }
+.disclaimer-card .label {
+  display: block; margin: 16px 0 10px;
+  font-size: 13px; color: var(--text);
+}
+.disclaimer-card .label input { margin-right: 8px; accent-color: var(--gold); }
+.disclaimer-card .btn { width: 100%; margin-top: 14px; }
+.disclaimer-card .btn:disabled { opacity: .3; cursor: not-allowed; }

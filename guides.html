@@ -13,6 +13,46 @@
 </head>
 <body>
 
+<!-- ═══════════════════════════════════════════════════════ SPLASH SCREEN -->
+<div id="splashOverlay">
+  <div class="splash-inner">
+    <div class="splash-icon">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+    </div>
+    <div class="splash-title">SWG Returns Pre CU</div>
+    <div class="splash-sub">Choose Your Path &mdash; Join the Adventure</div>
+    <div class="splash-bar"><div class="splash-bar-fill"></div></div>
+    <div class="splash-status">
+      <span class="splash-stat"><span class="dot on"></span> Main Server &mdash; Online</span>
+      <span class="splash-stat"><span class="dot on"></span> Test Center &mdash; Online</span>
+    </div>
+    <div class="splash-click">&#9654; Click Anywhere to Begin</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ DISCLAIMER -->
+<div id="disclaimerOverlay">
+  <div class="disclaimer-card">
+    <h2>&#9888; Legal Disclaimer</h2>
+    <p><strong>SWGReturns Pre CU — Fan-Made Server</strong></p>
+    <p>SWGReturns is an unofficial, fan-made private server for Star Wars Galaxies Pre-CU. It is not affiliated with, endorsed by, or connected to Sony Online Entertainment, Daybreak Game Company, LucasArts, or Disney. Star Wars Galaxies&trade; is the intellectual property of its respective owners.</p>
+    <p>This server is run by fans, for fans, on a non-profit basis. No money is charged for access to the game itself.</p>
+    <p><strong>You Must Own the Original Game</strong></p>
+    <p>By accessing this server you confirm that you legally own or have owned a copy of Star Wars Galaxies.</p>
+    <p><strong>By Clicking "I Accept" You Agree That:</strong></p>
+    <ul>
+      <li>You own or have owned a legitimate copy of Star Wars Galaxies.</li>
+      <li>You understand this is an unofficial fan-made server, not the original game.</li>
+      <li>Any software you download is used at your own risk.</li>
+      <li>You are aged 13 or over.</li>
+    </ul>
+    <label class="label">
+      <input type="checkbox" id="disclaimerCheck"> I confirm I own or have owned Star Wars Galaxies and I accept the terms above.
+    </label>
+    <button class="btn btn-gold glow" id="disclaimerAccept" disabled>I Accept &mdash; Enter the Galaxy</button>
+  </div>
+</div>
+
 <!-- ═══════════════════════════════════════════════════════ HEADER -->
 <header class="site-header">
   <canvas id="header-stars" aria-hidden="true"></canvas>
@@ -264,6 +304,39 @@
     const o = n.classList.toggle('open');
     h.setAttribute('aria-expanded', String(o));
   });
+})();
+
+// ── Splash &amp; Disclaimer ────────────────────────────────────────────
+(function() {
+  const splash = document.getElementById('splashOverlay');
+  const disc   = document.getElementById('disclaimerOverlay');
+  const check  = document.getElementById('disclaimerCheck');
+  const accept = document.getElementById('disclaimerAccept');
+  let dismissed = localStorage.getItem('swgr_disclaimer') === '1';
+
+  function showDisclaimer() {
+    splash.classList.add('hidden');
+    disc.classList.add('show');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function acceptDisclaimer() {
+    localStorage.setItem('swgr_disclaimer', '1');
+    disc.classList.remove('show');
+    document.body.style.overflow = '';
+  }
+
+  if (dismissed) {
+    splash.classList.add('hidden');
+  } else {
+    splash.addEventListener('click', showDisclaimer);
+  }
+
+  check.addEventListener('change', function() {
+    accept.disabled = !this.checked;
+  });
+
+  accept.addEventListener('click', acceptDisclaimer);
 })();
 </script>
 
