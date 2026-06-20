@@ -221,9 +221,16 @@ strong { color: var(--text); }
   max-width: 720px; margin-left: auto; margin-right: auto;
 }
 .cta-row {
-  display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
+  display: flex; gap: 8px; justify-content: center; flex-wrap: nowrap;
 }
-.cta-row .btn { padding: 12px 22px; font-size: 15px; }
+.cta-btn {
+  display: inline-block; padding: 8px 14px; border-radius: 8px;
+  text-decoration: none; font-weight: 700; font-size: 13px;
+  white-space: nowrap; cursor: pointer; border: none;
+  background: var(--gold); color: #111;
+  transition: background .18s, transform .15s, box-shadow .2s;
+}
+.cta-btn:hover { background: var(--gold-soft); transform: translateY(-1px); }
 
 /* ── Sections ────────────────────────────────────────────────── */
 .section { padding: 68px 0; scroll-margin-top: calc(var(--header-h) + 12px); }
