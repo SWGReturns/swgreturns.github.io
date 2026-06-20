@@ -205,6 +205,8 @@ strong { color: var(--text); }
 }
 
 .hero-inner      { position: relative; z-index: 1; }
+.hero-logo-wrap  { text-align: center; margin-bottom: 16px; }
+.hero-logo-img   { max-height: 120px; width: auto; filter: drop-shadow(0 0 24px rgba(255,213,74,.35)); }
 .hero-eyebrow    {
   font-size: 11px; letter-spacing: 4px; text-transform: uppercase;
   color: var(--gold); opacity: .75; margin: 0 0 14px;
@@ -390,8 +392,10 @@ strong { color: var(--text); }
 
 /* ── Cantina Live ────────────────────────────────────────────── */
 .cantina-live-wrap {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: start;
+  display: grid; grid-template-columns: 1fr 1fr 300px; gap: 28px; align-items: start;
 }
+.discord-widget-cantina { display: flex; flex-direction: column; }
+.discord-widget-cantina iframe { width: 100%; border-radius: var(--rad); border: 1px solid var(--border); }
 .cantina-server-status { display: flex; gap: 12px; margin-bottom: 16px; }
 .server-pill {
   background: rgba(255,213,74,.08); border: 1px solid rgba(255,213,74,.2);
@@ -458,6 +462,10 @@ strong { color: var(--text); }
   color: var(--gold); margin: 0 0 6px;
 }
 .site-footer p { margin: 4px 0 0; font-size: 13px; }
+.footer-powered { margin-top: 10px !important; font-size: 12px !important; color: var(--muted); }
+.footer-powered a { color: var(--gold); text-decoration: none; }
+.footer-powered a:hover { text-decoration: underline; }
+.community-discord-wrap { max-width: 900px; margin: 0 auto; border-radius: var(--rad); overflow: hidden; border: 1px solid var(--border); }
 
 /* ── Server Strip ───────────────────────────────────────────── */
 .server-strip {
@@ -502,6 +510,7 @@ strong { color: var(--text); }
   .discord-top-text h2   { text-align: center; }
   .discord-top-text p    { text-align: center; }
   .discord-top-text      { text-align: center; }
+  .cantina-live-wrap     { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 768px) {
@@ -603,3 +612,4 @@ strong { color: var(--text); }
 .disclaimer-card .label input { margin-right: 8px; accent-color: var(--gold); }
 .disclaimer-card .btn { width: 100%; margin-top: 14px; }
 .disclaimer-card .btn:disabled { opacity: .3; cursor: not-allowed; }
+
