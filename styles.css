@@ -109,8 +109,6 @@ strong { color: var(--text); }
 .nav-guides:hover { background: var(--gold-dim); color: var(--gold); }
 .nav-discord  { padding: 7px 12px; border: 1px solid rgba(255,213,74,.35); border-radius: 7px; margin-left: 6px; }
 .nav-discord:hover { background: var(--gold-dim); color: var(--gold); }
-.nav-register { padding: 7px 13px; background: var(--gold); color: #111 !important; border-radius: 7px; margin-left: 6px; font-weight: 800; }
-.nav-register:hover { background: var(--gold-soft) !important; }
 
 /* Hamburger */
 .hamburger {
@@ -412,7 +410,7 @@ strong { color: var(--text); }
   .top-nav.open { display: flex; }
   .top-nav a    { padding: 13px 16px; font-size: 15px; border-radius: 8px; margin: 0; }
   .top-nav .btn { margin: 6px 0 0; text-align: center; padding: 12px; }
-  .nav-discord, .nav-register { margin-left: 0; }
+  .nav-discord { margin-left: 0; }
 
   .hero { padding-top: calc(var(--header-h) + 48px); padding-bottom: 80px; min-height: 58vh; }
   .hero h1 { font-size: 32px; }
