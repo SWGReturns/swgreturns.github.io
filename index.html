@@ -46,31 +46,30 @@
         <div class="sv-name">Pre-CU Main</div>
         <div class="sv-indicator" id="ind-precu">⟳</div>
         <div class="sv-players"><span id="pl-precu">--</span> online</div>
-        <div class="sv-peak">Peak: <span id="pk-precu">--</span></div>
+        <div class="sv-peak">Peak: <span id="pk-precu">--</span> · Uptime: <span id="ut-precu"></span></div>
       </div>
       <div class="sv-card" id="sv-tc">
         <div class="sv-name">Test Center</div>
         <div class="sv-indicator" id="ind-tc">⟳</div>
         <div class="sv-players"><span id="pl-tc">--</span> online</div>
-        <div class="sv-peak">Peak: <span id="pk-tc">--</span></div>
+        <div class="sv-peak">Peak: <span id="pk-tc">--</span> · Uptime: <span id="ut-tc"></span></div>
       </div>
       <div class="sv-card" id="sv-nge">
         <div class="sv-name">NGE Main</div>
         <div class="sv-indicator" id="ind-nge">⟳</div>
         <div class="sv-players"><span id="pl-nge">--</span> online</div>
-        <div class="sv-peak">Peak: <span id="pk-nge">--</span></div>
+        <div class="sv-peak">Peak: <span id="pk-nge">--</span> · Uptime: <span id="ut-nge"></span></div>
       </div>
       <div class="sv-card" id="sv-nge-tc">
         <div class="sv-name">NGE TC</div>
         <div class="sv-indicator" id="ind-nge-tc">⟳</div>
         <div class="sv-players"><span id="pl-nge-tc">--</span> online</div>
-        <div class="sv-peak">Peak: <span id="pk-nge-tc">--</span></div>
+        <div class="sv-peak">Peak: <span id="pk-nge-tc">--</span> · Uptime: <span id="ut-nge-tc"></span></div>
       </div>
     </div>
 
-    <p class="hero-eyebrow">Pre-CU Star Or NGE Jump to Light Speed Star Wars Galaxies Emulator</p>
     <h1>Return to the Galaxy</h1>
-    <p class="hero-sub">Classic Pre-CU gameplay with expanded content, faster progression, and long-term endgame.</p>
+    <p class="hero-sub">Classic Pre-CU &amp; NGE Star Wars Galaxies — choose your path and join the adventure.</p>
     <div class="cta-row">
       <a href="#get-started" class="btn btn-gold glow">Get Started</a>
       <a href="https://discord.gg/xY5WuwfcFD" class="btn btn-gold glow" target="_blank">Join Discord</a>
@@ -564,7 +563,7 @@
 
 // ── Server Status Strip ─────────────────────────────────────────
 (function() {
-  const STATS_URL = 'assets/stats.json';
+  const STATS_URL = 'https://api.allorigins.win/raw?url=http://51.81.81.116:5001/api/stats';
   const SERVERS = [
     {key:'precu',   name:'Pre-CU Main'},
     {key:'tc',      name:'Test Center'},
@@ -573,29 +572,38 @@
   ];
 
   async function refresh() {
+    let all = null;
     try {
-      const r = await fetch(STATS_URL + '?_=' + Date.now());
-      const all = await r.json();
-      for (const s of SERVERS) {
-        const d = all[s.key] || {};
-        const ind = document.getElementById('ind-' + s.key);
-        const pl  = document.getElementById('pl-' + s.key);
-        const pk  = document.getElementById('pk-' + s.key);
-        if (!ind) continue;
-        if (d.online) {
-          ind.className = 'sv-indicator online';
-          ind.textContent = '●';
-          if (pl) pl.textContent = d.players || '0';
-          if (pk) pk.textContent = d.peak || 'N/A';
-        } else {
-          ind.className = 'sv-indicator offline';
-          ind.textContent = '○';
-          if (pl) pl.textContent = '0';
-          if (pk) pk.textContent = 'N/A';
-        }
+      const r = await fetch(STATS_URL + '&_=' + Date.now(), {mode:'cors'});
+      if (r.ok) all = await r.json();
+    } catch(e) {}
+    if (!all) {
+      try {
+        const r = await fetch(FALLBACK_URL + '?_=' + Date.now());
+        if (r.ok) all = await r.json();
+      } catch(e) {}
+    }
+    if (!all) return;
+    for (const s of SERVERS) {
+      const d = all[s.key] || {};
+      const ind = document.getElementById('ind-' + s.key);
+      const pl  = document.getElementById('pl-' + s.key);
+      const pk  = document.getElementById('pk-' + s.key);
+      const ut  = document.getElementById('ut-' + s.key);
+      if (!ind) continue;
+      if (d.online) {
+        ind.className = 'sv-indicator online';
+        ind.textContent = '●';
+        if (pl) pl.textContent = d.players || '0';
+        if (pk) pk.textContent = d.peak || 'N/A';
+        if (ut) ut.textContent = d.uptime || '';
+      } else {
+        ind.className = 'sv-indicator offline';
+        ind.textContent = '○';
+        if (pl) pl.textContent = '0';
+        if (pk) pk.textContent = 'N/A';
+        if (ut) ut.textContent = '';
       }
-    } catch(e) {
-      console.warn('Stats fetch failed', e);
     }
   }
 

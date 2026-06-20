@@ -353,7 +353,8 @@ strong { color: var(--text); }
 /* ── Server Strip ───────────────────────────────────────────── */
 .server-strip {
   display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
-  margin-bottom: 28px;
+  margin-bottom: 16px;
+  margin-top: -20px;
 }
 .sv-card {
   background: rgba(8,10,18,.75); backdrop-filter: blur(6px);
