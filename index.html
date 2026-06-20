@@ -124,22 +124,33 @@
 <!-- ═══════════════════════════════════════════════════════ DISCORD LIVE -->
 <section class="section discord-top">
   <div class="wrap">
-    <div class="discord-top-layout">
-      <div class="discord-top-text">
-        <h2>Who's Online</h2>
-        <p class="muted">143 members and growing. Join the community — ask questions, find groups, and stay up to date.</p>
-        <a class="btn btn-outline glow" href="https://discord.gg/xY5WuwfcFD" target="_blank">Join Discord</a>
+    <div class="cantina-live-wrap">
+      <div>
+        <div class="cantina-server-status">
+          <span class="server-pill" id="mainServerPill">Pre-CU Main <strong id="mainServerStatusPill">Online</strong><span class="pill-sub" id="mainServerPlayersPill"></span></span>
+          <span class="server-pill" id="testServerPill">Test Center <strong id="testServerStatusPill">Online</strong><span class="pill-sub" id="testServerPlayersPill"></span></span>
+        </div>
+        <h2 class="cantina-title">Live from the <span>Outer Rim</span></h2>
+        <p class="cantina-copy">A permanent stream slot for in-game events, bounty board nights, cantina gatherings, and staff showcases. The Taanab Cantina web cam broadcasts live from our Test Center.</p>
+        <div class="cantina-actions">
+          <a class="btn btn-gold glow" href="https://discord.gg/xY5WuwfcFD" target="_blank"><i class="fa-brands fa-discord"></i> Join Discord</a>
+          <a class="btn btn-gold glow" href="http://51.81.81.116/register.html" target="_blank">Register Pre-CU</a>
+          <a class="btn btn-gold glow" href="https://register.swgtalon.online/addnewuser.php" target="_blank">Register NGE</a>
+          <a class="btn btn-gold glow" href="http://82.165.250.176/launcher/SWG-Returns%20Launcher%20Setup%201.12.0.exe" target="_blank">Download Launcher</a>
+        </div>
       </div>
-      <div class="discord-top-widget">
-        <iframe
-          src="https://discord.com/widget?id=1384702301624733787&theme=dark"
-          width="100%" height="350"
-          allowtransparency="true"
-          frameborder="0"
-          sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"
-          title="SWGReturns Discord — who's online">
-        </iframe>
-      </div>
+        <div class="stream-frame">
+          <div class="stream-status"><span class="stream-dot"></span> <span id="streamLabel">Stream Standby</span></div>
+          <video id="taanab-live-video" controls autoplay playsinline></video>
+          <div class="stream-offline" id="taanab-live-offline">
+            <div>
+              <strong>Taanab Cantina Live</strong>
+              <span>Broadcast relay is ready. The live cantina feed appears here when OBS is streaming.</span>
+            </div>
+          </div>
+          <div class="stream-embed-note">Taanab Cantina Cam Live</div>
+          <div class="stream-caption">Web cam is broadcasting live from the Test Center cantina on Taanab</div>
+        </div>
     </div>
   </div>
 </section>
@@ -375,6 +386,33 @@
   resize();
   window.addEventListener('resize', resize);
   raf = requestAnimationFrame(draw);
+})();
+
+<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+<script>
+// ── Taanab Cantina HLS Stream ──────────────────────────────────
+(function() {
+  const video = document.getElementById('taanab-live-video');
+  const offline = document.getElementById('taanab-live-offline');
+  const label = document.getElementById('streamLabel');
+  const src = 'http://212.227.73.161/hls/taanab.m3u8';
+  if (!video) return;
+  if (video.canPlayType('application/vnd.apple.mpegurl')) {
+    video.src = src;
+  } else if (Hls.isSupported()) {
+    const hls = new Hls();
+    hls.loadSource(src);
+    hls.attachMedia(video);
+    hls.on(Hls.Events.MANIFEST_PARSED, function() {
+      video.play().catch(function(){});
+      if (offline) offline.style.display = 'none';
+      if (label) label.textContent = 'Stream Live';
+    });
+    hls.on(Hls.Events.ERROR, function() {
+      if (offline) offline.style.display = 'flex';
+      if (label) label.textContent = 'Stream Offline';
+    });
+  }
 })();
 
 // ── Mobile hamburger toggle ───────────────────────────────────────
