@@ -337,36 +337,76 @@
   raf = requestAnimationFrame(draw);
 })();
 
-// ── Server Status Strip ─────────────────────────────────────────
+// ── Server Status Strip (using REAL status port 44455) ──────────
 (function() {
-  const STATS_URL = 'https://api.allorigins.win/raw?url=http://51.81.81.116:5001/api/stats';
-  const SERVERS = [
-    {key:'precu',   name:'Pre-CU Main'},
-    {key:'tc',      name:'Test Center'},
-    {key:'nge',     name:'NGE Main'},
-    {key:'nge-tc',  name:'NGE TC'}
-  ];
+  // Server definitions: IP and status port (same as launcher)
+  const SERVER_CONFIGS = {
+    precu:   { ip: '51.81.81.116',   port: 44455, name: 'Pre-CU Main' },
+    tc:      { ip: '51.81.81.116',   port: 44455, name: 'Test Center' },
+    nge:     { ip: 'login.swgtalon.online', port: 44455, name: 'NGE Main' },
+    'nge-tc':{ ip: 'login.swgtalon.online', port: 44455, name: 'NGE TC' }
+  };
 
-  async function refresh() {
-    let all = null;
+  // Map status port response to our format
+  function parseStatusResponse(data) {
+    const result = { online: false, players: '0', peak: 'N/A', uptime: '' };
+    if (!data) return result;
+    
+    const lines = data.split('\n');
+    for (const line of lines) {
+      const trimmed = line.trim();
+      if (trimmed.includes('Players Online:')) {
+        const match = trimmed.match(/Players Online:\s*(\d+)/i);
+        if (match) result.players = match[1];
+      } else if (trimmed.includes('Peak Today:')) {
+        const match = trimmed.match(/Peak Today:\s*(\d+)/i);
+        if (match) result.peak = match[1];
+      } else if (trimmed.includes('Uptime:')) {
+        const match = trimmed.match(/Uptime:\s*([\dhm:]+)/i);
+        if (match) result.uptime = match[1];
+      }
+    }
+    // If we got any data, assume online
+    if (data.trim().length > 0) result.online = true;
+    return result;
+  }
+
+  async function fetchServerStatus(serverKey) {
+    const config = SERVER_CONFIGS[serverKey];
+    if (!config) return { online: false, players: '0', peak: 'N/A', uptime: '' };
+    
     try {
-      const r = await fetch(STATS_URL + '&_=' + Date.now(), {mode:'cors'});
-      if (r.ok) all = await r.json();
-    } catch(e) {}
-    if (!all) return;
-    for (const s of SERVERS) {
-      const d = all[s.key] || {};
-      const ind = document.getElementById('ind-' + s.key);
-      const pl  = document.getElementById('pl-' + s.key);
-      const pk  = document.getElementById('pk-' + s.key);
-      const ut  = document.getElementById('ut-' + s.key);
+      // Use a simple proxy to avoid CORS issues
+      const proxyUrl = `https://api.allorigins.win/raw?url=http://${config.ip}:${config.port}/`;
+      const response = await fetch(proxyUrl + '&_=' + Date.now(), { mode: 'cors' });
+      if (!response.ok) throw new Error('Network response was not ok');
+      const data = await response.text();
+      const parsed = parseStatusResponse(data);
+      return parsed;
+    } catch (error) {
+      console.error(`Failed to fetch ${serverKey}:`, error);
+      return { online: false, players: '0', peak: 'N/A', uptime: '' };
+    }
+  }
+
+  async function refreshAllServers() {
+    const serverKeys = ['precu', 'tc', 'nge', 'nge-tc'];
+    
+    for (const key of serverKeys) {
+      const status = await fetchServerStatus(key);
+      const ind = document.getElementById('ind-' + key);
+      const pl = document.getElementById('pl-' + key);
+      const pk = document.getElementById('pk-' + key);
+      const ut = document.getElementById('ut-' + key);
+      
       if (!ind) continue;
-      if (d.online) {
+      
+      if (status.online) {
         ind.className = 'sv-indicator online';
         ind.textContent = '●';
-        if (pl) pl.textContent = d.players || '0';
-        if (pk) pk.textContent = d.peak || 'N/A';
-        if (ut) ut.textContent = d.uptime || '';
+        if (pl) pl.textContent = status.players || '0';
+        if (pk) pk.textContent = status.peak || 'N/A';
+        if (ut) ut.textContent = status.uptime || '';
       } else {
         ind.className = 'sv-indicator offline';
         ind.textContent = '○';
@@ -377,8 +417,9 @@
     }
   }
 
-  refresh();
-  setInterval(refresh, 30000);
+  // Initial refresh and then every 30 seconds
+  refreshAllServers();
+  setInterval(refreshAllServers, 30000);
 })();
 
 // ── Splash & Disclaimer ────────────────────────────────────────────
