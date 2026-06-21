@@ -337,9 +337,9 @@
   raf = requestAnimationFrame(draw);
 })();
 
-// ── Server Status Strip (fetches player_count.json) ─────────────
+// ── Server Status Strip (fetches status.php directly) ─────────────
 (function() {
-  const STATUS_URL = 'player_count.json';
+  const STATUS_URL = 'status.php';
 
   function updateUI(key, status) {
     const ind = document.getElementById('ind-' + key);
@@ -368,7 +368,7 @@
     try {
       const url = STATUS_URL + '?_=' + Date.now();
       const response = await fetch(url);
-      if (!response.ok) throw new Error('Network response was not ok');
+      if (!response.ok) throw new Error('HTTP ' + response.status);
       const data = await response.json();
       return data;
     } catch (error) {
@@ -380,21 +380,18 @@
   async function refreshAllServers() {
     const status = await fetchServerStatus();
     
-    // Update Pre-CU Main with data from JSON file
     if (status) {
       updateUI('precu', status);
     } else {
-      // Fallback: show offline
       updateUI('precu', { online: false, players: '0', peak: 'N/A', uptime: '' });
     }
 
-    // Other servers remain offline until they have their own JSON files
+    // Other servers remain offline
     updateUI('tc', { online: false, players: '0', peak: 'N/A', uptime: '' });
     updateUI('nge', { online: false, players: '0', peak: 'N/A', uptime: '' });
     updateUI('nge-tc', { online: false, players: '0', peak: 'N/A', uptime: '' });
   }
 
-  // Initial refresh and then every 10 seconds
   refreshAllServers();
   setInterval(refreshAllServers, 10000);
 })();
