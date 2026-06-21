@@ -337,22 +337,10 @@
   raf = requestAnimationFrame(draw);
 })();
 
-// ── Server Status Strip (with live Discord fallback) ─────────────
+// ── Server Status Strip (using status.php) ──────────────────────
 (function() {
-  const PROXY_URL = 'http://51.81.81.116:5002/';
-  const DISCORD_API = 'https://discord.com/api/v9/invites/xY5WuwfcFD?with_counts=true';
+  const STATUS_URL = 'status.php';
   const serverKeys = ['precu', 'tc', 'nge', 'nge-tc'];
-
-  // Last known values (persisted across refreshes)
-  let lastKnown = {
-    precu: { online: true, players: '13', peak: '17', uptime: '6h' },
-    tc: { online: false, players: '0', peak: 'N/A', uptime: '' },
-    nge: { online: false, players: '0', peak: 'N/A', uptime: '' },
-    'nge-tc': { online: false, players: '0', peak: 'N/A', uptime: '' }
-  };
-
-  // Discord member count (live fallback)
-  let discordMembers = 0;
 
   function updateUI(key, status) {
     const ind = document.getElementById('ind-' + key);
@@ -377,66 +365,27 @@
     }
   }
 
-  async function fetchDiscordMembers() {
-    try {
-      const response = await fetch(DISCORD_API);
-      if (response.ok) {
-        const data = await response.json();
-        if (data && data.approximate_member_count) {
-          discordMembers = data.approximate_member_count;
-          console.log(`Discord members: ${discordMembers}`);
-          return discordMembers;
-        }
-      }
-    } catch (e) {
-      console.warn('Discord API fetch failed:', e);
-    }
-    return discordMembers;
-  }
-
   async function fetchServerStatus(serverKey) {
     try {
-      const url = PROXY_URL + '?server=' + serverKey + '&_=' + Date.now();
-      const response = await fetch(url, { timeout: 3000 });
-      if (response.ok) {
-        const data = await response.json();
-        if (data && data.online !== undefined && data.players !== undefined) {
-          // If the proxy returns valid data, update lastKnown
-          if (data.online) {
-            lastKnown[serverKey] = data;
-          }
-          return data;
-        }
-      }
+      const url = STATUS_URL + '?server=' + serverKey + '&_=' + Date.now();
+      const response = await fetch(url);
+      if (!response.ok) throw new Error('Network response was not ok');
+      const data = await response.json();
+      return data;
     } catch (error) {
-      console.warn(`Proxy failed for ${serverKey}, using fallback:`, error.message);
+      console.warn(`Failed to fetch ${serverKey}:`, error);
+      return { online: false, players: '0', peak: 'N/A', uptime: '' };
     }
-
-    // Return last known value, or offline if none
-    return lastKnown[serverKey] || { online: false, players: '0', peak: 'N/A', uptime: '' };
   }
 
   async function refreshAllServers() {
-    // First, fetch Discord members for live fallback
-    await fetchDiscordMembers();
-
-    // Then fetch each server
     for (const key of serverKeys) {
       const status = await fetchServerStatus(key);
-      
-      // If the server is offline but we have Discord members, use that as a live indicator
-      if (!status.online && key === 'precu' && discordMembers > 0) {
-        // Use Discord members as a fallback for Pre-CU Main
-        status.online = true;
-        status.players = String(discordMembers);
-        // Keep peak and uptime from last known
-      }
-      
       updateUI(key, status);
     }
   }
 
-  // Initial refresh and then every 15 seconds (faster updates)
+  // Initial refresh and then every 15 seconds
   refreshAllServers();
   setInterval(refreshAllServers, 15000);
 })();
