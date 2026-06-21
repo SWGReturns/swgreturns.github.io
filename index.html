@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>SWGReturns — Classic Pre-CU Star Wars Galaxies</title>
+  <title>SWGReturns — Classic Pre-CU & NGE Star Wars Galaxies</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="SWGReturns — Classic Pre-CU Star Wars Galaxies with expanded content, modern stability, and a living galaxy.">
+  <meta name="description" content="SWGReturns — Classic Pre-CU and NGE Star Wars Galaxies with expanded content, modern stability, and a living galaxy.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
@@ -19,24 +19,23 @@
     <div class="splash-icon">
       <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
     </div>
-    <div class="splash-title">SWG Returns Pre CU</div>
-    <div class="splash-sub">Choose Your Path &mdash; Join the Adventure</div>
+    <div class="splash-title">SWG Returns</div>
+    <div class="splash-sub">Two Galaxies, One Community</div>
     <div class="splash-bar"><div class="splash-bar-fill"></div></div>
     <div class="splash-status">
-      <span class="splash-stat"><span class="dot on"></span> Main Server &mdash; Online</span>
-      <span class="splash-stat"><span class="dot on"></span> Test Center &mdash; Online</span>
+      <span class="splash-stat"><span class="dot on"></span> Pre-CU &amp; NGE — Online</span>
     </div>
-    <div class="splash-click">&#9654; Click Anywhere to Begin</div>
+    <div class="splash-click">▶ Click Anywhere to Begin</div>
   </div>
 </div>
 
 <!-- ═══════════════════════════════════════════════════════ DISCLAIMER -->
 <div id="disclaimerOverlay">
   <div class="disclaimer-card">
-    <h2>&#9888; Legal Disclaimer</h2>
+    <h2>⚠ Legal Disclaimer</h2>
     <p><strong>SWG Returns and SWG Talon Have Merged</strong></p>
     <p>Together we bring you both the <strong>original Pre-CU sandbox</strong> and the <strong>NGE — New Game Enhancements</strong> experience. One community, two galaxies.</p>
-    <p>This is an unofficial, fan-made server. It is not affiliated with, endorsed by, or connected to Sony Online Entertainment, Daybreak Game Company, LucasArts, or Disney. Star Wars Galaxies&trade; is the intellectual property of its respective owners.</p>
+    <p>This is an unofficial, fan-made server. It is not affiliated with, endorsed by, or connected to Sony Online Entertainment, Daybreak Game Company, LucasArts, or Disney. Star Wars Galaxies™ is the intellectual property of its respective owners.</p>
     <p>This server is run by fans, for fans, on a non-profit basis. No money is charged for access to the game itself.</p>
     <p><strong>You Must Own the Original Game</strong></p>
     <p>By accessing this server you confirm that you legally own or have owned a copy of Star Wars Galaxies.</p>
@@ -50,7 +49,7 @@
     <label class="label">
       <input type="checkbox" id="disclaimerCheck"> I confirm I own or have owned Star Wars Galaxies and I accept the terms above.
     </label>
-    <button class="btn btn-gold glow" id="disclaimerAccept" disabled>I Accept &mdash; Enter the Galaxy</button>
+    <button class="btn btn-gold glow" id="disclaimerAccept" disabled>I Accept — Enter the Galaxy</button>
   </div>
 </div>
 
@@ -67,7 +66,7 @@
     </button>
     <nav class="top-nav" id="top-nav" aria-label="Top navigation">
       <a href="#features">Features</a>
-      <a class="btn nav-guides" href="guides.html">Guides</a>
+      <a href="guides.html" class="btn nav-guides">Guides</a>
       <a href="#get-started">Get Started</a>
       <a href="#patch-notes">Patch Notes</a>
       <a href="#need-help">Community</a>
@@ -80,11 +79,9 @@
 <section class="hero">
   <div class="hero-stars" aria-hidden="true"></div>
   <div class="wrap hero-inner">
-    <!-- ═══ HERO LOGO ═══ -->
     <div class="hero-logo-wrap">
       <img src="https://swgtalon.online/assets/logo.png" alt="SWGReturns" class="hero-logo-img">
     </div>
-    <!-- ═══ SERVER STATUS STRIP ═══ -->
     <div class="server-strip">
       <div class="sv-card" id="sv-precu">
         <div class="sv-name">Pre-CU Main</div>
@@ -111,7 +108,6 @@
         <div class="sv-peak">Peak: <span id="pk-nge-tc">--</span> · Uptime: <span id="ut-nge-tc"></span></div>
       </div>
     </div>
-
     <h1>Return to the Galaxies</h1>
     <p class="hero-sub">Classic Pre-CU &amp; NGE Star Wars Galaxies — choose your path and join the adventure.</p>
     <div class="cta-row">
@@ -125,47 +121,6 @@
   <div class="hero-fade"></div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════ DISCORD LIVE -->
-<section class="section discord-top">
-  <div class="wrap">
-    <div class="cantina-live-wrap">
-      <div>
-        <div class="cantina-server-status">
-          <span class="server-pill" id="mainServerPill">Pre-CU Main <strong id="mainServerStatusPill">Online</strong><span class="pill-sub" id="mainServerPlayersPill"></span></span>
-          <span class="server-pill" id="testServerPill">Test Center <strong id="testServerStatusPill">Online</strong><span class="pill-sub" id="testServerPlayersPill"></span></span>
-        </div>
-        <h2 class="cantina-title">Live from the <span>Outer Rim</span></h2>
-        <p class="cantina-copy">A permanent stream slot for in-game events, bounty board nights, cantina gatherings, and staff showcases. The Taanab Cantina web cam broadcasts live from our Test Center.</p>
-        <div class="cantina-actions">
-          <a class="btn btn-gold glow" href="https://discord.gg/xY5WuwfcFD" target="_blank"><i class="fa-brands fa-discord"></i> Join Discord</a>
-          <a class="btn btn-gold glow" href="http://51.81.81.116/register.html" target="_blank">Register Pre-CU</a>
-          <a class="btn btn-gold glow" href="https://register.swgtalon.online/addnewuser.php" target="_blank">Register NGE</a>
-          <a class="btn btn-gold glow" href="https://github.com/bfitzgit23/SWG-Returns-Launcher/releases/download/1.12.0/SWG-Returns.Launcher.Setup.1.12.0.exee" target="_blank">Download Launcher</a>
-        </div>
-      </div>
-        <div class="stream-frame">
-          <div class="stream-status"><span class="stream-dot"></span> <span id="streamLabel">Stream Standby</span></div>
-          <video id="taanab-live-video" controls autoplay playsinline></video>
-          <div class="stream-offline" id="taanab-live-offline">
-            <div>
-              <strong>Taanab Cantina Live</strong>
-              <span>Broadcast relay is ready. The live cantina feed appears here when OBS is streaming.</span>
-            </div>
-          </div>
-          <div class="stream-embed-note">Taanab Cantina Cam Live</div>
-          <div class="stream-caption">Web cam is broadcasting live from the Test Center cantina on Taanab</div>
-        </div>
-        <div class="discord-widget-cantina">
-          <p class="widget-label">Live Community</p>
-          <iframe src="https://discord.com/widget?id=1384702301624733787&theme=dark"
-            height="460" allowtransparency="true" frameborder="0"
-            sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts">
-          </iframe>
-        </div>
-    </div>
-  </div>
-</section>
-
 <!-- ═══════════════════════════════════════════════════════ WHAT YOU GET -->
 <section class="section alt">
   <div class="wrap">
@@ -174,12 +129,12 @@
       <div class="card">
         <div class="card-icon">⚔️</div>
         <h3>Pre-CU Classic</h3>
-        <p class="muted">The original Pre-CU sandbox — profession-based skill system, open world PvP, and the classic Hologrind Jedi path.</p>
+        <p class="muted">The original Pre-CU sandbox — profession-based skill system, open world PvP, and the classic Hologrind Jedi path. 10× XP, expanded planets, and custom loot.</p>
       </div>
       <div class="card">
         <div class="card-icon">🌌</div>
         <h3>NGE</h3>
-        <p class="muted">Jump to Lightspeed expansion — class-based combat, space combat, and the full NGE experience with modern stability.</p>
+        <p class="muted">Jump to Lightspeed expansion — class-based combat, space combat, and the full NGE experience with modern stability and a dedicated test center.</p>
       </div>
       <div class="card">
         <div class="card-icon">🏆</div>
@@ -199,35 +154,33 @@
       <div class="server-box precu-box">
         <div class="server-box-header">
           <h3>Pre-CU Classic</h3>
-          <p class="server-tagline">The original sandbox — profession-based skill system, open world PvP, and the classic Hologrind Jedi path. 10× XP, expanded planets, and custom loot make it the definitive Pre-CU experience.</p>
+          <ul>
+            <li>Classic pre-Publish 9 Hologrind Jedi unlock</li>
+            <li>Padawan → Journeyman → Master → Elder progression</li>
+            <li>Force Ranking System (FRS) endgame</li>
+            <li>No death penalty on Jedi status</li>
+            <li>5th generation lightsabers supported</li>
+            <li>Custom loot: Revan's Robes, SWTOR Robes, Star Forge Robes</li>
+            <li><strong>9+ additional planets</strong> beyond the original galaxy</li>
+            <li><strong>10× XP</strong> solo / <strong>4× XP</strong> grouped</li>
+            <li>200 item cap, improved slicing, junk dealers accept all</li>
+          </ul>
         </div>
-        <ul>
-          <li>Classic pre-Publish 9 Hologrind Jedi unlock</li>
-          <li>Padawan → Journeyman → Master → Elder progression</li>
-          <li>Force Ranking System (FRS) endgame</li>
-          <li>No death penalty on Jedi status</li>
-          <li>5th generation lightsabers supported</li>
-          <li>Custom loot: Revan's Robes, SWTOR Robes, Star Forge Robes</li>
-          <li><strong>9+ additional planets</strong> beyond the original galaxy</li>
-          <li><strong>10× XP</strong> solo / <strong>4× XP</strong> grouped</li>
-          <li>200 item cap, improved slicing, junk dealers accept all</li>
-        </ul>
       </div>
       <div class="server-box nge-box">
         <div class="server-box-header">
           <h3>NGE — Jump to Lightspeed</h3>
-          <p class="server-tagline">The full NGE experience with space combat, class-based progression, and all the polish of the后期的游戏. Active community with custom content and a dedicated test center.</p>
+          <ul>
+            <li>Jump to Lightspeed space combat expansion</li>
+            <li>Class-based combat system with all NGE classes</li>
+            <li>Full space gameplay — pilot starships, dogfight in orbit</li>
+            <li>Active test center with a friendly frog in the Taanab cantina</li>
+            <li>Custom content additions and balance improvements</li>
+            <li>Stable server with active development</li>
+            <li>Regular events and community gatherings</li>
+            <li>Dedicated staff keeping the galaxy alive</li>
+          </ul>
         </div>
-        <ul>
-          <li>Jump to Lightspeed space combat expansion</li>
-          <li>Class-based combat system with all NGE classes</li>
-          <li>Full space gameplay — pilot starships, dogfight in orbit</li>
-          <li>Active test center with a friendly frog in the Taanab cantina</li>
-          <li>Custom content additions and balance improvements</li>
-          <li>Stable server with active development</li>
-          <li>Regular events and community gatherings</li>
-          <li>Dedicated staff keeping the galaxy alive</li>
-        </ul>
       </div>
     </div>
   </div>
@@ -237,20 +190,20 @@
 <section class="section alt">
   <div class="wrap">
     <h2>Support the Galaxy</h2>
-    <p class="section-lead">Star Wars Galaxies is free to play. We rely on community support to cover the cost of hosting four servers that we pay monthly. To keep the servers running, please donate if you can.</p>
+    <p class="section-lead">Star Wars Galaxies is free to play. We rely on community support to cover the cost of hosting four servers. To keep the servers running, please donate if you can.</p>
     <div class="donate-cols">
       <div class="donate-box">
         <h3>Pre-CU</h3>
-        <p class="muted">Keep the classic Pre-CU galaxy alive. If you love the original sandbox, your support makes a difference.</p>
+        <p class="muted">Keep the classic Pre-CU galaxy alive.</p>
         <a class="btn donate-btn glow" href="https://www.paypal.com/paypalme/Fitzpatrick251" target="_blank">Donate to Pre-CU</a>
       </div>
       <div class="donate-box">
         <h3>NGE — Jump to Lightspeed</h3>
-        <p class="muted">Keep the NGE galaxy thriving with space combat and the full NGE experience. Every contribution helps.</p>
+        <p class="muted">Keep the NGE galaxy thriving with space combat.</p>
         <a class="btn donate-btn glow" href="https://www.paypal.com/donate/?cmd=_donations&business=H56S8HSXHUF6Q&currency_code=GBP&amount=10&item_name=SWG+Talon+Server+Support&notify_url=https%3A%2F%2Fregister.swgtalon.online%2Fpaypal_ipn.php&return=https%3A%2F%2Fregister.swgtalon.online%2Fdonate.php%3Fthanks%3D1&cancel_return=https%3A%2F%2Fregister.swgtalon.online%2Fdonate.php" target="_blank">Donate to NGE</a>
       </div>
     </div>
-    <p class="thank-you">Thank you for your support &mdash; every donation keeps the galaxy alive.</p>
+    <p class="thank-you">Thank you for your support — every donation keeps the galaxy alive.</p>
   </div>
 </section>
 
@@ -268,14 +221,14 @@
       </div>
       <div class="gs-step">
         <div class="gs-num">02</div>
-        <h3>Register for Pre CU</h3>
-        <p class="muted">Create your Pre-CU account and log in with those credentials in-game.</p>
-        <a class="btn btn-register glow" href="http://51.81.81.116/register.html" target="_blank">Register for Pre CU</a>
+        <h3>Register for Pre-CU</h3>
+        <p class="muted">Create your Pre-CU account.</p>
+        <a class="btn btn-register glow" href="http://51.81.81.116/register.html" target="_blank">Register for Pre-CU</a>
       </div>
       <div class="gs-step">
         <div class="gs-num">03</div>
         <h3>Register for NGE</h3>
-        <p class="muted">Create your NGE account and log in with those credentials in-game.</p>
+        <p class="muted">Create your NGE account.</p>
         <a class="btn btn-register glow" href="https://register.swgtalon.online/addnewuser.php" target="_blank">Register for NGE</a>
       </div>
     </div>
@@ -384,52 +337,6 @@
   raf = requestAnimationFrame(draw);
 })();
 
-<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
-<script>
-// ── Taanab Cantina HLS Stream ──────────────────────────────────
-(function() {
-  const video = document.getElementById('taanab-live-video');
-  const offline = document.getElementById('taanab-live-offline');
-  const label = document.getElementById('streamLabel');
-  const src = 'http://212.227.73.161/hls/taanab.m3u8';
-  if (!video) return;
-  if (video.canPlayType('application/vnd.apple.mpegurl')) {
-    video.src = src;
-  } else if (Hls.isSupported()) {
-    const hls = new Hls();
-    hls.loadSource(src);
-    hls.attachMedia(video);
-    hls.on(Hls.Events.MANIFEST_PARSED, function() {
-      video.play().catch(function(){});
-      if (offline) offline.style.display = 'none';
-      if (label) label.textContent = 'Stream Live';
-    });
-    hls.on(Hls.Events.ERROR, function() {
-      if (offline) offline.style.display = 'flex';
-      if (label) label.textContent = 'Stream Offline';
-    });
-  }
-})();
-
-// ── Mobile hamburger toggle ───────────────────────────────────────
-(function () {
-  const btn = document.getElementById('hamburger');
-  const nav = document.getElementById('top-nav');
-  if (!btn || !nav) return;
-
-  btn.addEventListener('click', () => {
-    const open = nav.classList.toggle('open');
-    btn.classList.toggle('active', open);
-    btn.setAttribute('aria-expanded', String(open));
-  });
-
-  nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-    nav.classList.remove('open');
-    btn.classList.remove('active');
-    btn.setAttribute('aria-expanded', 'false');
-  }));
-})();
-
 // ── Server Status Strip ─────────────────────────────────────────
 (function() {
   const STATS_URL = 'https://api.allorigins.win/raw?url=http://51.81.81.116:5001/api/stats';
@@ -446,12 +353,6 @@
       const r = await fetch(STATS_URL + '&_=' + Date.now(), {mode:'cors'});
       if (r.ok) all = await r.json();
     } catch(e) {}
-    if (!all) {
-      try {
-        const r = await fetch(FALLBACK_URL + '?_=' + Date.now());
-        if (r.ok) all = await r.json();
-      } catch(e) {}
-    }
     if (!all) return;
     for (const s of SERVERS) {
       const d = all[s.key] || {};
@@ -480,7 +381,7 @@
   setInterval(refresh, 30000);
 })();
 
-// ── Splash &amp; Disclaimer ────────────────────────────────────────────
+// ── Splash & Disclaimer ────────────────────────────────────────────
 (function() {
   const splash = document.getElementById('splashOverlay');
   const disc   = document.getElementById('disclaimerOverlay');
@@ -506,14 +407,36 @@
     splash.addEventListener('click', showDisclaimer);
   }
 
-  check.addEventListener('change', function() {
-    accept.disabled = !this.checked;
+  if (check) {
+    check.addEventListener('change', function() {
+      if (accept) accept.disabled = !this.checked;
+    });
+  }
+
+  if (accept) {
+    accept.addEventListener('click', acceptDisclaimer);
+  }
+})();
+
+// ── Mobile hamburger toggle ───────────────────────────────────────
+(function () {
+  const btn = document.getElementById('hamburger');
+  const nav = document.getElementById('top-nav');
+  if (!btn || !nav) return;
+
+  btn.addEventListener('click', () => {
+    const open = nav.classList.toggle('open');
+    btn.classList.toggle('active', open);
+    btn.setAttribute('aria-expanded', String(open));
   });
 
-  accept.addEventListener('click', acceptDisclaimer);
+  nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    nav.classList.remove('open');
+    btn.classList.remove('active');
+    btn.setAttribute('aria-expanded', 'false');
+  }));
 })();
 </script>
 
 </body>
 </html>
-
