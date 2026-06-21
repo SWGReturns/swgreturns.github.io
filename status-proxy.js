@@ -1,9 +1,9 @@
-// status-proxy.js - SWG Returns Server Status Proxy (Node.js)
+// status-proxy.js - SWG Returns Server Status Proxy (XML parser)
 const net = require('net');
 const http = require('http');
 const url = require('url');
 
-// Server configurations (same as launcher)
+// Server configurations
 const SERVERS = {
     precu: { ip: '51.81.81.116', port: 44455, name: 'Pre-CU Main' },
     tc: { ip: '51.81.81.116', port: 44455, name: 'Test Center' },
@@ -12,20 +12,17 @@ const SERVERS = {
 };
 
 const server = http.createServer((req, res) => {
-    // Enable CORS for all requests
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
     res.setHeader('Content-Type', 'application/json');
     
-    // Handle preflight OPTIONS request
     if (req.method === 'OPTIONS') {
         res.writeHead(200);
         res.end();
         return;
     }
     
-    // Parse query parameters
     const parsedUrl = url.parse(req.url, true);
     const serverKey = parsedUrl.query.server || 'precu';
     const config = SERVERS[serverKey];
@@ -36,7 +33,7 @@ const server = http.createServer((req, res) => {
         return;
     }
     
-    console.log(`[${new Date().toISOString()}] Fetching status for ${serverKey} (${config.ip}:${config.port})`);
+    console.log(`[${new Date().toISOString()}] Fetching status for ${serverKey}`);
     
     const result = { 
         online: false, 
@@ -46,16 +43,14 @@ const server = http.createServer((req, res) => {
         server: config.name
     };
     
-    // Connect to the game server's status port
     const socket = new net.Socket();
     let data = '';
     let resolved = false;
     
-    socket.setTimeout(5000); // 5 second timeout
+    socket.setTimeout(5000);
     
     socket.connect(config.port, config.ip, () => {
-        console.log(`Connected to ${config.ip}:${config.port}`);
-        socket.write('\n'); // Send newline to trigger status response
+        socket.write('\n');
     });
     
     socket.on('data', (chunk) => {
@@ -65,8 +60,10 @@ const server = http.createServer((req, res) => {
     socket.on('end', () => {
         if (!resolved) {
             resolved = true;
-            parseStatusResponse(data, result);
-            console.log(`Status for ${serverKey}: online=${result.online}, players=${result.players}`);
+            if (data.trim().length > 0) {
+                // Parse the XML response
+                parseXMLStatus(data, result);
+            }
             res.writeHead(200);
             res.end(JSON.stringify(result));
         }
@@ -76,13 +73,12 @@ const server = http.createServer((req, res) => {
         console.error(`Socket error for ${serverKey}:`, err.message);
         if (!resolved) {
             resolved = true;
-            res.writeHead(200); // Still return 200 with offline status
+            res.writeHead(200);
             res.end(JSON.stringify(result));
         }
     });
     
     socket.on('timeout', () => {
-        console.error(`Timeout for ${serverKey}`);
         socket.destroy();
         if (!resolved) {
             resolved = true;
@@ -92,28 +88,78 @@ const server = http.createServer((req, res) => {
     });
 });
 
-function parseStatusResponse(data, result) {
-    if (!data || data.trim().length === 0) {
+function parseXMLStatus(xml, result) {
+    if (!xml || xml.trim().length === 0) {
         result.online = false;
         return;
     }
     
-    result.online = true;
-    const lines = data.split('\n');
+    // Check if it's XML (contains <zoneServer> or similar)
+    if (xml.includes('<zoneServer>') || xml.includes('<connected>')) {
+        result.online = true;
+        
+        // Extract connected players
+        const connectedMatch = xml.match(/<connected>(\d+)<\/connected>/i);
+        if (connectedMatch) {
+            result.players = connectedMatch[1];
+        }
+        
+        // Extract max (peak)
+        const maxMatch = xml.match(/<max>(\d+)<\/max>/i);
+        if (maxMatch) {
+            result.peak = maxMatch[1];
+        }
+        
+        // Extract uptime (in seconds, convert to readable format)
+        const uptimeMatch = xml.match(/<uptime>(\d+)<\/uptime>/i);
+        if (uptimeMatch) {
+            const seconds = parseInt(uptimeMatch[1], 10);
+            if (seconds > 0) {
+                const hours = Math.floor(seconds / 3600);
+                const minutes = Math.floor((seconds % 3600) / 60);
+                const days = Math.floor(hours / 24);
+                if (days > 0) {
+                    result.uptime = `${days}d ${hours % 24}h`;
+                } else {
+                    result.uptime = `${hours}h ${minutes}m`;
+                }
+            }
+        }
+        
+        // If we got any data, mark as online
+        result.online = true;
+        return;
+    }
+    
+    // Fallback: try plain text parsing (old format)
+    const lines = xml.split('\n');
+    let foundData = false;
     for (const line of lines) {
         const trimmed = line.trim();
         if (trimmed.includes('Players Online:')) {
             const match = trimmed.match(/Players Online:\s*(\d+)/i);
-            if (match) result.players = match[1];
+            if (match) {
+                result.players = match[1];
+                foundData = true;
+            }
         }
         if (trimmed.includes('Peak Today:')) {
             const match = trimmed.match(/Peak Today:\s*(\d+)/i);
-            if (match) result.peak = match[1];
+            if (match) {
+                result.peak = match[1];
+                foundData = true;
+            }
         }
         if (trimmed.includes('Uptime:')) {
             const match = trimmed.match(/Uptime:\s*([\dhm:]+)/i);
-            if (match) result.uptime = match[1];
+            if (match) {
+                result.uptime = match[1];
+                foundData = true;
+            }
         }
+    }
+    if (foundData) {
+        result.online = true;
     }
 }
 
@@ -124,7 +170,6 @@ server.listen(PORT, '0.0.0.0', () => {
     console.log(`   Example: http://localhost:${PORT}/?server=precu`);
 });
 
-// Handle graceful shutdown
 process.on('SIGINT', () => {
     console.log('\nShutting down...');
     server.close(() => process.exit(0));
