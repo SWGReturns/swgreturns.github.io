@@ -91,21 +91,21 @@
       </div>
       <div class="sv-card" id="sv-tc">
         <div class="sv-name">Test Center</div>
-        <div class="sv-indicator" id="ind-tc">⟳</div>
-        <div class="sv-players"><span id="pl-tc">--</span> online</div>
-        <div class="sv-peak">Peak: <span id="pk-tc">--</span> · Uptime: <span id="ut-tc"></span></div>
+        <div class="sv-indicator" id="ind-tc">○</div>
+        <div class="sv-players"><span id="pl-tc">0</span> online</div>
+        <div class="sv-peak">Peak: N/A · Uptime: </div>
       </div>
       <div class="sv-card" id="sv-nge">
         <div class="sv-name">NGE Main</div>
-        <div class="sv-indicator" id="ind-nge">⟳</div>
-        <div class="sv-players"><span id="pl-nge">--</span> online</div>
-        <div class="sv-peak">Peak: <span id="pk-nge">--</span> · Uptime: <span id="ut-nge"></span></div>
+        <div class="sv-indicator" id="ind-nge">○</div>
+        <div class="sv-players"><span id="pl-nge">0</span> online</div>
+        <div class="sv-peak">Peak: N/A · Uptime: </div>
       </div>
       <div class="sv-card" id="sv-nge-tc">
         <div class="sv-name">NGE TC</div>
-        <div class="sv-indicator" id="ind-nge-tc">⟳</div>
-        <div class="sv-players"><span id="pl-nge-tc">--</span> online</div>
-        <div class="sv-peak">Peak: <span id="pk-nge-tc">--</span> · Uptime: <span id="ut-nge-tc"></span></div>
+        <div class="sv-indicator" id="ind-nge-tc">○</div>
+        <div class="sv-players"><span id="pl-nge-tc">0</span> online</div>
+        <div class="sv-peak">Peak: N/A · Uptime: </div>
       </div>
     </div>
     <h1>Return to the Galaxies</h1>
@@ -337,7 +337,7 @@
   raf = requestAnimationFrame(draw);
 })();
 
-// ── Server Status Strip (uses player_count.json) ──────────────────
+// ── Server Status Strip (fetches player_count.json) ─────────────
 (function() {
   const STATUS_URL = 'player_count.json';
 
