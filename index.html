@@ -339,8 +339,8 @@
 
 // ── Server Status Strip (using Node.js proxy) ────────────────────
 (function() {
-  // REPLACE THIS WITH YOUR SERVER IP AND PORT
-  const PROXY_URL = 'http://51.81.81.116:5002/';  // <-- CHANGE THIS TO YOUR SERVER
+  // Node.js proxy running on your server at port 5002
+  const PROXY_URL = 'http://51.81.81.116:5002/';
   
   const serverKeys = ['precu', 'tc', 'nge', 'nge-tc'];
   
@@ -383,7 +383,6 @@
     }
   }
 
-  // Initial refresh and then every 30 seconds
   refreshAllServers();
   setInterval(refreshAllServers, 30000);
 })();
