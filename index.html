@@ -337,15 +337,20 @@
   raf = requestAnimationFrame(draw);
 })();
 
-// ── Server Status Strip (using PHP proxy) ────────────────────────
+// ── Server Status Strip (using Node.js proxy) ────────────────────
 (function() {
+  // REPLACE THIS WITH YOUR SERVER IP AND PORT
+  const PROXY_URL = 'http://51.81.81.116:5002/';  // <-- CHANGE THIS TO YOUR SERVER
+  
   const serverKeys = ['precu', 'tc', 'nge', 'nge-tc'];
   
   async function fetchServerStatus(serverKey) {
     try {
-      const response = await fetch('status.php?server=' + serverKey + '&_=' + Date.now());
+      const url = PROXY_URL + '?server=' + serverKey + '&_=' + Date.now();
+      const response = await fetch(url);
       if (!response.ok) throw new Error('Network response was not ok');
-      return await response.json();
+      const data = await response.json();
+      return data;
     } catch (error) {
       console.error(`Failed to fetch ${serverKey}:`, error);
       return { online: false, players: '0', peak: 'N/A', uptime: '' };
@@ -378,6 +383,7 @@
     }
   }
 
+  // Initial refresh and then every 30 seconds
   refreshAllServers();
   setInterval(refreshAllServers, 30000);
 })();
