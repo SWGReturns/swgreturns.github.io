@@ -337,52 +337,15 @@
   raf = requestAnimationFrame(draw);
 })();
 
-// ── Server Status Strip (using REAL status port 44455) ──────────
+// ── Server Status Strip (using PHP proxy) ────────────────────────
 (function() {
-  // Server definitions: IP and status port (same as launcher)
-  const SERVER_CONFIGS = {
-    precu:   { ip: '51.81.81.116',   port: 44455, name: 'Pre-CU Main' },
-    tc:      { ip: '51.81.81.116',   port: 44455, name: 'Test Center' },
-    nge:     { ip: 'login.swgtalon.online', port: 44455, name: 'NGE Main' },
-    'nge-tc':{ ip: 'login.swgtalon.online', port: 44455, name: 'NGE TC' }
-  };
-
-  // Map status port response to our format
-  function parseStatusResponse(data) {
-    const result = { online: false, players: '0', peak: 'N/A', uptime: '' };
-    if (!data) return result;
-    
-    const lines = data.split('\n');
-    for (const line of lines) {
-      const trimmed = line.trim();
-      if (trimmed.includes('Players Online:')) {
-        const match = trimmed.match(/Players Online:\s*(\d+)/i);
-        if (match) result.players = match[1];
-      } else if (trimmed.includes('Peak Today:')) {
-        const match = trimmed.match(/Peak Today:\s*(\d+)/i);
-        if (match) result.peak = match[1];
-      } else if (trimmed.includes('Uptime:')) {
-        const match = trimmed.match(/Uptime:\s*([\dhm:]+)/i);
-        if (match) result.uptime = match[1];
-      }
-    }
-    // If we got any data, assume online
-    if (data.trim().length > 0) result.online = true;
-    return result;
-  }
-
+  const serverKeys = ['precu', 'tc', 'nge', 'nge-tc'];
+  
   async function fetchServerStatus(serverKey) {
-    const config = SERVER_CONFIGS[serverKey];
-    if (!config) return { online: false, players: '0', peak: 'N/A', uptime: '' };
-    
     try {
-      // Use a simple proxy to avoid CORS issues
-      const proxyUrl = `https://api.allorigins.win/raw?url=http://${config.ip}:${config.port}/`;
-      const response = await fetch(proxyUrl + '&_=' + Date.now(), { mode: 'cors' });
+      const response = await fetch('status.php?server=' + serverKey + '&_=' + Date.now());
       if (!response.ok) throw new Error('Network response was not ok');
-      const data = await response.text();
-      const parsed = parseStatusResponse(data);
-      return parsed;
+      return await response.json();
     } catch (error) {
       console.error(`Failed to fetch ${serverKey}:`, error);
       return { online: false, players: '0', peak: 'N/A', uptime: '' };
@@ -390,8 +353,6 @@
   }
 
   async function refreshAllServers() {
-    const serverKeys = ['precu', 'tc', 'nge', 'nge-tc'];
-    
     for (const key of serverKeys) {
       const status = await fetchServerStatus(key);
       const ind = document.getElementById('ind-' + key);
@@ -417,7 +378,6 @@
     }
   }
 
-  // Initial refresh and then every 30 seconds
   refreshAllServers();
   setInterval(refreshAllServers, 30000);
 })();
