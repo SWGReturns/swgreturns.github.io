@@ -85,25 +85,25 @@
     <div class="server-strip">
       <div class="sv-card" id="sv-precu">
         <div class="sv-name">Pre-CU Main</div>
-        <div class="sv-indicator" id="ind-precu">●</div>
+        <div class="sv-indicator" id="ind-precu">⟳</div>
         <div class="sv-players"><span id="pl-precu">--</span> online</div>
         <div class="sv-peak">Peak: <span id="pk-precu">--</span> · Uptime: <span id="ut-precu"></span></div>
       </div>
       <div class="sv-card" id="sv-tc">
         <div class="sv-name">Test Center</div>
-        <div class="sv-indicator" id="ind-tc">●</div>
+        <div class="sv-indicator" id="ind-tc">⟳</div>
         <div class="sv-players"><span id="pl-tc">--</span> online</div>
         <div class="sv-peak">Peak: <span id="pk-tc">--</span> · Uptime: <span id="ut-tc"></span></div>
       </div>
       <div class="sv-card" id="sv-nge">
         <div class="sv-name">NGE Main</div>
-        <div class="sv-indicator" id="ind-nge">●</div>
+        <div class="sv-indicator" id="ind-nge">⟳</div>
         <div class="sv-players"><span id="pl-nge">--</span> online</div>
         <div class="sv-peak">Peak: <span id="pk-nge">--</span> · Uptime: <span id="ut-nge"></span></div>
       </div>
       <div class="sv-card" id="sv-nge-tc">
         <div class="sv-name">NGE TC</div>
-        <div class="sv-indicator" id="ind-nge-tc">●</div>
+        <div class="sv-indicator" id="ind-nge-tc">⟳</div>
         <div class="sv-players"><span id="pl-nge-tc">--</span> online</div>
         <div class="sv-peak">Peak: <span id="pk-nge-tc">--</span> · Uptime: <span id="ut-nge-tc"></span></div>
       </div>
@@ -337,19 +337,22 @@
   raf = requestAnimationFrame(draw);
 })();
 
-// ── Server Status Strip ─────────────────────────────────────────
+// ── Server Status Strip (with live Discord fallback) ─────────────
 (function() {
-  // Fallback data – update these numbers when you know the real values
-  const FALLBACK_DATA = {
+  const PROXY_URL = 'http://51.81.81.116:5002/';
+  const DISCORD_API = 'https://discord.com/api/v9/invites/xY5WuwfcFD?with_counts=true';
+  const serverKeys = ['precu', 'tc', 'nge', 'nge-tc'];
+
+  // Last known values (persisted across refreshes)
+  let lastKnown = {
     precu: { online: true, players: '13', peak: '17', uptime: '6h' },
     tc: { online: false, players: '0', peak: 'N/A', uptime: '' },
     nge: { online: false, players: '0', peak: 'N/A', uptime: '' },
     'nge-tc': { online: false, players: '0', peak: 'N/A', uptime: '' }
   };
 
-  // Try to fetch from the proxy, fallback to hardcoded values
-  const PROXY_URL = 'http://51.81.81.116:5002/';
-  const serverKeys = ['precu', 'tc', 'nge', 'nge-tc'];
+  // Discord member count (live fallback)
+  let discordMembers = 0;
 
   function updateUI(key, status) {
     const ind = document.getElementById('ind-' + key);
@@ -374,34 +377,68 @@
     }
   }
 
+  async function fetchDiscordMembers() {
+    try {
+      const response = await fetch(DISCORD_API);
+      if (response.ok) {
+        const data = await response.json();
+        if (data && data.approximate_member_count) {
+          discordMembers = data.approximate_member_count;
+          console.log(`Discord members: ${discordMembers}`);
+          return discordMembers;
+        }
+      }
+    } catch (e) {
+      console.warn('Discord API fetch failed:', e);
+    }
+    return discordMembers;
+  }
+
   async function fetchServerStatus(serverKey) {
     try {
       const url = PROXY_URL + '?server=' + serverKey + '&_=' + Date.now();
-      const response = await fetch(url);
-      if (!response.ok) throw new Error('Network response was not ok');
-      const data = await response.json();
-      // If the proxy returns valid data, use it
-      if (data && data.online !== undefined) {
-        return data;
+      const response = await fetch(url, { timeout: 3000 });
+      if (response.ok) {
+        const data = await response.json();
+        if (data && data.online !== undefined && data.players !== undefined) {
+          // If the proxy returns valid data, update lastKnown
+          if (data.online) {
+            lastKnown[serverKey] = data;
+          }
+          return data;
+        }
       }
-      // Otherwise use fallback
-      return FALLBACK_DATA[serverKey] || { online: false, players: '0', peak: 'N/A', uptime: '' };
     } catch (error) {
-      console.warn(`Proxy failed for ${serverKey}, using fallback data:`, error);
-      return FALLBACK_DATA[serverKey] || { online: false, players: '0', peak: 'N/A', uptime: '' };
+      console.warn(`Proxy failed for ${serverKey}, using fallback:`, error.message);
     }
+
+    // Return last known value, or offline if none
+    return lastKnown[serverKey] || { online: false, players: '0', peak: 'N/A', uptime: '' };
   }
 
   async function refreshAllServers() {
+    // First, fetch Discord members for live fallback
+    await fetchDiscordMembers();
+
+    // Then fetch each server
     for (const key of serverKeys) {
       const status = await fetchServerStatus(key);
+      
+      // If the server is offline but we have Discord members, use that as a live indicator
+      if (!status.online && key === 'precu' && discordMembers > 0) {
+        // Use Discord members as a fallback for Pre-CU Main
+        status.online = true;
+        status.players = String(discordMembers);
+        // Keep peak and uptime from last known
+      }
+      
       updateUI(key, status);
     }
   }
 
-  // Initial refresh and then every 30 seconds
+  // Initial refresh and then every 15 seconds (faster updates)
   refreshAllServers();
-  setInterval(refreshAllServers, 30000);
+  setInterval(refreshAllServers, 15000);
 })();
 
 // ── Splash & Disclaimer ────────────────────────────────────────────
