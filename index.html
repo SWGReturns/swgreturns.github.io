@@ -88,8 +88,8 @@
       <div class="sv-card" id="sv-precu">
         <div class="sv-name">Pre-CU Main</div>
         <div class="sv-indicator" id="ind-precu">●</div>
-        <div class="sv-players"><span id="pl-precu">--</span> online</div>
-        <div class="sv-peak">Peak: <span id="pk-precu">--</span> · Uptime: <span id="ut-precu"></span></div>
+        <div class="sv-players"><span id="pl-precu">4</span> online</div>
+        <div class="sv-peak">Peak: <span id="pk-precu">4</span> · Uptime: <span id="ut-precu">N/A</span></div>
       </div>
       <div class="sv-card" id="sv-tc">
         <div class="sv-name">Test Center</div>
@@ -344,14 +344,17 @@
 (function() {
   const STATUS_URL = 'player_count.json';
 
-  // Function to update a single server card
-  function updateServerCard(key, status) {
-    const ind = document.getElementById('ind-' + key);
-    const pl = document.getElementById('pl-' + key);
-    const pk = document.getElementById('pk-' + key);
-    const ut = document.getElementById('ut-' + key);
+  // Function to update the Pre-CU Main card
+  function updatePreCU(status) {
+    const ind = document.getElementById('ind-precu');
+    const pl = document.getElementById('pl-precu');
+    const pk = document.getElementById('pk-precu');
+    const ut = document.getElementById('ut-precu');
 
-    if (!ind) return;
+    if (!ind) {
+      console.error('Pre-CU card elements not found');
+      return;
+    }
 
     if (status && status.online) {
       ind.className = 'sv-indicator online';
@@ -368,44 +371,22 @@
     }
   }
 
-  // Fetch the player count from the JSON file
-  async function fetchPlayerCount() {
+  // Fetch the player count
+  async function fetchAndUpdate() {
     try {
       const response = await fetch(STATUS_URL + '?_=' + Date.now());
-      if (!response.ok) {
-        console.warn('Failed to fetch player count:', response.status);
-        return null;
-      }
+      if (!response.ok) throw new Error('HTTP ' + response.status);
       const data = await response.json();
-      console.log('Player count data:', data);
-      return data;
+      updatePreCU(data);
     } catch (error) {
-      console.warn('Error fetching player count:', error);
-      return null;
+      console.warn('Failed to fetch player count:', error);
+      updatePreCU(null);
     }
   }
 
-  // Update all servers
-  async function updateAllServers() {
-    // Fetch real data for Pre-CU Main
-    const status = await fetchPlayerCount();
-    
-    if (status) {
-      updateServerCard('precu', status);
-    } else {
-      // If fetch fails, try the backup
-      updateServerCard('precu', { online: false, players: '0', peak: 'N/A', uptime: '' });
-    }
-
-    // Other servers are offline
-    updateServerCard('tc', { online: false, players: '0', peak: 'N/A', uptime: '' });
-    updateServerCard('nge', { online: false, players: '0', peak: 'N/A', uptime: '' });
-    updateServerCard('nge-tc', { online: false, players: '0', peak: 'N/A', uptime: '' });
-  }
-
-  // Update immediately and every 10 seconds
-  updateAllServers();
-  setInterval(updateAllServers, 10000);
+  // Initial update and every 10 seconds
+  fetchAndUpdate();
+  setInterval(fetchAndUpdate, 10000);
 })();
 
 // ── Splash & Disclaimer ────────────────────────────────────────────
