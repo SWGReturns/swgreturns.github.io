@@ -85,7 +85,7 @@
     <div class="server-strip">
       <div class="sv-card" id="sv-precu">
         <div class="sv-name">Pre-CU Main</div>
-        <div class="sv-indicator" id="ind-precu">⟳</div>
+        <div class="sv-indicator" id="ind-precu">●</div>
         <div class="sv-players"><span id="pl-precu">--</span> online</div>
         <div class="sv-peak">Peak: <span id="pk-precu">--</span> · Uptime: <span id="ut-precu"></span></div>
       </div>
@@ -337,9 +337,9 @@
   raf = requestAnimationFrame(draw);
 })();
 
-// ── Server Status Strip (fetches status.php directly) ─────────────
+// ── Server Status Strip (fetches player_count.json) ──────────────
 (function() {
-  const STATUS_URL = 'status.php';
+  const STATUS_URL = 'player_count.json';
 
   function updateUI(key, status) {
     const ind = document.getElementById('ind-' + key);
@@ -378,6 +378,7 @@
   }
 
   async function refreshAllServers() {
+    // Fetch real data for Pre-CU Main
     const status = await fetchServerStatus();
     
     if (status) {
@@ -392,6 +393,7 @@
     updateUI('nge-tc', { online: false, players: '0', peak: 'N/A', uptime: '' });
   }
 
+  // Initial refresh and then every 10 seconds
   refreshAllServers();
   setInterval(refreshAllServers, 10000);
 })();
