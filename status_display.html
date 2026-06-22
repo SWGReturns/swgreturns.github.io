@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SWG Returns - Player Count</title>
+    <style>
+        body {
+            background: #0a0c12;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .card {
+            background: #1a1c2a;
+            border: 2px solid #3b82f6;
+            border-radius: 16px;
+            padding: 40px 60px;
+            text-align: center;
+            min-width: 300px;
+        }
+        .server-name {
+            font-size: 24px;
+            color: #60a5fa;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .status {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        .online { color: #4caf50; }
+        .offline { color: #f44336; }
+        .players {
+            font-size: 72px;
+            font-weight: bold;
+            color: #93c5fd;
+            margin: 10px 0;
+        }
+        .peak {
+            font-size: 16px;
+            color: #888;
+        }
+        .uptime {
+            font-size: 14px;
+            color: #666;
+            margin-top: 10px;
+        }
+        .last-updated {
+            font-size: 12px;
+            color: #555;
+            margin-top: 15px;
+        }
+        .debug {
+            font-size: 11px;
+            color: #444;
+            margin-top: 10px;
+            word-break: break-all;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="server-name">🚀 Pre-CU Main</div>
+        <div class="status" id="status-indicator">● ONLINE</div>
+        <div class="players" id="player-count">--</div>
+        <div style="font-size:18px;color:#888;margin-bottom:10px;">players online</div>
+        <div class="peak">Peak: <span id="peak-count">--</span></div>
+        <div class="uptime">Uptime: <span id="uptime">N/A</span></div>
+        <div class="last-updated" id="last-updated">Last updated: --</div>
+        <div class="debug" id="debug"></div>
+    </div>
+
+    <script>
+        const STATUS_URL = 'player_count.json';
+
+        function updateStatus() {
+            const url = STATUS_URL + '?_=' + Date.now();
+            const debugEl = document.getElementById('debug');
+            
+            fetch(url)
+                .then(response => {
+                    debugEl.textContent = 'Fetch: ' + url + ' | Status: ' + response.status;
+                    if (!response.ok) throw new Error('HTTP ' + response.status);
+                    return response.json();
+                })
+                .then(data => {
+                    debugEl.textContent += ' | Data: ' + JSON.stringify(data);
+                    
+                    document.getElementById('player-count').textContent = data.players || '0';
+                    document.getElementById('peak-count').textContent = data.peak || 'N/A';
+                    document.getElementById('uptime').textContent = data.uptime || 'N/A';
+                    
+                    const statusEl = document.getElementById('status-indicator');
+                    if (data.online) {
+                        statusEl.textContent = '● ONLINE';
+                        statusEl.className = 'status online';
+                    } else {
+                        statusEl.textContent = '○ OFFLINE';
+                        statusEl.className = 'status offline';
+                    }
+                    
+                    document.getElementById('last-updated').textContent = 'Last updated: ' + new Date().toLocaleTimeString();
+                })
+                .catch(error => {
+                    debugEl.textContent = 'Error: ' + error.message;
+                    document.getElementById('player-count').textContent = '?';
+                    document.getElementById('status-indicator').textContent = '⚠ ERROR';
+                    document.getElementById('status-indicator').className = 'status offline';
+                });
+        }
+
+        // Update immediately
+        updateStatus();
+        
+        // Then every 10 seconds
+        setInterval(updateStatus, 10000);
+    </script>
+</body>
+</html>
