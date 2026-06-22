@@ -337,9 +337,10 @@
   raf = requestAnimationFrame(draw);
 })();
 
-// ── Server Status Strip (fetches player_count.json) ──────────────
+// ── Server Status Strip ──────────────────────────────────────────
 (function() {
   const STATUS_URL = 'player_count.json';
+  const serverKeys = ['precu', 'tc', 'nge', 'nge-tc'];
 
   function updateUI(key, status) {
     const ind = document.getElementById('ind-' + key);
@@ -364,22 +365,21 @@
     }
   }
 
-  async function fetchServerStatus() {
+  async function fetchPlayerCount() {
     try {
-      const url = STATUS_URL + '?_=' + Date.now();
-      const response = await fetch(url);
+      const response = await fetch(STATUS_URL + '?_=' + Date.now());
       if (!response.ok) throw new Error('HTTP ' + response.status);
       const data = await response.json();
       return data;
     } catch (error) {
-      console.warn('Failed to fetch server status:', error);
+      console.warn('Failed to fetch player count:', error);
       return null;
     }
   }
 
-  async function refreshAllServers() {
-    // Fetch real data for Pre-CU Main
-    const status = await fetchServerStatus();
+  async function refreshAll() {
+    // Get real data for Pre-CU Main
+    const status = await fetchPlayerCount();
     
     if (status) {
       updateUI('precu', status);
@@ -387,15 +387,15 @@
       updateUI('precu', { online: false, players: '0', peak: 'N/A', uptime: '' });
     }
 
-    // Other servers remain offline
+    // Other servers offline
     updateUI('tc', { online: false, players: '0', peak: 'N/A', uptime: '' });
     updateUI('nge', { online: false, players: '0', peak: 'N/A', uptime: '' });
     updateUI('nge-tc', { online: false, players: '0', peak: 'N/A', uptime: '' });
   }
 
-  // Initial refresh and then every 10 seconds
-  refreshAllServers();
-  setInterval(refreshAllServers, 10000);
+  // Update immediately and every 10 seconds
+  refreshAll();
+  setInterval(refreshAll, 10000);
 })();
 
 // ── Splash & Disclaimer ────────────────────────────────────────────
