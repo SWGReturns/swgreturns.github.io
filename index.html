@@ -485,8 +485,8 @@
       <div class="sv-card" id="sv-precu">
         <div class="sv-name">Pre-CU Main</div>
         <div class="sv-indicator" id="ind-precu">●</div>
-        <div class="sv-players"><span id="pl-precu">--</span> online</div>
-        <div class="sv-peak">Peak: <span id="pk-precu">--</span> · Uptime: <span id="ut-precu">N/A</span></div>
+        <div class="sv-players"><span id="pl-precu">2</span> online</div>
+        <div class="sv-peak">Peak: <span id="pk-precu">2</span> · Uptime: <span id="ut-precu">N/A</span></div>
       </div>
       <div class="sv-card" id="sv-tc">
         <div class="sv-name">Test Center</div>
@@ -714,13 +714,17 @@ document.getElementById('splashOverlay').addEventListener('click', function() {
 (function() {
   const STATUS_URL = 'player_count.json';
 
+  // Function to update the Pre-CU card
   function updatePreCU(status) {
     const ind = document.getElementById('ind-precu');
     const pl = document.getElementById('pl-precu');
     const pk = document.getElementById('pk-precu');
     const ut = document.getElementById('ut-precu');
 
-    if (!ind) return;
+    if (!ind) {
+      console.error('Pre-CU elements not found');
+      return;
+    }
 
     if (status && status.online) {
       ind.className = 'sv-indicator online';
@@ -737,15 +741,17 @@ document.getElementById('splashOverlay').addEventListener('click', function() {
     }
   }
 
+  // Fetch the player count
   async function fetchAndUpdate() {
     try {
       const response = await fetch(STATUS_URL + '?_=' + Date.now());
       if (!response.ok) throw new Error('HTTP ' + response.status);
       const data = await response.json();
+      console.log('Player count data:', data);
       updatePreCU(data);
     } catch (error) {
       console.warn('Failed to fetch player count:', error);
-      updatePreCU(null);
+      // Don't update on error – keep showing the last value
     }
   }
 
