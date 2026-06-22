@@ -82,7 +82,9 @@
     <div class="hero-logo-wrap">
       <img src="https://swgtalon.online/assets/logo.png" alt="SWGReturns" class="hero-logo-img">
     </div>
-    <div class="server-strip">
+
+    <!-- ═══ SERVER STATUS STRIP ═══ -->
+    <div class="server-strip" id="server-strip">
       <div class="sv-card" id="sv-precu">
         <div class="sv-name">Pre-CU Main</div>
         <div class="sv-indicator" id="ind-precu">●</div>
@@ -108,6 +110,7 @@
         <div class="sv-peak">Peak: N/A · Uptime: </div>
       </div>
     </div>
+
     <h1>Return to the Galaxies</h1>
     <p class="hero-sub">Classic Pre-CU &amp; NGE Star Wars Galaxies — choose your path and join the adventure.</p>
     <div class="cta-row">
@@ -340,9 +343,9 @@
 // ── Server Status Strip ──────────────────────────────────────────
 (function() {
   const STATUS_URL = 'player_count.json';
-  const serverKeys = ['precu', 'tc', 'nge', 'nge-tc'];
 
-  function updateUI(key, status) {
+  // Function to update a single server card
+  function updateServerCard(key, status) {
     const ind = document.getElementById('ind-' + key);
     const pl = document.getElementById('pl-' + key);
     const pk = document.getElementById('pk-' + key);
@@ -365,37 +368,44 @@
     }
   }
 
+  // Fetch the player count from the JSON file
   async function fetchPlayerCount() {
     try {
       const response = await fetch(STATUS_URL + '?_=' + Date.now());
-      if (!response.ok) throw new Error('HTTP ' + response.status);
+      if (!response.ok) {
+        console.warn('Failed to fetch player count:', response.status);
+        return null;
+      }
       const data = await response.json();
+      console.log('Player count data:', data);
       return data;
     } catch (error) {
-      console.warn('Failed to fetch player count:', error);
+      console.warn('Error fetching player count:', error);
       return null;
     }
   }
 
-  async function refreshAll() {
-    // Get real data for Pre-CU Main
+  // Update all servers
+  async function updateAllServers() {
+    // Fetch real data for Pre-CU Main
     const status = await fetchPlayerCount();
     
     if (status) {
-      updateUI('precu', status);
+      updateServerCard('precu', status);
     } else {
-      updateUI('precu', { online: false, players: '0', peak: 'N/A', uptime: '' });
+      // If fetch fails, try the backup
+      updateServerCard('precu', { online: false, players: '0', peak: 'N/A', uptime: '' });
     }
 
-    // Other servers offline
-    updateUI('tc', { online: false, players: '0', peak: 'N/A', uptime: '' });
-    updateUI('nge', { online: false, players: '0', peak: 'N/A', uptime: '' });
-    updateUI('nge-tc', { online: false, players: '0', peak: 'N/A', uptime: '' });
+    // Other servers are offline
+    updateServerCard('tc', { online: false, players: '0', peak: 'N/A', uptime: '' });
+    updateServerCard('nge', { online: false, players: '0', peak: 'N/A', uptime: '' });
+    updateServerCard('nge-tc', { online: false, players: '0', peak: 'N/A', uptime: '' });
   }
 
   // Update immediately and every 10 seconds
-  refreshAll();
-  setInterval(refreshAll, 10000);
+  updateAllServers();
+  setInterval(updateAllServers, 10000);
 })();
 
 // ── Splash & Disclaimer ────────────────────────────────────────────
