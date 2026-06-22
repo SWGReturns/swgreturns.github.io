@@ -1,64 +1,759 @@
-cat > /var/www/html/index.html << 'EOF'
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>SWG Returns</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            background: #0a0c12;
-            color: #fff;
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
-        .card {
-            background: #1a1c2a;
-            border: 2px solid #3b82f6;
-            border-radius: 16px;
-            padding: 40px 60px;
-            text-align: center;
-            min-width: 350px;
-        }
-        .title { font-size: 24px; color: #60a5fa; font-weight: bold; margin-bottom: 10px; }
-        .status { font-size: 20px; margin-bottom: 15px; color: #4caf50; }
-        .number { font-size: 80px; font-weight: bold; color: #93c5fd; }
-        .label { font-size: 18px; color: #888; }
-        .detail { font-size: 14px; color: #666; margin-top: 10px; }
-        .updated { font-size: 12px; color: #444; margin-top: 15px; }
-        .debug { font-size: 11px; color: #333; margin-top: 10px; }
-    </style>
+  <meta charset="UTF-8">
+  <title>SWGReturns — Classic Pre-CU & NGE Star Wars Galaxies</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="SWGReturns — Classic Pre-CU and NGE Star Wars Galaxies with expanded content, modern stability, and a living galaxy.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+  <link rel="icon" href="assets/logo.png">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #0a0c12;
+      color: #e0e0e0;
+      overflow-x: hidden;
+    }
+    .wrap { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+    /* ── HEADER ── */
+    .site-header {
+      padding: 15px 0;
+      border-bottom: 1px solid rgba(59,130,246,0.3);
+      background: rgba(10,12,18,0.8);
+    }
+    .nav-wrap {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: #fff;
+    }
+    .logo { height: 40px; }
+    .wordmark {
+      font-size: 24px;
+      font-weight: 700;
+      background: linear-gradient(135deg, #3b82f6, #1e3a8a);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .top-nav {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .top-nav a {
+      color: #aaa;
+      text-decoration: none;
+      font-size: 14px;
+      transition: 0.2s;
+    }
+    .top-nav a:hover { color: #60a5fa; }
+    .btn {
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-weight: 600;
+      transition: 0.2s;
+    }
+    .btn-guides {
+      background: rgba(59,130,246,0.2);
+      border: 1px solid rgba(59,130,246,0.3);
+      color: #93c5fd;
+    }
+    .btn-guides:hover { background: rgba(59,130,246,0.4); }
+    .nav-discord {
+      background: #5865F2;
+      color: white !important;
+    }
+    .nav-discord:hover { background: #4752c4; }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+    .hamburger span {
+      width: 25px;
+      height: 3px;
+      background: #fff;
+      border-radius: 3px;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 40px 0 60px;
+      text-align: center;
+      background: radial-gradient(ellipse at 30% 40%, #0f121c 0%, #05070c 100%);
+    }
+    .hero-logo-wrap { margin-bottom: 20px; }
+    .hero-logo-img { max-height: 100px; }
+
+    /* ── SERVER STRIP ── */
+    .server-strip {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin: 20px 0 30px;
+    }
+    .sv-card {
+      background: rgba(20, 22, 32, 0.9);
+      border: 1px solid rgba(59,130,246,0.3);
+      border-radius: 12px;
+      padding: 15px 25px;
+      min-width: 150px;
+      text-align: left;
+      transition: 0.2s;
+    }
+    .sv-card:hover { border-color: #3b82f6; }
+    .sv-name {
+      font-size: 13px;
+      font-weight: 700;
+      color: #60a5fa;
+      letter-spacing: 0.5px;
+      margin-bottom: 4px;
+    }
+    .sv-indicator {
+      font-size: 18px;
+      display: inline-block;
+      margin-right: 6px;
+    }
+    .sv-indicator.online { color: #4caf50; }
+    .sv-indicator.offline { color: #f44336; }
+    .sv-players {
+      font-size: 18px;
+      font-weight: 600;
+      color: #e0e0e0;
+    }
+    .sv-players span {
+      color: #93c5fd;
+      font-size: 22px;
+    }
+    .sv-peak {
+      font-size: 12px;
+      color: #888;
+      margin-top: 2px;
+    }
+
+    h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 42px;
+      font-weight: 900;
+      background: linear-gradient(135deg, #60a5fa, #3b82f6);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin: 20px 0 10px;
+    }
+    .hero-sub {
+      color: #aaa;
+      font-size: 18px;
+      max-width: 600px;
+      margin: 0 auto 30px;
+    }
+    .cta-row {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .cta-btn {
+      padding: 12px 28px;
+      border-radius: 30px;
+      background: rgba(59,130,246,0.15);
+      border: 1px solid rgba(59,130,246,0.4);
+      color: #93c5fd;
+      text-decoration: none;
+      font-weight: 600;
+      transition: 0.2s;
+    }
+    .cta-btn:hover { background: rgba(59,130,246,0.3); }
+
+    /* ── SECTIONS ── */
+    .section { padding: 60px 0; }
+    .section.alt { background: rgba(255,255,255,0.02); }
+    .section h2 {
+      font-size: 28px;
+      text-align: center;
+      margin-bottom: 30px;
+      color: #60a5fa;
+    }
+    .section-lead {
+      text-align: center;
+      color: #aaa;
+      max-width: 700px;
+      margin: 0 auto 40px;
+    }
+    .cards {
+      display: flex;
+      gap: 30px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .card {
+      background: rgba(20,22,32,0.8);
+      border: 1px solid rgba(59,130,246,0.2);
+      border-radius: 16px;
+      padding: 30px;
+      max-width: 320px;
+      flex: 1;
+      min-width: 250px;
+    }
+    .card .card-icon { font-size: 36px; margin-bottom: 12px; }
+    .card h3 { color: #93c5fd; margin-bottom: 10px; }
+    .card .muted { color: #aaa; font-size: 14px; line-height: 1.6; }
+
+    .server-cols {
+      display: flex;
+      gap: 30px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .server-box {
+      background: rgba(20,22,32,0.8);
+      border: 1px solid rgba(59,130,246,0.2);
+      border-radius: 16px;
+      padding: 30px;
+      flex: 1;
+      min-width: 300px;
+      max-width: 500px;
+    }
+    .server-box h3 { color: #93c5fd; font-size: 20px; margin-bottom: 15px; }
+    .server-box ul { list-style: none; padding: 0; }
+    .server-box ul li {
+      padding: 6px 0;
+      color: #ccc;
+      font-size: 14px;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .server-box ul li:last-child { border-bottom: none; }
+    .server-box ul li strong { color: #60a5fa; }
+
+    .donate-cols {
+      display: flex;
+      gap: 30px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .donate-box {
+      background: rgba(20,22,32,0.8);
+      border: 1px solid rgba(59,130,246,0.2);
+      border-radius: 16px;
+      padding: 30px;
+      min-width: 250px;
+      flex: 1;
+      max-width: 400px;
+      text-align: center;
+    }
+    .donate-box h3 { color: #93c5fd; }
+    .donate-box .muted { color: #aaa; }
+    .donate-btn {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 12px 30px;
+      background: linear-gradient(135deg, #003087, #0070ba);
+      border-radius: 30px;
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .donate-btn:hover { background: linear-gradient(135deg, #0050c0, #0090fa); }
+
+    .get-started-cols {
+      display: flex;
+      gap: 30px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .gs-step {
+      background: rgba(20,22,32,0.8);
+      border: 1px solid rgba(59,130,246,0.2);
+      border-radius: 16px;
+      padding: 30px;
+      min-width: 250px;
+      flex: 1;
+      max-width: 350px;
+      text-align: center;
+    }
+    .gs-num {
+      font-size: 36px;
+      font-weight: bold;
+      color: #3b82f6;
+    }
+    .gs-step h3 { color: #93c5fd; margin: 10px 0; }
+    .gs-step .muted { color: #aaa; }
+    .gs-step .tip { color: #666; font-size: 12px; margin-top: 10px; }
+    .download-btn {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 12px 30px;
+      background: linear-gradient(135deg, #f59e0b, #d97706);
+      border-radius: 30px;
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .register-btn {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 12px 30px;
+      background: linear-gradient(135deg, #2563eb, #1e3a8a);
+      border-radius: 30px;
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .community-discord-wrap { max-width: 700px; margin: 0 auto; }
+
+    /* ── FOOTER ── */
+    .site-footer {
+      background: #05070c;
+      padding: 30px 0;
+      text-align: center;
+      border-top: 1px solid rgba(59,130,246,0.2);
+    }
+    .footer-brand {
+      font-size: 18px;
+      font-weight: 700;
+      color: #60a5fa;
+      margin-bottom: 8px;
+    }
+    .site-footer p { color: #666; font-size: 13px; }
+    .footer-powered a { color: #3b82f6; text-decoration: none; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .nav-wrap { flex-direction: column; gap: 10px; }
+      .top-nav { justify-content: center; display: none; flex-direction: column; width: 100%; padding: 10px 0; }
+      .top-nav.open { display: flex; }
+      .hamburger { display: flex; }
+      .server-strip { gap: 10px; }
+      .sv-card { min-width: 120px; padding: 12px 16px; }
+      h1 { font-size: 28px; }
+      .server-cols { flex-direction: column; align-items: center; }
+      .server-box { min-width: auto; width: 100%; }
+      .get-started-cols { flex-direction: column; align-items: center; }
+      .gs-step { max-width: 100%; }
+    }
+
+    /* ── SPLASH ── */
+    #splashOverlay {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: #0a0c12; z-index: 9999;
+      display: flex; justify-content: center; align-items: center;
+      cursor: pointer;
+    }
+    #splashOverlay.hidden { display: none; }
+    .splash-inner { text-align: center; padding: 20px; }
+    .splash-icon svg { width: 60px; height: 60px; fill: #3b82f6; }
+    .splash-title {
+      font-size: 48px;
+      font-weight: 700;
+      color: #60a5fa;
+      font-family: 'Orbitron', sans-serif;
+    }
+    .splash-sub { color: #aaa; font-size: 18px; margin: 10px 0 20px; }
+    .splash-bar {
+      width: 200px;
+      height: 4px;
+      background: #1a1c2a;
+      border-radius: 4px;
+      margin: 0 auto 20px;
+      overflow: hidden;
+    }
+    .splash-bar-fill {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, #3b82f6, #60a5fa);
+      animation: pulse 1.5s infinite;
+    }
+    @keyframes pulse { 50% { opacity: 0.5; } }
+    .splash-stat { color: #888; font-size: 14px; margin: 0 10px; }
+    .splash-stat .dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; }
+    .splash-stat .dot.on { background: #4caf50; }
+    .splash-click { color: #555; font-size: 14px; margin-top: 20px; animation: pulse 1.5s infinite; }
+
+    /* ── DISCLAIMER ── */
+    #disclaimerOverlay {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.9); z-index: 10000;
+      display: none; justify-content: center; align-items: center;
+      backdrop-filter: blur(4px);
+    }
+    #disclaimerOverlay.show { display: flex; }
+    .disclaimer-card {
+      background: #10121c; border: 1px solid #3b82f6; border-radius: 24px;
+      padding: 40px; max-width: 550px; max-height: 90vh; overflow-y: auto;
+    }
+    .disclaimer-card h2 { color: #f44336; margin-bottom: 15px; }
+    .disclaimer-card p { color: #ccc; font-size: 14px; line-height: 1.6; margin-bottom: 10px; }
+    .disclaimer-card ul { color: #ccc; font-size: 14px; padding-left: 20px; margin-bottom: 15px; }
+    .disclaimer-card ul li { padding: 4px 0; }
+    .disclaimer-card label { color: #ccc; display: block; margin: 15px 0; }
+    .disclaimer-card .btn-gold {
+      background: linear-gradient(135deg, #f59e0b, #d97706);
+      border: none;
+      padding: 12px 30px;
+      border-radius: 30px;
+      font-weight: bold;
+      color: #fff;
+      cursor: pointer;
+    }
+    .disclaimer-card .btn-gold:disabled { opacity: 0.5; cursor: not-allowed; }
+  </style>
 </head>
 <body>
-    <div class="card">
-        <div class="title">🚀 SWG Returns</div>
-        <div class="status">● ONLINE</div>
-        <div class="number" id="count">--</div>
-        <div class="label">players online</div>
-        <div class="detail">Peak: <span id="peak">--</span> · Uptime: N/A</div>
-        <div class="updated" id="updated">Loading...</div>
-        <div class="debug" id="debug"></div>
+
+<!-- ═══════════════════════════════════════════════════════ SPLASH SCREEN -->
+<div id="splashOverlay">
+  <div class="splash-inner">
+    <div class="splash-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg></div>
+    <div class="splash-title">SWG Returns</div>
+    <div class="splash-sub">Two Galaxies, One Community</div>
+    <div class="splash-bar"><div class="splash-bar-fill"></div></div>
+    <div class="splash-status"><span class="splash-stat"><span class="dot on"></span> Pre-CU &amp; NGE — Online</span></div>
+    <div class="splash-click">▶ Click Anywhere to Begin</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ DISCLAIMER -->
+<div id="disclaimerOverlay">
+  <div class="disclaimer-card">
+    <h2>⚠ Legal Disclaimer</h2>
+    <p><strong>SWG Returns and SWG Talon Have Merged</strong></p>
+    <p>Together we bring you both the <strong>original Pre-CU sandbox</strong> and the <strong>NGE — New Game Enhancements</strong> experience. One community, two galaxies.</p>
+    <p>This is an unofficial, fan-made server. It is not affiliated with, endorsed by, or connected to Sony Online Entertainment, Daybreak Game Company, LucasArts, or Disney. Star Wars Galaxies™ is the intellectual property of its respective owners.</p>
+    <p>This server is run by fans, for fans, on a non-profit basis. No money is charged for access to the game itself.</p>
+    <p><strong>You Must Own the Original Game</strong></p>
+    <p>By accessing this server you confirm that you legally own or have owned a copy of Star Wars Galaxies.</p>
+    <p><strong>By Clicking "I Accept" You Agree That:</strong></p>
+    <ul>
+      <li>You own or have owned a legitimate copy of Star Wars Galaxies.</li>
+      <li>You understand this is an unofficial fan-made server, not the original game.</li>
+      <li>Any software you download is used at your own risk.</li>
+      <li>You are aged 13 or over.</li>
+    </ul>
+    <label><input type="checkbox" id="disclaimerCheck"> I confirm I own or have owned Star Wars Galaxies and I accept the terms above.</label>
+    <button class="btn-gold" id="disclaimerAccept" disabled>I Accept — Enter the Galaxy</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ HEADER -->
+<header class="site-header">
+  <div class="wrap nav-wrap">
+    <a class="brand" href="#">
+      <img class="logo" src="assets/logo.png" alt="SWGReturns logo">
+      <span class="wordmark">SWGReturns</span>
+    </a>
+    <button class="hamburger" id="hamburger" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="top-nav" id="top-nav">
+      <a href="#features">Features</a>
+      <a href="guides.html" class="btn btn-guides">Guides</a>
+      <a href="#get-started">Get Started</a>
+      <a href="#patch-notes">Patch Notes</a>
+      <a href="#need-help">Community</a>
+      <a class="btn nav-discord" href="http://82.165.250.176/chat/forgot_password.html" target="_blank">Forgot Password</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ═══════════════════════════════════════════════════════ HERO -->
+<section class="hero">
+  <div class="wrap hero-inner">
+    <div class="hero-logo-wrap">
+      <img src="https://swgtalon.online/assets/logo.png" alt="SWGReturns" class="hero-logo-img">
     </div>
-    <script>
-        async function update() {
-            try {
-                const r = await fetch('player_count.json?_=' + Date.now());
-                if (!r.ok) throw new Error('HTTP ' + r.status);
-                const d = await r.json();
-                document.getElementById('count').textContent = d.players || '0';
-                document.getElementById('peak').textContent = d.peak || 'N/A';
-                document.getElementById('updated').textContent = 'Updated: ' + new Date().toLocaleTimeString();
-                document.getElementById('debug').textContent = 'Data: ' + JSON.stringify(d);
-            } catch(e) {
-                document.getElementById('debug').textContent = 'Error: ' + e.message;
-                document.getElementById('updated').textContent = 'Error fetching data';
-            }
-        }
-        update();
-        setInterval(update, 10000);
-    </script>
+
+    <!-- ═══ SERVER STATUS STRIP ═══ -->
+    <div class="server-strip">
+      <div class="sv-card" id="sv-precu">
+        <div class="sv-name">Pre-CU Main</div>
+        <div class="sv-indicator" id="ind-precu">●</div>
+        <div class="sv-players"><span id="pl-precu">--</span> online</div>
+        <div class="sv-peak">Peak: <span id="pk-precu">--</span> · Uptime: <span id="ut-precu">N/A</span></div>
+      </div>
+      <div class="sv-card" id="sv-tc">
+        <div class="sv-name">Test Center</div>
+        <div class="sv-indicator" id="ind-tc">○</div>
+        <div class="sv-players"><span id="pl-tc">0</span> online</div>
+        <div class="sv-peak">Peak: N/A · Uptime: </div>
+      </div>
+      <div class="sv-card" id="sv-nge">
+        <div class="sv-name">NGE Main</div>
+        <div class="sv-indicator" id="ind-nge">○</div>
+        <div class="sv-players"><span id="pl-nge">0</span> online</div>
+        <div class="sv-peak">Peak: N/A · Uptime: </div>
+      </div>
+      <div class="sv-card" id="sv-nge-tc">
+        <div class="sv-name">NGE TC</div>
+        <div class="sv-indicator" id="ind-nge-tc">○</div>
+        <div class="sv-players"><span id="pl-nge-tc">0</span> online</div>
+        <div class="sv-peak">Peak: N/A · Uptime: </div>
+      </div>
+    </div>
+
+    <h1>Return to the Galaxies</h1>
+    <p class="hero-sub">Classic Pre-CU &amp; NGE Star Wars Galaxies — choose your path and join the adventure.</p>
+    <div class="cta-row">
+      <a href="#get-started" class="cta-btn">Get Started</a>
+      <a href="https://discord.gg/xY5WuwfcFD" class="cta-btn" target="_blank">Join Discord</a>
+      <a href="http://51.81.81.116/register.html" class="cta-btn" target="_blank">Register Pre-CU</a>
+      <a href="https://register.swgtalon.online/addnewuser.php" class="cta-btn" target="_blank">Register NGE</a>
+      <a href="https://github.com/bfitzgit23/SWG-Returns-Launcher/releases/download/1.12.0/SWG-Returns.Launcher.Setup.1.12.0.exe" class="cta-btn" target="_blank">Download Launcher</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ WHAT YOU GET -->
+<section class="section alt">
+  <div class="wrap">
+    <h2>Two Galaxies, One Home</h2>
+    <div class="cards cols-3">
+      <div class="card"><div class="card-icon">⚔️</div><h3>Pre-CU Classic</h3><p class="muted">The original Pre-CU sandbox — profession-based skill system, open world PvP, and the classic Hologrind Jedi path. 10× XP, expanded planets, and custom loot.</p></div>
+      <div class="card"><div class="card-icon">🌌</div><h3>NGE</h3><p class="muted">Jump to Lightspeed expansion — class-based combat, space combat, and the full NGE experience with modern stability and a dedicated test center.</p></div>
+      <div class="card"><div class="card-icon">🏆</div><h3>Shared Community</h3><p class="muted">One community, two servers. Discord, forums, and events cross both galaxies. Play whichever you prefer.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ FEATURES -->
+<section id="features" class="section">
+  <div class="wrap">
+    <h2>Features</h2>
+    <p class="section-lead">Two galaxies, one community — each server offers a unique Star Wars Galaxies experience.</p>
+    <div class="server-cols">
+      <div class="server-box precu-box">
+        <h3>Pre-CU Classic</h3>
+        <ul>
+          <li>Classic pre-Publish 9 Hologrind Jedi unlock</li>
+          <li>Padawan → Journeyman → Master → Elder progression</li>
+          <li>Force Ranking System (FRS) endgame</li>
+          <li>No death penalty on Jedi status</li>
+          <li>5th generation lightsabers supported</li>
+          <li>Custom loot: Revan's Robes, SWTOR Robes, Star Forge Robes</li>
+          <li><strong>9+ additional planets</strong> beyond the original galaxy</li>
+          <li><strong>10× XP</strong> solo / <strong>4× XP</strong> grouped</li>
+          <li>200 item cap, improved slicing, junk dealers accept all</li>
+        </ul>
+      </div>
+      <div class="server-box nge-box">
+        <h3>NGE — Jump to Lightspeed</h3>
+        <ul>
+          <li>Jump to Lightspeed space combat expansion</li>
+          <li>Class-based combat system with all NGE classes</li>
+          <li>Full space gameplay — pilot starships, dogfight in orbit</li>
+          <li>Active test center with a friendly frog in the Taanab cantina</li>
+          <li>Custom content additions and balance improvements</li>
+          <li>Stable server with active development</li>
+          <li>Regular events and community gatherings</li>
+          <li>Dedicated staff keeping the galaxy alive</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ DONATIONS -->
+<section class="section alt">
+  <div class="wrap">
+    <h2>Support the Galaxy</h2>
+    <p class="section-lead">Star Wars Galaxies is free to play. We rely on community support to cover the cost of hosting four servers. To keep the servers running, please donate if you can.</p>
+    <div class="donate-cols">
+      <div class="donate-box">
+        <h3>Pre-CU</h3>
+        <p class="muted">Keep the classic Pre-CU galaxy alive.</p>
+        <a class="donate-btn" href="https://www.paypal.com/paypalme/Fitzpatrick251" target="_blank">Donate to Pre-CU</a>
+      </div>
+      <div class="donate-box">
+        <h3>NGE — Jump to Lightspeed</h3>
+        <p class="muted">Keep the NGE galaxy thriving with space combat.</p>
+        <a class="donate-btn" href="https://www.paypal.com/donate/?cmd=_donations&business=H56S8HSXHUF6Q&currency_code=GBP&amount=10&item_name=SWG+Talon+Server+Support&notify_url=https%3A%2F%2Fregister.swgtalon.online%2Fpaypal_ipn.php&return=https%3A%2F%2Fregister.swgtalon.online%2Fdonate.php%3Fthanks%3D1&cancel_return=https%3A%2F%2Fregister.swgtalon.online%2Fdonate.php" target="_blank">Donate to NGE</a>
+      </div>
+    </div>
+    <p class="thank-you" style="text-align:center; color:#888; margin-top:30px;">Thank you for your support — every donation keeps the galaxy alive.</p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ GET STARTED -->
+<section id="get-started" class="section">
+  <div class="wrap">
+    <h2>Getting Started</h2>
+    <div class="get-started-cols">
+      <div class="gs-step">
+        <div class="gs-num">01</div>
+        <h3>Download the Launcher</h3>
+        <p class="muted">Download and install the SWGReturns launcher.</p>
+        <a class="download-btn" href="https://github.com/bfitzgit23/SWG-Returns-Launcher/releases/download/1.12.0/SWG-Returns.Launcher.Setup.1.12.0.exe" target="_blank">Download Launcher</a>
+        <p class="tip">You'll need a legal SWG client install.</p>
+      </div>
+      <div class="gs-step">
+        <div class="gs-num">02</div>
+        <h3>Register for Pre-CU</h3>
+        <p class="muted">Create your Pre-CU account.</p>
+        <a class="register-btn" href="http://51.81.81.116/register.html" target="_blank">Register for Pre-CU</a>
+      </div>
+      <div class="gs-step">
+        <div class="gs-num">03</div>
+        <h3>Register for NGE</h3>
+        <p class="muted">Create your NGE account.</p>
+        <a class="register-btn" href="https://register.swgtalon.online/addnewuser.php" target="_blank">Register for NGE</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ PATCH NOTES -->
+<section id="patch-notes" class="section alt">
+  <div class="wrap">
+    <h2>Patch Notes</h2>
+    <div class="cards">
+      <div class="card"><h3>Core Systems</h3><ul style="list-style:none; padding:0; color:#aaa; font-size:14px;"><li style="padding:4px 0;">Pre-CU combat and profession systems preserved</li><li style="padding:4px 0;">No CU or NGE mechanics enabled</li><li style="padding:4px 0;">Stability and performance improvements</li></ul></div>
+      <div class="card"><h3>Content &amp; Assets</h3><ul style="list-style:none; padding:0; color:#aaa; font-size:14px;"><li style="padding:4px 0;">All Pre-CU assets enabled</li><li style="padding:4px 0;">CU and NGE weapons, armor, vehicles, and decorations added</li><li style="padding:4px 0;">Mustafar and Kashyyyk NPCs and content supported</li><li style="padding:4px 0;">NGE-era housing deeds and schematics enabled</li></ul></div>
+      <div class="card"><h3>Quality of Life</h3><ul style="list-style:none; padding:0; color:#aaa; font-size:14px;"><li style="padding:4px 0;">200 item cap per character</li><li style="padding:4px 0;">Improved loot and drop rates</li><li style="padding:4px 0;">Improved slicing functionality</li><li style="padding:4px 0;">Junk dealers accept all items</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ COMMUNITY / DISCORD -->
+<section id="need-help" class="section">
+  <div class="wrap">
+    <h2>Community</h2>
+    <p class="section-lead">Join the galaxy — announcements, support, guides, and events all in one place.</p>
+    <div class="community-discord-wrap">
+      <iframe src="https://discord.com/widget?id=1384702301624733787&theme=dark"
+        width="100%" height="500" allowtransparency="true" frameborder="0"
+        sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts">
+      </iframe>
+    </div>
+    <div style="text-align:center; margin-top:20px;">
+      <a class="cta-btn" href="https://discord.gg/xY5WuwfcFD" target="_blank">Join Discord</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ FOOTER -->
+<footer class="site-footer">
+  <div class="wrap">
+    <p class="footer-brand">SWGReturns</p>
+    <p>&copy; 2025 SWGReturns — Fan-made Star Wars Galaxies Pre-CU emulator. Not affiliated with Disney, LucasArts, or Sony Online Entertainment.</p>
+    <p class="footer-powered">Powered by <a href="https://thewebsitefactory.store/" target="_blank" rel="noopener">The Website Factory</a></p>
+  </div>
+</footer>
+
+<script>
+// ── HIDE SPLASH ON CLICK ──
+document.getElementById('splashOverlay').addEventListener('click', function() {
+  this.classList.add('hidden');
+});
+
+// ── DISCLAIMER ──
+(function() {
+  const disc = document.getElementById('disclaimerOverlay');
+  const check = document.getElementById('disclaimerCheck');
+  const accept = document.getElementById('disclaimerAccept');
+  
+  // Show disclaimer after splash is clicked
+  document.getElementById('splashOverlay').addEventListener('click', function() {
+    if (localStorage.getItem('swgr_disclaimer') !== '1') {
+      disc.classList.add('show');
+      document.body.style.overflow = 'hidden';
+    }
+  });
+
+  if (check) {
+    check.addEventListener('change', function() {
+      accept.disabled = !this.checked;
+    });
+  }
+
+  if (accept) {
+    accept.addEventListener('click', function() {
+      localStorage.setItem('swgr_disclaimer', '1');
+      disc.classList.remove('show');
+      document.body.style.overflow = '';
+    });
+  }
+})();
+
+// ── MOBILE HAMBURGER TOGGLE ──
+(function () {
+  const btn = document.getElementById('hamburger');
+  const nav = document.getElementById('top-nav');
+  if (!btn || !nav) return;
+
+  btn.addEventListener('click', () => {
+    const open = nav.classList.toggle('open');
+    btn.classList.toggle('active', open);
+    btn.setAttribute('aria-expanded', String(open));
+  });
+
+  nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    nav.classList.remove('open');
+    btn.classList.remove('active');
+    btn.setAttribute('aria-expanded', 'false');
+  }));
+})();
+
+// ── SERVER STATUS STRIP ──
+(function() {
+  const STATUS_URL = 'player_count.json';
+
+  function updatePreCU(status) {
+    const ind = document.getElementById('ind-precu');
+    const pl = document.getElementById('pl-precu');
+    const pk = document.getElementById('pk-precu');
+    const ut = document.getElementById('ut-precu');
+
+    if (!ind) return;
+
+    if (status && status.online) {
+      ind.className = 'sv-indicator online';
+      ind.textContent = '●';
+      if (pl) pl.textContent = status.players || '0';
+      if (pk) pk.textContent = status.peak || 'N/A';
+      if (ut) ut.textContent = status.uptime || 'N/A';
+    } else {
+      ind.className = 'sv-indicator offline';
+      ind.textContent = '○';
+      if (pl) pl.textContent = '0';
+      if (pk) pk.textContent = 'N/A';
+      if (ut) ut.textContent = 'N/A';
+    }
+  }
+
+  async function fetchAndUpdate() {
+    try {
+      const response = await fetch(STATUS_URL + '?_=' + Date.now());
+      if (!response.ok) throw new Error('HTTP ' + response.status);
+      const data = await response.json();
+      updatePreCU(data);
+    } catch (error) {
+      console.warn('Failed to fetch player count:', error);
+      updatePreCU(null);
+    }
+  }
+
+  // Update immediately and every 10 seconds
+  fetchAndUpdate();
+  setInterval(fetchAndUpdate, 10000);
+})();
+</script>
+
 </body>
 </html>
-EOF
