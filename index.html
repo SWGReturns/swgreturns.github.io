@@ -9,7 +9,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
   <link rel="icon" href="assets/logo.png">
   <style>
-    /* ── RESET ── */
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Segoe UI', sans-serif;
@@ -355,9 +354,10 @@
       position: fixed; top: 0; left: 0; width: 100%; height: 100%;
       background: #0a0c12; z-index: 9999;
       display: flex; justify-content: center; align-items: center;
+      cursor: pointer;
     }
     #splashOverlay.hidden { display: none; }
-    .splash-inner { text-align: center; padding: 20px; cursor: pointer; }
+    .splash-inner { text-align: center; padding: 20px; }
     .splash-icon svg { width: 60px; height: 60px; fill: #3b82f6; }
     .splash-title {
       font-size: 48px;
@@ -624,4 +624,134 @@
     <div class="cards">
       <div class="card"><h3>Core Systems</h3><ul style="list-style:none; padding:0; color:#aaa; font-size:14px;"><li style="padding:4px 0;">Pre-CU combat and profession systems preserved</li><li style="padding:4px 0;">No CU or NGE mechanics enabled</li><li style="padding:4px 0;">Stability and performance improvements</li></ul></div>
       <div class="card"><h3>Content &amp; Assets</h3><ul style="list-style:none; padding:0; color:#aaa; font-size:14px;"><li style="padding:4px 0;">All Pre-CU assets enabled</li><li style="padding:4px 0;">CU and NGE weapons, armor, vehicles, and decorations added</li><li style="padding:4px 0;">Mustafar and Kashyyyk NPCs and content supported</li><li style="padding:4px 0;">NGE-era housing deeds and schematics enabled</li></ul></div>
-      <div class="card"><h3>Quality of Life</h3><ul style="list-style:none; padding:0; color:#aaa; font-size:14px;"><li style="padding:4px 0;">200 item cap per character</li><li style="padding:4px 0;">Improved loot and drop rates</li><li style="padding:4px 0;">Improved slicing functionality</li><li style="padding:4
+      <div class="card"><h3>Quality of Life</h3><ul style="list-style:none; padding:0; color:#aaa; font-size:14px;"><li style="padding:4px 0;">200 item cap per character</li><li style="padding:4px 0;">Improved loot and drop rates</li><li style="padding:4px 0;">Improved slicing functionality</li><li style="padding:4px 0;">Junk dealers accept all items</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ COMMUNITY / DISCORD -->
+<section id="need-help" class="section">
+  <div class="wrap">
+    <h2>Community</h2>
+    <p class="section-lead">Join the galaxy — announcements, support, guides, and events all in one place.</p>
+    <div class="community-discord-wrap">
+      <iframe src="https://discord.com/widget?id=1384702301624733787&theme=dark"
+        width="100%" height="500" allowtransparency="true" frameborder="0"
+        sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts">
+      </iframe>
+    </div>
+    <div style="text-align:center; margin-top:20px;">
+      <a class="cta-btn" href="https://discord.gg/xY5WuwfcFD" target="_blank">Join Discord</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ FOOTER -->
+<footer class="site-footer">
+  <div class="wrap">
+    <p class="footer-brand">SWGReturns</p>
+    <p>&copy; 2025 SWGReturns — Fan-made Star Wars Galaxies Pre-CU emulator. Not affiliated with Disney, LucasArts, or Sony Online Entertainment.</p>
+    <p class="footer-powered">Powered by <a href="https://thewebsitefactory.store/" target="_blank" rel="noopener">The Website Factory</a></p>
+  </div>
+</footer>
+
+<script>
+// ── HIDE SPLASH ON CLICK ──
+document.getElementById('splashOverlay').addEventListener('click', function() {
+  this.classList.add('hidden');
+});
+
+// ── Server Status Strip ──────────────────────────────────────────
+(function() {
+  const STATUS_URL = 'player_count.json';
+
+  function updatePreCU(status) {
+    const ind = document.getElementById('ind-precu');
+    const pl = document.getElementById('pl-precu');
+    const pk = document.getElementById('pk-precu');
+    const ut = document.getElementById('ut-precu');
+
+    if (!ind) return;
+
+    if (status && status.online) {
+      ind.className = 'sv-indicator online';
+      ind.textContent = '●';
+      if (pl) pl.textContent = status.players || '0';
+      if (pk) pk.textContent = status.peak || 'N/A';
+      if (ut) ut.textContent = status.uptime || '';
+    } else {
+      ind.className = 'sv-indicator offline';
+      ind.textContent = '○';
+      if (pl) pl.textContent = '0';
+      if (pk) pk.textContent = 'N/A';
+      if (ut) ut.textContent = '';
+    }
+  }
+
+  async function fetchAndUpdate() {
+    try {
+      const response = await fetch(STATUS_URL + '?_=' + Date.now());
+      if (!response.ok) throw new Error('HTTP ' + response.status);
+      const data = await response.json();
+      updatePreCU(data);
+    } catch (error) {
+      console.warn('Failed to fetch player count:', error);
+      updatePreCU(null);
+    }
+  }
+
+  fetchAndUpdate();
+  setInterval(fetchAndUpdate, 10000);
+})();
+
+// ── Disclaimer ────────────────────────────────────────────────────
+(function() {
+  const disc = document.getElementById('disclaimerOverlay');
+  const check = document.getElementById('disclaimerCheck');
+  const accept = document.getElementById('disclaimerAccept');
+  
+  // Show disclaimer after splash is clicked
+  document.getElementById('splashOverlay').addEventListener('click', function() {
+    if (localStorage.getItem('swgr_disclaimer') !== '1') {
+      disc.classList.add('show');
+      document.body.style.overflow = 'hidden';
+    }
+  });
+
+  if (check) {
+    check.addEventListener('change', function() {
+      accept.disabled = !this.checked;
+    });
+  }
+
+  if (accept) {
+    accept.addEventListener('click', function() {
+      localStorage.setItem('swgr_disclaimer', '1');
+      disc.classList.remove('show');
+      document.body.style.overflow = '';
+    });
+  }
+})();
+
+// ── Mobile hamburger toggle ───────────────────────────────────────
+(function () {
+  const btn = document.getElementById('hamburger');
+  const nav = document.getElementById('top-nav');
+  if (!btn || !nav) return;
+
+  btn.addEventListener('click', () => {
+    const open = nav.classList.toggle('open');
+    btn.classList.toggle('active', open);
+    btn.setAttribute('aria-expanded', String(open));
+  });
+
+  nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    nav.classList.remove('open');
+    btn.classList.remove('active');
+    btn.setAttribute('aria-expanded', 'false');
+  }));
+})();
+</script>
+
+</body>
+</html>
