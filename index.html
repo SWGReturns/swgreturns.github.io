@@ -671,7 +671,9 @@ document.getElementById('splashOverlay').addEventListener('click', function() {
     'nge-tc': { online: false, players: '--', peak: 'N/A', uptime: '' }
   };
 
-  const PROXY_URL = 'https://51-81-81-116.sslip.io/api/';
+  const PROXY_URL = (location.protocol === 'https:')
+    ? 'https://51-81-81-116.sslip.io/api/'
+    : location.hostname === '51.81.81.116' ? '/api/' : 'http://51.81.81.116:5002/';
   const serverKeys = ['precu', 'tc', 'nge', 'nge-tc'];
 
   function updateUI(key, status) {
