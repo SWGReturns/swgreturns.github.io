@@ -700,12 +700,21 @@ document.getElementById('splashOverlay').addEventListener('click', function() {
   async function fetchServerStatus(serverKey) {
     try {
       const url = PROXY_URL + '?server=' + serverKey + '&_=' + Date.now();
+      console.log('Fetching:', url);
       const response = await fetch(url);
-      if (!response.ok) throw new Error('Network response was not ok');
+      console.log('Response status:', response.status, response.statusText);
+      if (!response.ok) throw new Error('HTTP ' + response.status);
       const data = await response.json();
+      console.log('Data for', serverKey, ':', data);
       return data;
     } catch (error) {
-      console.warn('Proxy failed for ' + serverKey + ', using fallback data:', error);
+      console.warn('Proxy failed for ' + serverKey + ':', error.name, error.message);
+      if (error.message && error.message.includes('Mixed Content')) {
+        console.warn('BLOCKED by mixed content! Try accessing the site via http://51.81.81.116/');
+      }
+      if (error instanceof TypeError && error.message === 'Failed to fetch') {
+        console.warn('CORS or network error — the proxy may be unreachable');
+      }
       return FALLBACK_DATA[serverKey] || { online: false, players: '--', peak: 'N/A', uptime: '' };
     }
   }
