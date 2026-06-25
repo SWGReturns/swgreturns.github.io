@@ -662,10 +662,70 @@ document.getElementById('splashOverlay').addEventListener('click', function() {
   this.classList.add('hidden');
 });
 
-// ── DISCLAIMER ──
+// ── Server Status Strip ─────────────────────────────────────────
 (function() {
-  const disc = document.getElementById('disclaimerOverlay');
-  const check = document.getElementById('disclaimerCheck');
+  const FALLBACK_DATA = {
+    precu: { online: false, players: '--', peak: 'N/A', uptime: '' },
+    tc: { online: false, players: '--', peak: 'N/A', uptime: '' },
+    nge: { online: false, players: '--', peak: 'N/A', uptime: '' },
+    'nge-tc': { online: false, players: '--', peak: 'N/A', uptime: '' }
+  };
+
+  const PROXY_URL = 'http://51.81.81.116:5002/';
+  const serverKeys = ['precu', 'tc', 'nge', 'nge-tc'];
+
+  function updateUI(key, status) {
+    const ind = document.getElementById('ind-' + key);
+    const pl = document.getElementById('pl-' + key);
+    const pk = document.getElementById('pk-' + key);
+    const ut = document.getElementById('ut-' + key);
+
+    if (!ind) return;
+
+    if (status.online) {
+      ind.className = 'sv-indicator online';
+      ind.textContent = '●';
+      if (pl) pl.textContent = status.players || '0';
+      if (pk) pk.textContent = status.peak || 'N/A';
+      if (ut) ut.textContent = status.uptime || '';
+    } else {
+      ind.className = 'sv-indicator offline';
+      ind.textContent = '○';
+      if (pl) pl.textContent = '0';
+      if (pk) pk.textContent = 'N/A';
+      if (ut) ut.textContent = '';
+    }
+  }
+
+  async function fetchServerStatus(serverKey) {
+    try {
+      const url = PROXY_URL + '?server=' + serverKey + '&_=' + Date.now();
+      const response = await fetch(url);
+      if (!response.ok) throw new Error('Network response was not ok');
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.warn('Proxy failed for ' + serverKey + ', using fallback data:', error);
+      return FALLBACK_DATA[serverKey] || { online: false, players: '--', peak: 'N/A', uptime: '' };
+    }
+  }
+
+  async function refreshAllServers() {
+    for (const key of serverKeys) {
+      const status = await fetchServerStatus(key);
+      updateUI(key, status);
+    }
+  }
+
+  refreshAllServers();
+  setInterval(refreshAllServers, 15000);
+})();
+
+// ── Splash & Disclaimer ────────────────────────────────────────────
+(function() {
+  const splash = document.getElementById('splashOverlay');
+  const disc   = document.getElementById('disclaimerOverlay');
+  const check  = document.getElementById('disclaimerCheck');
   const accept = document.getElementById('disclaimerAccept');
   
   // Show disclaimer after splash is clicked
