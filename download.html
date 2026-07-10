@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SWGReturns - Downloads</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:#0a0c12;color:#e0e0e0;font-family:'Segoe UI',sans-serif;min-height:100vh;display:flex;flex-direction:column;align-items:center}
+  header{width:100%;padding:40px 20px;text-align:center;border-bottom:1px solid #1a1d27}
+  header h1{font-size:2.5rem;color:#fff;margin-bottom:8px}
+  header p{color:#9ca3af;font-size:1.1rem}
+  .downloads{display:flex;gap:30px;padding:60px 20px;flex-wrap:wrap;justify-content:center;max-width:900px;width:100%}
+  .download-card{background:#12151f;border:1px solid #1a1d27;border-radius:12px;padding:40px 30px;flex:1;min-width:300px;max-width:400px;text-align:center;display:flex;flex-direction:column;align-items:center}
+  .download-card h2{color:#60a5fa;font-size:1.5rem;margin-bottom:10px}
+  .download-card .version{color:#9ca3af;font-size:0.9rem;margin-bottom:20px}
+  .download-card p{color:#d1d5db;line-height:1.6;margin-bottom:25px;flex-grow:1}
+  .btn{display:inline-block;background:#2563eb;color:#fff;text-decoration:none;padding:14px 36px;border-radius:8px;font-size:1.1rem;font-weight:600;transition:background 0.2s}
+  .btn:hover{background:#1d4ed8}
+  .btn.disabled{background:#374151;color:#6b7280;cursor:not-allowed}
+  footer{margin-top:auto;padding:30px 20px;text-align:center;color:#6b7280;font-size:0.85rem;border-top:1px solid #1a1d27;width:100%}
+</style>
+</head>
+<body>
+  <header>
+    <h1>SWGReturns</h1>
+    <p>Download the files you need to start playing</p>
+  </header>
+  <div class="downloads">
+    <div class="download-card">
+      <h2>Launcher</h2>
+      <div class="version">SWG_Returns_Launcher_Setup.zip</div>
+      <p>Quick setup launcher to get you into the game. Handles patches and configuration automatically.</p>
+      <a href="SWG_Returns_Launcher_Setup.zip" class="btn">Download Launcher</a>
+    </div>
+    <div class="download-card">
+      <h2>Full Pre-CU Client</h2>
+      <div class="version">Coming Soon</div>
+      <p>The complete Pre-CU client. Download the full game files ready to play.</p>
+      <span class="btn disabled">Coming Soon</span>
+    </div>
+  </div>
+  <footer>SWGReturns &copy; 2026. Star Wars Galaxies is a trademark of Sony Online Entertainment / LucasArts.</footer>
+</body>
+</html>
