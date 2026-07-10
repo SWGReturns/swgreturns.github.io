@@ -573,7 +573,8 @@
       <div class="sv-card" id="sv-nge">
         <div class="sv-name">NGE Main</div>
         <div class="sv-indicator" id="ind-nge">○</div>
-        <div class="sv-players" id="nge-status-label">Offline</div>
+        <div class="sv-players"><span id="pl-nge">0</span> online</div>
+        <div class="sv-peak">Peak: <span id="pk-nge">N/A</span> · Uptime: <span id="ut-nge">N/A</span></div>
       </div>
     </div>
 
@@ -760,25 +761,16 @@ document.getElementById('splashOverlay').addEventListener('click', function() {
   };
 
   const PROXY_URL = 'https://51-81-81-116.sslip.io/api/';
-  const serverKeys = ['precu', 'nge'];
+  const NGE_STATS_URL = 'http://51.222.204.198:8787/stats';
 
-  function updateUI(key, status) {
-    const ind = document.getElementById('ind-' + key);
+  function updatePreCU(status) {
+    const ind = document.getElementById('ind-precu');
+    const pl = document.getElementById('pl-precu');
+    const pk = document.getElementById('pk-precu');
+    const ut = document.getElementById('ut-precu');
     if (!ind) return;
 
-    if (key === 'nge') {
-      const label = document.getElementById('nge-status-label');
-      ind.className = status.online ? 'sv-indicator online' : 'sv-indicator offline';
-      ind.textContent = status.online ? '●' : '○';
-      if (label) label.textContent = status.online ? 'Online' : 'Offline';
-      return;
-    }
-
-    const pl = document.getElementById('pl-' + key);
-    const pk = document.getElementById('pk-' + key);
-    const ut = document.getElementById('ut-' + key);
-
-    if (status.online) {
+    if (status && status.online) {
       ind.className = 'sv-indicator online';
       ind.textContent = '●';
       if (pl) pl.textContent = status.players || '0';
@@ -789,27 +781,60 @@ document.getElementById('splashOverlay').addEventListener('click', function() {
       ind.textContent = '○';
       if (pl) pl.textContent = '0';
       if (pk) pk.textContent = 'N/A';
-      if (ut) ut.textContent = '';
+      if (ut) ut.textContent = 'N/A';
     }
   }
 
-  async function fetchServerStatus(serverKey) {
+  function formatUptime(seconds) {
+    if (!seconds || seconds <= 0) return 'N/A';
+    var d = Math.floor(seconds / 86400);
+    var h = Math.floor((seconds % 86400) / 3600);
+    var m = Math.floor((seconds % 3600) / 60);
+    if (d > 0) return d + 'd ' + h + 'h';
+    if (h > 0) return h + 'h ' + m + 'm';
+    return m + 'm';
+  }
+
+  function updateNGE(data) {
+    var ind = document.getElementById('ind-nge');
+    var pl = document.getElementById('pl-nge');
+    var pk = document.getElementById('pk-nge');
+    var ut = document.getElementById('ut-nge');
+    if (!ind) return;
+
+    var online = data && data.server_online;
+    ind.className = online ? 'sv-indicator online' : 'sv-indicator offline';
+    ind.textContent = online ? '●' : '○';
+    if (pl) pl.textContent = data ? (data.players_online_approx || 0) : '0';
+    if (pk) pk.textContent = data ? (data.online_player_limit || 'N/A') : 'N/A';
+    if (ut) ut.textContent = data ? formatUptime(data.uptime_seconds) : 'N/A';
+  }
+
+  async function fetchPreCUStatus() {
     try {
-      const url = PROXY_URL + '?server=' + serverKey + '&_=' + Date.now();
-      const response = await fetch(url);
+      var response = await fetch(PROXY_URL + '?server=precu&_=' + Date.now());
       if (!response.ok) throw new Error('HTTP ' + response.status);
-      const data = await response.json();
-      return data;
-    } catch (error) {
-      return FALLBACK_DATA[serverKey] || { online: false, players: '--', peak: 'N/A', uptime: '' };
+      return await response.json();
+    } catch (e) {
+      return FALLBACK_DATA.precu;
+    }
+  }
+
+  async function fetchNGEStatus() {
+    try {
+      var response = await fetch(NGE_STATS_URL + '?_=' + Date.now());
+      if (!response.ok) throw new Error('HTTP ' + response.status);
+      return await response.json();
+    } catch (e) {
+      return FALLBACK_DATA.nge;
     }
   }
 
   async function refreshAllServers() {
-    for (const key of serverKeys) {
-      const status = await fetchServerStatus(key);
-      updateUI(key, status);
-    }
+    var precuStatus = await fetchPreCUStatus();
+    var ngeData = await fetchNGEStatus();
+    updatePreCU(precuStatus);
+    updateNGE(ngeData);
   }
 
   refreshAllServers();
@@ -902,48 +927,6 @@ document.getElementById('splashOverlay').addEventListener('click', function() {
     btn.classList.remove('active');
     btn.setAttribute('aria-expanded', 'false');
   }));
-})();
-
-// ── SERVER STATUS STRIP ──
-(function() {
-  const STATUS_URL = 'https://51-81-81-116.sslip.io/player_count.json';
-
-  function updatePreCU(status) {
-    const ind = document.getElementById('ind-precu');
-    const pl = document.getElementById('pl-precu');
-    const pk = document.getElementById('pk-precu');
-    const ut = document.getElementById('ut-precu');
-
-    if (!ind) return;
-
-    if (status && status.online) {
-      ind.className = 'sv-indicator online';
-      ind.textContent = '●';
-      if (pl) pl.textContent = status.players || '0';
-      if (pk) pk.textContent = status.peak || 'N/A';
-      if (ut) ut.textContent = status.uptime || 'N/A';
-    } else {
-      ind.className = 'sv-indicator offline';
-      ind.textContent = '○';
-      if (pl) pl.textContent = '0';
-      if (pk) pk.textContent = 'N/A';
-      if (ut) ut.textContent = 'N/A';
-    }
-  }
-
-  async function fetchAndUpdate() {
-    try {
-      const response = await fetch(STATUS_URL + '?_=' + Date.now());
-      if (!response.ok) throw new Error('HTTP ' + response.status);
-      const data = await response.json();
-      updatePreCU(data);
-    } catch (error) {
-      console.warn('Failed to fetch player count:', error);
-    }
-  }
-
-  fetchAndUpdate();
-  setInterval(fetchAndUpdate, 10000);
 })();
 </script>
 
