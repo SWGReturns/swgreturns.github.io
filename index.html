@@ -762,7 +762,7 @@ document.getElementById('splashOverlay').addEventListener('click', function() {
   };
 
   const PROXY_URL = 'https://51-81-81-116.sslip.io/api/';
-  const NGE_STATS_URL = 'https://51-81-81-116.sslip.io/api/?server=nge';
+  const NGE_STATS_URL = 'https://51-81-81-116.sslip.io/api/';
 
   function updatePreCU(status) {
     const ind = document.getElementById('ind-precu');
@@ -825,7 +825,7 @@ document.getElementById('splashOverlay').addEventListener('click', function() {
 
   async function fetchNGEStatus() {
     try {
-      var response = await fetch(NGE_STATS_URL + '?_=' + Date.now());
+      var response = await fetch(NGE_STATS_URL + '?server=nge&_=' + Date.now());
       if (!response.ok) throw new Error('HTTP ' + response.status);
       return await response.json();
     } catch (e) {
