@@ -762,7 +762,7 @@ document.getElementById('splashOverlay').addEventListener('click', function() {
   };
 
   const PROXY_URL = 'https://51-81-81-116.sslip.io/api/';
-  const NGE_STATS_URL = 'http://51.222.204.198:8787/stats';
+  const NGE_STATS_URL = 'https://51-81-81-116.sslip.io/api/?server=nge';
 
   function updatePreCU(status) {
     const ind = document.getElementById('ind-precu');
@@ -786,16 +786,6 @@ document.getElementById('splashOverlay').addEventListener('click', function() {
     }
   }
 
-  function formatUptime(seconds) {
-    if (!seconds || seconds <= 0) return 'N/A';
-    var d = Math.floor(seconds / 86400);
-    var h = Math.floor((seconds % 86400) / 3600);
-    var m = Math.floor((seconds % 3600) / 60);
-    if (d > 0) return d + 'd ' + h + 'h';
-    if (h > 0) return h + 'h ' + m + 'm';
-    return m + 'm';
-  }
-
   function updateNGE(data) {
     var ind = document.getElementById('ind-nge');
     var pl = document.getElementById('pl-nge');
@@ -803,12 +793,24 @@ document.getElementById('splashOverlay').addEventListener('click', function() {
     var ut = document.getElementById('ut-nge');
     if (!ind) return;
 
-    var online = data && data.server_online;
+    var online = data && (data.online || data.server_online);
+    var players = data ? (data.players || data.players_online_approx || '0') : '0';
+    var peak = data ? (data.peak || data.online_player_limit || 'N/A') : 'N/A';
+    var uptime = data ? (data.uptime || formatUptime(data.uptime_seconds) || 'N/A') : 'N/A';
+
     ind.className = online ? 'sv-indicator online' : 'sv-indicator offline';
     ind.textContent = online ? '●' : '○';
-    if (pl) pl.textContent = data ? (data.players_online_approx || 0) : '0';
-    if (pk) pk.textContent = data ? (data.online_player_limit || 'N/A') : 'N/A';
-    if (ut) ut.textContent = data ? formatUptime(data.uptime_seconds) : 'N/A';
+    if (pl) pl.textContent = players;
+    if (pk) pk.textContent = peak;
+    if (ut) ut.textContent = uptime;
+  }
+
+  function formatUptime(seconds) {
+    if (!seconds || seconds <= 0) return 'N/A';
+    var h = Math.floor(seconds / 3600);
+    var m = Math.floor((seconds % 3600) / 60);
+    if (h > 0) return h + 'h ' + m + 'm';
+    return m + 'm';
   }
 
   async function fetchPreCUStatus() {
