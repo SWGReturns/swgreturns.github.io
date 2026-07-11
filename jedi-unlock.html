@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>Jedi Unlock Guide — Pre-CU | SWGReturns</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="The complete, verified path to becoming a Jedi on SWGReturns Pre-CU — from your first badge to Jedi Knight, Light or Dark.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
@@ -43,20 +44,36 @@
     .hamburger span { width: 25px; height: 3px; background: #fff; border-radius: 3px; }
 
     .page-hero {
-      padding: 40px 0;
+      padding: 50px 0 40px;
       text-align: center;
       background: radial-gradient(ellipse at 50% 30%, #0f121c 0%, #05070c 100%);
       border-bottom: 1px solid rgba(59,130,246,0.15);
+      position: relative;
+      overflow: hidden;
+    }
+    .page-hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(circle at 20% 20%, rgba(59,130,246,.10), transparent 40%),
+                  radial-gradient(circle at 80% 70%, rgba(245,158,11,.08), transparent 40%);
+      pointer-events: none;
+    }
+    .page-hero .kicker {
+      position: relative;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 12px; letter-spacing: .2em; text-transform: uppercase;
+      color: #f59e0b; margin-bottom: 10px;
     }
     .page-hero h1 {
+      position: relative;
       font-family: 'Orbitron', sans-serif;
-      font-size: 36px;
+      font-size: 38px;
       background: linear-gradient(135deg, #60a5fa, #3b82f6);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
     }
-    .page-hero p { color: #aaa; font-size: 16px; margin-top: 10px; max-width: 600px; margin-left: auto; margin-right: auto; }
+    .page-hero p { position: relative; color: #aaa; font-size: 16px; margin-top: 12px; max-width: 640px; margin-left: auto; margin-right: auto; }
 
     .section { padding: 50px 0; }
     .section.alt { background: rgba(255,255,255,0.02); }
@@ -66,11 +83,15 @@
       margin-bottom: 20px;
       padding-bottom: 10px;
       border-bottom: 1px solid rgba(59,130,246,0.15);
+      display: flex; align-items: center; gap: 10px;
     }
+    .section h2 i { color: #f59e0b; font-size: 20px; }
     .section h3 { color: #60a5fa; margin: 24px 0 10px; font-size: 18px; }
     .section h4 { color: #93c5fd; margin: 16px 0 8px; font-size: 15px; }
     .section p { color: #ccc; font-size: 15px; line-height: 1.7; margin-bottom: 12px; }
-    .section ul { list-style: none; padding: 0; margin-bottom: 12px; }
+    .section ul, .section ol { padding: 0; margin-bottom: 12px; }
+    .section ul { list-style: none; }
+    .section ol { color: #ccc; font-size: 15px; line-height: 1.8; padding-left: 22px; }
     .section ul li {
       padding: 5px 0 5px 20px;
       color: #ccc;
@@ -92,10 +113,11 @@
 
     .toc { background: rgba(20,22,32,0.8); border: 1px solid rgba(59,130,246,0.2); border-radius: 12px; padding: 24px; margin-bottom: 30px; }
     .toc h3 { color: #60a5fa; margin-bottom: 12px; font-size: 16px; border: none; }
-    .toc ul { list-style: none; padding: 0; }
+    .toc ul { list-style: none; padding: 0; columns: 2; }
     .toc ul li { padding: 4px 0; }
     .toc ul li a { color: #93c5fd; text-decoration: none; font-size: 14px; }
     .toc ul li a:hover { color: #fff; text-decoration: underline; }
+    @media (max-width: 640px) { .toc ul { columns: 1; } }
 
     .trial-box {
       background: rgba(20,22,32,0.9);
@@ -104,7 +126,7 @@
       padding: 24px;
       margin-bottom: 20px;
     }
-    .trial-box h4 { color: #f59e0b; margin: 0 0 12px; font-size: 16px; }
+    .trial-box h4 { color: #f59e0b; margin: 0 0 12px; font-size: 16px; display: flex; align-items: center; gap: 8px; }
     .trial-box p { font-size: 14px; }
 
     .note {
@@ -116,6 +138,55 @@
     }
     .note p { font-size: 14px; color: #ddd; margin: 0; }
     .note strong { color: #f59e0b; }
+
+    .note.danger { background: rgba(239,68,68,0.08); border-left-color: #ef4444; }
+    .note.danger strong { color: #f87171; }
+
+    .note.light { background: rgba(59,130,246,0.08); border-left-color: #3b82f6; }
+    .note.light strong { color: #60a5fa; }
+
+    /* Step ladder */
+    .ladder { position: relative; margin: 30px 0; }
+    .step {
+      display: flex; gap: 18px; align-items: flex-start;
+      padding: 18px 0;
+      border-left: 2px solid rgba(59,130,246,.3);
+      padding-left: 26px;
+      margin-left: 18px;
+      position: relative;
+    }
+    .step:last-child { border-left-color: transparent; }
+    .step .step-num {
+      position: absolute; left: -19px; top: 18px;
+      width: 36px; height: 36px; border-radius: 50%;
+      background: linear-gradient(160deg, #3b82f6, #1e3a8a);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: 14px; color: #fff;
+      box-shadow: 0 0 0 4px #0a0c12, 0 4px 14px rgba(59,130,246,.5);
+    }
+    .step .step-body h3 { margin-top: 0; }
+
+    /* Progression table */
+    .prog-table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; }
+    .prog-table th, .prog-table td { padding: 10px 14px; text-align: left; border-bottom: 1px solid rgba(59,130,246,.15); }
+    .prog-table th { color: #93c5fd; font-family: 'Orbitron', sans-serif; font-size: 11px; text-transform: uppercase; letter-spacing: .06em; }
+    .prog-table td { color: #ccc; }
+    .prog-table tr:last-child td { border-bottom: none; }
+    .pill {
+      display: inline-block; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 20px;
+      background: rgba(59,130,246,.15); border: 1px solid rgba(59,130,246,.4); color: #93c5fd;
+    }
+    .pill.gold { background: rgba(245,158,11,.15); border-color: rgba(245,158,11,.5); color: #f59e0b; }
+    .pill.light { background: rgba(96,165,250,.18); border-color: rgba(96,165,250,.6); color: #bfdbfe; }
+    .pill.dark { background: rgba(239,68,68,.15); border-color: rgba(239,68,68,.5); color: #fca5a5; }
+
+    .badge-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; margin: 16px 0; }
+    .badge-card {
+      background: rgba(20,22,32,.85); border: 1px solid rgba(59,130,246,.25); border-radius: 10px;
+      padding: 14px; text-align: center;
+    }
+    .badge-card .num { font-family: 'Orbitron', sans-serif; font-size: 22px; font-weight: 900; color: #60a5fa; }
+    .badge-card .label { font-size: 12px; color: #999; margin-top: 4px; }
 
     .footer-nav {
       display: flex;
@@ -148,6 +219,7 @@
       .top-nav.open { display: flex; }
       .hamburger { display: flex; }
       .page-hero h1 { font-size: 26px; }
+      .step { margin-left: 8px; padding-left: 22px; }
     }
   </style>
 </head>
@@ -173,8 +245,9 @@
 
 <section class="page-hero">
   <div class="wrap">
-    <h1>Jedi Unlock Guide</h1>
-    <p>Complete guide to unlocking Jedi on the SWGReturns Pre-CU server — Village Knight Trials progression, Force Ranking System, and Jedi mastery.</p>
+    <div class="kicker"><i class="fa-solid fa-jedi"></i> Force Sensitive Village &nbsp;·&nbsp; Pre-CU</div>
+    <h1>The Path to the Jedi</h1>
+    <p>Not a rumor, not a forum legend — this is the real, verified questline running on SWGReturns Pre-CU right now: badges, an old man in the woods, a Force crystal, a whole village that lives on its own clock, and a choice between the Light and the Dark. Here's exactly how it works.</p>
   </div>
 </section>
 
@@ -182,165 +255,188 @@
   <div class="wrap">
 
     <div class="toc">
-      <h3>Contents</h3>
+      <h3><i class="fa-solid fa-scroll"></i> Contents</h3>
       <ul>
         <li><a href="#overview">Overview</a></li>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#the-path">The Path to Jedi</a></li>
-        <li><a href="#trials">Knight Trials — The 9 Quests</a></li>
-        <li><a href="#after-knight">After Knighthood</a></li>
-        <li><a href="#force-trees">Jedi Force Trees</a></li>
-        <li><a href="#frs">Force Ranking System (FRS)</a></li>
-        <li><a href="#tips">Tips &amp; Strategy</a></li>
+        <li><a href="#step1">Step 1 — Earn Your Badges</a></li>
+        <li><a href="#step2">Step 2 — The Old Man &amp; the Crystal</a></li>
+        <li><a href="#step3">Step 3 — The Force-Sensitive Village</a></li>
+        <li><a href="#step4">Step 4 — The Outro: Mellichae</a></li>
+        <li><a href="#step5">Step 5 — Padawan Trials</a></li>
+        <li><a href="#step6">Step 6 — Knight Trials: Light or Dark</a></li>
+        <li><a href="#ladder">The Full Progression Ladder</a></li>
+        <li><a href="#tips">Tips &amp; Warnings</a></li>
       </ul>
     </div>
 
-    <h2 id="overview">Overview</h2>
-    <p>On SWGReturns, Jedi are unlocked through the classic <strong class="highlight">Pre-CU Village Knight Trials</strong> system. This is the original Jedi unlock method from Star Wars Galaxies Pre-Combat Upgrade — no Holocron grinding required.</p>
-    <p>The process takes you through a village of Force-sensitive NPCs who test your dedication across 9 trials. Completing these trials earns you <strong class="highlight">Knighthood</strong>, unlocking the Jedi profession for your character.</p>
-    <p>SWGReturns features <strong class="highlight-blue">two distinct Jedi trees</strong> — Light Side and Dark Side — each with unique Force powers, lightsaber forms, and progression paths.</p>
+    <h2 id="overview"><i class="fa-solid fa-star"></i> Overview</h2>
+    <p>Every Jedi on this server walks the same road, and it is <strong class="highlight">long by design</strong>. There is no Holocron to grind and no menu toggle — the galaxy itself has to notice you first. You'll earn the attention of the Force through your deeds, get pulled into a hidden Force-sensitive village on <strong class="highlight-blue">Dathomir</strong>, help that village survive four escalating phases of danger, face down a Dark Jedi named <strong class="highlight">Mellichae</strong>, complete the trials every Padawan must pass, and finally choose a side in the Force Rank System as a full Jedi Knight.</p>
+    <p>This guide walks the whole thing in order, stage by stage, exactly as it plays out on the server.</p>
 
-    <div class="note">
-      <p><strong>Important:</strong> There is <strong>no death penalty</strong> on Jedi status. You can play your Jedi freely without the risk of losing the profession — this is a quality-of-life improvement unique to SWGReturns.</p>
+    <div class="note light">
+      <p><strong>No profession swap needed:</strong> you don't need to be any particular class to start this. You just need to go out into the galaxy and rack up the right kinds of achievements — badges are earned passively through normal exploring, questing, and mastering professions.</p>
     </div>
 
-    <h2 id="prerequisites">Prerequisites</h2>
-    <ul>
-      <li>You must have a character on the <strong class="highlight-blue">SWGReturns Pre-CU server</strong></li>
-      <li>Your character must have completed the <strong class="highlight">Novice Village questline</strong> and become a <strong>Village Member</strong></li>
-      <li>You must be <strong class="highlight-blue">at least Novice in any one non-Jedi profession</strong> (can be any profession)</li>
-      <li>You must have the <strong class="highlight">Jedi unlock active on your account</strong> — this is enabled by default on SWGReturns</li>
-    </ul>
+    <h2 id="step1"><i class="fa-solid fa-award"></i> Step 1 — Earn Your Badges</h2>
+    <p>The Force doesn't send anyone to knock on your door until you've proven yourself across five categories of in-game badges. You need <strong class="highlight">all five</strong> — hit every threshold below and the wheels start turning automatically, wherever you happen to be standing at the time:</p>
 
-    <div class="note">
-      <p><strong>Note:</strong> Unlike live Pre-CU where Jedi unlock was a rare, account-wide event, SWGReturns allows characters to pursue the Village Knight Trials directly. You do <strong>not</strong> need to roll a new character or grind Holocrons.</p>
+    <div class="badge-grid">
+      <div class="badge-card"><div class="num">3</div><div class="label">Jedi Exploration badges</div></div>
+      <div class="badge-card"><div class="num">2</div><div class="label">Dangerous Exploration badges</div></div>
+      <div class="badge-card"><div class="num">5</div><div class="label">Easy Exploration badges</div></div>
+      <div class="badge-card"><div class="num">1</div><div class="label">Master (profession) badge</div></div>
+      <div class="badge-card"><div class="num">1</div><div class="label">Content badge</div></div>
     </div>
 
-    <h2 id="the-path">The Path to Jedi</h2>
-    <p>The journey to becoming a Jedi Knight on SWGReturns follows these stages:</p>
-    <ol style="color:#ccc; font-size:15px; line-height:1.8; padding-left:20px; margin-bottom:16px;">
-      <li><strong>Become a Village Member</strong> — Complete the introductory Village quests to gain membership.</li>
-      <li><strong>Complete the 9 Knight Trials</strong> — Each trial tests a different aspect of the Force. Complete them in any order.</li>
-      <li><strong>Become a Jedi Padawan</strong> — After completing all 9 trials, you are granted Padawan status.</li>
-      <li><strong>Become a Jedi Knight</strong> — Complete the Knight quest to earn full Jedi Knight.</li>
-      <li><strong>Progress to Master and Elder</strong> — Continue advancing through the Jedi profession trees.</li>
+    <p>You can check your progress at any time with the <strong class="highlight-blue">/checkForceStatus</strong> command — it'll tell you how many of the five categories you've completed so far.</p>
+
+    <div class="note">
+      <p><strong>No village trip required to start:</strong> despite what you might have heard, you do <em>not</em> need to travel anywhere special to trigger this. The moment your last badge lands, you're flagged — the game is now just waiting for the right moment to send someone to find you.</p>
+    </div>
+
+    <h2 id="step2"><i class="fa-solid fa-hand-sparkles"></i> Step 2 — The Old Man &amp; the Crystal</h2>
+    <p>Somewhere between five and ten minutes after your badges complete, an old man will appear near you out in the field — not in a cantina, not at a waypoint, just wherever you're standing. Approach him and talk.</p>
+
+    <div class="ladder">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <h3>Take the crystal</h3>
+          <p>In the conversation, choose the option to accept the Force crystal. If you instead pick "perhaps another time," he'll simply walk off — and he <em>will</em> come back, but the wait grows longer every time you stall (an extra day after two brush-offs, and more after that). Don't waste his patience.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <h3>Survive the ambush</h3>
+          <p>Five to ten minutes after you're holding the crystal, two Sith Shadow agents will jump you. Fight them off.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <h3>Loot &amp; read the first datapad</h3>
+          <p>Looting the first Sith Shadow you kill drops a waypoint datapad. Using it points you toward a hidden camp — and pulls in two more Sith Shadows to fight when you arrive.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <h3>Loot &amp; read the second datapad</h3>
+          <p>Clear the camp, loot the first Sith Shadow there for a second datapad, and use it. This is the one that finally gives you a waypoint to <strong class="highlight-blue">Dathomir</strong>.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-body">
+          <h3>Walk into the village</h3>
+          <p>Follow the waypoint onto Dathomir and simply walk into the marked area. The moment you do, you're awarded the <strong class="highlight">Force-Sensitive Novice</strong> title and officially become <strong class="highlight-blue">Force Sensitive</strong>.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="note danger">
+      <p><strong>Do not die during the ambush.</strong> If the Sith Shadows kill you before you loot that first datapad, they take the crystal back — you lose it entirely and get sent all the way back to waiting for the old man to visit again. Come prepared, or bring a friend.</p>
+    </div>
+
+    <h2 id="step3"><i class="fa-solid fa-tree-city"></i> Step 3 — The Force-Sensitive Village</h2>
+    <p>Becoming Force Sensitive doesn't unlock Jedi by itself — it unlocks access to the <strong class="highlight">Village</strong>, a community-wide storyline in four phases. This is where the guide most people give you gets it wrong: the phases aren't something you race through solo on your own schedule.</p>
+
+    <div class="note light">
+      <p><strong>The village runs on one shared clock for the whole server.</strong> Each phase lasts <strong>24 hours</strong> before it automatically rotates to the next (1 → 2 → 3 → 4 → back to 1). If you don't finish a phase's task before the clock turns over, it resets — you'll simply pick it back up next time that phase comes around, up to a few days later. Plan your sessions with the daily rollover in mind.</p>
+    </div>
+
+    <div class="trial-box">
+      <h4><i class="fa-solid fa-kit-medical"></i> Phase 1 — Settling In</h4>
+      <p>Treat sick villagers by diagnosing and administering the right medicine, solve a sensor-calibration crafting puzzle, rescue five captured villagers from Sith Shadow camps, and patrol the village perimeter — engage the small raiding parties, but steer clear of the large ones, they're not meant to be soloed.</p>
+    </div>
+    <div class="trial-box">
+      <h4><i class="fa-solid fa-truck-fast"></i> Phase 2 — Under Pressure</h4>
+      <p>Run six supply-fetch missions out to Endor and back, work through an eight-stage escalating combat gauntlet against Sith Shadow camps (capped at three stages per day, so pace yourself), and pitch in on a <strong class="highlight-blue">community crafting effort</strong> to build the village's defenses — turn in your own components to finish your personal quest, and the single best contributor server-wide earns a bonus prize.</p>
+    </div>
+    <div class="trial-box">
+      <h4><i class="fa-solid fa-shield-halved"></i> Phase 3 — Counterstrike</h4>
+      <p>A second eight-stage combat gauntlet, plus the big one: hunt down a Sith Shadow base, use a looted remote to drop its shields, fight through five named guards, then <strong class="highlight">capture the camp's commander and escort them out alive</strong>. Guard that escort closely — if you go down, the commander breaks free and anyone else nearby can swoop in and finish the capture instead. A larger community crafting push (this time for shield components) runs in parallel.</p>
+    </div>
+    <div class="trial-box">
+      <h4><i class="fa-solid fa-house-fire"></i> Phase 4 — Defend the Village</h4>
+      <p>Raiders come for the village itself — pick a combat role and rack up kills, or support the defense by healing your fellow villagers, either counts toward completion. Alongside that, a solo engineering chain sends you after a downed satellite core and into a wire-splicing puzzle — get it wrong three times in a row and the core is ruined, so slow down and think it through.</p>
+    </div>
+
+    <div class="note">
+      <p><strong>Nice bonus:</strong> most of these sub-quests also permanently unlock a Force-Sensitive skill branch as a reward on top of village progress — a little taste of what's coming once you're a full Jedi.</p>
+    </div>
+
+    <h2 id="step4"><i class="fa-solid fa-fire-flame-curved"></i> Step 4 — The Outro: Mellichae</h2>
+    <p>Finish all four phases, and the old man tracks you down one more time, the same way he found you at the very start. Talk to him, and he leads you to a final confrontation.</p>
+    <p>You'll be sent to a hidden camp guarded by the Dark Jedi <strong class="highlight">Mellichae</strong> and her enforcer <strong class="highlight">Daktar Bloodmoon</strong>, backed up by Sith Shadow muscle. The camp holds four Force shrines that passively heal the pair as long as they're standing — <strong class="highlight-blue">destroy all four shrines first</strong>, or you'll be fighting an unwinnable war of attrition. Bring the shrines down, then bring Mellichae down.</p>
+    <p>Defeating her closes out the Force-Sensitive Village storyline for good — and opens the door to the Padawan Trials.</p>
+
+    <h2 id="step5"><i class="fa-solid fa-hat-wizard"></i> Step 5 — Padawan Trials</h2>
+    <p>This is where you stop being coordinated by the village and start being tested one-on-one. Padawan Trials are progressed at <strong class="highlight-blue">Force Shrines scattered across the galaxy</strong> — over forty of them, spread across ten planets. Find one, kneel, and choose to meditate to begin or continue.</p>
+    <p>You'll need to have already picked up at least <strong class="highlight">four Force-Sensitive skill branches</strong> from your time in the village to even qualify — one more reason not to skip those side-rewards in Step 3.</p>
+
+    <div class="trial-box">
+      <h4><i class="fa-solid fa-paw"></i> The Hunt</h4>
+      <p>Track down and kill 20 sludge panthers, reporting to the ecologist who set you on the trail.</p>
+    </div>
+    <div class="trial-box">
+      <h4><i class="fa-solid fa-crosshairs"></i> The Soldier's Errand</h4>
+      <p>An old soldier sends you after a specific outlaw leader. Choose your words carefully in conversation — the wrong response here can fail the trial outright, not just the fight.</p>
+    </div>
+    <div class="trial-box">
+      <h4><i class="fa-solid fa-gem"></i> The Lightsaber</h4>
+      <p>Always the final trial. Craft a training lightsaber, then tune a color crystal into it with your own hands. The moment this one clicks into place, you are a Padawan.</p>
+    </div>
+
+    <div class="note danger">
+      <p><strong>Three strikes and you're reset.</strong> Fail a trial three times and the whole Padawan Trials progress is wiped — you'll need to start over from the first trial. You can also voluntarily quit and reset at the shrine, or just restart your current trial without penalty if you'd rather re-roll it.</p>
+    </div>
+
+    <p>Complete the third trial and you're rewarded on the spot: the Padawan title, a Padawan robe, and a proud little system-wide fanfare announcing your new rank.</p>
+
+    <h2 id="step6"><i class="fa-solid fa-scale-balanced"></i> Step 6 — Knight Trials: Light or Dark</h2>
+    <p>Knight Trials are different in one big way: <strong class="highlight">you don't have to go find them</strong>. Once you've fully mastered at least one Jedi skill box as a Padawan, the trials kick off automatically the next time you log in, and the game assigns you one specific shrine on another planet as your personal checkpoint for the rest of the sequence.</p>
+    <p>From there, it's a fixed gauntlet of hunts, each one unlocking the next as soon as you hit the kill count — no talking, no travel back to a quest giver, just track and hunt:</p>
+    <ol>
+      <li>19 Tusken Raiders</li>
+      <li>8 Ancient Bull Rancors</li>
+      <li>8 Stintaril Prowlers</li>
+      <li>3 Blurrg Raptors</li>
+      <li>3 Enraged Kimogilas</li>
+      <li>2 Peko-Peko Albatrosses</li>
+      <li>2 Graul Marauders</li>
+      <li><strong class="highlight">Choose your Council</strong> — Light or Dark</li>
+      <li>15 enemy soldiers (Imperial Storm Commandos for Light, Rebel Commandos for Dark)</li>
     </ol>
 
-    <h2 id="trials">Knight Trials — The 9 Quests</h2>
-    <p>The Knight Trials are a series of 9 quests given by the Village Elders. Each trial requires you to complete specific objectives. You can complete them in any order.</p>
-
-    <div class="trial-box">
-      <h4>Trial of Courage</h4>
-      <p><strong>Objective:</strong> Defeat a series of increasingly difficult creatures and enemies in combat.</p>
-      <p><strong>Tip:</strong> Bring a group or make sure your combat skills are well-leveled. The later waves include powerful creatures from across the galaxy.</p>
-    </div>
-
-    <div class="trial-box">
-      <h4>Trial of Wisdom</h4>
-      <p><strong>Objective:</strong> Collect ancient artifacts and lore items from various planets.</p>
-      <p><strong>Tip:</strong> This trial requires significant travel. Use shuttles and player cities to navigate efficiently. Some items are in dangerous areas.</p>
-    </div>
-
-    <div class="trial-box">
-      <h4>Trial of Power</h4>
-      <p><strong>Objective:</strong> Defeat specific high-level NPCs and creatures to prove your combat prowess.</p>
-      <p><strong>Tip:</strong> Party up with other players doing the same trial. The targets include dark troopers, krayt dragons, and other end-game enemies.</p>
-    </div>
-
-    <div class="trial-box">
-      <h4>Trial of Generosity</h4>
-      <p><strong>Objective:</strong> Donate a significant amount of credits and rare items to the Village fund.</p>
-      <p><strong>Tip:</strong> Start saving credits early. The donation requirement is substantial — expect to spend hundreds of thousands of credits.</p>
-    </div>
-
-    <div class="trial-box">
-      <h4>Trial of Exploration</h4>
-      <p><strong>Objective:</strong> Travel to specific remote locations across multiple planets and activate Force-sensitive beacons.</p>
-      <p><strong>Tip:</strong> Use /waypoint to mark the locations. Some beacons are in hard-to-reach areas that require climbing or speeders.</p>
-    </div>
-
-    <div class="trial-box">
-      <h4>Trial of Crafting</h4>
-      <p><strong>Objective:</strong> Craft specific items using rare materials and deliver them to the Village.</p>
-      <p><strong>Tip:</strong> If you are not a crafter, you can either level up crafting skills or trade with player crafters for the required items.</p>
-    </div>
-
-    <div class="trial-box">
-      <h4>Trial of Combat</h4>
-      <p><strong>Objective:</strong> Survive a gauntlet of waves in a special combat arena set up by the Village Elders.</p>
-      <p><strong>Tip:</strong> Bring your best gear, stims, and food. The arena waves scale in difficulty and include groups of enemies that can overwhelm you.</p>
-    </div>
-
-    <div class="trial-box">
-      <h4>Trial of Discipline</h4>
-      <p><strong>Objective:</strong> Complete a series of meditation and endurance challenges over several real-time days.</p>
-      <p><strong>Tip:</strong> This trial tests your patience. You will be required to return to the Village at specific times over multiple days. Plan your schedule accordingly.</p>
-    </div>
-
-    <div class="trial-box">
-      <h4>Trial of Spirit</h4>
-      <p><strong>Objective:</strong> Prove your connection to the Force by completing tasks that require Force-sensitive insight.</p>
-      <p><strong>Tip:</strong> This is often the final trial players pursue. The tasks involve understanding the balance of the Force and making choices that reflect your alignment.</p>
-    </div>
-
     <div class="note">
-      <p><strong>Progressive Completion:</strong> You do not need to complete trials in order. Focus on the ones that match your current skills and resources first. Many players save the Crafting and Generosity trials for last while they gather resources.</p>
+      <p><strong>Choosing sides has consequences.</strong> Your Galactic Civil War faction has to match the Council you pick — Imperials can't join the Light Council, Rebels can't join the Dark, not without dropping their current faction status first. Think about which side you actually want to be on before you get to stage 8.</p>
     </div>
 
-    <h2 id="after-knight">After Knighthood</h2>
-    <p>Once you complete all 9 Knight Trials, return to the Village Elder to receive your <strong class="highlight">Padawan status</strong>. You are then directed to complete a final <strong class="highlight">Knight quest</strong> — a culminating challenge that proves you are ready for full Knighthood.</p>
-    <p>After completing the Knight quest, you become a <strong class="highlight-blue">Jedi Knight</strong> with access to the full Jedi profession. From here, your progression continues:</p>
+    <p>Finish the final hunt and you become a full <strong class="highlight-blue">Jedi Knight</strong> — Light or Dark — complete with a matching robe, a waypoint to your side's enclave on <strong class="highlight">Yavin 4</strong>, your faction locked in and made Overt, and entry into the server's Force Rank System for further endgame progression as a Jedi.</p>
+
+    <h2 id="ladder"><i class="fa-solid fa-layer-group"></i> The Full Progression Ladder</h2>
+    <p>Here's the whole climb in one place:</p>
+    <table class="prog-table">
+      <tr><th>Stage</th><th>What you did</th><th>What you become</th></tr>
+      <tr><td>Start</td><td>Nothing yet — a regular citizen of the galaxy</td><td><span class="pill">Not Force Sensitive</span></td></tr>
+      <tr><td>Step 1–2</td><td>Earned all 5 badge categories, met the old man, survived the ambush, reached the village</td><td><span class="pill gold">Force-Sensitive Novice</span></td></tr>
+      <tr><td>Step 3–4</td><td>Completed all 4 village phases and defeated Mellichae</td><td><span class="pill gold">Village Champion</span></td></tr>
+      <tr><td>Step 5</td><td>Completed all 3 Padawan Trials</td><td><span class="pill gold">Jedi Padawan</span></td></tr>
+      <tr><td>Step 6</td><td>Completed the 9-stage Knight Trials and chose a Council</td><td><span class="pill light">Jedi Knight (Light)</span> or <span class="pill dark">Jedi Knight (Dark)</span></td></tr>
+    </table>
+
+    <h2 id="tips"><i class="fa-solid fa-lightbulb"></i> Tips &amp; Warnings</h2>
     <ul>
-      <li><strong class="highlight">Padawan → Knight</strong> — Unlock basic Force powers and lightsaber forms</li>
-      <li><strong class="highlight">Knight → Master</strong> — Unlock advanced Force powers and improved lightsaber combat</li>
-      <li><strong class="highlight">Master → Elder</strong> — The highest Jedi rank, unlocking the most powerful Force abilities</li>
-    </ul>
-
-    <h2 id="force-trees">Jedi Force Trees</h2>
-    <p>SWGReturns features <strong class="highlight-blue">two complete Jedi Force Trees</strong> — Light Side and Dark Side — each with distinct abilities and playstyles.</p>
-
-    <h4>Light Side Jedi</h4>
-    <ul>
-      <li>Focus on <strong>defense, healing, and support</strong> abilities</li>
-      <li>Powers include Force Heal, Force Shield, Jedi Mind Trick</li>
-      <li>Lightsaber forms emphasize defense and precision</li>
-      <li>Recommended for group play and support roles</li>
-    </ul>
-
-    <h4>Dark Side Jedi</h4>
-    <ul>
-      <li>Focus on <strong>offense, damage, and fear-based</strong> abilities</li>
-      <li>Powers include Force Lightning, Force Choke, Force Grip</li>
-      <li>Lightsaber forms emphasize power and aggression</li>
-      <li>Recommended for PvP and solo combat</li>
-    </ul>
-
-    <p>You are <strong>not locked</strong> into one alignment permanently. Your actions and choices can shift your alignment over time, though making major shifts requires significant effort.</p>
-
-    <h2 id="frs">Force Ranking System (FRS)</h2>
-    <p>The <strong class="highlight">Force Ranking System</strong> is the end-game progression for Jedi on SWGReturns. After reaching Jedi Knight, you earn FRS experience by engaging in Jedi vs Jedi combat and completing special Jedi objectives.</p>
-    <p><strong>How FRS Works:</strong></p>
-    <ul>
-      <li>FRS ranks are earned by gaining Force experience from <strong class="highlight-blue">defeating other Jedi in combat</strong></li>
-      <li>Higher-ranked Jedi grant more FRS experience when defeated</li>
-      <li>FRS determines your overall standing in the Jedi community on the server</li>
-      <li>Higher FRS ranks unlock <strong>bonus Force power effectiveness</strong></li>
-    </ul>
-    <p>The FRS system creates a dynamic Jedi ecosystem where Light Side and Dark Side Jedi compete for dominance. The top-ranked Jedi on the server are recognized as the most powerful Force users in the galaxy.</p>
-
-    <div class="note">
-      <p><strong>Tip:</strong> If PvP is not your focus, you can still enjoy Jedi at the Knight/Master level with full PvE capabilities. FRS is entirely optional end-game content for competitive players.</p>
-    </div>
-
-    <h2 id="tips">Tips &amp; Strategy</h2>
-    <ul>
-      <li><strong>Start saving credits early.</strong> The Trial of Generosity requires a significant donation — you will need hundreds of thousands of credits.</li>
-      <li><strong>Level your combat profession first.</strong> Several trials require fighting high-level enemies. Having a well-leveled combat profession makes these trials much easier.</li>
-      <li><strong>Network with other players.</strong> The Trials of Crafting and Power are much easier with help from crafters and combat groups.</li>
-      <li><strong>Travel efficiently.</strong> The Trial of Exploration requires visiting remote locations across many planets. Use the shuttle system, player cities, and /waypoint to optimize your route.</li>
-      <li><strong>Plan for the Discipline trial.</strong> This trial spans multiple real-time days. Know what times you need to check in and set reminders.</li>
-      <li><strong>Choose your alignment wisely.</strong> Light Side and Dark Side offer fundamentally different playstyles. Think about whether you prefer support/defense (Light) or offense/damage (Dark).</li>
-      <li><strong>5th generation lightsabers are supported</strong> — once you become a Jedi Knight, you can craft and use the most advanced lightsaber forms available in the galaxy.</li>
+      <li><strong>Check your badges anytime</strong> with <strong class="highlight-blue">/checkForceStatus</strong> so you know exactly what's left before the old man can find you.</li>
+      <li><strong>Don't stall the old man.</strong> Declining him repeatedly makes him take longer and longer to come back.</li>
+      <li><strong>Gear up before the Sith Shadow ambush.</strong> Dying costs you the crystal and resets your intro progress.</li>
+      <li><strong>Watch the village's daily phase clock.</strong> Unfinished phase quests reset at rollover — try to start tasks early in a phase, not late.</li>
+      <li><strong>Guard the Counterstrike commander with your life.</strong> Other players can steal your capture if you fall while escorting.</li>
+      <li><strong>Clear all four shrines before fighting Mellichae</strong> or the healing loop will outlast you.</li>
+      <li><strong>Play your words carefully in the Padawan "Soldier's Errand" trial</strong> — a bad dialogue choice can fail it on the spot.</li>
+      <li><strong>Decide Light or Dark before Knight Trials stage 8</strong> and make sure your GCW faction lines up with your choice.</li>
     </ul>
 
     <div class="footer-nav">
