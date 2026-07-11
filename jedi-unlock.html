@@ -223,7 +223,63 @@
     .site-footer p { color: #666; font-size: 13px; }
     .footer-powered a { color: #3b82f6; text-decoration: none; }
 
+    /* Star Wars flourishes */
+    .hero-icon-bg {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      font-size: 260px; color: rgba(59,130,246,0.06);
+      pointer-events: none; z-index: 0;
+    }
+    .saber-divider { display: flex; align-items: center; gap: 10px; margin: 34px 0; }
+    .saber-divider .hilt {
+      width: 16px; height: 16px; border-radius: 4px; flex-shrink: 0;
+      background: linear-gradient(160deg, #9ca3af, #374151);
+      box-shadow: 0 0 6px rgba(255,255,255,.5), inset 0 1px 0 rgba(255,255,255,.3);
+    }
+    .saber-divider .blade {
+      flex: 1; height: 4px; border-radius: 2px;
+      background: linear-gradient(90deg, #93c5fd, #3b82f6, transparent);
+      box-shadow: 0 0 10px 2px rgba(96,165,250,.7), 0 0 22px 4px rgba(59,130,246,.4);
+    }
+    .saber-divider.dark .hilt { background: linear-gradient(160deg, #6b7280, #1f2937); }
+    .saber-divider.dark .blade {
+      background: linear-gradient(90deg, #fca5a5, #ef4444, transparent);
+      box-shadow: 0 0 10px 2px rgba(239,68,68,.7), 0 0 22px 4px rgba(185,28,28,.4);
+    }
+
+    .boss-art {
+      position: relative;
+      border-radius: 14px; overflow: hidden;
+      border: 1px solid rgba(239,68,68,0.3);
+      margin: 20px 0;
+      box-shadow: 0 10px 30px rgba(0,0,0,.5);
+    }
+    .boss-art img { width: 100%; display: block; filter: saturate(1.1) contrast(1.05); }
+    .boss-art::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(180deg, rgba(10,5,5,0.1) 0%, rgba(10,5,5,0.85) 100%);
+    }
+    .boss-art .cap {
+      position: absolute; left: 0; right: 0; bottom: 0; padding: 14px 18px;
+      font-size: 12px; color: #fca5a5; z-index: 1; font-style: italic;
+    }
+
+    .side-choice { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 20px 0; }
+    .side-card {
+      border-radius: 12px; padding: 22px; text-align: center;
+      border: 1px solid rgba(59,130,246,.3);
+      background: rgba(20,22,32,.85);
+    }
+    .side-card i { font-size: 30px; margin-bottom: 10px; display: block; }
+    .side-card h4 { margin: 0 0 6px; font-size: 15px; border: none; }
+    .side-card p { font-size: 13px; color: #999; margin: 0; }
+    .side-card.light i, .side-card.light h4 { color: #60a5fa; }
+    .side-card.light { box-shadow: 0 0 0 1px rgba(96,165,250,.15) inset; }
+    .side-card.dark i, .side-card.dark h4 { color: #f87171; }
+    .side-card.dark { border-color: rgba(239,68,68,.3); box-shadow: 0 0 0 1px rgba(239,68,68,.15) inset; }
+    @media (max-width: 640px) { .side-choice { grid-template-columns: 1fr; } }
+
     @media (max-width: 768px) {
+      .hero-icon-bg { font-size: 140px; }
       .nav-wrap { flex-direction: column; gap: 10px; }
       .top-nav { justify-content: center; display: none; flex-direction: column; width: 100%; padding: 10px 0; }
       .top-nav.open { display: flex; }
@@ -254,6 +310,7 @@
 </header>
 
 <section class="page-hero">
+  <i class="fa-solid fa-jedi hero-icon-bg"></i>
   <div class="wrap">
     <div class="kicker"><i class="fa-solid fa-jedi"></i> How-To Guide</div>
     <h1>How to Unlock Jedi</h1>
@@ -263,6 +320,8 @@
 
 <section class="section">
   <div class="wrap">
+
+    <div class="saber-divider"><div class="hilt"></div><div class="blade"></div></div>
 
     <div class="tldr">
       <h3><i class="fa-solid fa-bolt"></i> THE SHORT VERSION</h3>
@@ -381,7 +440,15 @@
       <p><strong>Bonus:</strong> most of these quests also permanently unlock a Force skill perk when you finish them — free rewards for later.</p>
     </div>
 
+    <div class="saber-divider dark"><div class="hilt"></div><div class="blade"></div></div>
+
     <h2 id="step4"><i class="fa-solid fa-fire-flame-curved"></i> 4. Boss Fight: Mellichae</h2>
+
+    <div class="boss-art">
+      <img src="https://51-81-81-116.sslip.io/images/vaderdeathstar.jpg" alt="The Dark Side awaits" loading="lazy">
+      <div class="cap">The Dark Side is patient. It has been waiting for you.</div>
+    </div>
+
     <p>Finish all 4 phases and the old man comes back to find you one more time. Follow him, and you're dropped into a showdown with a Dark Jedi named <strong class="highlight">Mellichae</strong> and her enforcer, Daktar Bloodmoon.</p>
     <p>The trick: their camp has 4 Force shrines quietly healing them. <strong class="highlight-blue">Smash all 4 shrines first</strong>, then take Mellichae down. Skip the shrines and you'll never out-damage the healing.</p>
 
@@ -420,11 +487,26 @@
       <li>Kill 15 enemy soldiers (Imperials for Light, Rebels for Dark)</li>
     </ol>
 
+    <div class="side-choice">
+      <div class="side-card light">
+        <i class="fa-solid fa-sun"></i>
+        <h4>Light Council</h4>
+        <p>Defense, healing, and precision. Requires Rebel or Neutral standing.</p>
+      </div>
+      <div class="side-card dark">
+        <i class="fa-solid fa-fire"></i>
+        <h4>Dark Council</h4>
+        <p>Aggression, power, fear. Requires Imperial or Neutral standing.</p>
+      </div>
+    </div>
+
     <div class="note">
       <p><strong>Choose wisely:</strong> your Light/Dark choice has to match your current Rebel/Imperial standing. Sort out your faction before you get to step 8.</p>
     </div>
 
     <p>Finish the last kill and congrats — you're a full <strong class="highlight-blue">Jedi Knight</strong>, Light or Dark side, with a robe, a home base on <strong class="highlight">Yavin 4</strong>, and access to the server's endgame Jedi rank system.</p>
+
+    <div class="saber-divider"><div class="hilt"></div><div class="blade"></div></div>
 
     <h2 id="ladder"><i class="fa-solid fa-layer-group"></i> Progress Checklist</h2>
     <table class="prog-table">
