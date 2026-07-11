@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Jedi Unlock Guide — Pre-CU | SWGReturns</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" referrerpolicy="no-referrer">
+  <link rel="icon" href="https://swgtalon.online/assets/logo.png">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', sans-serif; background: #0a0c12; color: #e0e0e0; overflow-x: hidden; }
+    .wrap { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
+
+    .site-header {
+      padding: 15px 0;
+      border-bottom: 1px solid rgba(59,130,246,0.3);
+      background: rgba(10,12,18,0.8);
+    }
+    .nav-wrap { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+    .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: #fff; }
+    .logo { height: 40px; }
+    .wordmark {
+      font-size: 24px; font-weight: 700;
+      background: linear-gradient(135deg, #3b82f6, #1e3a8a);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .top-nav { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+    .top-nav a {
+      font-family: 'Orbitron', sans-serif; text-transform: uppercase; color: #93c5fd;
+      text-decoration: none; font-size: 11px; font-weight: 700; letter-spacing: .09em;
+      padding: 10px 16px; border-radius: 7px;
+      background: linear-gradient(160deg, rgba(59,130,246,.16), rgba(15,25,50,.4));
+      border: 1px solid rgba(59,130,246,.35);
+      box-shadow: 0 2px 10px rgba(0,0,0,.3), inset 0 1px 0 rgba(255,255,255,.06);
+      transition: transform .2s, box-shadow .2s, background .2s, border-color .2s, color .2s;
+    }
+    .top-nav a:hover { color: #fff; background: linear-gradient(160deg, rgba(59,130,246,.4), rgba(15,25,50,.5)); border-color: rgba(96,165,250,.8); transform: translateY(-2px); box-shadow: 0 10px 24px rgba(59,130,246,.4), inset 0 1px 0 rgba(255,255,255,.1); }
+
+    .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; }
+    .hamburger span { width: 25px; height: 3px; background: #fff; border-radius: 3px; }
+
+    .page-hero {
+      padding: 40px 0;
+      text-align: center;
+      background: radial-gradient(ellipse at 50% 30%, #0f121c 0%, #05070c 100%);
+      border-bottom: 1px solid rgba(59,130,246,0.15);
+    }
+    .page-hero h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 36px;
+      background: linear-gradient(135deg, #60a5fa, #3b82f6);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .page-hero p { color: #aaa; font-size: 16px; margin-top: 10px; max-width: 600px; margin-left: auto; margin-right: auto; }
+
+    .section { padding: 50px 0; }
+    .section.alt { background: rgba(255,255,255,0.02); }
+    .section h2 {
+      font-size: 24px;
+      color: #93c5fd;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(59,130,246,0.15);
+    }
+    .section h3 { color: #60a5fa; margin: 24px 0 10px; font-size: 18px; }
+    .section h4 { color: #93c5fd; margin: 16px 0 8px; font-size: 15px; }
+    .section p { color: #ccc; font-size: 15px; line-height: 1.7; margin-bottom: 12px; }
+    .section ul { list-style: none; padding: 0; margin-bottom: 12px; }
+    .section ul li {
+      padding: 5px 0 5px 20px;
+      color: #ccc;
+      font-size: 15px;
+      line-height: 1.6;
+      position: relative;
+    }
+    .section ul li::before {
+      content: '\f0da';
+      font-family: 'Font Awesome 6 Free';
+      font-weight: 900;
+      position: absolute;
+      left: 0;
+      color: #3b82f6;
+    }
+    .section ul li strong { color: #60a5fa; }
+    .highlight { color: #f59e0b; font-weight: 600; }
+    .highlight-blue { color: #60a5fa; font-weight: 600; }
+
+    .toc { background: rgba(20,22,32,0.8); border: 1px solid rgba(59,130,246,0.2); border-radius: 12px; padding: 24px; margin-bottom: 30px; }
+    .toc h3 { color: #60a5fa; margin-bottom: 12px; font-size: 16px; border: none; }
+    .toc ul { list-style: none; padding: 0; }
+    .toc ul li { padding: 4px 0; }
+    .toc ul li a { color: #93c5fd; text-decoration: none; font-size: 14px; }
+    .toc ul li a:hover { color: #fff; text-decoration: underline; }
+
+    .trial-box {
+      background: rgba(20,22,32,0.9);
+      border: 1px solid rgba(59,130,246,0.25);
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 20px;
+    }
+    .trial-box h4 { color: #f59e0b; margin: 0 0 12px; font-size: 16px; }
+    .trial-box p { font-size: 14px; }
+
+    .note {
+      background: rgba(245,158,11,0.08);
+      border-left: 3px solid #f59e0b;
+      padding: 12px 16px;
+      border-radius: 0 8px 8px 0;
+      margin-bottom: 16px;
+    }
+    .note p { font-size: 14px; color: #ddd; margin: 0; }
+    .note strong { color: #f59e0b; }
+
+    .footer-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding: 20px 0;
+      border-top: 1px solid rgba(59,130,246,0.15);
+      margin-top: 40px;
+    }
+    .footer-nav a {
+      color: #93c5fd;
+      text-decoration: none;
+      font-size: 14px;
+    }
+    .footer-nav a:hover { color: #fff; }
+
+    .site-footer {
+      background: #05070c; padding: 30px 0; text-align: center;
+      border-top: 1px solid rgba(59,130,246,0.2);
+    }
+    .footer-brand { font-size: 18px; font-weight: 700; color: #60a5fa; margin-bottom: 8px; }
+    .site-footer p { color: #666; font-size: 13px; }
+    .footer-powered a { color: #3b82f6; text-decoration: none; }
+
+    @media (max-width: 768px) {
+      .nav-wrap { flex-direction: column; gap: 10px; }
+      .top-nav { justify-content: center; display: none; flex-direction: column; width: 100%; padding: 10px 0; }
+      .top-nav.open { display: flex; }
+      .hamburger { display: flex; }
+      .page-hero h1 { font-size: 26px; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap nav-wrap">
+    <a class="brand" href="index.html">
+      <img class="logo" src="https://swgtalon.online/assets/logo.png" alt="SWGReturns logo">
+      <span class="wordmark">SWGReturns</span>
+    </a>
+    <button class="hamburger" id="hamburger" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="top-nav" id="top-nav">
+      <a href="index.html#features">Features</a>
+      <a href="index.html#get-started">Get Started</a>
+      <a href="index.html#patch-notes">Patch Notes</a>
+      <a href="index.html#need-help">Community</a>
+    </nav>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="wrap">
+    <h1>Jedi Unlock Guide</h1>
+    <p>Complete guide to unlocking Jedi on the SWGReturns Pre-CU server — Village Knight Trials progression, Force Ranking System, and Jedi mastery.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+
+    <div class="toc">
+      <h3>Contents</h3>
+      <ul>
+        <li><a href="#overview">Overview</a></li>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#the-path">The Path to Jedi</a></li>
+        <li><a href="#trials">Knight Trials — The 9 Quests</a></li>
+        <li><a href="#after-knight">After Knighthood</a></li>
+        <li><a href="#force-trees">Jedi Force Trees</a></li>
+        <li><a href="#frs">Force Ranking System (FRS)</a></li>
+        <li><a href="#tips">Tips &amp; Strategy</a></li>
+      </ul>
+    </div>
+
+    <h2 id="overview">Overview</h2>
+    <p>On SWGReturns, Jedi are unlocked through the classic <strong class="highlight">Pre-CU Village Knight Trials</strong> system. This is the original Jedi unlock method from Star Wars Galaxies Pre-Combat Upgrade — no Holocron grinding required.</p>
+    <p>The process takes you through a village of Force-sensitive NPCs who test your dedication across 9 trials. Completing these trials earns you <strong class="highlight">Knighthood</strong>, unlocking the Jedi profession for your character.</p>
+    <p>SWGReturns features <strong class="highlight-blue">two distinct Jedi trees</strong> — Light Side and Dark Side — each with unique Force powers, lightsaber forms, and progression paths.</p>
+
+    <div class="note">
+      <p><strong>Important:</strong> There is <strong>no death penalty</strong> on Jedi status. You can play your Jedi freely without the risk of losing the profession — this is a quality-of-life improvement unique to SWGReturns.</p>
+    </div>
+
+    <h2 id="prerequisites">Prerequisites</h2>
+    <ul>
+      <li>You must have a character on the <strong class="highlight-blue">SWGReturns Pre-CU server</strong></li>
+      <li>Your character must have completed the <strong class="highlight">Novice Village questline</strong> and become a <strong>Village Member</strong></li>
+      <li>You must be <strong class="highlight-blue">at least Novice in any one non-Jedi profession</strong> (can be any profession)</li>
+      <li>You must have the <strong class="highlight">Jedi unlock active on your account</strong> — this is enabled by default on SWGReturns</li>
+    </ul>
+
+    <div class="note">
+      <p><strong>Note:</strong> Unlike live Pre-CU where Jedi unlock was a rare, account-wide event, SWGReturns allows characters to pursue the Village Knight Trials directly. You do <strong>not</strong> need to roll a new character or grind Holocrons.</p>
+    </div>
+
+    <h2 id="the-path">The Path to Jedi</h2>
+    <p>The journey to becoming a Jedi Knight on SWGReturns follows these stages:</p>
+    <ol style="color:#ccc; font-size:15px; line-height:1.8; padding-left:20px; margin-bottom:16px;">
+      <li><strong>Become a Village Member</strong> — Complete the introductory Village quests to gain membership.</li>
+      <li><strong>Complete the 9 Knight Trials</strong> — Each trial tests a different aspect of the Force. Complete them in any order.</li>
+      <li><strong>Become a Jedi Padawan</strong> — After completing all 9 trials, you are granted Padawan status.</li>
+      <li><strong>Become a Jedi Knight</strong> — Complete the Knight quest to earn full Jedi Knight.</li>
+      <li><strong>Progress to Master and Elder</strong> — Continue advancing through the Jedi profession trees.</li>
+    </ol>
+
+    <h2 id="trials">Knight Trials — The 9 Quests</h2>
+    <p>The Knight Trials are a series of 9 quests given by the Village Elders. Each trial requires you to complete specific objectives. You can complete them in any order.</p>
+
+    <div class="trial-box">
+      <h4>Trial of Courage</h4>
+      <p><strong>Objective:</strong> Defeat a series of increasingly difficult creatures and enemies in combat.</p>
+      <p><strong>Tip:</strong> Bring a group or make sure your combat skills are well-leveled. The later waves include powerful creatures from across the galaxy.</p>
+    </div>
+
+    <div class="trial-box">
+      <h4>Trial of Wisdom</h4>
+      <p><strong>Objective:</strong> Collect ancient artifacts and lore items from various planets.</p>
+      <p><strong>Tip:</strong> This trial requires significant travel. Use shuttles and player cities to navigate efficiently. Some items are in dangerous areas.</p>
+    </div>
+
+    <div class="trial-box">
+      <h4>Trial of Power</h4>
+      <p><strong>Objective:</strong> Defeat specific high-level NPCs and creatures to prove your combat prowess.</p>
+      <p><strong>Tip:</strong> Party up with other players doing the same trial. The targets include dark troopers, krayt dragons, and other end-game enemies.</p>
+    </div>
+
+    <div class="trial-box">
+      <h4>Trial of Generosity</h4>
+      <p><strong>Objective:</strong> Donate a significant amount of credits and rare items to the Village fund.</p>
+      <p><strong>Tip:</strong> Start saving credits early. The donation requirement is substantial — expect to spend hundreds of thousands of credits.</p>
+    </div>
+
+    <div class="trial-box">
+      <h4>Trial of Exploration</h4>
+      <p><strong>Objective:</strong> Travel to specific remote locations across multiple planets and activate Force-sensitive beacons.</p>
+      <p><strong>Tip:</strong> Use /waypoint to mark the locations. Some beacons are in hard-to-reach areas that require climbing or speeders.</p>
+    </div>
+
+    <div class="trial-box">
+      <h4>Trial of Crafting</h4>
+      <p><strong>Objective:</strong> Craft specific items using rare materials and deliver them to the Village.</p>
+      <p><strong>Tip:</strong> If you are not a crafter, you can either level up crafting skills or trade with player crafters for the required items.</p>
+    </div>
+
+    <div class="trial-box">
+      <h4>Trial of Combat</h4>
+      <p><strong>Objective:</strong> Survive a gauntlet of waves in a special combat arena set up by the Village Elders.</p>
+      <p><strong>Tip:</strong> Bring your best gear, stims, and food. The arena waves scale in difficulty and include groups of enemies that can overwhelm you.</p>
+    </div>
+
+    <div class="trial-box">
+      <h4>Trial of Discipline</h4>
+      <p><strong>Objective:</strong> Complete a series of meditation and endurance challenges over several real-time days.</p>
+      <p><strong>Tip:</strong> This trial tests your patience. You will be required to return to the Village at specific times over multiple days. Plan your schedule accordingly.</p>
+    </div>
+
+    <div class="trial-box">
+      <h4>Trial of Spirit</h4>
+      <p><strong>Objective:</strong> Prove your connection to the Force by completing tasks that require Force-sensitive insight.</p>
+      <p><strong>Tip:</strong> This is often the final trial players pursue. The tasks involve understanding the balance of the Force and making choices that reflect your alignment.</p>
+    </div>
+
+    <div class="note">
+      <p><strong>Progressive Completion:</strong> You do not need to complete trials in order. Focus on the ones that match your current skills and resources first. Many players save the Crafting and Generosity trials for last while they gather resources.</p>
+    </div>
+
+    <h2 id="after-knight">After Knighthood</h2>
+    <p>Once you complete all 9 Knight Trials, return to the Village Elder to receive your <strong class="highlight">Padawan status</strong>. You are then directed to complete a final <strong class="highlight">Knight quest</strong> — a culminating challenge that proves you are ready for full Knighthood.</p>
+    <p>After completing the Knight quest, you become a <strong class="highlight-blue">Jedi Knight</strong> with access to the full Jedi profession. From here, your progression continues:</p>
+    <ul>
+      <li><strong class="highlight">Padawan → Knight</strong> — Unlock basic Force powers and lightsaber forms</li>
+      <li><strong class="highlight">Knight → Master</strong> — Unlock advanced Force powers and improved lightsaber combat</li>
+      <li><strong class="highlight">Master → Elder</strong> — The highest Jedi rank, unlocking the most powerful Force abilities</li>
+    </ul>
+
+    <h2 id="force-trees">Jedi Force Trees</h2>
+    <p>SWGReturns features <strong class="highlight-blue">two complete Jedi Force Trees</strong> — Light Side and Dark Side — each with distinct abilities and playstyles.</p>
+
+    <h4>Light Side Jedi</h4>
+    <ul>
+      <li>Focus on <strong>defense, healing, and support</strong> abilities</li>
+      <li>Powers include Force Heal, Force Shield, Jedi Mind Trick</li>
+      <li>Lightsaber forms emphasize defense and precision</li>
+      <li>Recommended for group play and support roles</li>
+    </ul>
+
+    <h4>Dark Side Jedi</h4>
+    <ul>
+      <li>Focus on <strong>offense, damage, and fear-based</strong> abilities</li>
+      <li>Powers include Force Lightning, Force Choke, Force Grip</li>
+      <li>Lightsaber forms emphasize power and aggression</li>
+      <li>Recommended for PvP and solo combat</li>
+    </ul>
+
+    <p>You are <strong>not locked</strong> into one alignment permanently. Your actions and choices can shift your alignment over time, though making major shifts requires significant effort.</p>
+
+    <h2 id="frs">Force Ranking System (FRS)</h2>
+    <p>The <strong class="highlight">Force Ranking System</strong> is the end-game progression for Jedi on SWGReturns. After reaching Jedi Knight, you earn FRS experience by engaging in Jedi vs Jedi combat and completing special Jedi objectives.</p>
+    <p><strong>How FRS Works:</strong></p>
+    <ul>
+      <li>FRS ranks are earned by gaining Force experience from <strong class="highlight-blue">defeating other Jedi in combat</strong></li>
+      <li>Higher-ranked Jedi grant more FRS experience when defeated</li>
+      <li>FRS determines your overall standing in the Jedi community on the server</li>
+      <li>Higher FRS ranks unlock <strong>bonus Force power effectiveness</strong></li>
+    </ul>
+    <p>The FRS system creates a dynamic Jedi ecosystem where Light Side and Dark Side Jedi compete for dominance. The top-ranked Jedi on the server are recognized as the most powerful Force users in the galaxy.</p>
+
+    <div class="note">
+      <p><strong>Tip:</strong> If PvP is not your focus, you can still enjoy Jedi at the Knight/Master level with full PvE capabilities. FRS is entirely optional end-game content for competitive players.</p>
+    </div>
+
+    <h2 id="tips">Tips &amp; Strategy</h2>
+    <ul>
+      <li><strong>Start saving credits early.</strong> The Trial of Generosity requires a significant donation — you will need hundreds of thousands of credits.</li>
+      <li><strong>Level your combat profession first.</strong> Several trials require fighting high-level enemies. Having a well-leveled combat profession makes these trials much easier.</li>
+      <li><strong>Network with other players.</strong> The Trials of Crafting and Power are much easier with help from crafters and combat groups.</li>
+      <li><strong>Travel efficiently.</strong> The Trial of Exploration requires visiting remote locations across many planets. Use the shuttle system, player cities, and /waypoint to optimize your route.</li>
+      <li><strong>Plan for the Discipline trial.</strong> This trial spans multiple real-time days. Know what times you need to check in and set reminders.</li>
+      <li><strong>Choose your alignment wisely.</strong> Light Side and Dark Side offer fundamentally different playstyles. Think about whether you prefer support/defense (Light) or offense/damage (Dark).</li>
+      <li><strong>5th generation lightsabers are supported</strong> — once you become a Jedi Knight, you can craft and use the most advanced lightsaber forms available in the galaxy.</li>
+    </ul>
+
+    <div class="footer-nav">
+      <a href="index.html"><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
+      <a href="#">Back to Top <i class="fa-solid fa-arrow-up"></i></a>
+    </div>
+
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p class="footer-brand">SWGReturns</p>
+    <p>&copy; 2025 SWGReturns — Fan-made Star Wars Galaxies Pre-CU emulator. Not affiliated with Disney, LucasArts, or Sony Online Entertainment.</p>
+    <p class="footer-powered">Powered by <a href="https://thewebsitefactory.store/" target="_blank" rel="noopener">The Website Factory</a></p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  const btn = document.getElementById('hamburger');
+  const nav = document.getElementById('top-nav');
+  if (!btn || !nav) return;
+  btn.addEventListener('click', () => {
+    const open = nav.classList.toggle('open');
+    btn.classList.toggle('active', open);
+    btn.setAttribute('aria-expanded', String(open));
+  });
+  nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    nav.classList.remove('open');
+    btn.classList.remove('active');
+    btn.setAttribute('aria-expanded', 'false');
+  }));
+})();
+</script>
+
+</body>
+</html>
