@@ -2,18 +2,18 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>SWGReturns — Classic Pre-CU & NGE Star Wars Galaxies</title>
+  <title>SWGReturns ï¿½ Classic Pre-CU & NGE Star Wars Galaxies</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="SWGReturns — Classic Pre-CU and NGE Star Wars Galaxies with expanded content, modern stability, and a living galaxy.">
-  <meta property="og:title" content="SWGReturns — Classic Pre-CU & NGE Star Wars Galaxies">
-  <meta property="og:description" content="Choose between the classic Pre-CU sandbox or the action-driven NGE. Craft, fight, explore, and build your story in a galaxy shaped by its players — free to play.">
+  <meta name="description" content="SWGReturns ï¿½ Classic Pre-CU and NGE Star Wars Galaxies with expanded content, modern stability, and a living galaxy.">
+  <meta property="og:title" content="SWGReturns ï¿½ Classic Pre-CU & NGE Star Wars Galaxies">
+  <meta property="og:description" content="Choose between the classic Pre-CU sandbox or the action-driven NGE. Craft, fight, explore, and build your story in a galaxy shaped by its players ï¿½ free to play.">
   <meta property="og:image" content="https://51-81-81-116.sslip.io/images/vaderdeathstar.jpg">
   <meta property="og:url" content="https://51-81-81-116.sslip.io/">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="SWGReturns">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="SWGReturns — Classic Pre-CU & NGE Star Wars Galaxies">
-  <meta name="twitter:description" content="Choose between the classic Pre-CU sandbox or the action-driven NGE — free to play.">
+  <meta name="twitter:title" content="SWGReturns ï¿½ Classic Pre-CU & NGE Star Wars Galaxies">
+  <meta name="twitter:description" content="Choose between the classic Pre-CU sandbox or the action-driven NGE ï¿½ free to play.">
   <meta name="twitter:image" content="https://51-81-81-116.sslip.io/images/vaderdeathstar.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -30,7 +30,7 @@
     }
     .wrap { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 
-    /* ── HEADER ── */
+    /* -- HEADER -- */
     .site-header {
       padding: 15px 0;
       border-bottom: 1px solid rgba(59,130,246,0.3);
@@ -65,21 +65,26 @@
       flex-wrap: wrap;
     }
     .top-nav a {
-      font-family: 'Orbitron', sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       text-transform: uppercase;
-      color: #93c5fd;
+      color: #c0d0e8;
       text-decoration: none;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: .09em;
-      padding: 10px 16px;
-      border-radius: 7px;
-      background: linear-gradient(160deg, rgba(59,130,246,.16), rgba(15,25,50,.4));
-      border: 1px solid rgba(59,130,246,.35);
-      box-shadow: 0 2px 10px rgba(0,0,0,.3), inset 0 1px 0 rgba(255,255,255,.06);
-      transition: transform .2s, box-shadow .2s, background .2s, border-color .2s, color .2s;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: .06em;
+      padding: 8px 18px;
+      border-radius: 6px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      transition: background .2s, border-color .2s, color .2s;
     }
-    .top-nav a:hover { color: #fff; background: linear-gradient(160deg, rgba(59,130,246,.4), rgba(15,25,50,.5)); border-color: rgba(96,165,250,.8); transform: translateY(-2px); box-shadow: 0 10px 24px rgba(59,130,246,.4), inset 0 1px 0 rgba(255,255,255,.1); }
+    .top-nav a:hover { color: #fff; background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.25); }
+    .top-nav a.nav-cta {
+      background: linear-gradient(135deg, #2563eb, #1e40af);
+      color: #fff;
+      border-color: rgba(255,255,255,0.2);
+    }
+    .top-nav a.nav-cta:hover { background: linear-gradient(135deg, #3b82f6, #2563eb); border-color: rgba(255,255,255,0.4); }
     .btn {
       font-family: 'Orbitron', sans-serif;
       text-transform: uppercase;
@@ -101,34 +106,7 @@
       color: #93c5fd;
     }
     .btn-guides:hover { background: rgba(59,130,246,0.4); }
-    .top-nav a.nav-forgot {
-      background: linear-gradient(160deg, #8b9bf5, #4750d8);
-      color: #fff;
-      border-color: rgba(255,255,255,.28);
-      box-shadow: 0 2px 12px rgba(88,101,242,.4), inset 0 1px 0 rgba(255,255,255,.2);
-    }
-    .top-nav a.nav-forgot:hover { background: linear-gradient(160deg, #a2affa, #5b66ea); border-color: rgba(255,255,255,.45); transform: translateY(-2px); box-shadow: 0 10px 26px rgba(88,101,242,.6), inset 0 1px 0 rgba(255,255,255,.25); }
-    .top-nav a.nav-donate {
-      background: linear-gradient(160deg, #5b9dff, #0862a0);
-      color: #fff;
-      border-color: rgba(255,255,255,.28);
-      box-shadow: 0 2px 12px rgba(0,112,186,.4), inset 0 1px 0 rgba(255,255,255,.2);
-    }
-    .top-nav a.nav-donate:hover { background: linear-gradient(160deg, #78b3ff, #0a7bc9); border-color: rgba(255,255,255,.45); transform: translateY(-2px); box-shadow: 0 10px 26px rgba(0,144,250,.6), inset 0 1px 0 rgba(255,255,255,.25); }
-    .top-nav a.nav-support-ben {
-      background: linear-gradient(160deg, #ffd775, #e08e0b);
-      color: #1a0d00;
-      border-color: rgba(255,255,255,.4);
-      box-shadow: 0 2px 12px rgba(245,158,11,.45), inset 0 1px 0 rgba(255,255,255,.35);
-    }
-    .top-nav a.nav-support-ben:hover { background: linear-gradient(160deg, #ffe294, #ffa316); border-color: rgba(255,255,255,.55); transform: translateY(-2px); box-shadow: 0 10px 26px rgba(245,158,11,.65), inset 0 1px 0 rgba(255,255,255,.4); }
-    .top-nav a.nav-contact {
-      background: linear-gradient(160deg, #6fd6a1, #237a4f);
-      color: #fff;
-      border-color: rgba(255,255,255,.28);
-      box-shadow: 0 2px 12px rgba(46,139,87,.4), inset 0 1px 0 rgba(255,255,255,.2);
-    }
-    .top-nav a.nav-contact:hover { background: linear-gradient(160deg, #86e0b3, #2b9560); border-color: rgba(255,255,255,.45); transform: translateY(-2px); box-shadow: 0 10px 26px rgba(46,139,87,.6), inset 0 1px 0 rgba(255,255,255,.25); }
+    .top-nav a i { font-size: 12px; margin-right: 5px; }
     .hamburger {
       display: none;
       flex-direction: column;
@@ -144,7 +122,7 @@
       border-radius: 3px;
     }
 
-    /* ── HERO ── */
+    /* -- HERO -- */
     .hero {
       padding: 40px 0 60px;
       text-align: center;
@@ -153,7 +131,7 @@
     .hero-logo-wrap { margin-bottom: 20px; }
     .hero-logo-img { max-height: 100px; }
 
-    /* ── SERVER STRIP ── */
+    /* -- SERVER STRIP -- */
     .server-strip {
       display: flex;
       justify-content: center;
@@ -240,7 +218,7 @@
     }
     .cta-donate:hover { background: linear-gradient(135deg, #0050c0, #0090fa); }
 
-    /* ── SECTIONS ── */
+    /* -- SECTIONS -- */
     .section { padding: 60px 0; }
     .section.alt { background: rgba(255,255,255,0.02); }
     .section h2 {
@@ -399,7 +377,7 @@
 
     .community-discord-wrap { max-width: 700px; margin: 0 auto; }
 
-    /* ── FOOTER ── */
+    /* -- FOOTER -- */
     .site-footer {
       background: #05070c;
       padding: 30px 0;
@@ -415,7 +393,7 @@
     .site-footer p { color: #666; font-size: 13px; }
     .footer-powered a { color: #3b82f6; text-decoration: none; }
 
-    /* ── RESPONSIVE ── */
+    /* -- RESPONSIVE -- */
     @media (max-width: 768px) {
       .nav-wrap { flex-direction: column; gap: 10px; }
       .top-nav { justify-content: center; display: none; flex-direction: column; width: 100%; padding: 10px 0; }
@@ -430,7 +408,7 @@
       .gs-step { max-width: 100%; }
     }
 
-    /* ── SPLASH ── */
+    /* -- SPLASH -- */
     #splashOverlay {
       position: fixed; top: 0; left: 0; width: 100%; height: 100%;
       background: #0a0c12; z-index: 9999;
@@ -467,7 +445,7 @@
     .splash-stat .dot.on { background: #4caf50; }
     .splash-click { color: #555; font-size: 14px; margin-top: 20px; animation: pulse 1.5s infinite; }
 
-    /* ── DISCLAIMER ── */
+    /* -- DISCLAIMER -- */
     #disclaimerOverlay {
       position: fixed; top: 0; left: 0; width: 100%; height: 100%;
       background: rgba(0,0,0,0.9); z-index: 10000;
@@ -498,25 +476,25 @@
 </head>
 <body>
 
-<!-- ═══════════════════════════════════════════════════════ SPLASH SCREEN -->
+<!-- ------------------------------------------------------- SPLASH SCREEN -->
 <div id="splashOverlay">
   <div class="splash-inner">
     <div class="splash-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg></div>
     <div class="splash-title">SWG Returns</div>
     <div class="splash-sub">Two Galaxies, One Community</div>
     <div class="splash-bar"><div class="splash-bar-fill"></div></div>
-    <div class="splash-status"><span class="splash-stat"><span class="dot on"></span> Pre-CU &amp; NGE — Online</span></div>
-    <div class="splash-click">▶ Click Anywhere to Begin</div>
+    <div class="splash-status"><span class="splash-stat"><span class="dot on"></span> Pre-CU &amp; NGE ï¿½ Online</span></div>
+    <div class="splash-click">? Click Anywhere to Begin</div>
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════════════ DISCLAIMER -->
+<!-- ------------------------------------------------------- DISCLAIMER -->
 <div id="disclaimerOverlay">
   <div class="disclaimer-card">
-    <h2>⚠ Legal Disclaimer</h2>
+    <h2>? Legal Disclaimer</h2>
     <p><strong>SWG Returns and SWG Talon Have Merged</strong></p>
-    <p>Together we bring you both the <strong>original Pre-CU sandbox</strong> and the <strong>NGE — New Game Enhancements</strong> experience. One community, two galaxies.</p>
-    <p>This is an unofficial, fan-made server. It is not affiliated with, endorsed by, or connected to Sony Online Entertainment, Daybreak Game Company, LucasArts, or Disney. Star Wars Galaxies™ is the intellectual property of its respective owners.</p>
+    <p>Together we bring you both the <strong>original Pre-CU sandbox</strong> and the <strong>NGE ï¿½ New Game Enhancements</strong> experience. One community, two galaxies.</p>
+    <p>This is an unofficial, fan-made server. It is not affiliated with, endorsed by, or connected to Sony Online Entertainment, Daybreak Game Company, LucasArts, or Disney. Star Wars Galaxiesï¿½ is the intellectual property of its respective owners.</p>
     <p>This server is run by fans, for fans, on a non-profit basis. No money is charged for access to the game itself.</p>
     <p><strong>You Must Own the Original Game</strong></p>
     <p>By accessing this server you confirm that you legally own or have owned a copy of Star Wars Galaxies.</p>
@@ -528,11 +506,11 @@
       <li>You are aged 13 or over.</li>
     </ul>
     <label><input type="checkbox" id="disclaimerCheck"> I confirm I own or have owned Star Wars Galaxies and I accept the terms above.</label>
-    <button class="btn-gold" id="disclaimerAccept" disabled>I Accept — Enter the Galaxy</button>
+    <button class="btn-gold" id="disclaimerAccept" disabled>I Accept ï¿½ Enter the Galaxy</button>
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════════════ HEADER -->
+<!-- ------------------------------------------------------- HEADER -->
 <header class="site-header">
   <div class="wrap nav-wrap">
     <a class="brand" href="#">
@@ -548,39 +526,40 @@
       <a href="#patch-notes">Patch Notes</a>
       <a href="#need-help">Community</a>
       <a href="jedi-unlock.html">Jedi Guide</a>
-      <a href="https://51-81-81-116.sslip.io/support-ben.html" class="btn nav-support-ben"><i class="fa-solid fa-screwdriver-wrench"></i> Support Ben</a>
-      <a href="https://51-81-81-116.sslip.io/donate.html" class="btn nav-donate"><i class="fa-solid fa-heart"></i> Donate</a>
-      <a class="btn nav-forgot" href="https://51-81-81-116.sslip.io/forgot_password.html"><i class="fa-solid fa-key"></i> Forgot Password</a>
-      <a class="btn nav-contact" href="https://51-81-81-116.sslip.io/contact.html"><i class="fa-solid fa-envelope"></i> Contact Us</a>
+      <a href="download.html"><i class="fa-solid fa-download"></i> Downloads</a>
+      <a href="https://51-81-81-116.sslip.io/support-ben.html"><i class="fa-solid fa-screwdriver-wrench"></i> Support Ben</a>
+      <a href="https://51-81-81-116.sslip.io/donate.html" class="nav-cta"><i class="fa-solid fa-heart"></i> Donate</a>
+      <a href="https://51-81-81-116.sslip.io/forgot_password.html"><i class="fa-solid fa-key"></i> Forgot Password</a>
+      <a href="https://51-81-81-116.sslip.io/contact.html"><i class="fa-solid fa-envelope"></i> Contact Us</a>
     </nav>
   </div>
 </header>
 
-<!-- ═══════════════════════════════════════════════════════ HERO -->
+<!-- ------------------------------------------------------- HERO -->
 <section class="hero">
   <div class="wrap hero-inner">
     <div class="hero-logo-wrap">
       <img src="https://swgtalon.online/assets/logo.png" alt="SWGReturns" class="hero-logo-img">
     </div>
 
-    <!-- ═══ SERVER STATUS STRIP ═══ -->
+    <!-- --- SERVER STATUS STRIP --- -->
     <div class="server-strip">
       <div class="sv-card" id="sv-precu">
         <div class="sv-name">Pre-CU Main</div>
-        <div class="sv-indicator" id="ind-precu">●</div>
+        <div class="sv-indicator" id="ind-precu">?</div>
         <div class="sv-players"><span id="pl-precu">2</span> online</div>
-        <div class="sv-peak">Peak: <span id="pk-precu">2</span> · Uptime: <span id="ut-precu">N/A</span></div>
+        <div class="sv-peak">Peak: <span id="pk-precu">2</span> ï¿½ Uptime: <span id="ut-precu">N/A</span></div>
       </div>
       <div class="sv-card" id="sv-nge">
         <div class="sv-name">NGE Main</div>
-        <div class="sv-indicator" id="ind-nge">○</div>
+        <div class="sv-indicator" id="ind-nge">?</div>
         <div class="sv-players"><span id="pl-nge">0</span> online</div>
-        <div class="sv-peak">Peak: <span id="pk-nge">N/A</span> · Uptime: <span id="ut-nge">N/A</span></div>
+        <div class="sv-peak">Peak: <span id="pk-nge">N/A</span> ï¿½ Uptime: <span id="ut-nge">N/A</span></div>
       </div>
     </div>
 
     <h1>Return to the Galaxies</h1>
-    <p class="hero-sub">Classic Pre-CU &amp; NGE Star Wars Galaxies — choose your path and join the adventure.</p>
+    <p class="hero-sub">Classic Pre-CU &amp; NGE Star Wars Galaxies ï¿½ choose your path and join the adventure.</p>
     <div class="cta-row">
       <a href="#get-started" class="cta-btn">Get Started</a>
       <a href="https://discord.gg/xY5WuwfcFD" class="cta-btn" target="_blank">Core3 Discord</a>
@@ -593,59 +572,59 @@
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════ WHAT YOU GET -->
+<!-- ------------------------------------------------------- WHAT YOU GET -->
 <section class="section alt">
   <div class="wrap">
     <h2>Two Galaxies, One Home</h2>
     <div class="cards cols-3">
-      <div class="card"><div class="card-icon">⚔️</div><h3>Pre-CU Classic</h3><p class="muted">The original Pre-CU sandbox — profession-based skill system, open world PvP, and the classic Village Jedi unlock (Knight Trials). 8.0× XP, expanded planets, and custom loot.</p></div>
-      <div class="card"><div class="card-icon">🌌</div><h3>NGE</h3><p class="muted">Jump to Lightspeed expansion — class-based combat, space combat, 25+ playable species, and the full NGE experience with modern stability.</p></div>
-      <div class="card"><div class="card-icon">🏆</div><h3>Shared Community</h3><p class="muted">One community, two servers. Discord, forums, and events cross both galaxies. Play whichever you prefer.</p></div>
+      <div class="card"><div class="card-icon">??</div><h3>Pre-CU Classic</h3><p class="muted">The original Pre-CU sandbox ï¿½ profession-based skill system, open world PvP, and the classic Village Jedi unlock (Knight Trials). 8.0ï¿½ XP, expanded planets, and custom loot.</p></div>
+      <div class="card"><div class="card-icon">??</div><h3>NGE</h3><p class="muted">Jump to Lightspeed expansion ï¿½ class-based combat, space combat, 25+ playable species, and the full NGE experience with modern stability.</p></div>
+      <div class="card"><div class="card-icon">??</div><h3>Shared Community</h3><p class="muted">One community, two servers. Discord, forums, and events cross both galaxies. Play whichever you prefer.</p></div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════ FEATURES -->
+<!-- ------------------------------------------------------- FEATURES -->
 <section id="features" class="section">
   <div class="wrap">
     <h2>Features</h2>
-    <p class="section-lead">Two galaxies, one community — each server offers a unique Star Wars Galaxies experience.</p>
+    <p class="section-lead">Two galaxies, one community ï¿½ each server offers a unique Star Wars Galaxies experience.</p>
     <div class="server-cols">
       <div class="server-box precu-box">
         <h3>Pre-CU Classic</h3>
         <ul>
-          <li><strong>Village Jedi Unlock (Knight Trials)</strong> — 9 trials to Knighthood</li>
+          <li><strong>Village Jedi Unlock (Knight Trials)</strong> ï¿½ 9 trials to Knighthood</li>
           <li><strong>Two Jedi Trees:</strong> Light Side or Dark Side</li>
-          <li>Padawan → Knight → Master → Elder progression</li>
+          <li>Padawan ? Knight ? Master ? Elder progression</li>
           <li>Force Ranking System (FRS) endgame</li>
           <li>No death penalty on Jedi status</li>
           <li style="display:flex;align-items:center;gap:10px;flex-wrap:wrap"><img src="https://51-81-81-116.sslip.io/images/feature-combat.jpg" alt="Combat in-game" style="width:76px;height:56px;object-fit:cover;border-radius:8px;border:1px solid rgba(59,130,246,0.35);flex-shrink:0"><span>5th generation lightsabers supported</span></li>
           <li><strong>Custom Loot:</strong> exclusive weapons, rare armor sets, unique schematics, and more</li>
-          <li><strong>New content integration</strong> — items, quests, and rewards</li>
+          <li><strong>New content integration</strong> ï¿½ items, quests, and rewards</li>
           <li><strong>9+ additional planets</strong> beyond the original galaxy</li>
-          <li><strong>8.0× XP</strong> solo / grouped</li>
+          <li><strong>8.0ï¿½ XP</strong> solo / grouped</li>
           <li>200 item cap, improved slicing, junk dealers accept all</li>
         </ul>
       </div>
       <div class="server-box nge-box">
-        <h3>NGE — Jump to Lightspeed</h3>
+        <h3>NGE ï¿½ Jump to Lightspeed</h3>
         <ul>
           <li>Jump to Lightspeed space combat expansion</li>
           <li style="display:flex;align-items:center;gap:10px;flex-wrap:wrap"><img src="https://51-81-81-116.sslip.io/images/feature-classes.jpg" alt="Class-based combat in-game" style="width:76px;height:80px;object-fit:cover;border-radius:8px;border:1px solid rgba(59,130,246,0.35);flex-shrink:0"><span>Class-based combat system with all NGE classes</span></li>
-          <li style="display:flex;align-items:center;gap:10px;flex-wrap:wrap"><img src="https://51-81-81-116.sslip.io/images/feature-space.png" alt="Space combat in-game" style="width:76px;height:56px;object-fit:cover;border-radius:8px;border:1px solid rgba(59,130,246,0.35);flex-shrink:0"><span>Full space gameplay — pilot starships, dogfight in orbit</span></li>
-          <li style="display:flex;align-items:center;gap:10px;flex-wrap:wrap"><img src="https://51-81-81-116.sslip.io/images/species-thumb.png" alt="New playable species in-game" style="width:76px;height:80px;object-fit:cover;border-radius:8px;border:1px solid rgba(59,130,246,0.35);flex-shrink:0"><span><strong>25+ playable species</strong> — Chiss, Nautolan, Twi'lek, Wookiee, Zabrak, Trandoshan, Mon Calamari, Rodian, Nightsister, and more</span></li>
+          <li style="display:flex;align-items:center;gap:10px;flex-wrap:wrap"><img src="https://51-81-81-116.sslip.io/images/feature-space.png" alt="Space combat in-game" style="width:76px;height:56px;object-fit:cover;border-radius:8px;border:1px solid rgba(59,130,246,0.35);flex-shrink:0"><span>Full space gameplay ï¿½ pilot starships, dogfight in orbit</span></li>
+          <li style="display:flex;align-items:center;gap:10px;flex-wrap:wrap"><img src="https://51-81-81-116.sslip.io/images/species-thumb.png" alt="New playable species in-game" style="width:76px;height:80px;object-fit:cover;border-radius:8px;border:1px solid rgba(59,130,246,0.35);flex-shrink:0"><span><strong>25+ playable species</strong> ï¿½ Chiss, Nautolan, Twi'lek, Wookiee, Zabrak, Trandoshan, Mon Calamari, Rodian, Nightsister, and more</span></li>
           <li>Custom content additions and balance improvements</li>
           <li>Stable server with active development</li>
           <li style="display:flex;align-items:center;gap:10px;flex-wrap:wrap"><img src="https://51-81-81-116.sslip.io/images/feature-events.jpg" alt="Community gathering in-game" style="width:76px;height:80px;object-fit:cover;border-radius:8px;border:1px solid rgba(59,130,246,0.35);flex-shrink:0"><span>Regular events and community gatherings</span></li>
           <li>Dedicated staff keeping the galaxy alive</li>
         </ul>
-        <p style="margin-top:14px;padding-top:14px;border-top:1px solid rgba(59,130,246,0.15);color:#93c5fd;font-size:13px;line-height:1.6;"><i class="fa-solid fa-comments"></i> New to NGE? Head to <strong>Naboo — Theed</strong> and type <code>/who</code> in-game — you'll spot <strong>Jack Straw</strong>, always happy to help new players get started.</p>
+        <p style="margin-top:14px;padding-top:14px;border-top:1px solid rgba(59,130,246,0.15);color:#93c5fd;font-size:13px;line-height:1.6;"><i class="fa-solid fa-comments"></i> New to NGE? Head to <strong>Naboo ï¿½ Theed</strong> and type <code>/who</code> in-game ï¿½ you'll spot <strong>Jack Straw</strong>, always happy to help new players get started.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════ DONATIONS -->
+<!-- ------------------------------------------------------- DONATIONS -->
 <section class="section alt">
   <div class="wrap">
     <h2>Support the Galaxy</h2>
@@ -663,7 +642,7 @@
       <div class="donate-meter-pct"><span id="precu-pct">0</span>% funded</div>
       <div class="donor-teaser">
         <div class="donor-teaser-label"><i class="fa-solid fa-trophy"></i> Top Pre-CU Donators</div>
-        <div id="precu-donor-list"><div class="donor-teaser-empty">No public donations yet — be the first!</div></div>
+        <div id="precu-donor-list"><div class="donor-teaser-empty">No public donations yet ï¿½ be the first!</div></div>
       </div>
     </div>
 
@@ -674,16 +653,16 @@
         <a class="donate-btn" href="https://51-81-81-116.sslip.io/donate.html">Donate to Pre-CU</a>
       </div>
       <div class="donate-box">
-        <h3>NGE — Jump to Lightspeed</h3>
+        <h3>NGE ï¿½ Jump to Lightspeed</h3>
         <p class="muted">Keep the NGE galaxy thriving with space combat.</p>
         <a class="donate-btn" href="https://register.swgtalon.online/donate.php" target="_blank">Donate to NGE</a>
       </div>
     </div>
-    <p class="thank-you" style="text-align:center; color:#888; margin-top:30px;">Thank you for your support — every donation keeps the galaxy alive.</p>
+    <p class="thank-you" style="text-align:center; color:#888; margin-top:30px;">Thank you for your support ï¿½ every donation keeps the galaxy alive.</p>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════ GET STARTED -->
+<!-- ------------------------------------------------------- GET STARTED -->
 <section id="get-started" class="section">
   <div class="wrap">
     <h2>Getting Started</h2>
@@ -711,7 +690,7 @@
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════ PATCH NOTES -->
+<!-- ------------------------------------------------------- PATCH NOTES -->
 <section id="patch-notes" class="section alt">
   <div class="wrap">
     <h2>Patch Notes</h2>
@@ -719,16 +698,16 @@
       <div class="card"><h3>Core Systems</h3><ul style="list-style:none; padding:0; color:#aaa; font-size:14px;"><li style="padding:4px 0;">Pre-CU combat and profession systems preserved</li><li style="padding:4px 0;">No CU or NGE mechanics enabled</li><li style="padding:4px 0;">Stability and performance improvements</li></ul></div>
       <div class="card"><h3>Content &amp; Assets</h3><ul style="list-style:none; padding:0; color:#aaa; font-size:14px;"><li style="padding:4px 0;">All Pre-CU assets enabled</li><li style="padding:4px 0;">CU and NGE weapons, armor, vehicles, and decorations added</li><li style="padding:4px 0;">Mustafar and Kashyyyk NPCs and content supported</li><li style="padding:4px 0;">NGE-era housing deeds and schematics enabled</li></ul></div>
       <div class="card"><h3>Quality of Life</h3><ul style="list-style:none; padding:0; color:#aaa; font-size:14px;"><li style="padding:4px 0;">200 item cap per character</li><li style="padding:4px 0;">Improved loot and drop rates</li><li style="padding:4px 0;">Improved slicing functionality</li><li style="padding:4px 0;">Junk dealers accept all items</li></ul></div>
-      <div class="card"><h3>Website &amp; Account</h3><ul style="list-style:none; padding:0; color:#aaa; font-size:14px;"><li style="padding:4px 0;">Fixed account registration — a database mismatch was silently breaking every new Pre-CU signup; registering now correctly creates a working account</li><li style="padding:4px 0;">Site now runs over a fully secure, encrypted connection (HTTPS)</li><li style="padding:4px 0;">Added password recovery, Contact Us, and donation transparency pages with live progress meters</li></ul></div>
+      <div class="card"><h3>Website &amp; Account</h3><ul style="list-style:none; padding:0; color:#aaa; font-size:14px;"><li style="padding:4px 0;">Fixed account registration ï¿½ a database mismatch was silently breaking every new Pre-CU signup; registering now correctly creates a working account</li><li style="padding:4px 0;">Site now runs over a fully secure, encrypted connection (HTTPS)</li><li style="padding:4px 0;">Added password recovery, Contact Us, and donation transparency pages with live progress meters</li></ul></div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════ COMMUNITY / DISCORD -->
+<!-- ------------------------------------------------------- COMMUNITY / DISCORD -->
 <section id="need-help" class="section">
   <div class="wrap">
     <h2>Community</h2>
-    <p class="section-lead">Join the galaxy — announcements, support, guides, and events all in one place.</p>
+    <p class="section-lead">Join the galaxy ï¿½ announcements, support, guides, and events all in one place.</p>
     <div class="community-discord-wrap">
       <iframe src="https://discord.com/widget?id=1384702301624733787&theme=dark"
         width="100%" height="500" allowtransparency="true" frameborder="0"
@@ -741,22 +720,22 @@
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════ FOOTER -->
+<!-- ------------------------------------------------------- FOOTER -->
 <footer class="site-footer">
   <div class="wrap">
     <p class="footer-brand">SWGReturns</p>
-    <p>&copy; 2025 SWGReturns — Fan-made Star Wars Galaxies Pre-CU emulator. Not affiliated with Disney, LucasArts, or Sony Online Entertainment.</p>
+    <p>&copy; 2025 SWGReturns ï¿½ Fan-made Star Wars Galaxies Pre-CU emulator. Not affiliated with Disney, LucasArts, or Sony Online Entertainment.</p>
     <p class="footer-powered">Powered by <a href="https://thewebsitefactory.store/" target="_blank" rel="noopener">The Website Factory</a></p>
   </div>
 </footer>
 
 <script>
-// ── HIDE SPLASH ON CLICK ──
+// -- HIDE SPLASH ON CLICK --
 document.getElementById('splashOverlay').addEventListener('click', function() {
   this.classList.add('hidden');
 });
 
-// ── Server Status Strip ─────────────────────────────────────────
+// -- Server Status Strip -----------------------------------------
 (function() {
   const FALLBACK_DATA = {
     precu: { online: false, players: '--', peak: 'N/A', uptime: '' },
@@ -775,13 +754,13 @@ document.getElementById('splashOverlay').addEventListener('click', function() {
 
     if (status && status.online) {
       ind.className = 'sv-indicator online';
-      ind.textContent = '●';
+      ind.textContent = '?';
       if (pl) pl.textContent = status.players || '0';
       if (pk) pk.textContent = status.peak || 'N/A';
       if (ut) ut.textContent = status.uptime || '';
     } else {
       ind.className = 'sv-indicator offline';
-      ind.textContent = '○';
+      ind.textContent = '?';
       if (pl) pl.textContent = '0';
       if (pk) pk.textContent = 'N/A';
       if (ut) ut.textContent = 'N/A';
@@ -801,7 +780,7 @@ document.getElementById('splashOverlay').addEventListener('click', function() {
     var uptime = data ? (data.uptime || formatUptime(data.uptime_seconds) || 'N/A') : 'N/A';
 
     ind.className = online ? 'sv-indicator online' : 'sv-indicator offline';
-    ind.textContent = online ? '●' : '○';
+    ind.textContent = online ? '?' : '?';
     if (pl) pl.textContent = players;
     if (pk) pk.textContent = peak;
     if (ut) ut.textContent = uptime;
@@ -846,7 +825,7 @@ document.getElementById('splashOverlay').addEventListener('click', function() {
   setInterval(refreshAllServers, 15000);
 })();
 
-// ── Splash & Disclaimer ────────────────────────────────────────────
+// -- Splash & Disclaimer --------------------------------------------
 (function() {
   const splash = document.getElementById('splashOverlay');
   const disc   = document.getElementById('disclaimerOverlay');
@@ -875,7 +854,7 @@ document.getElementById('splashOverlay').addEventListener('click', function() {
   }
 })();
 
-// ── PRE-CU DONATION METER ──
+// -- PRE-CU DONATION METER --
 (function() {
   const STATUS_URL = 'https://51-81-81-116.sslip.io/api/don/donation_status';
 
@@ -915,7 +894,7 @@ document.getElementById('splashOverlay').addEventListener('click', function() {
   setInterval(refreshDonationMeter, 30000);
 })();
 
-// ── MOBILE HAMBURGER TOGGLE ──
+// -- MOBILE HAMBURGER TOGGLE --
 (function () {
   const btn = document.getElementById('hamburger');
   const nav = document.getElementById('top-nav');
