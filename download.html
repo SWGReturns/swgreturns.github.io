@@ -1,181 +1,341 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>SWGReturns — Downloads</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SWGReturns | Downloads</title>
+  <meta name="description" content="Download the SWGReturns launcher and Core3 or NGE client files.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" referrerpolicy="no-referrer">
   <link rel="icon" href="https://swgtalon.online/assets/logo.png">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Segoe UI', sans-serif; background: #0a0c12; color: #e0e0e0; overflow-x: hidden; }
-    .wrap { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+    :root {
+      --bg: #05070b;
+      --panel: rgba(9, 15, 24, 0.9);
+      --line: rgba(116, 154, 188, 0.24);
+      --line-bright: rgba(242, 203, 115, 0.58);
+      --text: #eef4ff;
+      --muted: #9aaabc;
+      --blue: #5eb6ff;
+      --gold: #f2cb73;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        linear-gradient(90deg, rgba(5,7,11,0.98), rgba(5,7,11,0.72)),
+        url("https://51-81-81-116.sslip.io/images/vaderdeathstar.jpg") center right / cover fixed no-repeat,
+        var(--bg);
+      color: var(--text);
+      font-family: "Rajdhani", "Segoe UI", Arial, sans-serif;
+      font-size: 17px;
+      line-height: 1.5;
+    }
+    a { color: inherit; }
+    .wrap { width: min(1180px, calc(100% - 32px)); margin: 0 auto; }
 
     .site-header {
-      padding: 15px 0;
-      border-bottom: 1px solid rgba(59,130,246,0.3);
-      background: rgba(10,12,18,0.8);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(4, 7, 12, 0.9);
+      border-bottom: 1px solid rgba(242, 203, 115, 0.24);
+      backdrop-filter: blur(16px);
     }
-    .nav-wrap { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
-    .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: #fff; }
-    .logo { height: 40px; }
+    .command-bar {
+      min-height: 76px;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      align-items: center;
+      gap: 18px;
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      min-width: 220px;
+    }
+    .logo {
+      width: 46px;
+      height: 46px;
+      object-fit: contain;
+      filter: drop-shadow(0 0 16px rgba(94, 182, 255, 0.42));
+    }
     .wordmark {
-      font-size: 24px; font-weight: 700;
-      background: linear-gradient(135deg, #3b82f6, #1e3a8a);
-      -webkit-background-clip: text; background-clip: text; color: transparent;
+      display: grid;
+      gap: 2px;
+      font-family: "Orbitron", sans-serif;
+      font-weight: 900;
+      text-transform: uppercase;
     }
-    .top-nav { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+    .wordmark small {
+      color: var(--muted);
+      font-family: "Rajdhani", sans-serif;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+    }
+    .top-nav {
+      display: flex;
+      justify-content: flex-end;
+      gap: 7px;
+      flex-wrap: wrap;
+    }
     .top-nav a {
-      font-family: 'Orbitron', sans-serif; text-transform: uppercase; color: #93c5fd;
-      text-decoration: none; font-size: 11px; font-weight: 700; letter-spacing: .09em;
-      padding: 10px 16px; border-radius: 7px;
-      background: linear-gradient(160deg, rgba(59,130,246,.16), rgba(15,25,50,.4));
-      border: 1px solid rgba(59,130,246,.35);
-      box-shadow: 0 2px 10px rgba(0,0,0,.3), inset 0 1px 0 rgba(255,255,255,.06);
-      transition: transform .2s, box-shadow .2s, background .2s, border-color .2s, color .2s;
+      min-height: 38px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.045);
+      color: #dbe8f8;
+      text-decoration: none;
+      text-transform: uppercase;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      padding: 9px 13px;
+      border-radius: 6px;
+      transition: transform .18s ease, border-color .18s ease, background .18s ease, color .18s ease;
     }
-    .top-nav a:hover { color: #fff; background: linear-gradient(160deg, rgba(59,130,246,.4), rgba(15,25,50,.5)); border-color: rgba(96,165,250,.8); transform: translateY(-2px); box-shadow: 0 10px 24px rgba(59,130,246,.4), inset 0 1px 0 rgba(255,255,255,.1); }
+    .top-nav a:hover {
+      color: #ffffff;
+      border-color: var(--line-bright);
+      background: rgba(242, 203, 115, 0.10);
+      transform: translateY(-1px);
+    }
+    .top-nav .primary {
+      color: #0b0d11;
+      background: linear-gradient(180deg, #ffe3a1, #d09a37);
+      border-color: rgba(255, 231, 173, 0.8);
+    }
 
-    .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; }
-    .hamburger span { width: 25px; height: 3px; background: #fff; border-radius: 3px; }
+    main { padding: 70px 0; }
+    .page-head {
+      max-width: 780px;
+      margin-bottom: 30px;
+    }
+    .kicker {
+      color: var(--gold);
+      font-family: "Orbitron", sans-serif;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+    h1 {
+      margin: 12px 0 14px;
+      font-family: "Orbitron", sans-serif;
+      font-size: clamp(36px, 6vw, 68px);
+      line-height: 1.05;
+      text-transform: uppercase;
+    }
+    .lead {
+      color: #c5d1df;
+      font-size: 22px;
+      max-width: 720px;
+    }
 
-    .section { padding: 60px 0; }
-    .section.alt { background: rgba(255,255,255,0.02); }
-    .section h2 { font-size: 28px; text-align: center; margin-bottom: 10px; color: #60a5fa; }
-    .section-lead { text-align: center; color: #aaa; max-width: 700px; margin: 0 auto 40px; }
-
-    .download-cols { display: flex; gap: 30px; justify-content: center; flex-wrap: wrap; max-width: 900px; margin: 0 auto; }
+    .download-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
     .dl-card {
-      background: rgba(20,22,32,0.8);
-      border: 1px solid rgba(59,130,246,0.2);
-      border-radius: 16px;
-      padding: 40px 30px;
-      flex: 1;
-      min-width: 300px;
-      max-width: 420px;
-      text-align: center;
       display: flex;
       flex-direction: column;
-      align-items: center;
+      min-height: 360px;
+      padding: 24px;
+      border: 1px solid var(--line);
+      background: var(--panel);
+      border-radius: 7px;
+      box-shadow: 0 22px 70px rgba(0,0,0,0.36);
     }
-    .dl-card .dl-icon { font-size: 48px; margin-bottom: 16px; }
-    .dl-card h3 { color: #93c5fd; font-size: 20px; margin-bottom: 8px; }
-    .dl-card .dl-filename { color: #888; font-size: 13px; margin-bottom: 16px; }
-    .dl-card p { color: #aaa; font-size: 14px; line-height: 1.6; margin-bottom: 24px; flex-grow: 1; }
+    .dl-icon {
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 18px;
+      color: var(--gold);
+      border: 1px solid rgba(242,203,115,0.35);
+      border-radius: 6px;
+      background: rgba(242,203,115,0.07);
+      font-size: 20px;
+    }
+    h2 {
+      margin: 0;
+      color: #ffffff;
+      font-size: 26px;
+      line-height: 1.05;
+    }
+    .dl-filename {
+      margin-top: 8px;
+      color: var(--blue);
+      font-size: 15px;
+      word-break: break-word;
+    }
+    .dl-card p {
+      margin: 18px 0 0;
+      color: var(--muted);
+      flex: 1;
+    }
     .dl-btn {
-      display: inline-block;
-      padding: 14px 36px;
-      background: linear-gradient(135deg, #f59e0b, #d97706);
-      border-radius: 30px;
-      color: #fff;
+      min-height: 46px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      margin-top: 22px;
+      padding: 12px 18px;
+      border-radius: 6px;
+      color: #0b0d11;
+      background: linear-gradient(180deg, #ffe5a8, #d69b35);
+      border: 1px solid rgba(255, 232, 178, 0.85);
       text-decoration: none;
-      font-weight: bold;
-      font-size: 16px;
-      transition: 0.2s;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
     }
-    .dl-btn:hover { background: linear-gradient(135deg, #fbbf24, #f59e0b); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(245,158,11,0.4); }
-    .dl-btn.disabled { background: linear-gradient(135deg, #374151, #1f2937); color: #6b7280; cursor: not-allowed; }
-    .dl-btn.disabled:hover { transform: none; box-shadow: none; }
-    .dl-tip { color: #666; font-size: 12px; margin-top: 12px; }
+    .dl-btn.blue {
+      color: #fff;
+      background: linear-gradient(180deg, #377fc7, #194979);
+      border-color: rgba(116,190,255,0.55);
+    }
+    .dl-tip {
+      margin-top: 12px;
+      color: #7f8da0;
+      font-size: 14px;
+    }
+    .launcher-links {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }
+    .launcher-links a {
+      min-height: 58px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px;
+      text-decoration: none;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.045);
+      border-radius: 7px;
+      color: #dbe8f8;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .launcher-links i { color: var(--gold); }
 
     .site-footer {
-      background: #05070c; padding: 30px 0; text-align: center;
-      border-top: 1px solid rgba(59,130,246,0.2); margin-top: auto;
+      padding: 32px 0;
+      border-top: 1px solid rgba(242,203,115,0.22);
+      background: rgba(3, 5, 8, 0.95);
+      text-align: center;
     }
-    .footer-brand { font-size: 18px; font-weight: 700; color: #60a5fa; margin-bottom: 8px; }
-    .site-footer p { color: #666; font-size: 13px; }
-    .footer-powered a { color: #3b82f6; text-decoration: none; }
+    .footer-brand {
+      margin: 0;
+      color: var(--gold);
+      font-family: "Orbitron", sans-serif;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+    .site-footer p { margin: 4px 0 0; color: #7f8da0; font-size: 14px; }
+    .footer-powered a { color: var(--blue); text-decoration: none; }
 
-    @media (max-width: 768px) {
-      .nav-wrap { flex-direction: column; gap: 10px; }
-      .top-nav { justify-content: center; display: none; flex-direction: column; width: 100%; padding: 10px 0; }
-      .top-nav.open { display: flex; }
-      .hamburger { display: flex; }
-      .download-cols { flex-direction: column; align-items: center; }
-      .dl-card { max-width: 100%; min-width: auto; }
+    @media (max-width: 900px) {
+      .command-bar { grid-template-columns: 1fr; padding: 12px 0; }
+      .top-nav { justify-content: flex-start; }
+      .download-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 560px) {
+      .wrap { width: min(100% - 24px, 1180px); }
+      .wordmark small { display: none; }
+      .top-nav a,
+      .dl-btn,
+      .launcher-links a { width: 100%; }
+      .launcher-links { grid-template-columns: 1fr; }
+      main { padding: 50px 0; }
     }
   </style>
 </head>
 <body>
 
 <header class="site-header">
-  <div class="wrap nav-wrap">
+  <div class="wrap command-bar">
     <a class="brand" href="index.html">
       <img class="logo" src="https://swgtalon.online/assets/logo.png" alt="SWGReturns logo">
-      <span class="wordmark">SWGReturns</span>
+      <span class="wordmark">SWGReturns <small>Launcher downloads</small></span>
     </a>
-    <button class="hamburger" id="hamburger" aria-label="Toggle navigation" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-    <nav class="top-nav" id="top-nav">
-      <a href="index.html#features">Features</a>
-      <a href="index.html#get-started">Get Started</a>
-      <a href="index.html#patch-notes">Patch Notes</a>
-      <a href="index.html#need-help">Community</a>
+    <nav class="top-nav" aria-label="Main navigation">
+      <a href="index.html"><i class="fa-solid fa-house"></i> Home</a>
+      <a href="core3-patch-notes.html"><i class="fa-solid fa-scroll"></i> Core3 Notes</a>
+      <a href="nge-patch-notes.html"><i class="fa-solid fa-scroll"></i> NGE Notes</a>
+      <a href="jedi-unlock.html"><i class="fa-solid fa-jedi"></i> Jedi Guide</a>
+      <a href="contact.html"><i class="fa-solid fa-envelope"></i> Contact</a>
+      <a class="primary" href="https://51-81-81-116.sslip.io/register.html" target="_blank" rel="noopener"><i class="fa-solid fa-user-plus"></i> Register</a>
     </nav>
   </div>
 </header>
 
-<section class="section">
+<main>
   <div class="wrap">
-    <h2>Downloads</h2>
-    <p class="section-lead">Get the files you need to start playing Star Wars Galaxies with SWGReturns.</p>
-    <div class="download-cols">
-      <div class="dl-card">
-        <div class="dl-icon">🚀</div>
-        <h3>SWGReturns Launcher</h3>
-        <div class="dl-filename">SWG_Returns_Launcher_Setup_v2.3.22.zip</div>
-        <p>The official launcher handles patches, updates, and configuration automatically. Download, install, and play.</p>
-        <a href="https://51-81-81-116.sslip.io/launcher/SWG_Returns_Launcher_Setup.zip" class="dl-btn" target="_blank">Download Launcher</a>
-        <div class="dl-tip">You'll need a legal SWG client install.</div>
-      </div>
-      <div class="dl-card">
-        <div class="dl-icon">⚔️</div>
-        <h3>Full Pre-CU Client</h3>
+    <section class="page-head">
+      <div class="kicker">SWGReturns launcher</div>
+      <h1>Downloads</h1>
+      <p class="lead">Get the launcher and client files for Core3 Pre-CU and NGE. The launcher is the recommended starting point for updates and configuration.</p>
+    </section>
+
+    <section class="download-grid" aria-label="Downloads">
+      <article class="dl-card">
+        <div class="dl-icon"><i class="fa-solid fa-rocket"></i></div>
+        <h2>SWGReturns Launcher</h2>
+        <div class="dl-filename">SWG_Returns_Launcher_Setup.zip</div>
+        <p>The official launcher handles patches, updates, launcher news, and configuration automatically.</p>
+        <a href="https://51-81-81-116.sslip.io/launcher/SWG_Returns_Launcher_Setup.zip" class="dl-btn" target="_blank" rel="noopener"><i class="fa-solid fa-download"></i> Download Launcher</a>
+        <div class="dl-tip">You need a legal Star Wars Galaxies client install.</div>
+      </article>
+
+      <article class="dl-card">
+        <div class="dl-icon"><i class="fa-solid fa-shield-halved"></i></div>
+        <h2>Full Core3 Client</h2>
         <div class="dl-filename">Core3.zip</div>
-        <p>The complete Pre-CU game client. Download all the files ready to play — no separate install needed.</p>
-        <a href="https://mab.to/t/0cdMSEN1twu/eu1" class="dl-btn" target="_blank">Download Pre-CU Client</a>
-        <div class="dl-tip">Large download ~7GB. Extract to your SWG folder.</div>
-      </div>
-      <div class="dl-card">
-        <div class="dl-icon">🌌</div>
-        <h3>Full NGE Client</h3>
-        <div class="dl-filename">NGE — Jump to Lightspeed</div>
-        <p>The complete NGE game client with Jump to Lightspeed expansion. Download all the files ready to play.</p>
-        <a href="https://mab.to/t/lKRPY6XU4CJ/eu1" class="dl-btn" target="_blank">Download NGE Client</a>
-      </div>
-    </div>
+        <p>The full Pre-CU client package for the classic Core3 galaxy. Extract to your SWG folder after download.</p>
+        <a href="https://mab.to/t/0cdMSEN1twu/eu1" class="dl-btn blue" target="_blank" rel="noopener"><i class="fa-solid fa-download"></i> Download Core3</a>
+        <div class="dl-tip">Large download. Use a stable connection.</div>
+      </article>
+
+      <article class="dl-card">
+        <div class="dl-icon"><i class="fa-solid fa-jet-fighter"></i></div>
+        <h2>Full NGE Client</h2>
+        <div class="dl-filename">NGE - Jump to Lightspeed</div>
+        <p>The full NGE client package with Jump to Lightspeed support for the NGE galaxy.</p>
+        <a href="https://mab.to/t/lKRPY6XU4CJ/eu1" class="dl-btn blue" target="_blank" rel="noopener"><i class="fa-solid fa-download"></i> Download NGE</a>
+        <div class="dl-tip">Large download. Extract before launching.</div>
+      </article>
+    </section>
+
+    <section class="launcher-links" aria-label="Launcher content links">
+      <a href="core3-patch-notes.html"><i class="fa-solid fa-scroll"></i> Core3 Patch Notes</a>
+      <a href="nge-patch-notes.html"><i class="fa-solid fa-scroll"></i> NGE Patch Notes</a>
+    </section>
   </div>
-</section>
+</main>
 
 <footer class="site-footer">
   <div class="wrap">
     <p class="footer-brand">SWGReturns</p>
-    <p>&copy; 2025 SWGReturns — Fan-made Star Wars Galaxies Pre-CU emulator. Not affiliated with Disney, LucasArts, or Sony Online Entertainment.</p>
+    <p>&copy; 2026 SWGReturns - Fan-made Star Wars Galaxies server network. Not affiliated with Disney, LucasArts, Sony Online Entertainment, or Daybreak Game Company.</p>
     <p class="footer-powered">Powered by <a href="https://thewebsitefactory.store/" target="_blank" rel="noopener">The Website Factory</a></p>
   </div>
 </footer>
-
-<script>
-(function () {
-  const btn = document.getElementById('hamburger');
-  const nav = document.getElementById('top-nav');
-  if (!btn || !nav) return;
-  btn.addEventListener('click', () => {
-    const open = nav.classList.toggle('open');
-    btn.classList.toggle('active', open);
-    btn.setAttribute('aria-expanded', String(open));
-  });
-  nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-    nav.classList.remove('open');
-    btn.classList.remove('active');
-    btn.setAttribute('aria-expanded', 'false');
-  }));
-})();
-</script>
 
 </body>
 </html>

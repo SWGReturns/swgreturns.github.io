@@ -3,42 +3,50 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Core3 Patch Notes</title>
+  <title>SWGReturns | Core3 Patch Notes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" referrerpolicy="no-referrer">
+  <link rel="icon" href="https://swgtalon.online/assets/logo.png">
   <style>
+    :root { --bg:#05070b; --panel:rgba(9,15,24,.92); --line:rgba(116,154,188,.24); --gold:#f2cb73; --blue:#5eb6ff; --text:#eef4ff; --muted:#9aaabc; }
     * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      padding: 18px;
-      background: #070a10;
-      color: #e7edf7;
-      font-family: "Segoe UI", Arial, sans-serif;
-      line-height: 1.45;
-    }
-    main { max-width: 760px; margin: 0 auto; }
-    h1 {
-      margin: 0 0 14px;
-      color: #78b7ff;
-      font-size: 24px;
-      font-weight: 700;
-    }
-    article {
-      border-top: 1px solid rgba(120, 183, 255, 0.35);
-      padding-top: 14px;
-    }
-    h2 {
-      margin: 0 0 8px;
-      color: #ffffff;
-      font-size: 17px;
-      font-weight: 700;
-    }
-    ul { margin: 0; padding-left: 20px; }
-    li { margin: 5px 0; }
+    body { margin:0; background:var(--bg); color:var(--text); font-family:"Rajdhani","Segoe UI",Arial,sans-serif; font-size:17px; line-height:1.5; }
+    .wrap { width:min(920px, calc(100% - 32px)); margin:0 auto; }
+    .site-header { background:rgba(4,7,12,.94); border-bottom:1px solid rgba(242,203,115,.24); }
+    .command-bar { min-height:70px; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; }
+    .brand { display:inline-flex; align-items:center; gap:12px; color:var(--text); text-decoration:none; font-family:"Orbitron",sans-serif; font-weight:900; text-transform:uppercase; }
+    .brand img { width:42px; height:42px; object-fit:contain; filter:drop-shadow(0 0 14px rgba(94,182,255,.42)); }
+    nav { display:flex; gap:7px; flex-wrap:wrap; }
+    nav a, .btn { min-height:38px; display:inline-flex; align-items:center; justify-content:center; gap:8px; padding:9px 13px; border:1px solid var(--line); border-radius:6px; background:rgba(255,255,255,.045); color:#dbe8f8; text-decoration:none; text-transform:uppercase; font-size:13px; font-weight:800; letter-spacing:.05em; }
+    nav a:hover, .btn:hover { border-color:rgba(242,203,115,.58); background:rgba(242,203,115,.10); }
+    main { padding:34px 0; }
+    h1 { margin:0 0 8px; font-family:"Orbitron",sans-serif; font-size:clamp(28px,5vw,44px); text-transform:uppercase; }
+    .lead { color:var(--muted); margin:0 0 24px; }
+    article { border:1px solid var(--line); background:var(--panel); border-radius:7px; padding:20px; }
+    h2 { margin:0 0 10px; color:var(--gold); font-size:22px; }
+    ul { margin:0; padding-left:20px; }
+    li { margin:7px 0; color:#d8e3f0; }
+    .launcher-note { margin-top:16px; color:#7f8da0; font-size:14px; }
+    @media (max-width:560px) { nav a, .btn { width:100%; } .command-bar { padding:12px 0; } }
   </style>
 </head>
 <body>
-  <main>
+  <header class="site-header">
+    <div class="wrap command-bar">
+      <a class="brand" href="index.html"><img src="https://swgtalon.online/assets/logo.png" alt="SWGReturns logo">SWGReturns</a>
+      <nav aria-label="Main navigation">
+        <a href="index.html"><i class="fa-solid fa-house"></i> Home</a>
+        <a href="download.html"><i class="fa-solid fa-download"></i> Downloads</a>
+        <a href="nge-patch-notes.html"><i class="fa-solid fa-scroll"></i> NGE Notes</a>
+        <a href="contact.html"><i class="fa-solid fa-envelope"></i> Contact</a>
+      </nav>
+    </div>
+  </header>
+  <main class="wrap">
     <h1>Core3 Patch Notes</h1>
-
+    <p class="lead">Launcher-friendly update notes for the Core3 Pre-CU server.</p>
     <article>
       <h2>13th July 2026</h2>
       <ul>
@@ -48,6 +56,7 @@
         <li>Professions added to the new species.</li>
       </ul>
     </article>
+    <p class="launcher-note">This URL is safe to use inside the launcher: https://swgreturns.github.io/core3-patch-notes.html</p>
   </main>
 </body>
 </html>

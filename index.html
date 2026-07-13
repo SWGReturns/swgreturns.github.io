@@ -1,504 +1,768 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>SWGReturns ï¿½ Classic Pre-CU & NGE Star Wars Galaxies</title>
+  <title>SWGReturns | Pre-CU Core3 and NGE Galaxies</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="SWGReturns ï¿½ Classic Pre-CU and NGE Star Wars Galaxies with expanded content, modern stability, and a living galaxy.">
-  <meta property="og:title" content="SWGReturns ï¿½ Classic Pre-CU & NGE Star Wars Galaxies">
-  <meta property="og:description" content="Choose between the classic Pre-CU sandbox or the action-driven NGE. Craft, fight, explore, and build your story in a galaxy shaped by its players ï¿½ free to play.">
+  <meta name="description" content="SWGReturns brings together Pre-CU Core3 and NGE Star Wars Galaxies servers with launcher downloads, account registration, patch notes, and community links.">
+  <meta property="og:title" content="SWGReturns | Pre-CU Core3 and NGE Galaxies">
+  <meta property="og:description" content="Choose your galaxy: classic Pre-CU Core3 or NGE Jump to Lightspeed. Download the launcher, register, and join the community.">
   <meta property="og:image" content="https://51-81-81-116.sslip.io/images/vaderdeathstar.jpg">
-  <meta property="og:url" content="https://51-81-81-116.sslip.io/">
+  <meta property="og:url" content="https://swgreturns.github.io/">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="SWGReturns">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="SWGReturns ï¿½ Classic Pre-CU & NGE Star Wars Galaxies">
-  <meta name="twitter:description" content="Choose between the classic Pre-CU sandbox or the action-driven NGE ï¿½ free to play.">
+  <meta name="twitter:title" content="SWGReturns | Pre-CU Core3 and NGE Galaxies">
+  <meta name="twitter:description" content="Classic Pre-CU Core3 and NGE Star Wars Galaxies servers, one community.">
   <meta name="twitter:image" content="https://51-81-81-116.sslip.io/images/vaderdeathstar.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" referrerpolicy="no-referrer">
   <link rel="icon" href="https://swgtalon.online/assets/logo.png">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --bg: #05070b;
+      --panel: rgba(9, 15, 24, 0.86);
+      --panel-strong: rgba(12, 19, 30, 0.94);
+      --line: rgba(116, 154, 188, 0.24);
+      --line-bright: rgba(242, 203, 115, 0.58);
+      --text: #eef4ff;
+      --muted: #9aaabc;
+      --blue: #5eb6ff;
+      --gold: #f2cb73;
+      --red: #df5046;
+      --green: #66d98c;
+      --shadow: 0 22px 80px rgba(0, 0, 0, 0.42);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
-      font-family: 'Segoe UI', sans-serif;
-      background: #0a0c12;
-      color: #e0e0e0;
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Rajdhani", "Segoe UI", Arial, sans-serif;
+      font-size: 17px;
+      line-height: 1.5;
       overflow-x: hidden;
     }
-    .wrap { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-
-    /* -- HEADER -- */
-    .site-header {
-      padding: 15px 0;
-      border-bottom: 1px solid rgba(59,130,246,0.3);
-      background: rgba(10,12,18,0.8);
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.014) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,0.65), transparent 78%);
+      z-index: -1;
     }
-    .nav-wrap {
-      display: flex;
-      justify-content: space-between;
+    a { color: inherit; }
+    .wrap { width: min(1180px, calc(100% - 32px)); margin: 0 auto; }
+    .section { padding: 72px 0; }
+    .section.alt { background: linear-gradient(180deg, rgba(255,255,255,0.025), rgba(255,255,255,0.006)); }
+    .section-head { max-width: 760px; margin: 0 auto 30px; text-align: center; }
+    .kicker {
+      color: var(--gold);
+      font-family: "Orbitron", sans-serif;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+    h1, h2, h3 { margin: 0; line-height: 1.05; }
+    h1 {
+      max-width: 860px;
+      margin: 14px auto 16px;
+      font-family: "Orbitron", sans-serif;
+      font-size: clamp(38px, 7vw, 78px);
+      font-weight: 900;
+      letter-spacing: 0;
+      text-transform: uppercase;
+    }
+    h2 {
+      margin-top: 8px;
+      font-family: "Orbitron", sans-serif;
+      font-size: clamp(26px, 4vw, 42px);
+      color: #ffffff;
+      text-transform: uppercase;
+    }
+    h3 {
+      font-size: 24px;
+      color: #ffffff;
+    }
+    p { margin: 0; }
+    .muted { color: var(--muted); }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(4, 7, 12, 0.9);
+      border-bottom: 1px solid rgba(242, 203, 115, 0.24);
+      backdrop-filter: blur(16px);
+    }
+    .command-bar {
+      min-height: 76px;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
       align-items: center;
-      flex-wrap: wrap;
+      gap: 18px;
     }
     .brand {
-      display: flex;
+      display: inline-flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
       text-decoration: none;
-      color: #fff;
+      min-width: 220px;
     }
-    .logo { height: 40px; }
+    .logo {
+      width: 46px;
+      height: 46px;
+      object-fit: contain;
+      filter: drop-shadow(0 0 16px rgba(94, 182, 255, 0.42));
+    }
     .wordmark {
-      font-size: 24px;
-      font-weight: 700;
-      background: linear-gradient(135deg, #3b82f6, #1e3a8a);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
+      display: grid;
+      gap: 2px;
+      font-family: "Orbitron", sans-serif;
+      font-weight: 900;
+      letter-spacing: 0;
+      text-transform: uppercase;
+    }
+    .wordmark small {
+      color: var(--muted);
+      font-family: "Rajdhani", sans-serif;
+      font-size: 12px;
+      letter-spacing: 0.12em;
     }
     .top-nav {
       display: flex;
-      gap: 6px;
-      align-items: center;
+      justify-content: center;
+      gap: 7px;
       flex-wrap: wrap;
     }
-    .top-nav a {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      text-transform: uppercase;
-      color: #c0d0e8;
-      text-decoration: none;
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: .06em;
-      padding: 8px 18px;
-      border-radius: 6px;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.1);
-      transition: background .2s, border-color .2s, color .2s;
-    }
-    .top-nav a:hover { color: #fff; background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.25); }
-    .top-nav a.nav-cta {
-      background: linear-gradient(135deg, #2563eb, #1e40af);
-      color: #fff;
-      border-color: rgba(255,255,255,0.2);
-    }
-    .top-nav a.nav-cta:hover { background: linear-gradient(135deg, #3b82f6, #2563eb); border-color: rgba(255,255,255,0.4); }
-    .btn {
-      font-family: 'Orbitron', sans-serif;
-      text-transform: uppercase;
-      padding: 10px 18px;
-      border-radius: 7px;
-      font-weight: 700;
-      font-size: 11px;
-      letter-spacing: .08em;
+    .top-nav a,
+    .header-actions a,
+    .hamburger {
+      min-height: 38px;
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      border: 1px solid transparent;
-      transition: transform .2s, box-shadow .2s, background .2s, border-color .2s;
-    }
-    .btn i { font-size: 12px; }
-    .btn-guides {
-      background: rgba(59,130,246,0.2);
-      border: 1px solid rgba(59,130,246,0.3);
-      color: #93c5fd;
-    }
-    .btn-guides:hover { background: rgba(59,130,246,0.4); }
-    .top-nav a i { font-size: 12px; margin-right: 5px; }
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      gap: 5px;
-      background: none;
-      border: none;
-      cursor: pointer;
-    }
-    .hamburger span {
-      width: 25px;
-      height: 3px;
-      background: #fff;
-      border-radius: 3px;
-    }
-
-    /* -- HERO -- */
-    .hero {
-      padding: 40px 0 60px;
-      text-align: center;
-      background: radial-gradient(ellipse at 30% 40%, #0f121c 0%, #05070c 100%);
-    }
-    .hero-logo-wrap { margin-bottom: 20px; }
-    .hero-logo-img { max-height: 100px; }
-
-    /* -- SERVER STRIP -- */
-    .server-strip {
-      display: flex;
       justify-content: center;
-      gap: 20px;
-      flex-wrap: wrap;
-      margin: 20px 0 30px;
-    }
-    .sv-card {
-      background: rgba(20, 22, 32, 0.9);
-      border: 1px solid rgba(59,130,246,0.3);
-      border-radius: 12px;
-      padding: 15px 25px;
-      min-width: 150px;
-      text-align: left;
-      transition: 0.2s;
-    }
-    .sv-card:hover { border-color: #3b82f6; }
-    .sv-name {
+      gap: 8px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.045);
+      color: #dbe8f8;
+      text-decoration: none;
+      text-transform: uppercase;
       font-size: 13px;
       font-weight: 700;
-      color: #60a5fa;
-      letter-spacing: 0.5px;
-      margin-bottom: 4px;
+      letter-spacing: 0.06em;
+      padding: 9px 13px;
+      border-radius: 6px;
+      transition: transform .18s ease, border-color .18s ease, background .18s ease, color .18s ease;
     }
-    .sv-indicator {
-      font-size: 18px;
-      display: inline-block;
-      margin-right: 6px;
+    .top-nav a:hover,
+    .header-actions a:hover,
+    .hamburger:hover {
+      color: #ffffff;
+      border-color: var(--line-bright);
+      background: rgba(242, 203, 115, 0.10);
+      transform: translateY(-1px);
     }
-    .sv-indicator.online { color: #4caf50; }
-    .sv-indicator.offline { color: #f44336; }
-    .sv-players {
-      font-size: 18px;
-      font-weight: 600;
-      color: #e0e0e0;
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
-    .sv-players span {
-      color: #93c5fd;
-      font-size: 22px;
+    .header-actions .primary {
+      color: #0b0d11;
+      background: linear-gradient(180deg, #ffe3a1, #d09a37);
+      border-color: rgba(255, 231, 173, 0.8);
+      box-shadow: 0 0 22px rgba(242, 203, 115, 0.26);
     }
-    .sv-peak {
-      font-size: 12px;
-      color: #888;
-      margin-top: 2px;
-    }
+    .hamburger { display: none; cursor: pointer; }
 
-    h1 {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 42px;
-      font-weight: 900;
-      background: linear-gradient(135deg, #60a5fa, #3b82f6);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      margin: 20px 0 10px;
+    .hero {
+      min-height: calc(100vh - 76px);
+      display: flex;
+      align-items: center;
+      position: relative;
+      padding: 64px 0 40px;
+      overflow: hidden;
+      background:
+        linear-gradient(90deg, rgba(5,7,11,0.98), rgba(5,7,11,0.74) 45%, rgba(5,7,11,0.4)),
+        linear-gradient(180deg, rgba(5,7,11,0.18), #05070b 92%),
+        url("https://51-81-81-116.sslip.io/images/vaderdeathstar.jpg") center right / cover no-repeat;
     }
+    .hero::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(242,203,115,0.75), transparent);
+    }
+    .hero-grid {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(310px, 0.9fr);
+      gap: 34px;
+      align-items: end;
+    }
+    .hero-copy { max-width: 850px; }
     .hero-sub {
-      color: #aaa;
-      font-size: 18px;
-      max-width: 600px;
-      margin: 0 auto 30px;
+      max-width: 720px;
+      color: #c5d1df;
+      font-size: clamp(19px, 2.2vw, 25px);
     }
     .cta-row {
       display: flex;
+      flex-wrap: wrap;
       gap: 12px;
+      margin-top: 30px;
+    }
+    .btn {
+      min-height: 48px;
+      display: inline-flex;
+      align-items: center;
       justify-content: center;
-      flex-wrap: wrap;
-    }
-    .cta-btn {
-      padding: 12px 28px;
-      border-radius: 30px;
-      background: rgba(59,130,246,0.15);
-      border: 1px solid rgba(59,130,246,0.4);
-      color: #93c5fd;
+      gap: 10px;
+      padding: 13px 20px;
+      border-radius: 7px;
+      border: 1px solid var(--line);
+      background: rgba(10, 17, 27, 0.82);
+      color: var(--text);
       text-decoration: none;
-      font-weight: 600;
-      transition: 0.2s;
+      text-transform: uppercase;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      transition: transform .18s ease, border-color .18s ease, background .18s ease, box-shadow .18s ease;
     }
-    .cta-btn:hover { background: rgba(59,130,246,0.3); }
-    .cta-donate {
-      background: linear-gradient(135deg, #003087, #0070ba);
-      border: none;
-      color: white !important;
+    .btn:hover {
+      transform: translateY(-2px);
+      border-color: var(--line-bright);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.35);
     }
-    .cta-donate:hover { background: linear-gradient(135deg, #0050c0, #0090fa); }
+    .btn.primary {
+      color: #0b0d11;
+      background: linear-gradient(180deg, #ffe5a8, #d69b35);
+      border-color: rgba(255, 232, 178, 0.85);
+      box-shadow: 0 0 28px rgba(242, 203, 115, 0.28);
+    }
+    .btn.blue {
+      background: linear-gradient(180deg, rgba(74, 149, 210, 0.78), rgba(18, 65, 113, 0.82));
+      border-color: rgba(116, 190, 255, 0.55);
+    }
+    .btn.ghost { color: #c9d7e7; }
 
-    /* -- SECTIONS -- */
-    .section { padding: 60px 0; }
-    .section.alt { background: rgba(255,255,255,0.02); }
-    .section h2 {
+    .status-board {
+      display: grid;
+      gap: 12px;
+      padding: 16px;
+      border: 1px solid rgba(242, 203, 115, 0.25);
+      background: rgba(5, 8, 13, 0.74);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(12px);
+    }
+    .status-board h2 {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: "Rajdhani", sans-serif;
+      font-size: 17px;
+      color: var(--gold);
+      letter-spacing: 0.16em;
+    }
+    .sv-card {
+      display: grid;
+      gap: 8px;
+      padding: 14px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.045);
+      border-radius: 6px;
+    }
+    .sv-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+    .sv-name {
+      color: #fff;
+      font-size: 20px;
+      font-weight: 800;
+    }
+    .sv-indicator {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .sv-indicator::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: currentColor;
+      box-shadow: 0 0 12px currentColor;
+    }
+    .sv-indicator.online { color: var(--green); }
+    .sv-indicator.offline { color: var(--red); }
+    .sv-players {
+      color: var(--muted);
+      font-size: 15px;
+    }
+    .sv-players span {
+      color: var(--blue);
       font-size: 28px;
-      text-align: center;
-      margin-bottom: 30px;
-      color: #60a5fa;
+      font-weight: 800;
     }
-    .section-lead {
-      text-align: center;
-      color: #aaa;
-      max-width: 700px;
-      margin: 0 auto 40px;
+    .sv-peak {
+      color: #7f90a4;
+      font-size: 13px;
     }
-    .cards {
-      display: flex;
-      gap: 30px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-    .card {
-      background: rgba(20,22,32,0.8);
-      border: 1px solid rgba(59,130,246,0.2);
-      border-radius: 16px;
-      padding: 30px;
-      max-width: 320px;
-      flex: 1;
-      min-width: 250px;
-    }
-    .card .card-icon { font-size: 36px; margin-bottom: 12px; }
-    .card h3 { color: #93c5fd; margin-bottom: 10px; }
-    .card .muted { color: #aaa; font-size: 14px; line-height: 1.6; }
 
-    .server-cols {
-      display: flex;
-      gap: 30px;
-      justify-content: center;
-      flex-wrap: wrap;
+    .quick-links {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 34px;
     }
-    .server-box {
-      background: rgba(20,22,32,0.8);
-      border: 1px solid rgba(59,130,246,0.2);
-      border-radius: 16px;
-      padding: 30px;
-      flex: 1;
-      min-width: 300px;
-      max-width: 500px;
-    }
-    .server-box h3 { color: #93c5fd; font-size: 20px; margin-bottom: 15px; }
-    .server-box ul { list-style: none; padding: 0; }
-    .server-box ul li {
-      padding: 6px 0;
-      color: #ccc;
-      font-size: 14px;
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-    }
-    .server-box ul li:last-child { border-bottom: none; }
-    .server-box ul li strong { color: #60a5fa; }
-
-    .donate-cols {
-      display: flex;
-      gap: 30px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-    .donate-box {
-      background: rgba(20,22,32,0.8);
-      border: 1px solid rgba(59,130,246,0.2);
-      border-radius: 16px;
-      padding: 30px;
-      min-width: 250px;
-      flex: 1;
-      max-width: 400px;
-      text-align: center;
-    }
-    .donate-box h3 { color: #93c5fd; }
-    .donate-box .muted { color: #aaa; }
-
-    /* Pre-CU donation meter */
-    .donate-meter-card{background:rgba(20,22,32,0.9);border:1px solid rgba(59,130,246,0.3);border-radius:16px;padding:30px;max-width:700px;margin:0 auto 30px;text-align:center}
-    .donate-meter-label{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#60a5fa;margin-bottom:8px}
-    .donate-meter-amounts{font-size:28px;font-weight:700;color:#fff;margin-bottom:16px}
-    .saber-meter-wrap{margin:0 0 12px}
-    .saber-meter{display:flex;align-items:center;height:22px;max-width:500px;margin:0 auto}
-    .saber-hilt{width:38px;height:18px;flex-shrink:0;border-radius:5px 3px 3px 5px;background:linear-gradient(180deg,#5a5a5a,#242424);border:1px solid rgba(255,255,255,.18);position:relative;z-index:2;box-shadow:inset 0 1px 1px rgba(255,255,255,.25),0 2px 8px rgba(0,0,0,.55)}
-    .saber-hilt::before{content:'';position:absolute;left:6px;top:50%;width:5px;height:5px;border-radius:50%;transform:translateY(-50%);background:#f59e0b;box-shadow:0 0 7px #f59e0b}
-    .saber-hilt::after{content:'';position:absolute;right:3px;top:3px;bottom:3px;width:2px;background:rgba(255,255,255,.3);border-radius:1px}
-    .saber-track{flex:1;height:14px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);border-left:none;border-radius:0 7px 7px 0;overflow:hidden;position:relative}
-    .saber-blade{position:relative;height:100%;min-width:8px;border-radius:0 7px 7px 0;background:linear-gradient(90deg,#3b82f6,#60a5fa);box-shadow:0 0 14px 2px rgba(59,130,246,.65),0 0 26px 6px rgba(96,165,250,.32);transition:width 1.2s ease}
-    .saber-blade::after{content:'';position:absolute;top:50%;left:0;right:0;height:3px;transform:translateY(-50%);background:rgba(255,255,255,.92);border-radius:2px}
-    .saber-blade.full{background:linear-gradient(90deg,#4caf50,#8dffce);box-shadow:0 0 14px 2px rgba(76,175,80,.65),0 0 26px 6px rgba(76,175,80,.32)}
-    .donate-meter-pct{font-size:13px;color:#aaa;margin-top:4px}
-    .donor-teaser{margin-top:20px;padding-top:20px;border-top:1px solid rgba(59,130,246,0.2);text-align:left;max-width:400px;margin-left:auto;margin-right:auto}
-    .donor-teaser-label{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#888;margin-bottom:8px}
-    .donor-teaser-row{display:flex;align-items:center;gap:10px;font-size:13px;padding:4px 0}
-    .donor-teaser-row .dt-rank{color:#f59e0b;font-weight:700;width:20px}
-    .donor-teaser-row .dt-name{color:#e0e0e0;font-weight:600;flex:1}
-    .donor-teaser-row .dt-total{color:#f59e0b;font-weight:700}
-    .donor-teaser-empty{font-size:13px;color:#888}
-    .donate-btn {
-      display: inline-block;
-      margin-top: 15px;
-      padding: 12px 30px;
-      background: linear-gradient(135deg, #003087, #0070ba);
-      border-radius: 30px;
-      color: #fff;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    .donate-btn:hover { background: linear-gradient(135deg, #0050c0, #0090fa); }
-
-    .get-started-cols {
-      display: flex;
-      gap: 30px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
+    .quick-link,
+    .card,
+    .server-box,
+    .donate-meter-card,
     .gs-step {
-      background: rgba(20,22,32,0.8);
-      border: 1px solid rgba(59,130,246,0.2);
-      border-radius: 16px;
-      padding: 30px;
-      min-width: 250px;
-      flex: 1;
-      max-width: 350px;
-      text-align: center;
+      border: 1px solid var(--line);
+      background: var(--panel);
+      border-radius: 7px;
+      box-shadow: 0 16px 45px rgba(0,0,0,0.22);
     }
-    .gs-num {
-      font-size: 36px;
-      font-weight: bold;
-      color: #3b82f6;
-    }
-    .gs-step h3 { color: #93c5fd; margin: 10px 0; }
-    .gs-step .muted { color: #aaa; }
-    .gs-step .tip { color: #666; font-size: 12px; margin-top: 10px; }
-    .download-btn {
-      display: inline-block;
-      margin-top: 15px;
-      padding: 12px 30px;
-      background: linear-gradient(135deg, #f59e0b, #d97706);
-      border-radius: 30px;
-      color: #fff;
+    .quick-link {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-height: 78px;
+      padding: 15px;
       text-decoration: none;
-      font-weight: bold;
+      transition: transform .18s ease, border-color .18s ease, background .18s ease;
     }
-    .register-btn {
-      display: inline-block;
-      margin-top: 15px;
-      padding: 12px 30px;
-      background: linear-gradient(135deg, #2563eb, #1e3a8a);
-      border-radius: 30px;
+    .quick-link:hover {
+      transform: translateY(-2px);
+      border-color: var(--line-bright);
+      background: rgba(242,203,115,0.075);
+    }
+    .quick-link i {
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      color: var(--gold);
+      border: 1px solid rgba(242,203,115,0.3);
+      border-radius: 6px;
+    }
+    .quick-link strong {
+      display: block;
       color: #fff;
-      text-decoration: none;
-      font-weight: bold;
+      line-height: 1.1;
+    }
+    .quick-link span {
+      display: block;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.25;
     }
 
-    .community-discord-wrap { max-width: 700px; margin: 0 auto; }
-
-    /* -- FOOTER -- */
-    .site-footer {
-      background: #05070c;
-      padding: 30px 0;
-      text-align: center;
-      border-top: 1px solid rgba(59,130,246,0.2);
+    .cards,
+    .server-cols,
+    .donate-cols,
+    .get-started-cols,
+    .patch-grid {
+      display: grid;
+      gap: 18px;
     }
-    .footer-brand {
-      font-size: 18px;
-      font-weight: 700;
-      color: #60a5fa;
-      margin-bottom: 8px;
+    .cards.cols-3,
+    .get-started-cols { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .server-cols,
+    .donate-cols,
+    .patch-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .card,
+    .server-box,
+    .gs-step {
+      padding: 22px;
     }
-    .site-footer p { color: #666; font-size: 13px; }
-    .footer-powered a { color: #3b82f6; text-decoration: none; }
-
-    /* -- RESPONSIVE -- */
-    @media (max-width: 768px) {
-      .nav-wrap { flex-direction: column; gap: 10px; }
-      .top-nav { justify-content: center; display: none; flex-direction: column; width: 100%; padding: 10px 0; }
-      .top-nav.open { display: flex; }
-      .hamburger { display: flex; }
-      .server-strip { gap: 10px; }
-      .sv-card { min-width: 120px; padding: 12px 16px; }
-      h1 { font-size: 28px; }
-      .server-cols { flex-direction: column; align-items: center; }
-      .server-box { min-width: auto; width: 100%; }
-      .get-started-cols { flex-direction: column; align-items: center; }
-      .gs-step { max-width: 100%; }
+    .card-icon {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 14px;
+      color: var(--gold);
+      border: 1px solid rgba(242,203,115,0.35);
+      border-radius: 6px;
+      background: rgba(242,203,115,0.07);
     }
-
-    /* -- SPLASH -- */
-    #splashOverlay {
-      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-      background: #0a0c12; z-index: 9999;
-      display: flex; justify-content: center; align-items: center;
-      cursor: pointer;
+    .card p,
+    .server-box li,
+    .gs-step p,
+    .patch-card p,
+    .donate-box p { color: var(--muted); }
+    .server-box ul,
+    .patch-card ul {
+      margin: 18px 0 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 11px;
     }
-    #splashOverlay.hidden { display: none; }
-    .splash-inner { text-align: center; padding: 20px; }
-    .splash-icon svg { width: 60px; height: 60px; fill: #3b82f6; }
-    .splash-title {
-      font-size: 48px;
-      font-weight: 700;
-      color: #60a5fa;
-      font-family: 'Orbitron', sans-serif;
+    .server-box li,
+    .patch-card li {
+      position: relative;
+      padding-left: 20px;
     }
-    .splash-sub { color: #aaa; font-size: 18px; margin: 10px 0 20px; }
-    .splash-bar {
-      width: 200px;
-      height: 4px;
-      background: #1a1c2a;
+    .server-box li::before,
+    .patch-card li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.68em;
+      width: 8px;
+      height: 1px;
+      background: var(--gold);
+    }
+    .feature-media {
+      width: 76px;
+      height: 58px;
+      object-fit: cover;
+      border: 1px solid rgba(94,182,255,0.35);
+      border-radius: 6px;
+      flex: 0 0 auto;
+    }
+    .media-li {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding-left: 0 !important;
+    }
+    .media-li::before { display: none; }
+    .inline-note {
+      margin-top: 18px;
+      padding-top: 16px;
+      border-top: 1px solid var(--line);
+      color: #bcd9ff;
+      font-size: 15px;
+    }
+    code {
+      color: #fff;
+      background: rgba(255,255,255,0.07);
+      padding: 1px 5px;
       border-radius: 4px;
-      margin: 0 auto 20px;
+    }
+
+    .donate-meter-card {
+      max-width: 760px;
+      margin: 0 auto 18px;
+      padding: 20px;
+      background: var(--panel-strong);
+    }
+    .donate-meter-label,
+    .donor-teaser-label {
+      color: var(--gold);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .donate-meter-amounts {
+      margin-top: 4px;
+      color: #fff;
+      font-size: 26px;
+      font-weight: 800;
+    }
+    .saber-meter-wrap { margin: 16px 0 8px; }
+    .saber-meter { display: flex; align-items: center; }
+    .saber-hilt {
+      width: 42px;
+      height: 16px;
+      flex-shrink: 0;
+      border-radius: 4px 2px 2px 4px;
+      background: linear-gradient(90deg,#454545,#d6d6d6,#6d6d6d);
+      border: 1px solid rgba(255,255,255,0.22);
+    }
+    .saber-track {
+      flex: 1;
+      height: 12px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
       overflow: hidden;
     }
-    .splash-bar-fill {
-      width: 100%;
+    .saber-blade {
       height: 100%;
-      background: linear-gradient(90deg, #3b82f6, #60a5fa);
-      animation: pulse 1.5s infinite;
+      min-width: 8px;
+      background: linear-gradient(90deg,#66d98c,#c9ffdd);
+      box-shadow: 0 0 18px rgba(102,217,140,0.78);
     }
-    @keyframes pulse { 50% { opacity: 0.5; } }
-    .splash-stat { color: #888; font-size: 14px; margin: 0 10px; }
-    .splash-stat .dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; }
-    .splash-stat .dot.on { background: #4caf50; }
-    .splash-click { color: #555; font-size: 14px; margin-top: 20px; animation: pulse 1.5s infinite; }
+    .donate-meter-pct,
+    .donor-teaser-empty {
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .donor-teaser { margin-top: 16px; }
+    .donor-teaser-row {
+      display: grid;
+      grid-template-columns: 45px 1fr auto;
+      gap: 10px;
+      padding: 7px 0;
+      color: #dce8f8;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .donate-box {
+      padding: 22px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.04);
+      border-radius: 7px;
+      text-align: center;
+    }
+    .donate-btn,
+    .download-btn,
+    .register-btn {
+      margin-top: 16px;
+      display: inline-flex;
+      min-height: 44px;
+      align-items: center;
+      justify-content: center;
+      padding: 11px 18px;
+      border-radius: 6px;
+      color: #0b0d11;
+      background: linear-gradient(180deg, #ffe5a8, #d69b35);
+      border: 1px solid rgba(255, 232, 178, 0.85);
+      text-decoration: none;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .register-btn { color: #fff; background: linear-gradient(180deg, #377fc7, #194979); border-color: rgba(116,190,255,0.55); }
+    .gs-num {
+      color: var(--gold);
+      font-family: "Orbitron", sans-serif;
+      font-size: 13px;
+      margin-bottom: 12px;
+    }
+    .tip { margin-top: 10px; font-size: 14px; }
 
-    /* -- DISCLAIMER -- */
+    .patch-card {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 18px;
+      align-items: center;
+      padding: 22px;
+      border: 1px solid var(--line);
+      background: var(--panel-strong);
+      border-radius: 7px;
+    }
+    .patch-card ul { grid-column: 1 / -1; margin-top: 0; }
+    .patch-card .btn { white-space: nowrap; }
+
+    .community-discord-wrap {
+      max-width: 760px;
+      margin: 0 auto;
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      overflow: hidden;
+      background: var(--panel);
+    }
+    .community-actions {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+    .site-footer {
+      padding: 32px 0;
+      border-top: 1px solid rgba(242,203,115,0.22);
+      background: #030508;
+      text-align: center;
+    }
+    .footer-brand {
+      color: var(--gold);
+      font-family: "Orbitron", sans-serif;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+    .site-footer p { color: #7f8da0; font-size: 14px; }
+    .footer-powered a { color: var(--blue); text-decoration: none; }
+
+    #splashOverlay,
     #disclaimerOverlay {
-      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.9); z-index: 10000;
-      display: none; justify-content: center; align-items: center;
-      backdrop-filter: blur(4px);
+      position: fixed;
+      inset: 0;
+      z-index: 10000;
+      background:
+        linear-gradient(rgba(0,0,0,0.72), rgba(0,0,0,0.9)),
+        url("https://51-81-81-116.sslip.io/images/vaderdeathstar.jpg") center / cover no-repeat;
+      display: grid;
+      place-items: center;
+      padding: 20px;
     }
-    #disclaimerOverlay.show { display: flex; }
+    #splashOverlay.hidden { display: none; }
+    .splash-inner,
     .disclaimer-card {
-      background: #10121c; border: 1px solid #3b82f6; border-radius: 24px;
-      padding: 40px; max-width: 550px; max-height: 90vh; overflow-y: auto;
+      width: min(560px, 100%);
+      border: 1px solid rgba(242,203,115,0.38);
+      background: rgba(6, 10, 16, 0.92);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      padding: 28px;
+      text-align: center;
     }
-    .disclaimer-card h2 { color: #f44336; margin-bottom: 15px; }
-    .disclaimer-card p { color: #ccc; font-size: 14px; line-height: 1.6; margin-bottom: 10px; }
-    .disclaimer-card ul { color: #ccc; font-size: 14px; padding-left: 20px; margin-bottom: 15px; }
-    .disclaimer-card ul li { padding: 4px 0; }
-    .disclaimer-card label { color: #ccc; display: block; margin: 15px 0; }
-    .disclaimer-card .btn-gold {
-      background: linear-gradient(135deg, #f59e0b, #d97706);
-      border: none;
-      padding: 12px 30px;
-      border-radius: 30px;
-      font-weight: bold;
-      color: #fff;
+    .splash-icon svg {
+      width: 56px;
+      height: 56px;
+      fill: var(--gold);
+    }
+    .splash-title {
+      margin-top: 12px;
+      font-family: "Orbitron", sans-serif;
+      font-size: 30px;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+    .splash-sub,
+    .splash-status,
+    .splash-click { color: var(--muted); }
+    .splash-bar {
+      height: 8px;
+      margin: 18px 0;
+      background: rgba(255,255,255,0.09);
+      overflow: hidden;
+      border-radius: 99px;
+    }
+    .splash-bar-fill {
+      width: 66%;
+      height: 100%;
+      background: linear-gradient(90deg, var(--gold), var(--blue));
+    }
+    .dot {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--green);
+      margin-right: 6px;
+      box-shadow: 0 0 12px var(--green);
+    }
+    #disclaimerOverlay {
+      display: none;
+      overflow-y: auto;
+      place-items: start center;
+    }
+    #disclaimerOverlay.show { display: grid; }
+    .disclaimer-card {
+      margin: 30px 0;
+      text-align: left;
+    }
+    .disclaimer-card h2 {
+      color: var(--gold);
+      font-size: 24px;
+      text-align: left;
+    }
+    .disclaimer-card p,
+    .disclaimer-card li,
+    .disclaimer-card label {
+      color: #c9d4e1;
+      font-size: 15px;
+    }
+    .disclaimer-card p { margin-top: 10px; }
+    .disclaimer-card ul { margin: 12px 0; padding-left: 20px; }
+    .disclaimer-card label {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      margin-top: 14px;
+    }
+    .btn-gold {
+      width: 100%;
+      margin-top: 16px;
+      min-height: 46px;
+      border: 1px solid rgba(255, 232, 178, 0.85);
+      border-radius: 6px;
+      color: #0b0d11;
+      background: linear-gradient(180deg, #ffe5a8, #d69b35);
+      font-weight: 900;
+      text-transform: uppercase;
       cursor: pointer;
     }
-    .disclaimer-card .btn-gold:disabled { opacity: 0.5; cursor: not-allowed; }
+    .btn-gold:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+    @media (max-width: 980px) {
+      .command-bar { grid-template-columns: 1fr auto; }
+      .top-nav {
+        grid-column: 1 / -1;
+        display: none;
+        justify-content: stretch;
+      }
+      .top-nav.open { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .hamburger { display: inline-flex; }
+      .header-actions { display: none; }
+      .hero { min-height: auto; }
+      .hero-grid { grid-template-columns: 1fr; }
+      .quick-links { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .cards.cols-3,
+      .get-started-cols,
+      .server-cols,
+      .donate-cols,
+      .patch-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 620px) {
+      body { font-size: 16px; }
+      .wrap { width: min(100% - 24px, 1180px); }
+      .command-bar { min-height: 66px; }
+      .brand { min-width: 0; }
+      .wordmark small { display: none; }
+      .top-nav.open,
+      .quick-links { grid-template-columns: 1fr; }
+      .hero { padding-top: 42px; }
+      .cta-row .btn,
+      .patch-card .btn { width: 100%; }
+      .patch-card { grid-template-columns: 1fr; }
+      .section { padding: 52px 0; }
+    }
   </style>
 </head>
 <body>
 
-<!-- ------------------------------------------------------- SPLASH SCREEN -->
 <div id="splashOverlay">
   <div class="splash-inner">
-    <div class="splash-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg></div>
-    <div class="splash-title">SWG Returns</div>
-    <div class="splash-sub">Two Galaxies, One Community</div>
+    <div class="splash-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg></div>
+    <div class="splash-title">SWGReturns</div>
+    <div class="splash-sub">Classic Pre-CU and NGE</div>
     <div class="splash-bar"><div class="splash-bar-fill"></div></div>
-    <div class="splash-status"><span class="splash-stat"><span class="dot on"></span> Pre-CU &amp; NGE ï¿½ Online</span></div>
-    <div class="splash-click">? Click Anywhere to Begin</div>
+    <div class="splash-status"><span class="dot"></span> Main servers online</div>
+    <div class="splash-click">Click anywhere to begin</div>
   </div>
 </div>
 
-<!-- ------------------------------------------------------- DISCLAIMER -->
 <div id="disclaimerOverlay">
   <div class="disclaimer-card">
-    <h2>? Legal Disclaimer</h2>
-    <p><strong>SWG Returns and SWG Talon Have Merged</strong></p>
-    <p>Together we bring you both the <strong>original Pre-CU sandbox</strong> and the <strong>NGE ï¿½ New Game Enhancements</strong> experience. One community, two galaxies.</p>
-    <p>This is an unofficial, fan-made server. It is not affiliated with, endorsed by, or connected to Sony Online Entertainment, Daybreak Game Company, LucasArts, or Disney. Star Wars Galaxiesï¿½ is the intellectual property of its respective owners.</p>
+    <h2>Legal Disclaimer</h2>
+    <p><strong>SWGReturns and SWG Talon have merged.</strong></p>
+    <p>Together we bring you both the original Pre-CU sandbox and the NGE New Game Enhancements experience. One community, two galaxies.</p>
+    <p>This is an unofficial, fan-made server. It is not affiliated with, endorsed by, or connected to Sony Online Entertainment, Daybreak Game Company, LucasArts, or Disney. Star Wars Galaxies is the intellectual property of its respective owners.</p>
     <p>This server is run by fans, for fans, on a non-profit basis. No money is charged for access to the game itself.</p>
-    <p><strong>You Must Own the Original Game</strong></p>
+    <p><strong>You must own the original game.</strong></p>
     <p>By accessing this server you confirm that you legally own or have owned a copy of Star Wars Galaxies.</p>
-    <p><strong>By Clicking "I Accept" You Agree That:</strong></p>
+    <p><strong>By clicking "I Accept" you agree that:</strong></p>
     <ul>
       <li>You own or have owned a legitimate copy of Star Wars Galaxies.</li>
       <li>You understand this is an unofficial fan-made server, not the original game.</li>
@@ -506,278 +770,325 @@
       <li>You are aged 13 or over.</li>
     </ul>
     <label><input type="checkbox" id="disclaimerCheck"> I confirm I own or have owned Star Wars Galaxies and I accept the terms above.</label>
-    <button class="btn-gold" id="disclaimerAccept" disabled>I Accept ï¿½ Enter the Galaxy</button>
+    <button class="btn-gold" id="disclaimerAccept" disabled>I Accept - Enter the Galaxy</button>
   </div>
 </div>
 
-<!-- ------------------------------------------------------- HEADER -->
 <header class="site-header">
-  <div class="wrap nav-wrap">
-    <a class="brand" href="#">
+  <div class="wrap command-bar">
+    <a class="brand" href="index.html" aria-label="SWGReturns home">
       <img class="logo" src="https://swgtalon.online/assets/logo.png" alt="SWGReturns logo">
-      <span class="wordmark">SWGReturns</span>
+      <span class="wordmark">SWGReturns <small>Core3 / NGE Network</small></span>
     </a>
     <button class="hamburger" id="hamburger" aria-label="Toggle navigation" aria-expanded="false">
-      <span></span><span></span><span></span>
+      <i class="fa-solid fa-bars"></i>
     </button>
-    <nav class="top-nav" id="top-nav">
-      <a href="#features">Features</a>
-      <a href="#get-started">Get Started</a>
-      <a href="#patch-notes">Patch Notes</a>
-      <a href="#need-help">Community</a>
-      <a href="jedi-unlock.html">Jedi Guide</a>
-      <a href="download.html"><i class="fa-solid fa-download"></i> Downloads</a>
-      <a href="https://51-81-81-116.sslip.io/support-ben.html"><i class="fa-solid fa-screwdriver-wrench"></i> Support Ben</a>
-      <a href="https://51-81-81-116.sslip.io/donate.html" class="nav-cta"><i class="fa-solid fa-heart"></i> Donate</a>
-      <a href="https://51-81-81-116.sslip.io/forgot_password.html"><i class="fa-solid fa-key"></i> Forgot Password</a>
-      <a href="https://51-81-81-116.sslip.io/contact.html"><i class="fa-solid fa-envelope"></i> Contact Us</a>
+    <nav class="top-nav" id="top-nav" aria-label="Main navigation">
+      <a href="#servers"><i class="fa-solid fa-server"></i> Servers</a>
+      <a href="#get-started"><i class="fa-solid fa-rocket"></i> Start</a>
+      <a href="#patch-notes"><i class="fa-solid fa-scroll"></i> Notes</a>
+      <a href="jedi-unlock.html"><i class="fa-solid fa-jedi"></i> Jedi</a>
+      <a href="#community"><i class="fa-brands fa-discord"></i> Discord</a>
+      <a href="contact.html"><i class="fa-solid fa-envelope"></i> Contact</a>
     </nav>
+    <div class="header-actions">
+      <a href="download.html" class="primary"><i class="fa-solid fa-download"></i> Launcher</a>
+    </div>
   </div>
 </header>
 
-<!-- ------------------------------------------------------- HERO -->
-<section class="hero">
-  <div class="wrap hero-inner">
-    <div class="hero-logo-wrap">
-      <img src="https://swgtalon.online/assets/logo.png" alt="SWGReturns" class="hero-logo-img">
-    </div>
-
-    <!-- --- SERVER STATUS STRIP --- -->
-    <div class="server-strip">
-      <div class="sv-card" id="sv-precu">
-        <div class="sv-name">Pre-CU Main</div>
-        <div class="sv-indicator" id="ind-precu">?</div>
-        <div class="sv-players"><span id="pl-precu">2</span> online</div>
-        <div class="sv-peak">Peak: <span id="pk-precu">2</span> | Uptime: <span id="ut-precu">N/A</span></div>
-      </div>
-      <div class="sv-card" id="sv-nge">
-        <div class="sv-name">NGE Main</div>
-        <div class="sv-indicator" id="ind-nge">?</div>
-        <div class="sv-players"><span id="pl-nge">0</span> online</div>
-        <div class="sv-peak">Peak: <span id="pk-nge">N/A</span> | Uptime: <span id="ut-nge">N/A</span></div>
-      </div>
-    </div>
-
-    <h1>Return to the Galaxies</h1>
-    <p class="hero-sub">Classic Pre-CU &amp; NGE Star Wars Galaxies ï¿½ choose your path and join the adventure.</p>
-    <div class="cta-row">
-      <a href="#get-started" class="cta-btn">Get Started</a>
-      <a href="https://discord.gg/xY5WuwfcFD" class="cta-btn" target="_blank">Core3 Discord</a>
-      <a href="https://51-81-81-116.sslip.io/register.html" class="cta-btn" target="_blank">Register Pre-CU</a>
-      <a href="https://register.swgtalon.online/addnewuser.php" class="cta-btn" target="_blank">Register NGE</a>
-      <a href="https://discord.gg/6bH9Euw5R9" class="cta-btn" target="_blank">NGE Discord</a>
-      <a href="jedi-unlock.html" class="cta-btn"><i class="fa-solid fa-jedi"></i> Jedi Unlock Guide</a>
-      <a href="download.html" class="cta-btn">Download Launcher</a>
-    </div>
-  </div>
-</section>
-
-<!-- ------------------------------------------------------- WHAT YOU GET -->
-<section class="section alt">
-  <div class="wrap">
-    <h2>Two Galaxies, One Home</h2>
-    <div class="cards cols-3">
-      <div class="card"><div class="card-icon">??</div><h3>Pre-CU Classic</h3><p class="muted">The original Pre-CU sandbox ï¿½ profession-based skill system, open world PvP, and the classic Village Jedi unlock (Knight Trials). 8.0ï¿½ XP, expanded planets, and custom loot.</p></div>
-      <div class="card"><div class="card-icon">??</div><h3>NGE</h3><p class="muted">Jump to Lightspeed expansion ï¿½ class-based combat, space combat, 25+ playable species, and the full NGE experience with modern stability.</p></div>
-      <div class="card"><div class="card-icon">??</div><h3>Shared Community</h3><p class="muted">One community, two servers. Discord, forums, and events cross both galaxies. Play whichever you prefer.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- ------------------------------------------------------- FEATURES -->
-<section id="features" class="section">
-  <div class="wrap">
-    <h2>Features</h2>
-    <p class="section-lead">Two galaxies, one community ï¿½ each server offers a unique Star Wars Galaxies experience.</p>
-    <div class="server-cols">
-      <div class="server-box precu-box">
-        <h3>Pre-CU Classic</h3>
-        <ul>
-          <li><strong>Village Jedi Unlock (Knight Trials)</strong> ï¿½ 9 trials to Knighthood</li>
-          <li><strong>Two Jedi Trees:</strong> Light Side or Dark Side</li>
-          <li>Padawan ? Knight ? Master ? Elder progression</li>
-          <li>Force Ranking System (FRS) endgame</li>
-          <li>No death penalty on Jedi status</li>
-          <li style="display:flex;align-items:center;gap:10px;flex-wrap:wrap"><img src="https://51-81-81-116.sslip.io/images/feature-combat.jpg" alt="Combat in-game" style="width:76px;height:56px;object-fit:cover;border-radius:8px;border:1px solid rgba(59,130,246,0.35);flex-shrink:0"><span>5th generation lightsabers supported</span></li>
-          <li><strong>Custom Loot:</strong> exclusive weapons, rare armor sets, unique schematics, and more</li>
-          <li><strong>New content integration</strong> ï¿½ items, quests, and rewards</li>
-          <li><strong>9+ additional planets</strong> beyond the original galaxy</li>
-          <li><strong>8.0ï¿½ XP</strong> solo / grouped</li>
-          <li>200 item cap, improved slicing, junk dealers accept all</li>
-        </ul>
-      </div>
-      <div class="server-box nge-box">
-        <h3>NGE ï¿½ Jump to Lightspeed</h3>
-        <ul>
-          <li>Jump to Lightspeed space combat expansion</li>
-          <li style="display:flex;align-items:center;gap:10px;flex-wrap:wrap"><img src="https://51-81-81-116.sslip.io/images/feature-classes.jpg" alt="Class-based combat in-game" style="width:76px;height:80px;object-fit:cover;border-radius:8px;border:1px solid rgba(59,130,246,0.35);flex-shrink:0"><span>Class-based combat system with all NGE classes</span></li>
-          <li style="display:flex;align-items:center;gap:10px;flex-wrap:wrap"><img src="https://51-81-81-116.sslip.io/images/feature-space.png" alt="Space combat in-game" style="width:76px;height:56px;object-fit:cover;border-radius:8px;border:1px solid rgba(59,130,246,0.35);flex-shrink:0"><span>Full space gameplay ï¿½ pilot starships, dogfight in orbit</span></li>
-          <li style="display:flex;align-items:center;gap:10px;flex-wrap:wrap"><img src="https://51-81-81-116.sslip.io/images/species-thumb.png" alt="New playable species in-game" style="width:76px;height:80px;object-fit:cover;border-radius:8px;border:1px solid rgba(59,130,246,0.35);flex-shrink:0"><span><strong>25+ playable species</strong> ï¿½ Chiss, Nautolan, Twi'lek, Wookiee, Zabrak, Trandoshan, Mon Calamari, Rodian, Nightsister, and more</span></li>
-          <li>Custom content additions and balance improvements</li>
-          <li>Stable server with active development</li>
-          <li style="display:flex;align-items:center;gap:10px;flex-wrap:wrap"><img src="https://51-81-81-116.sslip.io/images/feature-events.jpg" alt="Community gathering in-game" style="width:76px;height:80px;object-fit:cover;border-radius:8px;border:1px solid rgba(59,130,246,0.35);flex-shrink:0"><span>Regular events and community gatherings</span></li>
-          <li>Dedicated staff keeping the galaxy alive</li>
-        </ul>
-        <p style="margin-top:14px;padding-top:14px;border-top:1px solid rgba(59,130,246,0.15);color:#93c5fd;font-size:13px;line-height:1.6;"><i class="fa-solid fa-comments"></i> New to NGE? Head to <strong>Naboo ï¿½ Theed</strong> and type <code>/who</code> in-game ï¿½ you'll spot <strong>Jack Straw</strong>, always happy to help new players get started.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ------------------------------------------------------- DONATIONS -->
-<section class="section alt">
-  <div class="wrap">
-    <h2>Support the Galaxy</h2>
-    <p class="section-lead">Star Wars Galaxies is free to play. We rely on community support to cover the cost of hosting our Pre-CU and NGE servers. To keep the servers running, please donate if you can.</p>
-
-    <div class="donate-meter-card">
-      <div class="donate-meter-label">Pre-CU Monthly Goal</div>
-      <div class="donate-meter-amounts">$<span id="precu-current">0</span> of $<span id="precu-goal">27</span> raised</div>
-      <div class="saber-meter-wrap">
-        <div class="saber-meter">
-          <div class="saber-hilt"></div>
-          <div class="saber-track"><div class="saber-blade" id="precu-blade" style="width:4%"></div></div>
+<main>
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <div class="kicker">Two galaxies. One community.</div>
+        <h1>Return to the Galaxies</h1>
+        <p class="hero-sub">Choose the classic Pre-CU Core3 sandbox or the NGE Jump to Lightspeed experience. Download the launcher, register your account, and join the SWGReturns community.</p>
+        <div class="cta-row">
+          <a class="btn primary" href="download.html"><i class="fa-solid fa-download"></i> Download Launcher</a>
+          <a class="btn blue" href="#get-started"><i class="fa-solid fa-user-plus"></i> Register</a>
+          <a class="btn ghost" href="#patch-notes"><i class="fa-solid fa-scroll"></i> Patch Notes</a>
+        </div>
+        <div class="quick-links" aria-label="Quick links">
+          <a class="quick-link" href="https://51-81-81-116.sslip.io/register.html" target="_blank" rel="noopener">
+            <i class="fa-solid fa-shield-halved"></i><span><strong>Core3 Account</strong><span>Register Pre-CU</span></span>
+          </a>
+          <a class="quick-link" href="https://register.swgtalon.online/addnewuser.php" target="_blank" rel="noopener">
+            <i class="fa-solid fa-satellite-dish"></i><span><strong>NGE Account</strong><span>Register NGE</span></span>
+          </a>
+          <a class="quick-link" href="https://discord.gg/xY5WuwfcFD" target="_blank" rel="noopener">
+            <i class="fa-brands fa-discord"></i><span><strong>Core3 Discord</strong><span>Support and chat</span></span>
+          </a>
+          <a class="quick-link" href="https://discord.gg/6bH9Euw5R9" target="_blank" rel="noopener">
+            <i class="fa-brands fa-discord"></i><span><strong>NGE Discord</strong><span>Events and help</span></span>
+          </a>
         </div>
       </div>
-      <div class="donate-meter-pct"><span id="precu-pct">0</span>% funded</div>
-      <div class="donor-teaser">
-        <div class="donor-teaser-label"><i class="fa-solid fa-trophy"></i> Top Pre-CU Donators</div>
-        <div id="precu-donor-list"><div class="donor-teaser-empty">No public donations yet ï¿½ be the first!</div></div>
-      </div>
-    </div>
 
-    <div class="donate-cols">
-      <div class="donate-box">
-        <h3>Pre-CU</h3>
-        <p class="muted">Keep the classic Pre-CU galaxy alive.</p>
-        <a class="donate-btn" href="https://51-81-81-116.sslip.io/donate.html">Donate to Pre-CU</a>
-      </div>
-      <div class="donate-box">
-        <h3>NGE ï¿½ Jump to Lightspeed</h3>
-        <p class="muted">Keep the NGE galaxy thriving with space combat.</p>
-        <a class="donate-btn" href="https://register.swgtalon.online/donate.php" target="_blank">Donate to NGE</a>
-      </div>
+      <aside class="status-board" aria-label="Server status">
+        <h2><i class="fa-solid fa-tower-broadcast"></i> Live Server Status</h2>
+        <div class="sv-card" id="sv-precu">
+          <div class="sv-head">
+            <div class="sv-name">Core3 Main</div>
+            <div class="sv-indicator" id="ind-precu">Checking</div>
+          </div>
+          <div class="sv-players"><span id="pl-precu">--</span> players online</div>
+          <div class="sv-peak">Peak: <span id="pk-precu">N/A</span> | Uptime: <span id="ut-precu">N/A</span></div>
+        </div>
+        <div class="sv-card" id="sv-nge">
+          <div class="sv-head">
+            <div class="sv-name">NGE Main</div>
+            <div class="sv-indicator" id="ind-nge">Checking</div>
+          </div>
+          <div class="sv-players"><span id="pl-nge">--</span> players online</div>
+          <div class="sv-peak">Peak: <span id="pk-nge">N/A</span> | Uptime: <span id="ut-nge">N/A</span></div>
+        </div>
+      </aside>
     </div>
-    <p class="thank-you" style="text-align:center; color:#888; margin-top:30px;">Thank you for your support ï¿½ every donation keeps the galaxy alive.</p>
-  </div>
-</section>
+  </section>
 
-<!-- ------------------------------------------------------- GET STARTED -->
-<section id="get-started" class="section">
-  <div class="wrap">
-    <h2>Getting Started</h2>
-    <div class="get-started-cols">
-      <div class="gs-step">
-        <div class="gs-num">01</div>
-        <h3>Download the Launcher</h3>
-        <p class="muted">Download and install the SWGReturns launcher.</p>
-        <a class="download-btn" href="download.html">Download Launcher</a>
-        <p class="tip">You'll need a legal SWG client install.</p>
+  <section id="servers" class="section alt">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="kicker">Choose your era</div>
+        <h2>Two Ways to Play</h2>
       </div>
-      <div class="gs-step">
-        <div class="gs-num">02</div>
-        <h3>Register for Pre-CU</h3>
-        <p class="muted">Create your Pre-CU account.</p>
-        <a class="register-btn" href="https://51-81-81-116.sslip.io/register.html" target="_blank">Register for Pre-CU</a>
+      <div class="cards cols-3">
+        <article class="card">
+          <div class="card-icon"><i class="fa-solid fa-mountain-sun"></i></div>
+          <h3>Core3 Pre-CU</h3>
+          <p>Classic sandbox progression, profession-based builds, Jedi village unlock, player economy, custom loot, and expanded planets.</p>
+        </article>
+        <article class="card">
+          <div class="card-icon"><i class="fa-solid fa-jet-fighter"></i></div>
+          <h3>NGE JTL</h3>
+          <p>Jump to Lightspeed, class-based combat, space gameplay, expanded playable species, events, and active development.</p>
+        </article>
+        <article class="card">
+          <div class="card-icon"><i class="fa-solid fa-people-group"></i></div>
+          <h3>Shared Community</h3>
+          <p>One SWGReturns network with Discord support, launcher updates, guides, events, and community tools across both galaxies.</p>
+        </article>
       </div>
-      <div class="gs-step">
-        <div class="gs-num">03</div>
-        <h3>Register for NGE</h3>
-        <p class="muted">Create your NGE account.</p>
-        <a class="register-btn" href="https://register.swgtalon.online/addnewuser.php" target="_blank">Register for NGE</a>
+    </div>
+  </section>
+
+  <section id="features" class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="kicker">Server features</div>
+        <h2>Built for Returning Players</h2>
+      </div>
+      <div class="server-cols">
+        <article class="server-box">
+          <h3>Core3 Main</h3>
+          <ul>
+            <li><strong>Village Jedi Unlock:</strong> nine trials toward Knighthood.</li>
+            <li><strong>Two Jedi Trees:</strong> Light Side and Dark Side progression.</li>
+            <li>Padawan, Knight, Master, and Elder progression paths.</li>
+            <li>Force Ranking System endgame.</li>
+            <li class="media-li"><img class="feature-media" src="https://51-81-81-116.sslip.io/images/feature-combat.jpg" alt="Core3 combat"><span>Fifth generation lightsabers and expanded combat rewards.</span></li>
+            <li>Custom loot, rare armor sets, schematics, extra planets, improved slicing, and a 200 item cap.</li>
+          </ul>
+        </article>
+        <article class="server-box">
+          <h3>NGE Main</h3>
+          <ul>
+            <li class="media-li"><img class="feature-media" src="https://51-81-81-116.sslip.io/images/feature-space.png" alt="Space combat"><span>Jump to Lightspeed space combat with pilot progression.</span></li>
+            <li class="media-li"><img class="feature-media" src="https://51-81-81-116.sslip.io/images/species-thumb.png" alt="Playable species"><span>Expanded playable species including Chiss, Nautolan, Nightsister, and more.</span></li>
+            <li>Class-based NGE combat with all core professions.</li>
+            <li>Custom content additions, balance improvements, and regular events.</li>
+            <li>Dedicated staff keeping the galaxy active.</li>
+          </ul>
+          <p class="inline-note"><i class="fa-solid fa-comments"></i> New to NGE? Head to <strong>Naboo - Theed</strong> and type <code>/who</code> in-game. Look for <strong>Jack Straw</strong> for help getting started.</p>
+        </article>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ------------------------------------------------------- PATCH NOTES -->
-<section id="patch-notes" class="section alt">
-  <div class="wrap">
-    <h2>Patch Notes</h2>
-    <div class="cards">
-      <div class="card"><h3>Core Systems</h3><ul style="list-style:none; padding:0; color:#aaa; font-size:14px;"><li style="padding:4px 0;">Pre-CU combat and profession systems preserved</li><li style="padding:4px 0;">No CU or NGE mechanics enabled</li><li style="padding:4px 0;">Stability and performance improvements</li></ul></div>
-      <div class="card"><h3>Content &amp; Assets</h3><ul style="list-style:none; padding:0; color:#aaa; font-size:14px;"><li style="padding:4px 0;">All Pre-CU assets enabled</li><li style="padding:4px 0;">CU and NGE weapons, armor, vehicles, and decorations added</li><li style="padding:4px 0;">Mustafar and Kashyyyk NPCs and content supported</li><li style="padding:4px 0;">NGE-era housing deeds and schematics enabled</li></ul></div>
-      <div class="card"><h3>Quality of Life</h3><ul style="list-style:none; padding:0; color:#aaa; font-size:14px;"><li style="padding:4px 0;">200 item cap per character</li><li style="padding:4px 0;">Improved loot and drop rates</li><li style="padding:4px 0;">Improved slicing functionality</li><li style="padding:4px 0;">Junk dealers accept all items</li></ul></div>
-      <div class="card"><h3>Website &amp; Account</h3><ul style="list-style:none; padding:0; color:#aaa; font-size:14px;"><li style="padding:4px 0;">Fixed account registration ï¿½ a database mismatch was silently breaking every new Pre-CU signup; registering now correctly creates a working account</li><li style="padding:4px 0;">Site now runs over a fully secure, encrypted connection (HTTPS)</li><li style="padding:4px 0;">Added password recovery, Contact Us, and donation transparency pages with live progress meters</li></ul></div>
-    </div>
-  </div>
-</section>
+  <section id="support" class="section alt">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="kicker">Support the galaxy</div>
+        <h2>Keep the Servers Running</h2>
+        <p class="muted">SWGReturns is free to play. Community support helps cover hosting and service costs for the Pre-CU and NGE servers.</p>
+      </div>
 
-<!-- ------------------------------------------------------- COMMUNITY / DISCORD -->
-<section id="need-help" class="section">
-  <div class="wrap">
-    <h2>Community</h2>
-    <p class="section-lead">Join the galaxy ï¿½ announcements, support, guides, and events all in one place.</p>
-    <div class="community-discord-wrap">
-      <iframe src="https://discord.com/widget?id=1384702301624733787&theme=dark"
-        width="100%" height="500" allowtransparency="true" frameborder="0"
-        sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts">
-      </iframe>
-    </div>
-    <div style="text-align:center; margin-top:20px;">
-      <a class="cta-btn" href="https://discord.gg/xY5WuwfcFD" target="_blank">Core3 Discord</a>
-    </div>
-  </div>
-</section>
+      <div class="donate-meter-card">
+        <div class="donate-meter-label">Pre-CU Monthly Goal</div>
+        <div class="donate-meter-amounts">$<span id="precu-current">0</span> of $<span id="precu-goal">27</span> raised</div>
+        <div class="saber-meter-wrap">
+          <div class="saber-meter">
+            <div class="saber-hilt"></div>
+            <div class="saber-track"><div class="saber-blade" id="precu-blade" style="width:4%"></div></div>
+          </div>
+        </div>
+        <div class="donate-meter-pct"><span id="precu-pct">0</span>% funded</div>
+        <div class="donor-teaser">
+          <div class="donor-teaser-label"><i class="fa-solid fa-trophy"></i> Top Pre-CU Donators</div>
+          <div id="precu-donor-list"><div class="donor-teaser-empty">No public donations yet - be the first.</div></div>
+        </div>
+      </div>
 
-<!-- ------------------------------------------------------- FOOTER -->
+      <div class="donate-cols">
+        <div class="donate-box">
+          <h3>Pre-CU</h3>
+          <p>Keep the classic Core3 galaxy online.</p>
+          <a class="donate-btn" href="https://51-81-81-116.sslip.io/donate.html">Donate to Pre-CU</a>
+        </div>
+        <div class="donate-box">
+          <h3>NGE Jump to Lightspeed</h3>
+          <p>Support the NGE galaxy and space combat server.</p>
+          <a class="donate-btn" href="https://register.swgtalon.online/donate.php" target="_blank" rel="noopener">Donate to NGE</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="get-started" class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="kicker">Get started</div>
+        <h2>Launcher First</h2>
+      </div>
+      <div class="get-started-cols">
+        <article class="gs-step">
+          <div class="gs-num">01</div>
+          <h3>Download the Launcher</h3>
+          <p>The launcher handles patches, updates, and configuration.</p>
+          <a class="download-btn" href="download.html">Download Launcher</a>
+          <p class="tip muted">You need a legal SWG client install.</p>
+        </article>
+        <article class="gs-step">
+          <div class="gs-num">02</div>
+          <h3>Register Core3</h3>
+          <p>Create your Pre-CU Core3 account.</p>
+          <a class="register-btn" href="https://51-81-81-116.sslip.io/register.html" target="_blank" rel="noopener">Register Core3</a>
+        </article>
+        <article class="gs-step">
+          <div class="gs-num">03</div>
+          <h3>Register NGE</h3>
+          <p>Create your NGE account.</p>
+          <a class="register-btn" href="https://register.swgtalon.online/addnewuser.php" target="_blank" rel="noopener">Register NGE</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="patch-notes" class="section alt">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="kicker">Launcher updates</div>
+        <h2>Patch Notes</h2>
+        <p class="muted">These pages are built for the game launcher, so you can update the content without changing the launcher itself.</p>
+      </div>
+      <div class="patch-grid">
+        <article class="patch-card">
+          <div>
+            <h3>Core3 Patch Notes</h3>
+            <p>Latest Core3 launcher-visible update log.</p>
+          </div>
+          <a class="btn blue" href="core3-patch-notes.html">Open Core3 Notes</a>
+          <ul>
+            <li>13th July 2026: Armour, weapons, clothing, and professions added to the new species.</li>
+          </ul>
+        </article>
+        <article class="patch-card">
+          <div>
+            <h3>NGE Patch Notes</h3>
+            <p>Latest NGE launcher-visible update log.</p>
+          </div>
+          <a class="btn blue" href="nge-patch-notes.html">Open NGE Notes</a>
+          <ul>
+            <li>13th July 2026: Armour, weapons, clothing, and professions added to the new species.</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="community" class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="kicker">Community</div>
+        <h2>Join the Cantina</h2>
+        <p class="muted">Announcements, support, guides, and events live in Discord.</p>
+      </div>
+      <div class="community-discord-wrap">
+        <iframe src="https://discord.com/widget?id=1384702301624733787&theme=dark"
+          width="100%" height="500" allowtransparency="true" frameborder="0"
+          sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts">
+        </iframe>
+      </div>
+      <div class="community-actions">
+        <a class="btn blue" href="https://discord.gg/xY5WuwfcFD" target="_blank" rel="noopener"><i class="fa-brands fa-discord"></i> Core3 Discord</a>
+        <a class="btn ghost" href="https://discord.gg/6bH9Euw5R9" target="_blank" rel="noopener"><i class="fa-brands fa-discord"></i> NGE Discord</a>
+      </div>
+    </div>
+  </section>
+</main>
+
 <footer class="site-footer">
   <div class="wrap">
     <p class="footer-brand">SWGReturns</p>
-    <p>&copy; 2025 SWGReturns ï¿½ Fan-made Star Wars Galaxies Pre-CU emulator. Not affiliated with Disney, LucasArts, or Sony Online Entertainment.</p>
+    <p>&copy; 2026 SWGReturns - Fan-made Star Wars Galaxies server network. Not affiliated with Disney, LucasArts, Sony Online Entertainment, or Daybreak Game Company.</p>
     <p class="footer-powered">Powered by <a href="https://thewebsitefactory.store/" target="_blank" rel="noopener">The Website Factory</a></p>
   </div>
 </footer>
 
 <script>
-// -- HIDE SPLASH ON CLICK --
-document.getElementById('splashOverlay').addEventListener('click', function() {
-  this.classList.add('hidden');
-});
-
-// -- Server Status Strip -----------------------------------------
+// -- Splash and disclaimer ------------------------------------------
 (function() {
-  const FALLBACK_DATA = {
-    precu: { online: false, players: '--', peak: 'N/A', uptime: '' },
-    nge: { online: false, players: '--', peak: 'N/A', uptime: '' }
-  };
+  const splash = document.getElementById('splashOverlay');
+  const disc = document.getElementById('disclaimerOverlay');
+  const check = document.getElementById('disclaimerCheck');
+  const accept = document.getElementById('disclaimerAccept');
 
-  const PROXY_URL = 'https://51-81-81-116.sslip.io/api/';
-  const NGE_STATS_URL = 'https://51-81-81-116.sslip.io/api/';
-
-  function updatePreCU(status) {
-    const ind = document.getElementById('ind-precu');
-    const pl = document.getElementById('pl-precu');
-    const pk = document.getElementById('pk-precu');
-    const ut = document.getElementById('ut-precu');
-    if (!ind) return;
-
-    if (status && status.online) {
-      ind.className = 'sv-indicator online';
-      ind.textContent = 'Online';
-      if (pl) pl.textContent = status.players || '0';
-      if (pk) pk.textContent = status.peak || 'N/A';
-      if (ut) ut.textContent = status.uptime || '';
-    } else {
-      ind.className = 'sv-indicator offline';
-      ind.textContent = 'Offline';
-      if (pl) pl.textContent = '0';
-      if (pk) pk.textContent = 'N/A';
-      if (ut) ut.textContent = 'N/A';
-    }
+  if (splash) {
+    splash.addEventListener('click', function() {
+      splash.classList.add('hidden');
+      if (localStorage.getItem('swgr_disclaimer') !== '1' && disc) {
+        disc.classList.add('show');
+        document.body.style.overflow = 'hidden';
+      }
+    });
   }
 
-  function updateNGE(data) {
-    var ind = document.getElementById('ind-nge');
-    var pl = document.getElementById('pl-nge');
-    var pk = document.getElementById('pk-nge');
-    var ut = document.getElementById('ut-nge');
+  if (check && accept) {
+    check.addEventListener('change', function() {
+      accept.disabled = !this.checked;
+    });
+  }
+
+  if (accept && disc) {
+    accept.addEventListener('click', function() {
+      localStorage.setItem('swgr_disclaimer', '1');
+      disc.classList.remove('show');
+      document.body.style.overflow = '';
+    });
+  }
+})();
+
+// -- Server status ---------------------------------------------------
+(function() {
+  const FALLBACK_DATA = {
+    precu: { online: false, players: '--', peak: 'N/A', uptime: 'N/A' },
+    nge: { online: false, players: '--', peak: 'N/A', uptime: 'N/A' }
+  };
+
+  const STATUS_URL = 'https://51-81-81-116.sslip.io/api/';
+
+  function updateServer(prefix, data) {
+    const ind = document.getElementById('ind-' + prefix);
+    const pl = document.getElementById('pl-' + prefix);
+    const pk = document.getElementById('pk-' + prefix);
+    const ut = document.getElementById('ut-' + prefix);
     if (!ind) return;
 
-    var online = data && (data.online || data.server_online);
-    var players = data ? (data.players || data.players_online_approx || '0') : '0';
-    var peak = data ? (data.peak || data.online_player_limit || 'N/A') : 'N/A';
-    var uptime = data ? (data.uptime || formatUptime(data.uptime_seconds) || 'N/A') : 'N/A';
+    const online = data && (data.online || data.server_online);
+    const players = data ? (data.players || data.players_online_approx || '0') : '0';
+    const peak = data ? (data.peak || data.online_player_limit || 'N/A') : 'N/A';
+    const uptime = data ? (data.uptime || formatUptime(data.uptime_seconds) || 'N/A') : 'N/A';
 
     ind.className = online ? 'sv-indicator online' : 'sv-indicator offline';
     ind.textContent = online ? 'Online' : 'Offline';
@@ -788,73 +1099,31 @@ document.getElementById('splashOverlay').addEventListener('click', function() {
 
   function formatUptime(seconds) {
     if (!seconds || seconds <= 0) return 'N/A';
-    var h = Math.floor(seconds / 3600);
-    var m = Math.floor((seconds % 3600) / 60);
-    if (h > 0) return h + 'h ' + m + 'm';
-    return m + 'm';
+    const h = Math.floor(seconds / 3600);
+    const m = Math.floor((seconds % 3600) / 60);
+    return h > 0 ? h + 'h ' + m + 'm' : m + 'm';
   }
 
-  async function fetchPreCUStatus() {
+  async function fetchStatus(server) {
     try {
-      var response = await fetch(PROXY_URL + '?server=precu&_=' + Date.now());
+      const response = await fetch(STATUS_URL + '?server=' + server + '&_=' + Date.now());
       if (!response.ok) throw new Error('HTTP ' + response.status);
       return await response.json();
     } catch (e) {
-      return FALLBACK_DATA.precu;
-    }
-  }
-
-  async function fetchNGEStatus() {
-    try {
-      var response = await fetch(NGE_STATS_URL + '?server=nge&_=' + Date.now());
-      if (!response.ok) throw new Error('HTTP ' + response.status);
-      return await response.json();
-    } catch (e) {
-      return FALLBACK_DATA.nge;
+      return FALLBACK_DATA[server];
     }
   }
 
   async function refreshAllServers() {
-    var precuStatus = await fetchPreCUStatus();
-    var ngeData = await fetchNGEStatus();
-    updatePreCU(precuStatus);
-    updateNGE(ngeData);
+    updateServer('precu', await fetchStatus('precu'));
+    updateServer('nge', await fetchStatus('nge'));
   }
 
   refreshAllServers();
   setInterval(refreshAllServers, 15000);
 })();
 
-// -- Splash & Disclaimer --------------------------------------------
-(function() {
-  const splash = document.getElementById('splashOverlay');
-  const disc   = document.getElementById('disclaimerOverlay');
-  const check  = document.getElementById('disclaimerCheck');
-  const accept = document.getElementById('disclaimerAccept');
-  
-  splash.addEventListener('click', function() {
-    if (localStorage.getItem('swgr_disclaimer') !== '1') {
-      disc.classList.add('show');
-      document.body.style.overflow = 'hidden';
-    }
-  });
-
-  if (check) {
-    check.addEventListener('change', function() {
-      accept.disabled = !this.checked;
-    });
-  }
-
-  if (accept) {
-    accept.addEventListener('click', function() {
-      localStorage.setItem('swgr_disclaimer', '1');
-      disc.classList.remove('show');
-      document.body.style.overflow = '';
-    });
-  }
-})();
-
-// -- PRE-CU DONATION METER --
+// -- Donation meter --------------------------------------------------
 (function() {
   const STATUS_URL = 'https://51-81-81-116.sslip.io/api/don/donation_status';
 
@@ -868,17 +1137,20 @@ document.getElementById('splashOverlay').addEventListener('click', function() {
       if (!res.ok) throw new Error('HTTP ' + res.status);
       const data = await res.json();
 
-      document.getElementById('precu-current').textContent = Number(data.current || 0).toFixed(2);
-      document.getElementById('precu-goal').textContent = Number(data.goal || 27).toFixed(0);
-      document.getElementById('precu-pct').textContent = data.pct || 0;
-
+      const current = document.getElementById('precu-current');
+      const goal = document.getElementById('precu-goal');
+      const pctText = document.getElementById('precu-pct');
       const blade = document.getElementById('precu-blade');
-      const pct = Math.max(4, Math.min(100, data.pct || 0));
-      blade.style.width = pct + '%';
-      blade.classList.toggle('full', (data.pct || 0) >= 100);
-
       const listEl = document.getElementById('precu-donor-list');
-      if (data.top_donors && data.top_donors.length) {
+
+      if (current) current.textContent = Number(data.current || 0).toFixed(2);
+      if (goal) goal.textContent = Number(data.goal || 27).toFixed(0);
+      if (pctText) pctText.textContent = data.pct || 0;
+      if (blade) {
+        const pct = Math.max(4, Math.min(100, data.pct || 0));
+        blade.style.width = pct + '%';
+      }
+      if (listEl && data.top_donors && data.top_donors.length) {
         listEl.innerHTML = data.top_donors.map((d, i) =>
           '<div class="donor-teaser-row"><span class="dt-rank">#' + (i + 1) + '</span>' +
           '<span class="dt-name">' + escapeHtml(d.username) + '</span>' +
@@ -894,7 +1166,7 @@ document.getElementById('splashOverlay').addEventListener('click', function() {
   setInterval(refreshDonationMeter, 30000);
 })();
 
-// -- MOBILE HAMBURGER TOGGLE --
+// -- Mobile navigation ----------------------------------------------
 (function () {
   const btn = document.getElementById('hamburger');
   const nav = document.getElementById('top-nav');
@@ -902,13 +1174,11 @@ document.getElementById('splashOverlay').addEventListener('click', function() {
 
   btn.addEventListener('click', () => {
     const open = nav.classList.toggle('open');
-    btn.classList.toggle('active', open);
     btn.setAttribute('aria-expanded', String(open));
   });
 
   nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
     nav.classList.remove('open');
-    btn.classList.remove('active');
     btn.setAttribute('aria-expanded', 'false');
   }));
 })();
