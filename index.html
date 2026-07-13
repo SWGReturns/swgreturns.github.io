@@ -613,6 +613,7 @@
       padding: 20px;
     }
     #splashOverlay.hidden { display: none; }
+    #splashOverlay.ready .splash-click { opacity: 1; transform: translateY(0); }
     .splash-inner,
     .disclaimer-card {
       width: min(560px, 100%);
@@ -646,9 +647,23 @@
       border-radius: 99px;
     }
     .splash-bar-fill {
-      width: 66%;
+      width: var(--load-progress, 0%);
       height: 100%;
       background: linear-gradient(90deg, var(--gold), var(--blue));
+      box-shadow: 0 0 18px rgba(94, 182, 255, 0.75);
+      transition: width .28s ease;
+    }
+    .splash-percent {
+      color: var(--gold);
+      font-family: "Orbitron", sans-serif;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      margin-top: 10px;
+    }
+    .splash-click {
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity .25s ease, transform .25s ease;
     }
     .dot {
       display: inline-block;
@@ -748,7 +763,8 @@
     <div class="splash-title">SWGReturns</div>
     <div class="splash-sub">Classic Pre-CU and NGE</div>
     <div class="splash-bar"><div class="splash-bar-fill"></div></div>
-    <div class="splash-status"><span class="dot"></span> Main servers online</div>
+    <div class="splash-percent" id="splashPercent">0%</div>
+    <div class="splash-status"><span class="dot"></span> <span id="splashStatusText">Connecting to galaxy network...</span></div>
     <div class="splash-click">Click anywhere to begin</div>
   </div>
 </div>
@@ -1043,9 +1059,36 @@
   const disc = document.getElementById('disclaimerOverlay');
   const check = document.getElementById('disclaimerCheck');
   const accept = document.getElementById('disclaimerAccept');
+  const percent = document.getElementById('splashPercent');
+  const statusText = document.getElementById('splashStatusText');
+  let splashReady = false;
+
+  const loadingSteps = [
+    { pct: 18, text: 'Checking launcher channels...' },
+    { pct: 36, text: 'Loading Core3 systems...' },
+    { pct: 58, text: 'Loading NGE systems...' },
+    { pct: 78, text: 'Syncing patch notes...' },
+    { pct: 100, text: 'Main servers online' }
+  ];
+
+  if (splash) {
+    splash.style.setProperty('--load-progress', '0%');
+    loadingSteps.forEach((step, index) => {
+      window.setTimeout(() => {
+        splash.style.setProperty('--load-progress', step.pct + '%');
+        if (percent) percent.textContent = step.pct + '%';
+        if (statusText) statusText.textContent = step.text;
+        if (step.pct === 100) {
+          splashReady = true;
+          splash.classList.add('ready');
+        }
+      }, 360 + index * 420);
+    });
+  }
 
   if (splash) {
     splash.addEventListener('click', function() {
+      if (!splashReady) return;
       splash.classList.add('hidden');
       if (localStorage.getItem('swgr_disclaimer') !== '1' && disc) {
         disc.classList.add('show');
