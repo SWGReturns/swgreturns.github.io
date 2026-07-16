@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Support Pre-CU | SWGReturns</title>
+<meta name="description" content="Support the SWGReturns Pre-CU server. Your donation keeps the classic Star Wars Galaxies sandbox running.">
+<meta property="og:title" content="Support Pre-CU — SWGReturns">
+<meta property="og:description" content="Keep the classic Star Wars Galaxies Pre-CU sandbox online — every dollar goes straight to hosting.">
+<meta property="og:image" content="images/vaderdeathstar.jpg">
+<meta property="og:url" content="donate.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="SWGReturns">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Support Pre-CU — SWGReturns">
+<meta name="twitter:description" content="Support the SWGReturns Pre-CU server. Your donation keeps the classic Star Wars Galaxies sandbox running.">
+<meta name="twitter:image" content="images/vaderdeathstar.jpg">
+<link rel="icon" href="https://swgtalon.online/assets/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" referrerpolicy="no-referrer">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #0a0c12;
+  color: #e0e0e0;
+  min-height: 100vh;
+  padding: 40px 20px;
+}
+.wrap { max-width: 720px; margin: 0 auto; }
+.back-link { display: inline-flex; align-items: center; gap: 8px; color: #60a5fa; text-decoration: none; font-size: 14px; margin-bottom: 24px; }
+.back-link:hover { text-decoration: underline; }
+h1 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 32px;
+  font-weight: 900;
+  background: linear-gradient(135deg, #60a5fa, #3b82f6);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-bottom: 8px;
+  text-align: center;
+}
+.sub { text-align: center; color: #aaa; font-size: 15px; margin-bottom: 32px; }
+
+.card { background: rgba(20,22,32,0.9); border: 1px solid rgba(59,130,246,0.3); border-radius: 16px; padding: 36px; margin-bottom: 20px; }
+
+.meter-label { font-size: 12px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: #60a5fa; margin-bottom: 8px; text-align: center; }
+.meter-amounts { font-size: 26px; font-weight: 700; color: #fff; margin-bottom: 16px; text-align: center; }
+.saber-meter { display: flex; align-items: center; height: 22px; max-width: 480px; margin: 0 auto; }
+.saber-hilt { width: 38px; height: 18px; flex-shrink: 0; border-radius: 5px 3px 3px 5px; background: linear-gradient(180deg,#5a5a5a,#242424); border: 1px solid rgba(255,255,255,.18); position: relative; z-index: 2; box-shadow: inset 0 1px 1px rgba(255,255,255,.25), 0 2px 8px rgba(0,0,0,.55); }
+.saber-hilt::before { content:''; position:absolute; left:6px; top:50%; width:5px; height:5px; border-radius:50%; transform:translateY(-50%); background:#f59e0b; box-shadow:0 0 7px #f59e0b; }
+.saber-hilt::after { content:''; position:absolute; right:3px; top:3px; bottom:3px; width:2px; background:rgba(255,255,255,.3); border-radius:1px; }
+.saber-track { flex:1; height:14px; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.08); border-left:none; border-radius:0 7px 7px 0; overflow:hidden; position:relative; }
+.saber-blade { position:relative; height:100%; min-width:8px; border-radius:0 7px 7px 0; background:linear-gradient(90deg,#3b82f6,#60a5fa); box-shadow:0 0 14px 2px rgba(59,130,246,.65), 0 0 26px 6px rgba(96,165,250,.32); transition:width 1.2s ease; }
+.saber-blade::after { content:''; position:absolute; top:50%; left:0; right:0; height:3px; transform:translateY(-50%); background:rgba(255,255,255,.92); border-radius:2px; }
+.saber-blade.full { background:linear-gradient(90deg,#4caf50,#8dffce); box-shadow:0 0 14px 2px rgba(76,175,80,.65), 0 0 26px 6px rgba(76,175,80,.32); }
+.meter-pct { font-size: 13px; color: #aaa; margin-top: 8px; text-align: center; }
+
+.section-label { font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #60a5fa; margin-bottom: 14px; }
+.amounts-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 20px; }
+.amount-opt { position: relative; }
+.amount-opt input { position: absolute; opacity: 0; width: 0; height: 0; }
+.amount-opt label { display: block; padding: 14px; border: 1px solid rgba(59,130,246,0.25); border-radius: 10px; text-align: center; cursor: pointer; font-size: 17px; font-weight: 600; color: #aaa; transition: all .18s; background: rgba(255,255,255,.02); }
+.amount-opt input:checked + label { border-color: #f59e0b; color: #f59e0b; background: rgba(245,158,11,.1); }
+.amount-opt label:hover { border-color: rgba(59,130,246,0.5); color: #fff; }
+
+.field { margin-bottom: 16px; }
+.field label { display: block; font-size: 13px; font-weight: 600; color: #93c5fd; margin-bottom: 6px; }
+.field input { width: 100%; padding: 11px 14px; background: rgba(3,10,24,.8); border: 1px solid rgba(59,130,246,0.25); border-radius: 9px; color: #fff; font-size: 15px; outline: none; }
+.field input:focus { border-color: #60a5fa; box-shadow: 0 0 0 3px rgba(59,130,246,.15); }
+.checkline { display: flex; align-items: flex-start; gap: 9px; margin-top: 10px; font-size: 13px; color: #aaa; }
+.checkline input { margin-top: 3px; }
+
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 14px 20px; border-radius: 10px; width: 100%; font-weight: 700; font-size: 15px; border: 1px solid transparent; text-decoration: none; cursor: pointer; transition: all .2s; }
+.btn-gold { background: linear-gradient(135deg, #f59e0b, #d97706); color: #fff; margin-top: 8px; }
+.btn-gold:hover { background: linear-gradient(135deg, #ffb020, #f59e0b); }
+.btn-ghost { background: rgba(255,255,255,.05); color: #aaa; border-color: rgba(59,130,246,0.2); margin-top: 10px; }
+.btn-ghost:hover { color: #fff; border-color: rgba(96,165,250,0.5); }
+
+.donor-row { display: flex; align-items: center; gap: 12px; padding: 11px 14px; background: rgba(255,255,255,.02); border: 1px solid rgba(59,130,246,0.15); border-radius: 10px; margin-bottom: 8px; flex-wrap: wrap; }
+.donor-rank { font-weight: 700; color: #f59e0b; width: 26px; flex-shrink: 0; }
+.donor-name { font-weight: 600; color: #e0e0e0; flex: 1; min-width: 110px; }
+.donor-tier { font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 20px; background: rgba(96,165,250,.1); color: #60a5fa; border: 1px solid rgba(96,165,250,.25); white-space: nowrap; }
+.donor-total { font-weight: 700; color: #f59e0b; flex-shrink: 0; }
+.donor-empty { font-size: 14px; color: #888; }
+
+.note { font-size: 13px; color: #aaa; line-height: 1.7; background: rgba(59,130,246,.05); border: 1px solid rgba(59,130,246,.15); border-radius: 10px; padding: 14px 16px; }
+/* Current Core3 site theme */
+:root{--bg:#05070b;--panel:rgba(9,15,24,.90);--panel-strong:rgba(12,19,30,.95);--line:rgba(116,154,188,.24);--line-bright:rgba(242,203,115,.58);--text:#eef4ff;--muted:#9aaabc;--blue:#5eb6ff;--gold:#f2cb73;--green:#66d98c;--shadow:0 22px 80px rgba(0,0,0,.42)}
+body{padding:0;background:radial-gradient(circle at 22% 0%,rgba(94,182,255,.13),transparent 30%),linear-gradient(180deg,#05070b 0%,#080d15 42%,#05070b 100%);color:var(--text);font-family:"Rajdhani","Segoe UI",Arial,sans-serif;font-size:17px;line-height:1.5}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;background:linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.014) 1px,transparent 1px);background-size:48px 48px;mask-image:linear-gradient(to bottom,rgba(0,0,0,.65),transparent 78%);z-index:-1}
+.wrap{width:min(1040px,calc(100% - 32px));max-width:none}
+.site-header{position:sticky;top:0;z-index:50;background:rgba(4,7,12,.92);border-bottom:1px solid rgba(242,203,115,.24);backdrop-filter:blur(16px)}
+.command-bar{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.brand{display:inline-flex;align-items:center;gap:12px;color:var(--text);text-decoration:none;font-family:"Orbitron",sans-serif;font-weight:900;text-transform:uppercase}
+.brand img{width:46px;height:46px;object-fit:contain;filter:drop-shadow(0 0 14px rgba(94,182,255,.42))}
+.top-nav{display:flex;gap:7px;flex-wrap:wrap}
+.top-nav a{min-height:40px;display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:10px 14px;border:1px solid var(--line);border-radius:6px;background:rgba(255,255,255,.045);color:#dbe8f8;text-decoration:none;text-transform:uppercase;font-size:13px;font-weight:800;letter-spacing:.05em}
+.top-nav a:hover{border-color:var(--line-bright);background:rgba(242,203,115,.10);color:#fff}
+.top-nav a.primary{color:#0b0d11;background:linear-gradient(180deg,#ffe5a8,#d69b35);border-color:rgba(255,232,178,.85)}
+.page-shell{padding:64px 0}
+.back-link{display:none}
+h1{color:#fff;background:none;font-size:clamp(34px,6vw,58px);text-transform:uppercase;letter-spacing:0}
+.sub{color:#c5d1df;font-size:19px;max-width:720px;margin-left:auto;margin-right:auto}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:7px;box-shadow:0 16px 45px rgba(0,0,0,.22)}
+.meter-label,.section-label{color:var(--gold);font-family:"Orbitron",sans-serif}
+.meter-amounts{font-family:"Orbitron",sans-serif}
+.saber-blade{background:linear-gradient(90deg,#f2cb73,#fff1bf);box-shadow:0 0 14px 2px rgba(242,203,115,.55),0 0 26px 6px rgba(242,203,115,.24)}
+.amount-opt label,.field input,.donor-row{border-color:var(--line);border-radius:7px;background:rgba(255,255,255,.045)}
+.amount-opt input:checked+label{border-color:var(--line-bright);color:var(--gold);background:rgba(242,203,115,.10)}
+.field label{color:#dbe8f8;text-transform:uppercase;letter-spacing:.05em}
+.field input:focus{border-color:var(--line-bright);box-shadow:0 0 0 3px rgba(242,203,115,.12)}
+.btn{border-radius:6px;text-transform:uppercase;letter-spacing:.05em}
+.btn-gold{color:#0b0d11;background:linear-gradient(180deg,#ffe5a8,#d69b35);border-color:rgba(255,232,178,.85)}
+.btn-gold:hover{background:linear-gradient(180deg,#fff0bf,#d69b35)}
+.btn-ghost{background:rgba(255,255,255,.045);color:#dbe8f8;border-color:var(--line)}
+.btn-ghost:hover{border-color:var(--line-bright);background:rgba(242,203,115,.10)}
+.note{border-color:var(--line);background:rgba(94,182,255,.055);color:#c5d1df}
+@media(max-width:640px){.top-nav a{width:100%}.command-bar{padding:12px 0}.page-shell{padding:42px 0}.amounts-grid{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap command-bar">
+    <a class="brand" href="index.html"><img src="https://swgtalon.online/assets/logo.png" alt="SWGReturns logo">SWGReturns</a>
+    <nav class="top-nav" aria-label="Main navigation">
+      <a href="index.html"><i class="fa-solid fa-house"></i> Home</a>
+      <a class="primary" href="register.html"><i class="fa-solid fa-user-plus"></i> Register</a>
+      <a href="forgot_password.html"><i class="fa-solid fa-key"></i> Forgot</a>
+      <a href="download.html"><i class="fa-solid fa-download"></i> Downloads</a>
+      <a href="bounties.html"><i class="fa-solid fa-crosshairs"></i> Bounties</a>
+      <a href="contact.html"><i class="fa-solid fa-envelope"></i> Contact</a>
+    </nav>
+  </div>
+</header>
+<main class="wrap page-shell">
+  <h1>Support Pre-CU</h1>
+  <p class="sub">Keep the classic Star Wars Galaxies Pre-CU sandbox online &mdash; every dollar goes straight to hosting.</p>
+
+  <div class="card">
+    <div class="meter-label">Monthly Goal</div>
+    <div class="meter-amounts">$<span id="donate-current">0</span> of $<span id="donate-goal">27</span> raised</div>
+    <div class="saber-meter">
+      <div class="saber-hilt"></div>
+      <div class="saber-track"><div class="saber-blade" id="donate-blade" style="width:4%"></div></div>
+    </div>
+    <div class="meter-pct"><span id="donate-pct">0</span>% of monthly goal</div>
+  </div>
+
+  <div class="card">
+    <div class="section-label">Choose Amount (USD)</div>
+    <form id="donateForm">
+      <div class="amounts-grid">
+        <div class="amount-opt"><input type="radio" name="amount" id="amt5" value="5"><label for="amt5">$5</label></div>
+        <div class="amount-opt"><input type="radio" name="amount" id="amt10" value="10" checked><label for="amt10">$10</label></div>
+        <div class="amount-opt"><input type="radio" name="amount" id="amt15" value="15"><label for="amt15">$15</label></div>
+        <div class="amount-opt"><input type="radio" name="amount" id="amt20" value="20"><label for="amt20">$20</label></div>
+        <div class="amount-opt"><input type="radio" name="amount" id="amt25" value="25"><label for="amt25">$25</label></div>
+        <div class="amount-opt"><input type="radio" name="amount" id="amt50" value="50"><label for="amt50">$50</label></div>
+      </div>
+
+      <div class="field">
+        <label>In-Game / Site Username <span style="color:#666;font-weight:400">(optional)</span></label>
+        <input type="text" id="username" placeholder="e.g. JediMaster99" pattern="[A-Za-z0-9_]{0,64}" maxlength="64">
+        <label class="checkline">
+          <input type="checkbox" id="showPublic">
+          Show my username on the public Top Donators list above.
+        </label>
+      </div>
+
+      <button type="submit" class="btn btn-gold"><i class="fa-brands fa-paypal"></i> Continue to PayPal</button>
+      <a href="index.html" class="btn btn-ghost"><i class="fa-solid fa-house"></i> Back Home</a>
+    </form>
+  </div>
+
+  <div class="card">
+    <div class="section-label"><i class="fa-solid fa-trophy"></i> Top Pre-CU Donators</div>
+    <div id="donor-list"><div class="donor-empty">No public donations yet &mdash; be the first to appear here!</div></div>
+  </div>
+
+  <div class="note">
+    <i class="fa-solid fa-circle-info"></i>
+    100% of Pre-CU donations go directly to Ben's hosting costs for this server. Donations are tracked automatically via PayPal &mdash; the meter and leaderboard above update within a minute or two of a completed payment.
+  </div>
+</main>
+
+<script>
+// TODO: replace with Ben's actual PayPal business email or merchant ID once available.
+const BUSINESS_ID = 'REPLACE_WITH_BENS_PAYPAL_EMAIL';
+const STATUS_URL = 'https://51-81-81-116.sslip.io/api/don/donation_status';
+const IPN_URL = 'https://51-81-81-116.sslip.io/api/don/paypal_ipn';
+
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+async function refreshStatus() {
+  try {
+    const res = await fetch(STATUS_URL + '?_=' + Date.now());
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const data = await res.json();
+
+    document.getElementById('donate-current').textContent = Number(data.current || 0).toFixed(2);
+    document.getElementById('donate-goal').textContent = Number(data.goal || 27).toFixed(0);
+    document.getElementById('donate-pct').textContent = data.pct || 0;
+
+    const blade = document.getElementById('donate-blade');
+    blade.style.width = Math.max(4, Math.min(100, data.pct || 0)) + '%';
+    blade.classList.toggle('full', (data.pct || 0) >= 100);
+
+    const listEl = document.getElementById('donor-list');
+    if (data.top_donors && data.top_donors.length) {
+      listEl.innerHTML = data.top_donors.map((d, i) =>
+        '<div class="donor-row"><span class="donor-rank">#' + (i + 1) + '</span>' +
+        '<span class="donor-name">' + escapeHtml(d.username) + '</span>' +
+        '<span class="donor-tier">' + escapeHtml(d.tier) + '</span>' +
+        '<span class="donor-total">$' + Number(d.total).toFixed(0) + '</span></div>'
+      ).join('');
+    }
+  } catch (e) {
+    console.warn('Status fetch failed:', e);
+  }
+}
+refreshStatus();
+setInterval(refreshStatus, 30000);
+
+document.getElementById('donateForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const amount = document.querySelector('input[name="amount"]:checked').value;
+  const username = document.getElementById('username').value.trim().replace(/[^A-Za-z0-9_]/g, '');
+  const showPublic = document.getElementById('showPublic').checked;
+
+  const params = new URLSearchParams({
+    cmd: '_donations',
+    business: BUSINESS_ID,
+    currency_code: 'USD',
+    amount: amount,
+    item_name: 'SWGReturns Pre-CU Server Support',
+    notify_url: IPN_URL,
+    return: 'donate.html?thanks=1',
+    cancel_return: 'donate.html'
+  });
+
+  if (username) {
+    const custom = new URLSearchParams({ username: username, show_public: showPublic ? '1' : '0' });
+    params.set('custom', custom.toString());
+  }
+
+  window.location.href = 'https://www.paypal.com/cgi-bin/webscr?' + params.toString();
+});
+</script>
+</body>
+</html>

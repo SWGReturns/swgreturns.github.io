@@ -1,0 +1,14 @@
+{
+  "galaxy": "nge",
+  "title": "NGE Live Bounties",
+  "updated_at": "2026-07-13T23:50:17Z",
+  "refresh_seconds": 900,
+  "count": 0,
+  "online_count": 0,
+  "total_reward": 0,
+  "claimed_today": 0,
+  "claimed_label": "NGE Oracle bounty table currently has no active targets",
+  "danger_basis": "NGE Oracle BOUNTY_HUNTER_TARGETS currently has 0 rows. Character table currently has 31 characters.",
+  "character_count": 31,
+  "bounties": []
+}
