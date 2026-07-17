@@ -56,14 +56,17 @@ function fetchJsonStatus(serverKey) {
                 const status = source.server_status || {};
                 const players = source.players || {};
                 const uptime = source.uptime || {};
+                const sourceTime = source.updated_at ? Date.parse(source.updated_at) : 0;
+                const stale = !sourceTime || (Date.now() - sourceTime) > 30 * 60 * 1000;
                 const online = Boolean(status.overall_online || status.game_online);
                 cache[serverKey] = {
                     online,
-                    players: String(players.online ?? 0),
-                    peak: String(players.online ?? 0),
-                    uptime: formatSeconds(uptime.game_uptime_seconds),
+                    players: stale ? '0' : String(players.online ?? 0),
+                    peak: stale ? 'N/A' : String(players.online ?? 0),
+                    uptime: stale ? '' : formatSeconds(uptime.game_uptime_seconds),
                     server: config.name,
                     source_updated_at: source.updated_at || null,
+                    source_stale: stale,
                     cachedAt: Date.now()
                 };
                 cacheReady[serverKey] = true;
