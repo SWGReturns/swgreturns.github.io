@@ -1,10 +1,11 @@
 const net = require('net');
 const http = require('http');
+const https = require('https');
 const url = require('url');
 
 const SERVERS = {
     precu: { ip: '51.81.81.116', port: 44455, name: 'Pre-CU Main', type: 'core3' },
-    nge: { ip: '109.228.61.26', port: 44455, name: 'NGE Main', type: 'core3' }
+    nge: { url: 'https://register.swgtalon.online/status.json', name: 'NGE Main', type: 'json' }
 };
 
 const cache = {};
@@ -34,11 +35,50 @@ function setServerOffline(serverKey) {
 
 function fetchServerStatus(serverKey) {
     const config = SERVERS[serverKey];
-    if (config.type === 'http') {
+    if (config.type === 'json') {
+        fetchJsonStatus(serverKey);
+    } else if (config.type === 'http') {
         fetchHttpStatus(serverKey);
     } else {
         fetchCore3Status(serverKey);
     }
+}
+
+function fetchJsonStatus(serverKey) {
+    const config = SERVERS[serverKey];
+    const client = config.url.startsWith('https:') ? https : http;
+    const req = client.get(config.url + '?_=' + Date.now(), (res) => {
+        let data = '';
+        res.on('data', (chunk) => { data += chunk; });
+        res.on('end', () => {
+            try {
+                const source = JSON.parse(data);
+                const status = source.server_status || {};
+                const players = source.players || {};
+                const uptime = source.uptime || {};
+                const online = Boolean(status.overall_online || status.game_online);
+                cache[serverKey] = {
+                    online,
+                    players: String(players.online ?? 0),
+                    peak: String(players.online ?? 0),
+                    uptime: formatSeconds(uptime.game_uptime_seconds),
+                    server: config.name,
+                    source_updated_at: source.updated_at || null,
+                    cachedAt: Date.now()
+                };
+                cacheReady[serverKey] = true;
+            } catch (e) {
+                setServerOffline(serverKey);
+            }
+        });
+    });
+    req.setTimeout(5000, () => {
+        req.destroy();
+        setServerOffline(serverKey);
+    });
+    req.on('error', () => {
+        setServerOffline(serverKey);
+    });
 }
 
 function fetchHttpStatus(serverKey) {
@@ -153,6 +193,15 @@ function parseXMLStatus(xml) {
     }
 
     return result;
+}
+
+function formatSeconds(seconds) {
+    seconds = Number(seconds || 0);
+    if (!seconds || seconds <= 0) return '';
+    const hours = Math.floor(seconds / 3600);
+    const minutes = Math.floor((seconds % 3600) / 60);
+    const days = Math.floor(hours / 24);
+    return days > 0 ? `${days}d ${hours % 24}h` : `${hours}h ${minutes}m`;
 }
 
 function refreshAll() {
