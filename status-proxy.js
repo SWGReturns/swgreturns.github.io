@@ -1,11 +1,12 @@
 const net = require('net');
+const fs = require('fs');
 const http = require('http');
 const https = require('https');
 const url = require('url');
 
 const SERVERS = {
     precu: { ip: '51.81.81.116', port: 44455, name: 'Pre-CU Main', type: 'core3' },
-    nge: { url: 'https://register.swgtalon.online/status.json', name: 'NGE Main', type: 'json' }
+    nge: { url: 'http://109.228.61.26:4458/', name: 'NGE Main', type: 'json' }
 };
 
 const cache = {};
@@ -19,6 +20,19 @@ for (const key of Object.keys(SERVERS)) {
 }
 
 const REFRESH_INTERVAL = 15000;
+const NGE_UPTIME_CACHE = '/var/www/html/nge-uptime.json';
+
+function readNgeUptimeCache() {
+    try {
+        const raw = fs.readFileSync(NGE_UPTIME_CACHE, 'utf8');
+        const cache = JSON.parse(raw);
+        const updated = cache.updated_at ? Date.parse(cache.updated_at) : 0;
+        if (!updated || (Date.now() - updated) > 5 * 60 * 1000) return null;
+        return cache;
+    } catch (e) {
+        return null;
+    }
+}
 
 function setServerOffline(serverKey) {
     const config = SERVERS[serverKey];
@@ -53,18 +67,60 @@ function fetchJsonStatus(serverKey) {
         res.on('end', () => {
             try {
                 const source = JSON.parse(data);
+                const uptimeCache = serverKey === 'nge' ? readNgeUptimeCache() : null;
+                if (typeof source.players !== 'undefined' && typeof source.uptime_seconds !== 'undefined') {
+                    const uptimeSeconds = uptimeCache?.game_uptime_seconds || source.uptime_seconds || 0;
+                    cache[serverKey] = {
+                        online: Boolean(source.online || source.server_online),
+                        players: String(source.players ?? source.players_online ?? 0),
+                        peak: 'N/A',
+                        uptime: formatSeconds(uptimeSeconds),
+                        server: config.name,
+                        recentActivity: Array.isArray(source.recent_activity) ? source.recent_activity.slice(0, 10) : [],
+                        topPlayers: Array.isArray(source.top_players) ? source.top_players.slice(0, 10) : [],
+                        source_updated_at: source.updated_at || null,
+                        source_stale: false,
+                        cachedAt: Date.now()
+                    };
+                    cacheReady[serverKey] = true;
+                    return;
+                }
+                if (typeof source.onlinePlayers !== 'undefined' || Array.isArray(source.recentActivity)) {
+                    const sourceTime = source.updatedAt ? Date.parse(source.updatedAt) : 0;
+                    const stale = !sourceTime || (Date.now() - sourceTime) > 30 * 60 * 1000;
+                    const uptimeSeconds = uptimeCache?.game_uptime_seconds || source.gameUptimeSeconds || uptimeCache?.host_uptime_seconds || source.hostUptimeSeconds || 0;
+                    const online = Boolean(uptimeCache || source.gameOnline || source.loginOnline);
+                    const playersOnline = stale ? 0 : Number(source.onlinePlayers || 0);
+                    cache[serverKey] = {
+                        online,
+                        players: String(playersOnline),
+                        peak: 'N/A',
+                        uptime: formatSeconds(uptimeSeconds),
+                        server: config.name,
+                        recentActivity: Array.isArray(source.recentActivity) ? source.recentActivity.slice(0, 10) : [],
+                        onlineNow: Array.isArray(source.onlineNow) ? source.onlineNow.slice(0, 10) : [],
+                        topPlayers: Array.isArray(source.topPlayers) ? source.topPlayers.slice(0, 10) : [],
+                        source_updated_at: source.updatedAt || null,
+                        source_stale: stale,
+                        cachedAt: Date.now()
+                    };
+                    cacheReady[serverKey] = true;
+                    return;
+                }
                 const status = source.server_status || {};
                 const players = source.players || {};
                 const uptime = source.uptime || {};
                 const sourceTime = source.updated_at ? Date.parse(source.updated_at) : 0;
                 const stale = !sourceTime || (Date.now() - sourceTime) > 30 * 60 * 1000;
                 const online = Boolean(status.overall_online || status.game_online);
+                const uptimeSeconds = uptimeCache?.game_uptime_seconds || uptime.game_uptime_seconds || uptimeCache?.host_uptime_seconds;
                 cache[serverKey] = {
-                    online,
+                    online: Boolean(uptimeCache || online),
                     players: stale ? '0' : String(players.online ?? 0),
                     peak: stale ? 'N/A' : String(players.online ?? 0),
-                    uptime: stale ? '' : formatSeconds(uptime.game_uptime_seconds),
+                    uptime: formatSeconds(uptimeSeconds),
                     server: config.name,
+                    recentActivity: Array.isArray(players.online_characters) ? players.online_characters.slice(0, 10) : [],
                     source_updated_at: source.updated_at || null,
                     source_stale: stale,
                     cachedAt: Date.now()
