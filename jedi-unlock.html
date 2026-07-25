@@ -1,4 +1,196 @@
-<!-- Replace the Jedi Guide section in your HTML with this -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SWGReturns | Jedi Unlock Guide</title>
+  <meta name="description" content="Follow the SWGReturns Core3 Jedi unlock path from holocrons and profession mastery through Padawan progression and the Knight Trials.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" referrerpolicy="no-referrer">
+  <link rel="icon" href="https://swgtalon.online/assets/logo.png">
+  <style>
+    :root {
+      --bg:#05070b;
+      --panel:rgba(9,15,24,.92);
+      --line:rgba(116,154,188,.28);
+      --line-bright:rgba(242,203,115,.64);
+      --gold:#f2cb73;
+      --blue:#5eb6ff;
+      --text:#eef4ff;
+      --muted:#9aaabc;
+    }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body {
+      margin:0;
+      min-height:100vh;
+      background:
+        linear-gradient(90deg,rgba(5,7,11,.98),rgba(5,7,11,.76)),
+        url("images/vaderdeathstar.jpg") center right/cover fixed no-repeat,
+        var(--bg);
+      color:var(--text);
+      font-family:"Rajdhani","Segoe UI",Arial,sans-serif;
+      font-size:17px;
+      line-height:1.55;
+    }
+    a { color:inherit; }
+    .wrap { width:min(1180px,calc(100% - 32px)); margin:0 auto; }
+    .site-header {
+      position:sticky;
+      top:0;
+      z-index:50;
+      background:rgba(4,7,12,.92);
+      border-bottom:1px solid rgba(242,203,115,.24);
+      backdrop-filter:blur(16px);
+    }
+    .command-bar {
+      min-height:76px;
+      display:grid;
+      grid-template-columns:auto 1fr;
+      align-items:center;
+      gap:18px;
+    }
+    .brand {
+      display:inline-flex;
+      align-items:center;
+      gap:12px;
+      min-width:220px;
+      color:#fff;
+      text-decoration:none;
+      font-family:"Orbitron",sans-serif;
+      font-weight:900;
+      text-transform:uppercase;
+    }
+    .brand img {
+      width:46px;
+      height:46px;
+      object-fit:contain;
+      filter:drop-shadow(0 0 16px rgba(94,182,255,.42));
+    }
+    .brand small {
+      display:block;
+      color:var(--muted);
+      font:600 12px "Rajdhani",sans-serif;
+      letter-spacing:.12em;
+    }
+    .top-nav { display:flex; justify-content:flex-end; gap:7px; flex-wrap:wrap; }
+    .top-nav a {
+      min-height:38px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      border:1px solid var(--line);
+      border-radius:6px;
+      background:rgba(255,255,255,.045);
+      color:#dbe8f8;
+      padding:9px 13px;
+      text-decoration:none;
+      text-transform:uppercase;
+      font-size:13px;
+      font-weight:700;
+      letter-spacing:.06em;
+      transition:.18s ease;
+    }
+    .top-nav a:hover,.top-nav a.active {
+      color:#fff;
+      border-color:var(--line-bright);
+      background:rgba(242,203,115,.1);
+      transform:translateY(-1px);
+    }
+    .hero {
+      padding:74px 0 30px;
+      text-align:center;
+    }
+    .hero .kicker,.section-head .kicker {
+      color:var(--gold);
+      font:900 11px "Orbitron",sans-serif;
+      letter-spacing:.2em;
+      text-transform:uppercase;
+    }
+    .hero h1 {
+      margin:12px 0 14px;
+      font:900 clamp(38px,7vw,72px)/1.02 "Orbitron",sans-serif;
+      text-transform:uppercase;
+      text-shadow:0 0 38px rgba(94,182,255,.18);
+    }
+    .hero p { max-width:760px; margin:0 auto; color:#c5d1df; font-size:20px; }
+    .section { padding:24px 0 78px; }
+    .section-head { max-width:850px; margin:0 auto 30px; text-align:center; }
+    .section-head h2 {
+      margin:10px 0 8px;
+      color:#fff;
+      font:900 clamp(28px,5vw,46px)/1.1 "Orbitron",sans-serif;
+      text-transform:uppercase;
+    }
+    .section-head .muted { color:var(--muted); font-size:18px; }
+    #jedi-guide > .wrap > div:not(.section-head) {
+      background:linear-gradient(180deg,rgba(13,22,35,.96),rgba(7,12,21,.96)) !important;
+      border:1px solid var(--line) !important;
+      border-radius:8px !important;
+      box-shadow:0 20px 55px rgba(0,0,0,.34);
+    }
+    #jedi-guide h3 { font-family:"Orbitron",sans-serif; letter-spacing:.02em; }
+    #jedi-guide h4 { margin-top:0; }
+    #jedi-guide p,#jedi-guide li { line-height:1.55; }
+    #jedi-guide code {
+      color:#fff;
+      border:1px solid rgba(94,182,255,.25);
+      border-radius:4px;
+      background:rgba(94,182,255,.1);
+      padding:2px 6px;
+    }
+    .site-footer {
+      border-top:1px solid rgba(242,203,115,.2);
+      background:rgba(4,7,12,.94);
+      padding:30px 0;
+      text-align:center;
+    }
+    .footer-brand {
+      margin:0 0 8px;
+      color:#fff;
+      font:900 18px "Orbitron",sans-serif;
+      text-transform:uppercase;
+    }
+    .site-footer p { margin:5px 0; color:#7f8da0; font-size:14px; }
+    .site-footer a { color:var(--blue); text-decoration:none; }
+    @media(max-width:900px) {
+      .command-bar { grid-template-columns:1fr; padding:12px 0; }
+      .brand { justify-content:center; }
+      .top-nav { justify-content:center; }
+      .hero { padding-top:50px; }
+    }
+    @media(max-width:560px) {
+      .top-nav a { flex:1 1 42%; }
+      #jedi-guide > .wrap > div:not(.section-head) { padding:18px !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap command-bar">
+      <a class="brand" href="index.html">
+        <img src="https://swgtalon.online/assets/logo.png" alt="SWGReturns logo">
+        <span>SWGReturns<small>Core3 / NGE Network</small></span>
+      </a>
+      <nav class="top-nav" aria-label="Main navigation">
+        <a href="index.html"><i class="fa-solid fa-house"></i> Home</a>
+        <a href="bounties.html"><i class="fa-solid fa-crosshairs"></i> Bounties</a>
+        <a href="download.html"><i class="fa-solid fa-download"></i> Downloads</a>
+        <a href="contact.html"><i class="fa-solid fa-envelope"></i> Contact</a>
+        <a class="active" href="jedi-unlock.html"><i class="fa-solid fa-jedi"></i> Jedi</a>
+      </nav>
+    </div>
+  </header>
+  <section class="hero">
+    <div class="wrap">
+      <div class="kicker">SWGReturns Core3 Guide</div>
+      <h1>Path to the Force</h1>
+      <p>From your first holocron to the final Knight Trial, follow the complete path toward becoming Jedi on SWGReturns.</p>
+    </div>
+  </section>
 
 <section id="jedi-guide" class="section alt">
   <div class="wrap">
@@ -195,3 +387,12 @@
     </div>
   </div>
 </section>
+<footer class="site-footer">
+  <div class="wrap">
+    <p class="footer-brand">SWGReturns</p>
+    <p>© 2026 SWGReturns — Fan-made Star Wars Galaxies server network. Not affiliated with Disney, LucasArts, Sony Online Entertainment, or Daybreak Game Company.</p>
+    <p>Powered by <a href="https://thewebsitefactory.store/" target="_blank" rel="noopener">The Website Factory</a></p>
+  </div>
+</footer>
+</body>
+</html>
