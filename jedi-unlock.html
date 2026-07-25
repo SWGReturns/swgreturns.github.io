@@ -1,760 +1,197 @@
-﻿<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>How to Unlock Jedi - Pre-CU | SWGReturns</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="A step-by-step how-to for unlocking the Jedi profession on SWGReturns Pre-CU - badges, the old man, the secret village, and your final choice: Light or Dark.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" referrerpolicy="no-referrer">
-  <link rel="icon" href="https://swgtalon.online/assets/logo.png">
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Segoe UI', sans-serif; background: #0a0c12; color: #e0e0e0; overflow-x: hidden; }
-    .wrap { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
+<!-- Replace the Jedi Guide section in your HTML with this -->
 
-    .site-header {
-      padding: 15px 0;
-      border-bottom: 1px solid rgba(59,130,246,0.3);
-      background: rgba(10,12,18,0.8);
-    }
-    .nav-wrap { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
-    .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: #fff; }
-    .logo { height: 40px; }
-    .wordmark {
-      font-size: 24px; font-weight: 700;
-      background: linear-gradient(135deg, #3b82f6, #1e3a8a);
-      -webkit-background-clip: text; background-clip: text; color: transparent;
-    }
-    .top-nav { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
-    .top-nav a {
-      font-family: 'Orbitron', sans-serif; text-transform: uppercase; color: #93c5fd;
-      text-decoration: none; font-size: 11px; font-weight: 700; letter-spacing: .09em;
-      padding: 10px 16px; border-radius: 7px;
-      background: linear-gradient(160deg, rgba(59,130,246,.16), rgba(15,25,50,.4));
-      border: 1px solid rgba(59,130,246,.35);
-      box-shadow: 0 2px 10px rgba(0,0,0,.3), inset 0 1px 0 rgba(255,255,255,.06);
-      transition: transform .2s, box-shadow .2s, background .2s, border-color .2s, color .2s;
-    }
-    .top-nav a:hover { color: #fff; background: linear-gradient(160deg, rgba(59,130,246,.4), rgba(15,25,50,.5)); border-color: rgba(96,165,250,.8); transform: translateY(-2px); box-shadow: 0 10px 24px rgba(59,130,246,.4), inset 0 1px 0 rgba(255,255,255,.1); }
-
-    .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; }
-    .hamburger span { width: 25px; height: 3px; background: #fff; border-radius: 3px; }
-
-    .page-hero {
-      padding: 50px 0 40px;
-      text-align: center;
-      background: radial-gradient(ellipse at 50% 30%, #0f121c 0%, #05070c 100%);
-      border-bottom: 1px solid rgba(59,130,246,0.15);
-      position: relative;
-      overflow: hidden;
-    }
-    .page-hero::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: radial-gradient(circle at 20% 20%, rgba(59,130,246,.10), transparent 40%),
-                  radial-gradient(circle at 80% 70%, rgba(245,158,11,.08), transparent 40%);
-      pointer-events: none;
-    }
-    .page-hero .kicker {
-      position: relative;
-      font-family: 'Orbitron', sans-serif;
-      font-size: 12px; letter-spacing: .2em; text-transform: uppercase;
-      color: #f59e0b; margin-bottom: 10px;
-    }
-    .page-hero h1 {
-      position: relative;
-      font-family: 'Orbitron', sans-serif;
-      font-size: 38px;
-      background: linear-gradient(135deg, #60a5fa, #3b82f6);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-    .page-hero p { position: relative; color: #aaa; font-size: 16px; margin-top: 12px; max-width: 640px; margin-left: auto; margin-right: auto; }
-
-    .section { padding: 50px 0; }
-    .section.alt { background: rgba(255,255,255,0.02); }
-    .section h2 {
-      font-size: 24px;
-      color: #93c5fd;
-      margin-bottom: 20px;
-      padding-bottom: 10px;
-      border-bottom: 1px solid rgba(59,130,246,0.15);
-      display: flex; align-items: center; gap: 10px;
-    }
-    .section h2 i { color: #f59e0b; font-size: 20px; }
-    .section h3 { color: #60a5fa; margin: 24px 0 10px; font-size: 18px; }
-    .section h4 { color: #93c5fd; margin: 16px 0 8px; font-size: 15px; }
-    .section p { color: #ccc; font-size: 15px; line-height: 1.7; margin-bottom: 12px; }
-    .section ul, .section ol { padding: 0; margin-bottom: 12px; }
-    .section ul { list-style: none; }
-    .section ol { color: #ccc; font-size: 15px; line-height: 1.8; padding-left: 22px; }
-    .section ul li {
-      padding: 5px 0 5px 20px;
-      color: #ccc;
-      font-size: 15px;
-      line-height: 1.6;
-      position: relative;
-    }
-    .section ul li::before {
-      content: '\f0da';
-      font-family: 'Font Awesome 6 Free';
-      font-weight: 900;
-      position: absolute;
-      left: 0;
-      color: #3b82f6;
-    }
-    .section ul li strong { color: #60a5fa; }
-    .highlight { color: #f59e0b; font-weight: 600; }
-    .highlight-blue { color: #60a5fa; font-weight: 600; }
-
-    .toc { background: rgba(20,22,32,0.8); border: 1px solid rgba(59,130,246,0.2); border-radius: 12px; padding: 24px; margin-bottom: 30px; }
-    .toc h3 { color: #60a5fa; margin-bottom: 12px; font-size: 16px; border: none; }
-    .toc ul { list-style: none; padding: 0; columns: 2; }
-    .toc ul li { padding: 4px 0; }
-    .toc ul li a { color: #93c5fd; text-decoration: none; font-size: 14px; }
-    .toc ul li a:hover { color: #fff; text-decoration: underline; }
-    @media (max-width: 640px) { .toc ul { columns: 1; } }
-
-    .tldr {
-      background: linear-gradient(160deg, rgba(59,130,246,.14), rgba(15,25,50,.5));
-      border: 1px solid rgba(59,130,246,.4);
-      border-radius: 14px;
-      padding: 22px 24px;
-      margin-bottom: 30px;
-    }
-    .tldr h3 { margin: 0 0 12px; color: #fff; font-size: 15px; font-family: 'Orbitron', sans-serif; letter-spacing: .04em; }
-    .tldr ol { color: #dbeafe; font-size: 14px; line-height: 1.8; padding-left: 20px; margin: 0; }
-
-    .trial-box {
-      background: rgba(20,22,32,0.9);
-      border: 1px solid rgba(59,130,246,0.25);
-      border-radius: 12px;
-      padding: 24px;
-      margin-bottom: 20px;
-    }
-    .trial-box h4 { color: #f59e0b; margin: 0 0 12px; font-size: 16px; display: flex; align-items: center; gap: 8px; }
-    .trial-box p { font-size: 14px; }
-
-    .note {
-      background: rgba(245,158,11,0.08);
-      border-left: 3px solid #f59e0b;
-      padding: 12px 16px;
-      border-radius: 0 8px 8px 0;
-      margin-bottom: 16px;
-    }
-    .note p { font-size: 14px; color: #ddd; margin: 0; }
-    .note strong { color: #f59e0b; }
-
-    .note.danger { background: rgba(239,68,68,0.08); border-left-color: #ef4444; }
-    .note.danger strong { color: #f87171; }
-
-    .note.light { background: rgba(59,130,246,0.08); border-left-color: #3b82f6; }
-    .note.light strong { color: #60a5fa; }
-
-    /* Step ladder */
-    .ladder { position: relative; margin: 30px 0; }
-    .step {
-      display: flex; gap: 18px; align-items: flex-start;
-      padding: 18px 0;
-      border-left: 2px solid rgba(59,130,246,.3);
-      padding-left: 26px;
-      margin-left: 18px;
-      position: relative;
-    }
-    .step:last-child { border-left-color: transparent; }
-    .step .step-num {
-      position: absolute; left: -19px; top: 18px;
-      width: 36px; height: 36px; border-radius: 50%;
-      background: linear-gradient(160deg, #3b82f6, #1e3a8a);
-      display: flex; align-items: center; justify-content: center;
-      font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: 14px; color: #fff;
-      box-shadow: 0 0 0 4px #0a0c12, 0 4px 14px rgba(59,130,246,.5);
-    }
-    .step .step-body h3 { margin-top: 0; }
-
-    /* Progression table */
-    .prog-table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; }
-    .prog-table th, .prog-table td { padding: 10px 14px; text-align: left; border-bottom: 1px solid rgba(59,130,246,.15); }
-    .prog-table th { color: #93c5fd; font-family: 'Orbitron', sans-serif; font-size: 11px; text-transform: uppercase; letter-spacing: .06em; }
-    .prog-table td { color: #ccc; }
-    .prog-table tr:last-child td { border-bottom: none; }
-    .pill {
-      display: inline-block; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 20px;
-      background: rgba(59,130,246,.15); border: 1px solid rgba(59,130,246,.4); color: #93c5fd;
-    }
-    .pill.gold { background: rgba(245,158,11,.15); border-color: rgba(245,158,11,.5); color: #f59e0b; }
-    .pill.light { background: rgba(96,165,250,.18); border-color: rgba(96,165,250,.6); color: #bfdbfe; }
-    .pill.dark { background: rgba(239,68,68,.15); border-color: rgba(239,68,68,.5); color: #fca5a5; }
-
-    .badge-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; margin: 16px 0; }
-    .badge-card {
-      background: rgba(20,22,32,.85); border: 1px solid rgba(59,130,246,.25); border-radius: 10px;
-      padding: 14px; text-align: center;
-    }
-    .badge-card .num { font-family: 'Orbitron', sans-serif; font-size: 22px; font-weight: 900; color: #60a5fa; }
-    .badge-card .label { font-size: 12px; color: #999; margin-top: 4px; }
-
-    .footer-nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 12px;
-      padding: 20px 0;
-      border-top: 1px solid rgba(59,130,246,0.15);
-      margin-top: 40px;
-    }
-    .footer-nav a {
-      color: #93c5fd;
-      text-decoration: none;
-      font-size: 14px;
-    }
-    .footer-nav a:hover { color: #fff; }
-
-    .site-footer {
-      background: #05070c; padding: 30px 0; text-align: center;
-      border-top: 1px solid rgba(59,130,246,0.2);
-    }
-    .footer-brand { font-size: 18px; font-weight: 700; color: #60a5fa; margin-bottom: 8px; }
-    .site-footer p { color: #666; font-size: 13px; }
-    .footer-powered a { color: #3b82f6; text-decoration: none; }
-
-    /* Star Wars flourishes */
-    .hero-icon-bg {
-      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-      font-size: 260px; color: rgba(59,130,246,0.06);
-      pointer-events: none; z-index: 0;
-    }
-    .saber-divider { display: flex; align-items: center; gap: 10px; margin: 34px 0; }
-    .saber-divider .hilt {
-      width: 16px; height: 16px; border-radius: 4px; flex-shrink: 0;
-      background: linear-gradient(160deg, #9ca3af, #374151);
-      box-shadow: 0 0 6px rgba(255,255,255,.5), inset 0 1px 0 rgba(255,255,255,.3);
-    }
-    .saber-divider .blade {
-      flex: 1; height: 4px; border-radius: 2px;
-      background: linear-gradient(90deg, #93c5fd, #3b82f6, transparent);
-      box-shadow: 0 0 10px 2px rgba(96,165,250,.7), 0 0 22px 4px rgba(59,130,246,.4);
-    }
-    .saber-divider.dark .hilt { background: linear-gradient(160deg, #6b7280, #1f2937); }
-    .saber-divider.dark .blade {
-      background: linear-gradient(90deg, #fca5a5, #ef4444, transparent);
-      box-shadow: 0 0 10px 2px rgba(239,68,68,.7), 0 0 22px 4px rgba(185,28,28,.4);
-    }
-
-    .boss-art {
-      position: relative;
-      border-radius: 14px; overflow: hidden;
-      border: 1px solid rgba(239,68,68,0.3);
-      margin: 20px 0;
-      box-shadow: 0 10px 30px rgba(0,0,0,.5);
-    }
-    .boss-art img { width: 100%; display: block; filter: saturate(1.1) contrast(1.05); }
-    .boss-art::after {
-      content: ''; position: absolute; inset: 0;
-      background: linear-gradient(180deg, rgba(10,5,5,0.1) 0%, rgba(10,5,5,0.85) 100%);
-    }
-    .boss-art .cap {
-      position: absolute; left: 0; right: 0; bottom: 0; padding: 14px 18px;
-      font-size: 12px; color: #fca5a5; z-index: 1; font-style: italic;
-    }
-
-    .side-choice { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 20px 0; }
-    .side-card {
-      border-radius: 12px; padding: 22px; text-align: center;
-      border: 1px solid rgba(59,130,246,.3);
-      background: rgba(20,22,32,.85);
-    }
-    .side-card i { font-size: 30px; margin-bottom: 10px; display: block; }
-    .side-card h4 { margin: 0 0 6px; font-size: 15px; border: none; }
-    .side-card p { font-size: 13px; color: #999; margin: 0; }
-    .side-card.light i, .side-card.light h4 { color: #60a5fa; }
-    .side-card.light { box-shadow: 0 0 0 1px rgba(96,165,250,.15) inset; }
-    .side-card.dark i, .side-card.dark h4 { color: #f87171; }
-    .side-card.dark { border-color: rgba(239,68,68,.3); box-shadow: 0 0 0 1px rgba(239,68,68,.15) inset; }
-    @media (max-width: 640px) { .side-choice { grid-template-columns: 1fr; } }
-
-    @media (max-width: 768px) {
-      .hero-icon-bg { font-size: 140px; }
-      .nav-wrap { flex-direction: column; gap: 10px; }
-      .top-nav { justify-content: center; display: none; flex-direction: column; width: 100%; padding: 10px 0; }
-      .top-nav.open { display: flex; }
-      .hamburger { display: flex; }
-      .page-hero h1 { font-size: 26px; }
-      .step { margin-left: 8px; padding-left: 22px; }
-    }
-    /* Current Core3 site theme override */
-    :root {
-      --bg: #05070b;
-      --panel: rgba(9, 15, 24, 0.88);
-      --panel-strong: rgba(12, 19, 30, 0.95);
-      --line: rgba(116, 154, 188, 0.24);
-      --line-bright: rgba(242, 203, 115, 0.58);
-      --text: #eef4ff;
-      --muted: #9aaabc;
-      --blue: #5eb6ff;
-      --gold: #f2cb73;
-      --red: #df5046;
-      --green: #66d98c;
-      --shadow: 0 22px 80px rgba(0, 0, 0, 0.42);
-    }
-    body {
-      background:
-        radial-gradient(circle at 22% 0%, rgba(94,182,255,.13), transparent 30%),
-        linear-gradient(180deg, #05070b 0%, #080d15 42%, #05070b 100%);
-      color: var(--text);
-      font-family: "Rajdhani", "Segoe UI", Arial, sans-serif;
-      font-size: 17px;
-      line-height: 1.5;
-    }
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      background:
-        linear-gradient(rgba(255,255,255,.018) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.014) 1px, transparent 1px);
-      background-size: 48px 48px;
-      mask-image: linear-gradient(to bottom, rgba(0,0,0,.65), transparent 78%);
-      z-index: -1;
-    }
-    .wrap { max-width: 1120px; }
-    .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      padding: 0;
-      background: rgba(4, 7, 12, .92);
-      border-bottom: 1px solid rgba(242,203,115,.24);
-      backdrop-filter: blur(16px);
-    }
-    .nav-wrap { min-height: 76px; gap: 18px; }
-    .brand { gap: 12px; }
-    .logo { width: 46px; height: 46px; object-fit: contain; filter: drop-shadow(0 0 16px rgba(94,182,255,.42)); }
-    .wordmark {
-      color: var(--text);
-      background: none;
-      font-family: "Orbitron", sans-serif;
-      font-weight: 900;
-      text-transform: uppercase;
-      letter-spacing: 0;
-    }
-    .top-nav a {
-      min-height: 38px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.045);
-      color: #dbe8f8;
-      box-shadow: none;
-      border-radius: 6px;
-      font-size: 13px;
-      letter-spacing: .06em;
-      padding: 9px 13px;
-    }
-    .top-nav a:hover {
-      color: #fff;
-      border-color: var(--line-bright);
-      background: rgba(242,203,115,.10);
-      box-shadow: none;
-      transform: translateY(-1px);
-    }
-    .hamburger span { background: var(--gold); }
-    .page-hero {
-      padding: 78px 0 64px;
-      background:
-        linear-gradient(90deg, rgba(5,7,11,.96), rgba(5,7,11,.68)),
-        url("images/vaderdeathstar.jpg") center right / cover no-repeat;
-      border-bottom: 1px solid rgba(242,203,115,.24);
-    }
-    .page-hero::before {
-      background:
-        radial-gradient(circle at 20% 20%, rgba(94,182,255,.16), transparent 42%),
-        radial-gradient(circle at 80% 70%, rgba(242,203,115,.12), transparent 42%);
-    }
-    .hero-icon-bg { color: rgba(242,203,115,.06); }
-    .page-hero .kicker {
-      color: var(--gold);
-      font-size: 11px;
-      letter-spacing: .18em;
-    }
-    .page-hero h1 {
-      color: #fff;
-      background: none;
-      font-size: clamp(34px, 6vw, 66px);
-      text-transform: uppercase;
-      letter-spacing: 0;
-    }
-    .page-hero p {
-      color: #c5d1df;
-      font-size: 19px;
-      max-width: 780px;
-    }
-    .section { padding: 64px 0; }
-    .section.alt { background: linear-gradient(180deg, rgba(255,255,255,.025), rgba(255,255,255,.006)); }
-    .section h2 {
-      color: #fff;
-      border-bottom: 1px solid rgba(242,203,115,.22);
-      font-family: "Orbitron", sans-serif;
-      text-transform: uppercase;
-      letter-spacing: 0;
-    }
-    .section h2 i,
-    .section ul li::before,
-    .highlight { color: var(--gold); }
-    .section h3,
-    .section h4,
-    .section ul li strong,
-    .highlight-blue { color: var(--blue); }
-    .section p,
-    .section ul li,
-    .section ol { color: #c8d4e4; }
-    .toc,
-    .tldr,
-    .trial-box,
-    .step,
-    .badge-card,
-    .side-card,
-    .rank-table,
-    .image-card {
-      border: 1px solid var(--line);
-      background: var(--panel);
-      border-radius: 7px;
-      box-shadow: 0 16px 45px rgba(0,0,0,.22);
-    }
-    .toc h3,
-    .tldr h3,
-    .trial-box h4 { color: var(--gold); }
-    .toc ul li a { color: #cfe8ff; }
-    .toc ul li a:hover { color: #fff; }
-    .tldr {
-      background:
-        linear-gradient(135deg, rgba(94,182,255,.12), rgba(242,203,115,.055)),
-        var(--panel);
-    }
-    .step {
-      background: linear-gradient(135deg, rgba(255,255,255,.052), rgba(255,255,255,.025));
-      border-color: rgba(116,154,188,.24);
-    }
-    .step .step-num {
-      background: linear-gradient(180deg, #ffe5a8, #d69b35);
-      color: #0b0d11;
-      border-color: rgba(255,232,178,.85);
-      box-shadow: 0 0 24px rgba(242,203,115,.22);
-    }
-    .saber-divider .blade {
-      background: linear-gradient(90deg, rgba(94,182,255,.15), #f2cb73, rgba(94,182,255,.15));
-      box-shadow: 0 0 18px rgba(242,203,115,.45);
-    }
-    .footer-nav a {
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.045);
-      color: #dbe8f8;
-      border-radius: 6px;
-    }
-    .footer-nav a:hover {
-      border-color: var(--line-bright);
-      background: rgba(242,203,115,.10);
-      color: #fff;
-    }
-    .site-footer {
-      background: #030508;
-      border-top: 1px solid rgba(242,203,115,.22);
-    }
-    .footer-brand { color: var(--gold); font-family: "Orbitron", sans-serif; }
-    .site-footer p { color: #7f8da0; }
-    .site-footer a { color: var(--blue); }
-  </style>
-</head>
-<body>
-
-<header class="site-header">
-  <div class="wrap nav-wrap">
-    <a class="brand" href="index.html">
-      <img class="logo" src="https://swgtalon.online/assets/logo.png" alt="SWGReturns logo">
-      <span class="wordmark">SWGReturns</span>
-    </a>
-    <button class="hamburger" id="hamburger" aria-label="Toggle navigation" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-    <nav class="top-nav" id="top-nav">
-      <a href="index.html">Home</a>
-      <a href="download.html">Downloads</a>
-      <a href="register.html">Register</a>
-      <a href="forgot_password.html">Forgot Password</a>
-      <a href="core3-patch-notes.html">Core3 Notes</a>
-      <a href="nge-patch-notes.html">NGE Notes</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-  </div>
-</header>
-
-<section class="page-hero">
-  <i class="fa-solid fa-jedi hero-icon-bg"></i>
+<section id="jedi-guide" class="section alt">
   <div class="wrap">
-    <div class="kicker"><i class="fa-solid fa-jedi"></i> How-To Guide</div>
-    <h1>How to Unlock Jedi</h1>
-    <p>So you want to wield a lightsaber and bend the Force to your will? Good news - it's 100% possible, no secret menus or admin favors needed. Here's exactly what to do, step by step.</p>
+    <div class="section-head">
+      <div class="kicker">Path to the Force</div>
+      <h2>Jedi Unlock Guide</h2>
+      <p class="muted">The classic Holocron journey — master combat professions, find the final silent holocron, and unlock your Force-sensitive destiny.</p>
+    </div>
+
+    <!-- Step 1: The Holocrons -->
+    <div style="max-width:900px; margin:0 auto 30px; background:rgba(20,22,32,0.8); border:1px solid rgba(59,130,246,0.2); border-radius:16px; padding:25px;">
+      <h3 style="color:#fbbf24; text-align:center; margin-bottom:15px;">🔮 Step 1: Hunt the 5 Holocrons</h3>
+      <div style="display:flex; flex-wrap:wrap; gap:15px; justify-content:center;">
+        <div style="flex:1; min-width:200px; background:rgba(255,255,255,0.03); border-radius:8px; padding:15px;">
+          <h4 style="color:#60a5fa; font-size:14px;">📜 How Holocrons Work</h4>
+          <ul style="list-style:none; padding:0; color:#ccc; font-size:13px;">
+            <li style="padding:3px 0;">✓ Holocrons are rare drops from high-level mobs</li>
+            <li style="padding:3px 0;">✓ Each holocron reveals <strong>ONE</strong> random combat profession</li>
+            <li style="padding:3px 0;">✓ You must master <strong>4 professions</strong> total</li>
+            <li style="padding:3px 0;">✓ The <strong>5th holocron is SILENT</strong> — no profession is revealed</li>
+            <li style="padding:3px 0;">✓ <span style="color:#f59e0b;">The silent holocron tells you it's time to meditate</span></li>
+          </ul>
+        </div>
+        <div style="flex:1; min-width:200px; background:rgba(255,255,255,0.03); border-radius:8px; padding:15px;">
+          <h4 style="color:#60a5fa; font-size:14px;">⚔️ Combat Professions Only</h4>
+          <ul style="list-style:none; padding:0; color:#ccc; font-size:13px;">
+            <li style="padding:3px 0;">✓ Brawler</li>
+            <li style="padding:3px 0;">✓ Marksman</li>
+            <li style="padding:3px 0;">✓ Scout (combat track)</li>
+            <li style="padding:3px 0;">✓ Medic (combat track)</li>
+            <li style="padding:3px 0;">✓ Commando</li>
+            <li style="padding:3px 0;">✓ Smuggler</li>
+            <li style="padding:3px 0;">✓ Squad Leader</li>
+            <li style="padding:3px 0;">✓ Creature Handler</li>
+          </ul>
+          <p style="color:#f44336; font-size:12px; margin-top:8px;"><strong>❌ NO crafting or social professions!</strong></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 2: The Silent Holocron -->
+    <div style="max-width:900px; margin:0 auto 30px; background:rgba(20,22,32,0.8); border:1px solid rgba(59,130,246,0.2); border-radius:16px; padding:25px;">
+      <h3 style="color:#fbbf24; text-align:center; margin-bottom:15px;">🤫 Step 2: The Silent Holocron</h3>
+      <div style="display:flex; flex-wrap:wrap; gap:15px; justify-content:center;">
+        <div style="flex:1; min-width:200px; background:rgba(255,255,255,0.03); border-radius:8px; padding:15px;">
+          <h4 style="color:#60a5fa; font-size:14px;">📖 Live SWG Style</h4>
+          <ul style="list-style:none; padding:0; color:#ccc; font-size:13px;">
+            <li style="padding:3px 0;">1. After mastering 4 combat professions, find the 5th holocron</li>
+            <li style="padding:3px 0;">2. The holocron is <strong>completely SILENT</strong></li>
+            <li style="padding:3px 0;">3. It does NOT reveal any profession — it just tells you to meditate</li>
+            <li style="padding:3px 0;">4. This is the <strong>original SWG live experience</strong></li>
+          </ul>
+        </div>
+        <div style="flex:1; min-width:200px; background:rgba(255,255,255,0.03); border-radius:8px; padding:15px;">
+          <h4 style="color:#60a5fa; font-size:14px;">🕊️ The Holocron Message</h4>
+          <ul style="list-style:none; padding:0; color:#ccc; font-size:13px;">
+            <li style="padding:3px 0;"><em>"The Holocron is quiet. The ancients' knowledge of the Force will no longer assist you on your journey. You must continue seeking on your own."</em></li>
+            <li style="padding:3px 0; color:#f59e0b; margin-top:8px;">This is the sign — you are ready for the next step.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 3: Meditation -->
+    <div style="max-width:900px; margin:0 auto 30px; background:rgba(20,22,32,0.8); border:1px solid rgba(59,130,246,0.2); border-radius:16px; padding:25px;">
+      <h3 style="color:#fbbf24; text-align:center; margin-bottom:15px;">🧘 Step 3: Meditate at a Shrine</h3>
+      <div style="display:flex; flex-wrap:wrap; gap:15px; justify-content:center;">
+        <div style="flex:1; min-width:200px; background:rgba(255,255,255,0.03); border-radius:8px; padding:15px;">
+          <h4 style="color:#60a5fa; font-size:14px;">🌟 What to Do</h4>
+          <ul style="list-style:none; padding:0; color:#ccc; font-size:13px;">
+            <li style="padding:3px 0;">1. Travel to a <strong>Force Shrine</strong> (Dathomir, Yavin IV, etc.)</li>
+            <li style="padding:3px 0;">2. Use the <code>/meditate</code> command at the shrine</li>
+            <li style="padding:3px 0;">3. Wait for the meditation to complete</li>
+            <li style="padding:3px 0;">4. You will receive a <strong>new character slot</strong></li>
+          </ul>
+        </div>
+        <div style="flex:1; min-width:200px; background:rgba(255,255,255,0.03); border-radius:8px; padding:15px;">
+          <h4 style="color:#60a5fa; font-size:14px;">⚡ What You Get</h4>
+          <ul style="list-style:none; padding:0; color:#ccc; font-size:13px;">
+            <li style="padding:3px 0;">✓ <strong>+1 Character Slot</strong> — reserved for your Jedi</li>
+            <li style="padding:3px 0;">✓ Your new character is <strong>Force Sensitive</strong></li>
+            <li style="padding:3px 0;">✓ You can now create your Jedi character</li>
+            <li style="padding:3px 0;">✓ No profession unlocks needed — you are ready to begin</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 4: Grind Jedi Skills -->
+    <div style="max-width:900px; margin:0 auto 30px; background:rgba(20,22,32,0.8); border:1px solid rgba(59,130,246,0.2); border-radius:16px; padding:25px;">
+      <h3 style="color:#fbbf24; text-align:center; margin-bottom:15px;">⚔️ Step 4: Grind Your Jedi Skills</h3>
+      <div style="display:flex; flex-wrap:wrap; gap:15px; justify-content:center;">
+        <div style="flex:1; min-width:200px; background:rgba(255,255,255,0.03); border-radius:8px; padding:15px;">
+          <h4 style="color:#60a5fa; font-size:14px;">📘 Post-Publish 6 Jedi Skills</h4>
+          <ul style="list-style:none; padding:0; color:#ccc; font-size:13px;">
+            <li style="padding:3px 0;">• Force Sensitivity</li>
+            <li style="padding:3px 0;">• Force Abilities (Push, Pull, Lightning, Heal)</li>
+            <li style="padding:3px 0;">• Lightsaber Combat (all forms)</li>
+            <li style="padding:3px 0;">• Jedi Defense and Mitigation</li>
+            <li style="padding:3px 0;">• Force Run and Jump</li>
+          </ul>
+        </div>
+        <div style="flex:1; min-width:200px; background:rgba(255,255,255,0.03); border-radius:8px; padding:15px;">
+          <h4 style="color:#60a5fa; font-size:14px;">🔧 How to Grind</h4>
+          <ul style="list-style:none; padding:0; color:#ccc; font-size:13px;">
+            <li style="padding:3px 0;">1. Use your Jedi skills to gain XP</li>
+            <li style="padding:3px 0;">2. Each skill has a progression tree</li>
+            <li style="padding:3px 0;">3. Master all force skills to unlock the Knight Trials</li>
+            <li style="padding:3px 0;">4. <span style="color:#f59e0b;">No Padawan Trials needed</span> — you are already a Padawan</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 5: Knight Trials -->
+    <div style="max-width:900px; margin:0 auto; background:rgba(20,22,32,0.8); border:1px solid rgba(59,130,246,0.2); border-radius:16px; padding:25px;">
+      <h3 style="color:#fbbf24; text-align:center; margin-bottom:15px;">🏛️ Step 5: The Knight Trials</h3>
+      <p style="color:#aaa; text-align:center; font-size:14px; margin-bottom:20px;">After mastering your Jedi skills, take on the Knight Trials to earn the title of Jedi Knight.</p>
+
+      <div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap:12px;">
+        <!-- Knight Trials list -->
+        <div style="background:rgba(255,255,255,0.03); border-radius:8px; padding:12px; border-left:3px solid #f59e0b;">
+          <h4 style="color:#60a5fa; font-size:13px;">Tusken Raiders</h4>
+          <p style="color:#ccc; font-size:12px;">Kill 19 Tusken Raiders</p>
+          <p style="color:#888; font-size:11px;">📍 Tatooine — Fort Tusken</p>
+        </div>
+
+        <div style="background:rgba(255,255,255,0.03); border-radius:8px; padding:12px; border-left:3px solid #f59e0b;">
+          <h4 style="color:#60a5fa; font-size:13px;">Ancient Bull Rancor</h4>
+          <p style="color:#ccc; font-size:12px;">Kill 8 Ancient Bull Rancors</p>
+          <p style="color:#888; font-size:11px;">📍 Dathomir — Mutant Rancor Cave</p>
+        </div>
+
+        <div style="background:rgba(255,255,255,0.03); border-radius:8px; padding:12px; border-left:3px solid #f59e0b;">
+          <h4 style="color:#60a5fa; font-size:13px;">Stintaril Prowler</h4>
+          <p style="color:#ccc; font-size:12px;">Kill 3 Stintaril Prowlers</p>
+          <p style="color:#888; font-size:11px;">📍 Yavin IV — Giant Stintaril lairs</p>
+        </div>
+
+        <div style="background:rgba(255,255,255,0.03); border-radius:8px; padding:12px; border-left:3px solid #f59e0b;">
+          <h4 style="color:#60a5fa; font-size:13px;">Blurrg Raptor</h4>
+          <p style="color:#ccc; font-size:12px;">Kill 3 Blurrg Raptors</p>
+          <p style="color:#888; font-size:11px;">📍 Endor — Blurrg Hunter missions</p>
+        </div>
+
+        <div style="background:rgba(255,255,255,0.03); border-radius:8px; padding:12px; border-left:3px solid #f59e0b;">
+          <h4 style="color:#60a5fa; font-size:13px;">Enraged Kimogila</h4>
+          <p style="color:#ccc; font-size:12px;">Kill 2 Enraged Kimogilas</p>
+          <p style="color:#888; font-size:11px;">📍 Lok — Kimogila missions (group CL 95+)</p>
+        </div>
+
+        <div style="background:rgba(255,255,255,0.03); border-radius:8px; padding:12px; border-left:3px solid #f59e0b;">
+          <h4 style="color:#60a5fa; font-size:13px;">Peko Peko Albatross</h4>
+          <p style="color:#ccc; font-size:12px;">Kill 2 Peko Peko Albatrosses</p>
+          <p style="color:#888; font-size:11px;">📍 Naboo — Giant Peko Peko missions</p>
+        </div>
+
+        <div style="background:rgba(255,255,255,0.03); border-radius:8px; padding:12px; border-left:3px solid #f59e0b;">
+          <h4 style="color:#60a5fa; font-size:13px;">Graul Marauder</h4>
+          <p style="color:#ccc; font-size:12px;">Kill 2 Graul Marauders</p>
+          <p style="color:#888; font-size:11px;">📍 Dantooine — Frenzied Graul missions</p>
+        </div>
+
+        <div style="background:rgba(255,255,255,0.03); border-radius:8px; padding:12px; border-left:3px solid #8b5cf6;">
+          <h4 style="color:#a78bfa; font-size:13px;">⚖️ Light or Dark — Council Trial</h4>
+          <p style="color:#ccc; font-size:12px;">Make your choice at the Council</p>
+          <p style="color:#888; font-size:11px;">Choose: <span style="color:#60a5fa;">Light Side</span> or <span style="color:#ef4444;">Dark Side</span></p>
+        </div>
+
+        <div style="background:rgba(255,255,255,0.03); border-radius:8px; padding:12px; border-left:3px solid #f59e0b;">
+          <h4 style="color:#60a5fa; font-size:13px;">Enemy Soldier</h4>
+          <p style="color:#ccc; font-size:12px;">Kill 15 enemy commandos</p>
+          <p style="color:#888; font-size:11px;">Rebel: Storm Commandos | Imperial: Rebel Commandos</p>
+        </div>
+      </div>
+
+      <div style="text-align:center; margin-top:20px; padding:15px; background:rgba(59,130,246,0.1); border-radius:8px;">
+        <p style="color:#60a5fa; font-size:15px; font-weight:bold;">🏆 Upon completing all 9 trials, you will be granted the title of <span style="color:#fbbf24;">Jedi Knight</span> or <span style="color:#ef4444;">Dark Jedi Knight</span> and become eligible for the Force Ranking System (FRS).</p>
+      </div>
+    </div>
+
+    <!-- Quick Summary -->
+    <div style="max-width:800px; margin:30px auto; background:rgba(20,22,32,0.8); border:1px solid rgba(245,158,11,0.3); border-radius:16px; padding:20px; text-align:center;">
+      <h3 style="color:#fbbf24; margin-bottom:10px;">📋 Quick Summary</h3>
+      <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(140px,1fr)); gap:10px; color:#ccc; font-size:13px;">
+        <div>🔮 5 Holocrons</div>
+        <div>⚔️ 4 Combat Professions</div>
+        <div>🤫 5th Holocron Silent</div>
+        <div>🧘 Meditate at Shrine</div>
+        <div>⭐ Force Sensitive Slot</div>
+        <div>📘 Grind Pub6 Jedi</div>
+        <div>🏛️ Knight Trials</div>
+      </div>
+    </div>
   </div>
 </section>
-
-<section class="section">
-  <div class="wrap">
-
-    <div class="saber-divider"><div class="hilt"></div><div class="blade"></div></div>
-
-    <div class="tldr">
-      <h3><i class="fa-solid fa-bolt"></i> THE SHORT VERSION</h3>
-      <ol>
-        <li>Earn 5 sets of badges (exploration, mastery, etc.) - this happens naturally as you play.</li>
-        <li>An old man finds you in the field. Take the Force crystal he offers.</li>
-        <li>Survive an ambush, grab two datapads, and follow the trail to a hidden village on Dathomir.</li>
-        <li>Help that village through 4 phases of quests (the village runs on its own daily clock).</li>
-        <li>Beat a Dark Jedi boss named Mellichae.</li>
-        <li>Pass 3 Padawan Trials at Force Shrines around the galaxy.</li>
-        <li>Pass 9 Knight Trials, pick Light or Dark side, and boom - you're a Jedi Knight.</li>
-      </ol>
-    </div>
-
-    <div class="toc">
-      <h3><i class="fa-solid fa-scroll"></i> Jump to a Section</h3>
-      <ul>
-        <li><a href="#step1">1. Earn Your Badges</a></li>
-        <li><a href="#step2">2. The Old Man &amp; the Crystal</a></li>
-        <li><a href="#step3">3. The Secret Village</a></li>
-        <li><a href="#step4">4. Boss Fight: Mellichae</a></li>
-        <li><a href="#step5">5. Padawan Trials</a></li>
-        <li><a href="#step6">6. Knight Trials: Light or Dark</a></li>
-        <li><a href="#ladder">Progress Checklist</a></li>
-        <li><a href="#tips">Quick Tips</a></li>
-      </ul>
-    </div>
-
-    <h2 id="step1"><i class="fa-solid fa-award"></i> 1. Earn Your Badges</h2>
-    <p>Before anyone in the galaxy notices you're Force-sensitive, you need to prove yourself. Rack up in-game badges across five categories - you probably already earn most of these just from exploring and questing normally:</p>
-
-    <div class="badge-grid">
-      <div class="badge-card"><div class="num">3</div><div class="label">Jedi Exploration badges</div></div>
-      <div class="badge-card"><div class="num">2</div><div class="label">Dangerous Exploration badges</div></div>
-      <div class="badge-card"><div class="num">5</div><div class="label">Easy Exploration badges</div></div>
-      <div class="badge-card"><div class="num">1</div><div class="label">Master (any profession) badge</div></div>
-      <div class="badge-card"><div class="num">1</div><div class="label">Content badge</div></div>
-    </div>
-
-    <p>Type <strong class="highlight-blue">/checkForceStatus</strong> anytime to see how many of the five you've finished.</p>
-
-    <div class="note">
-      <p><strong>Heads up:</strong> you don't need to go anywhere special to start this. The instant your 5th badge type is done, you're flagged - the game just waits for the right moment to send someone your way.</p>
-    </div>
-
-    <h2 id="step2"><i class="fa-solid fa-hand-sparkles"></i> 2. The Old Man &amp; the Crystal</h2>
-    <p>A little while (5-10 minutes) after your badges are done, keep an eye out - an old man will walk right up to you, wherever you happen to be. Talk to him.</p>
-
-    <div class="ladder">
-      <div class="step">
-        <div class="step-num">1</div>
-        <div class="step-body">
-          <h3>Take the crystal - don't blow him off</h3>
-          <p>Pick the dialogue option to accept the Force crystal. If you say "maybe later," he leaves and comes back eventually, but he gets slower to return every time you brush him off. Just take the crystal.</p>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">2</div>
-        <div class="step-body">
-          <h3>Fight off the ambush</h3>
-          <p>A few minutes later, two Sith Shadow agents jump you. Take them down.</p>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">3</div>
-        <div class="step-body">
-          <h3>Grab the first datapad</h3>
-          <p>Loot the first Sith Shadow you kill - you'll get a datapad. Use it and a camp full of more Sith Shadows shows up. Clear it out.</p>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">4</div>
-        <div class="step-body">
-          <h3>Grab the second datapad</h3>
-          <p>Loot the camp's first kill for a second datapad. Use it, and you finally get a waypoint to <strong class="highlight-blue">Dathomir</strong>.</p>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">5</div>
-        <div class="step-body">
-          <h3>Walk into the village</h3>
-          <p>Follow the waypoint and just walk in. That's it - you're now officially <strong class="highlight">Force Sensitive</strong>.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="note danger">
-      <p><strong>Don't die during the ambush!</strong> If those Sith Shadows kill you before you get the first datapad, they take your crystal and you're back to square one, waiting for the old man again. Bring backup or come geared up.</p>
-    </div>
-
-    <h2 id="step3"><i class="fa-solid fa-tree-city"></i> 3. The Secret Village</h2>
-    <p>Getting Force Sensitive doesn't make you a Jedi yet - it just gets you into the village. And here's the twist most guides miss: <strong class="highlight">this part isn't on your personal clock</strong>.</p>
-
-    <div class="note light">
-      <p><strong>The whole server shares one clock.</strong> The village cycles through 4 phases, one at a time, 24 hours each, then rotates automatically. Don't finish a phase's task in time? It resets - you just catch it again next time that phase rolls back around.</p>
-    </div>
-
-    <div class="trial-box">
-      <h4><i class="fa-solid fa-kit-medical"></i> Phase 1 - Settling In</h4>
-      <p>Heal sick villagers, solve a crafting puzzle, rescue 5 captured villagers from enemy camps, and patrol - fight the small raiding groups, avoid the big ones.</p>
-    </div>
-    <div class="trial-box">
-      <h4><i class="fa-solid fa-truck-fast"></i> Phase 2 - Under Pressure</h4>
-      <p>Run supply missions to Endor (x6), grind an 8-stage combat gauntlet (max 3 a day), and pitch into a community crafting effort for the village's defenses.</p>
-    </div>
-    <div class="trial-box">
-      <h4><i class="fa-solid fa-shield-halved"></i> Phase 3 - Counterstrike</h4>
-      <p>A second 8-stage gauntlet, plus the big one: drop an enemy base's shields, fight through 5 guards, then capture the commander and escort them out - <strong class="highlight">carefully</strong>, someone else can steal your capture if you go down.</p>
-    </div>
-    <div class="trial-box">
-      <h4><i class="fa-solid fa-house-fire"></i> Phase 4 - Defend the Village</h4>
-      <p>Fight off raiders (or heal your teammates while they do) and complete a satellite-hunting, wire-puzzle crafting chain - go slow, three wrong wire guesses in a row ruins it.</p>
-    </div>
-
-    <div class="note">
-      <p><strong>Bonus:</strong> most of these quests also permanently unlock a Force skill perk when you finish them - free rewards for later.</p>
-    </div>
-
-    <div class="boss-art">
-      <img src="https://51-81-81-116.sslip.io/images/jedi-quest-1.png" alt="Village quest progress" loading="lazy">
-      <div class="cap">Your village quest progress - track each phase as the server rotates through them.</div>
-    </div>
-
-    <div class="saber-divider dark"><div class="hilt"></div><div class="blade"></div></div>
-
-    <h2 id="step4"><i class="fa-solid fa-fire-flame-curved"></i> 4. Boss Fight: Mellichae</h2>
-
-<p>Finish all 4 phases and the old man comes back to find you one more time. Follow him, and you're dropped into a showdown with a Dark Jedi named <strong class="highlight">Mellichae</strong> and her enforcer, Daktar Bloodmoon.</p>
-    <p>The trick: their camp has 4 Force shrines quietly healing them. <strong class="highlight-blue">Smash all 4 shrines first</strong>, then take Mellichae down. Skip the shrines and you'll never out-damage the healing.</p>
-
-    <h2 id="step5"><i class="fa-solid fa-hat-wizard"></i> 5. Padawan Trials</h2>
-    <p>Beat Mellichae, and it's all on you now. Find a <strong class="highlight-blue">Force Shrine</strong> (there are 40+ scattered across 10 planets), kneel, and meditate to start.</p>
-    <p>You'll need at least <strong class="highlight">4 Force skill perks</strong> from the village phases to qualify - another reason not to skip those.</p>
-
-    <div class="boss-art">
-      <img src="https://51-81-81-116.sslip.io/images/jedi-quest-2.png" alt="Padawan trial progress" loading="lazy">
-      <div class="cap">Padawan trial progress - complete all 3 trials to earn the title.</div>
-    </div>
-
-    <div class="trial-box">
-      <h4><i class="fa-solid fa-paw"></i> The Hunt</h4>
-      <p>Kill 20 sludge panthers and report back.</p>
-    </div>
-    <div class="trial-box">
-      <h4><i class="fa-solid fa-crosshairs"></i> The Soldier's Errand</h4>
-      <p>Track down a specific outlaw leader. Pick your dialogue carefully - one wrong answer here can fail the whole trial.</p>
-    </div>
-    <div class="trial-box">
-      <h4><i class="fa-solid fa-gem"></i> The Lightsaber</h4>
-      <p>Always last: craft a training lightsaber and tune a crystal into it yourself. Finish this and you're officially a Padawan.</p>
-    </div>
-
-    <div class="note danger">
-      <p><strong>3 strikes and you're out.</strong> Fail a trial 3 times and your whole Padawan progress resets to the start. You can also quit/reset on purpose at a shrine, or just restart your current trial for free.</p>
-    </div>
-
-    <h2 id="step6"><i class="fa-solid fa-scale-balanced"></i> 6. Knight Trials: Light or Dark</h2>
-    <p>Master a full Jedi skill as a Padawan, and Knight Trials just... start. Next time you log in, the game locks you to one specific shrine on another planet, and you're off:</p>
-    <ol>
-      <li>Kill 19 Tusken Raiders</li>
-      <li>Kill 8 Ancient Bull Rancors</li>
-      <li>Kill 8 Stintaril Prowlers</li>
-      <li>Kill 3 Blurrg Raptors</li>
-      <li>Kill 3 Enraged Kimogilas</li>
-      <li>Kill 2 Peko-Peko Albatrosses</li>
-      <li>Kill 2 Graul Marauders</li>
-      <li><strong class="highlight">Pick your side</strong> - Light Council or Dark Council</li>
-      <li>Kill 15 enemy soldiers (Imperials for Light, Rebels for Dark)</li>
-    </ol>
-
-    <div class="side-choice">
-      <div class="side-card light">
-        <i class="fa-solid fa-sun"></i>
-        <h4>Light Council</h4>
-        <p>Defense, healing, and precision. Requires Rebel or Neutral standing.</p>
-      </div>
-      <div class="side-card dark">
-        <i class="fa-solid fa-fire"></i>
-        <h4>Dark Council</h4>
-        <p>Aggression, power, fear. Requires Imperial or Neutral standing.</p>
-      </div>
-    </div>
-
-    <div class="note">
-      <p><strong>Choose wisely:</strong> your Light/Dark choice has to match your current Rebel/Imperial standing. Sort out your faction before you get to step 8.</p>
-    </div>
-
-    <p>Finish the last kill and congrats - you're a full <strong class="highlight-blue">Jedi Knight</strong>, Light or Dark side, with a robe, a home base on <strong class="highlight">Yavin 4</strong>, and access to the server's endgame Jedi rank system.</p>
-
-    <div class="saber-divider"><div class="hilt"></div><div class="blade"></div></div>
-
-    <h2 id="ladder"><i class="fa-solid fa-layer-group"></i> Progress Checklist</h2>
-    <table class="prog-table">
-      <tr><th>Stage</th><th>What you did</th><th>What you become</th></tr>
-      <tr><td>Start</td><td>Just a regular citizen of the galaxy</td><td><span class="pill">Not Force Sensitive</span></td></tr>
-      <tr><td>1-2</td><td>Got all 5 badge types, met the old man, reached the village</td><td><span class="pill gold">Force-Sensitive Novice</span></td></tr>
-      <tr><td>3-4</td><td>Beat all 4 village phases + Mellichae</td><td><span class="pill gold">Village Champion</span></td></tr>
-      <tr><td>5</td><td>Finished all 3 Padawan Trials</td><td><span class="pill gold">Jedi Padawan</span></td></tr>
-      <tr><td>6</td><td>Finished Knight Trials, chose a side</td><td><span class="pill light">Jedi Knight (Light)</span> or <span class="pill dark">Jedi Knight (Dark)</span></td></tr>
-    </table>
-
-    <h2 id="tips"><i class="fa-solid fa-lightbulb"></i> Quick Tips</h2>
-    <ul>
-      <li>Use <strong class="highlight-blue">/checkForceStatus</strong> to track your badge progress.</li>
-      <li>Don't keep declining the old man - he gets slower to come back each time.</li>
-      <li>Gear up before the Sith Shadow ambush - dying loses your crystal.</li>
-      <li>Watch the village's daily clock - start phase tasks early, not last-minute.</li>
-      <li>Protect the Counterstrike commander escort - others can steal your capture.</li>
-      <li>Break all 4 shrines before fighting Mellichae, or her healing never stops.</li>
-      <li>Choose dialogue carefully in the "Soldier's Errand" Padawan trial.</li>
-      <li>Decide Light or Dark - and match your faction - before Knight Trials step 8.</li>
-    </ul>
-
-    <div class="footer-nav">
-      <a href="index.html"><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
-      <a href="#">Back to Top <i class="fa-solid fa-arrow-up"></i></a>
-    </div>
-
-  </div>
-</section>
-
-<footer class="site-footer">
-  <div class="wrap">
-    <p class="footer-brand">SWGReturns</p>
-    <p>&copy; 2026 SWGReturns - Fan-made Star Wars Galaxies server network. Not affiliated with Disney, LucasArts, Sony Online Entertainment, or Daybreak Game Company.</p>
-    <p class="footer-powered">Powered by <a href="https://thewebsitefactory.store/" target="_blank" rel="noopener">The Website Factory</a></p>
-  </div>
-</footer>
-
-<script>
-(function () {
-  const btn = document.getElementById('hamburger');
-  const nav = document.getElementById('top-nav');
-  if (!btn || !nav) return;
-  btn.addEventListener('click', () => {
-    const open = nav.classList.toggle('open');
-    btn.classList.toggle('active', open);
-    btn.setAttribute('aria-expanded', String(open));
-  });
-  nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-    nav.classList.remove('open');
-    btn.classList.remove('active');
-    btn.setAttribute('aria-expanded', 'false');
-  }));
-})();
-</script>
-
-</body>
-</html>
