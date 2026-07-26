@@ -1601,17 +1601,19 @@
       if (!response.ok) throw new Error('HTTP ' + response.status);
       return await response.json();
     } catch (e) {
-      return FALLBACK_DATA[server];
+      return null;
     }
   }
 
   async function refreshAllServers() {
-    updateServer('precu', await fetchStatus('precu'));
-    updateServer('nge', await fetchStatus('nge'));
+    const precu = await fetchStatus('precu');
+    const nge = await fetchStatus('nge');
+    if (precu) updateServer('precu', precu);
+    if (nge) updateServer('nge', nge);
   }
 
   refreshAllServers();
-  setInterval(refreshAllServers, 900000);
+  setInterval(refreshAllServers, 60000);
 })();
 
 // -- Donation meter --------------------------------------------------
