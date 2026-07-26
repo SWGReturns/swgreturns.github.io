@@ -234,6 +234,91 @@
     }
     .launcher-links i { color: var(--gold); }
 
+    .install-guide {
+      margin-top: 34px;
+      padding: 28px;
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      background: linear-gradient(145deg, rgba(13,20,30,0.96), rgba(6,10,16,0.96));
+      box-shadow: 0 22px 70px rgba(0,0,0,0.32);
+    }
+    .install-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+    .install-head h2 {
+      margin-top: 8px;
+      font-family: "Orbitron", sans-serif;
+      text-transform: uppercase;
+    }
+    .install-head p {
+      max-width: 700px;
+      margin: 10px 0 0;
+      color: var(--muted);
+    }
+    .install-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+    .install-path {
+      padding: 22px;
+      border: 1px solid rgba(106,160,217,0.25);
+      border-radius: 7px;
+      background: rgba(255,255,255,0.035);
+    }
+    .install-path h3 {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 16px;
+      color: #fff;
+      font-size: 22px;
+    }
+    .install-path h3 i { color: var(--gold); }
+    .install-steps {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      counter-reset: install-step;
+    }
+    .install-steps li {
+      position: relative;
+      min-height: 38px;
+      padding: 0 0 15px 42px;
+      color: #c5d1df;
+      counter-increment: install-step;
+    }
+    .install-steps li::before {
+      content: counter(install-step);
+      position: absolute;
+      top: -3px;
+      left: 0;
+      width: 28px;
+      height: 28px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(242,203,115,0.38);
+      border-radius: 50%;
+      color: var(--gold);
+      background: rgba(242,203,115,0.07);
+      font-weight: 900;
+    }
+    .install-steps a { color: var(--blue); }
+    .install-note {
+      display: flex;
+      gap: 12px;
+      margin-top: 18px;
+      padding: 16px;
+      border-left: 3px solid var(--gold);
+      background: rgba(242,203,115,0.07);
+      color: #c5d1df;
+    }
+    .install-note i { color: var(--gold); margin-top: 3px; }
+
     .site-footer {
       padding: 32px 0;
       border-top: 1px solid rgba(242,203,115,0.22);
@@ -254,6 +339,7 @@
       .command-bar { grid-template-columns: 1fr; padding: 12px 0; }
       .top-nav { justify-content: flex-start; }
       .download-grid { grid-template-columns: 1fr; }
+      .install-grid { grid-template-columns: 1fr; }
     }
     @media (max-width: 560px) {
       .wrap { width: min(100% - 24px, 1180px); }
@@ -326,6 +412,45 @@
     <section class="launcher-links" aria-label="Launcher content links">
       <a href="core3-patch-notes.html"><i class="fa-solid fa-scroll"></i> Core3 Patch Notes</a>
       <a href="nge-patch-notes.html"><i class="fa-solid fa-scroll"></i> NGE Patch Notes</a>
+    </section>
+
+    <section class="install-guide" id="installation" aria-labelledby="install-title">
+      <div class="install-head">
+        <div>
+          <div class="kicker">Getting started</div>
+          <h2 id="install-title">Installation Instructions</h2>
+          <p>Choose your galaxy below. You need Windows 10 or 11, enough free storage for the extracted client, and a legal copy of Star Wars Galaxies.</p>
+        </div>
+      </div>
+
+      <div class="install-grid">
+        <article class="install-path">
+          <h3><i class="fa-solid fa-shield-halved"></i> Core3 Pre-CU</h3>
+          <ol class="install-steps">
+            <li>Download the <strong>SWGReturns Launcher</strong> above and extract the ZIP file.</li>
+            <li>Run the launcher installer as Administrator and choose an installation folder you can easily find.</li>
+            <li>If you need the complete game files, download <strong>Returns.zip</strong> and extract it fully—do not run it from inside the ZIP.</li>
+            <li>Open the launcher, select the extracted Core3 client folder when prompted, and allow all patches to finish.</li>
+            <li><a href="register.html">Create your Core3 account</a>, then press Play and sign in with that account.</li>
+          </ol>
+        </article>
+
+        <article class="install-path">
+          <h3><i class="fa-solid fa-jet-fighter"></i> NGE / JTL</h3>
+          <ol class="install-steps">
+            <li>Download <strong>nge.zip</strong> above using a stable connection.</li>
+            <li>Create a dedicated folder such as <strong>C:\Games\SWGTalon</strong> and extract the complete ZIP into it.</li>
+            <li>Open the extracted folder and run the launcher as Administrator.</li>
+            <li>Let the launcher check and update every client file before pressing Play.</li>
+            <li><a href="https://register.swgtalon.online/addnewuser.php" target="_blank" rel="noopener">Create your NGE account</a>, then launch the game and sign in.</li>
+          </ol>
+        </article>
+      </div>
+
+      <div class="install-note">
+        <i class="fa-solid fa-triangle-exclamation"></i>
+        <div><strong>Having trouble?</strong> Keep the game outside protected folders where possible, add the chosen game folder to your antivirus exceptions if files are quarantined, and never mix Core3 and NGE files in the same folder. For help, use the <a href="contact.html">contact page</a> or community Discord.</div>
+      </div>
     </section>
   </div>
 </main>
