@@ -1115,6 +1115,67 @@
       .bounty-hero-card { min-height: 420px; padding: 20px; }
       .bounty-stats { grid-template-columns: 1fr; }
     }
+    .aniken-launcher {
+      position: fixed;
+      right: 22px;
+      bottom: 22px;
+      z-index: 1200;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-height: 58px;
+      padding: 8px 17px 8px 9px;
+      border: 1px solid rgba(105, 220, 255, .85);
+      border-radius: 999px;
+      background: linear-gradient(135deg, rgba(4, 18, 39, .96), rgba(12, 67, 112, .96));
+      color: #fff;
+      text-decoration: none;
+      box-shadow: 0 12px 36px rgba(0, 0, 0, .45), 0 0 24px rgba(38, 190, 255, .32);
+      backdrop-filter: blur(10px);
+      transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+    }
+    .aniken-launcher:hover {
+      transform: translateY(-3px);
+      border-color: var(--gold);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, .55), 0 0 30px rgba(255, 196, 48, .3);
+    }
+    .aniken-launcher .droid {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: radial-gradient(circle at 50% 35%, #8cecff, #2388ce 55%, #092442 100%);
+      border: 1px solid #c6f5ff;
+      color: #04101f;
+      font-size: 20px;
+      box-shadow: inset 0 2px 8px #fff8, 0 0 16px #46cfff75;
+    }
+    .aniken-launcher .chat-copy {
+      display: grid;
+      line-height: 1.05;
+      font-family: 'Rajdhani', sans-serif;
+    }
+    .aniken-launcher strong {
+      font-size: 16px;
+      letter-spacing: .05em;
+    }
+    .aniken-launcher small {
+      margin-top: 4px;
+      color: #a9dcff;
+      font-size: 11px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    @media (max-width: 620px) {
+      .aniken-launcher {
+        right: 14px;
+        bottom: 14px;
+        min-height: 54px;
+        padding: 6px;
+      }
+      .aniken-launcher .chat-copy { display: none; }
+    }
   </style>
 </head>
 <body>
@@ -1492,6 +1553,15 @@
     <p class="footer-powered">Powered by <a href="https://thewebsitefactory.store/" target="_blank" rel="noopener">The Website Factory</a></p>
   </div>
 </footer>
+
+<a class="aniken-launcher"
+   href="https://aniken.109-228-61-26.nip.io/aai/guest"
+   target="_blank"
+   rel="noopener"
+   aria-label="Chat to Aniken AI">
+  <span class="droid" aria-hidden="true"><i class="fa-solid fa-robot"></i></span>
+  <span class="chat-copy"><strong>Chat to Aniken</strong><small>Ask your galactic guide</small></span>
+</a>
 
 <script>
 // -- Splash and disclaimer ------------------------------------------
