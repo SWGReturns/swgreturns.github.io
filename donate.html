@@ -162,6 +162,15 @@ h1{color:#fff;background:none;font-size:clamp(34px,6vw,58px);text-transform:uppe
         <div class="amount-opt"><input type="radio" name="amount" id="amt50" value="50"><label for="amt50">&pound;50</label></div>
       </div>
 
+      <div class="field">
+        <label for="username">Discord or In-Game Name</label>
+        <input type="text" id="username" placeholder="e.g. BenReturns or ben.returns" maxlength="64" required>
+        <label class="checkline">
+          <input type="checkbox" id="showPublic" checked>
+          Show my name, donation amount and date on the public donor list.
+        </label>
+      </div>
+
       <button type="submit" class="btn btn-gold"><i class="fa-brands fa-paypal"></i> Continue to PayPal</button>
       <a href="index.html" class="btn btn-ghost"><i class="fa-solid fa-house"></i> Back Home</a>
     </form>
@@ -179,8 +188,9 @@ h1{color:#fff;background:none;font-size:clamp(34px,6vw,58px);text-transform:uppe
 </main>
 
 <script>
-const PAYPAL_ME_URL = 'https://paypal.me/Fitzpatrick251';
+const BUSINESS_ID = 'dfitz@me.com';
 const STATUS_URL = 'https://51-81-81-116.sslip.io/api/don/donation_status';
+const IPN_URL = 'https://51-81-81-116.sslip.io/api/don/paypal_ipn';
 
 function escapeHtml(s) {
   return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -201,12 +211,12 @@ async function refreshStatus() {
     blade.classList.toggle('full', (data.pct || 0) >= 100);
 
     const listEl = document.getElementById('donor-list');
-    if (data.top_donors && data.top_donors.length) {
-      listEl.innerHTML = data.top_donors.map((d, i) =>
-        '<div class="donor-row"><span class="donor-rank">#' + (i + 1) + '</span>' +
+    if (data.recent_donations && data.recent_donations.length) {
+      listEl.innerHTML = data.recent_donations.map((d, i) =>
+        '<div class="donor-row"><span class="donor-rank">' + escapeHtml(d.date) + '</span>' +
         '<span class="donor-name">' + escapeHtml(d.username) + '</span>' +
         '<span class="donor-tier">' + escapeHtml(d.tier) + '</span>' +
-        '<span class="donor-total">&pound;' + Number(d.total).toFixed(0) + '</span></div>'
+        '<span class="donor-total">&pound;' + Number(d.amount).toFixed(2) + '</span></div>'
       ).join('');
     }
   } catch (e) {
@@ -219,7 +229,29 @@ setInterval(refreshStatus, 30000);
 document.getElementById('donateForm').addEventListener('submit', function(e) {
   e.preventDefault();
   const amount = document.querySelector('input[name="amount"]:checked').value;
-  window.location.href = PAYPAL_ME_URL + '/' + encodeURIComponent(amount) + 'GBP';
+  const username = document.getElementById('username').value.trim().replace(/[<>&"'\\]/g, '').slice(0, 64);
+  const showPublic = document.getElementById('showPublic').checked;
+  if (!username) {
+    document.getElementById('username').focus();
+    return;
+  }
+
+  const custom = new URLSearchParams({
+    username: username,
+    show_public: showPublic ? '1' : '0'
+  });
+  const params = new URLSearchParams({
+    cmd: '_donations',
+    business: BUSINESS_ID,
+    currency_code: 'GBP',
+    amount: amount,
+    item_name: 'SWGReturns Pre-CU Server Support',
+    custom: custom.toString(),
+    notify_url: IPN_URL,
+    return: new URL('donate.html?thanks=1', window.location.href).href,
+    cancel_return: new URL('donate.html', window.location.href).href
+  });
+  window.location.href = 'https://www.paypal.com/cgi-bin/webscr?' + params.toString();
 });
 </script>
 </body>
