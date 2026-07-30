@@ -162,15 +162,6 @@ h1{color:#fff;background:none;font-size:clamp(34px,6vw,58px);text-transform:uppe
         <div class="amount-opt"><input type="radio" name="amount" id="amt50" value="50"><label for="amt50">$50</label></div>
       </div>
 
-      <div class="field">
-        <label>In-Game / Site Username <span style="color:#666;font-weight:400">(optional)</span></label>
-        <input type="text" id="username" placeholder="e.g. JediMaster99" pattern="[A-Za-z0-9_]{0,64}" maxlength="64">
-        <label class="checkline">
-          <input type="checkbox" id="showPublic">
-          Show my username on the public Top Donators list above.
-        </label>
-      </div>
-
       <button type="submit" class="btn btn-gold"><i class="fa-brands fa-paypal"></i> Continue to PayPal</button>
       <a href="index.html" class="btn btn-ghost"><i class="fa-solid fa-house"></i> Back Home</a>
     </form>
@@ -183,15 +174,13 @@ h1{color:#fff;background:none;font-size:clamp(34px,6vw,58px);text-transform:uppe
 
   <div class="note">
     <i class="fa-solid fa-circle-info"></i>
-    100% of Pre-CU donations go directly to Ben's hosting costs for this server. Donations are tracked automatically via PayPal &mdash; the meter and leaderboard above update within a minute or two of a completed payment.
+    100% of Pre-CU donations go directly to Ben's hosting costs for this server.
   </div>
 </main>
 
 <script>
-// TODO: replace with Ben's actual PayPal business email or merchant ID once available.
-const BUSINESS_ID = 'REPLACE_WITH_BENS_PAYPAL_EMAIL';
+const PAYPAL_ME_URL = 'https://paypal.me/Fitzpatrick251';
 const STATUS_URL = 'https://51-81-81-116.sslip.io/api/don/donation_status';
-const IPN_URL = 'https://51-81-81-116.sslip.io/api/don/paypal_ipn';
 
 function escapeHtml(s) {
   return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -230,26 +219,7 @@ setInterval(refreshStatus, 30000);
 document.getElementById('donateForm').addEventListener('submit', function(e) {
   e.preventDefault();
   const amount = document.querySelector('input[name="amount"]:checked').value;
-  const username = document.getElementById('username').value.trim().replace(/[^A-Za-z0-9_]/g, '');
-  const showPublic = document.getElementById('showPublic').checked;
-
-  const params = new URLSearchParams({
-    cmd: '_donations',
-    business: BUSINESS_ID,
-    currency_code: 'USD',
-    amount: amount,
-    item_name: 'SWGReturns Pre-CU Server Support',
-    notify_url: IPN_URL,
-    return: 'donate.html?thanks=1',
-    cancel_return: 'donate.html'
-  });
-
-  if (username) {
-    const custom = new URLSearchParams({ username: username, show_public: showPublic ? '1' : '0' });
-    params.set('custom', custom.toString());
-  }
-
-  window.location.href = 'https://www.paypal.com/cgi-bin/webscr?' + params.toString();
+  window.location.href = PAYPAL_ME_URL + '/' + encodeURIComponent(amount) + 'USD';
 });
 </script>
 </body>
