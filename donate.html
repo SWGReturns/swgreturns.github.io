@@ -6,7 +6,7 @@
 <title>Support Pre-CU | SWGReturns</title>
 <meta name="description" content="Support the SWGReturns Pre-CU server. Your donation keeps the classic Star Wars Galaxies sandbox running.">
 <meta property="og:title" content="Support Pre-CU — SWGReturns">
-<meta property="og:description" content="Keep the classic Star Wars Galaxies Pre-CU sandbox online — every dollar goes straight to hosting.">
+<meta property="og:description" content="Help fund the £165 monthly cost of our 16-core AMD Ryzen, 128 GB RAM, 4 TB SWGReturns server.">
 <meta property="og:image" content="images/vaderdeathstar.jpg">
 <meta property="og:url" content="donate.html">
 <meta property="og:type" content="website">
@@ -138,11 +138,11 @@ h1{color:#fff;background:none;font-size:clamp(34px,6vw,58px);text-transform:uppe
 </header>
 <main class="wrap page-shell">
   <h1>Support Pre-CU</h1>
-  <p class="sub">Keep the classic Star Wars Galaxies Pre-CU sandbox online &mdash; every dollar goes straight to hosting.</p>
+  <p class="sub">Help keep our upgraded Star Wars Galaxies server online &mdash; every pound goes straight to hosting.</p>
 
   <div class="card">
     <div class="meter-label">Monthly Goal</div>
-    <div class="meter-amounts">$<span id="donate-current">0</span> of $<span id="donate-goal">27</span> raised</div>
+    <div class="meter-amounts">&pound;<span id="donate-current">0</span> of &pound;<span id="donate-goal">165</span> raised</div>
     <div class="saber-meter">
       <div class="saber-hilt"></div>
       <div class="saber-track"><div class="saber-blade" id="donate-blade" style="width:4%"></div></div>
@@ -151,15 +151,15 @@ h1{color:#fff;background:none;font-size:clamp(34px,6vw,58px);text-transform:uppe
   </div>
 
   <div class="card">
-    <div class="section-label">Choose Amount (USD)</div>
+    <div class="section-label">Choose Amount (GBP)</div>
     <form id="donateForm">
       <div class="amounts-grid">
-        <div class="amount-opt"><input type="radio" name="amount" id="amt5" value="5"><label for="amt5">$5</label></div>
-        <div class="amount-opt"><input type="radio" name="amount" id="amt10" value="10" checked><label for="amt10">$10</label></div>
-        <div class="amount-opt"><input type="radio" name="amount" id="amt15" value="15"><label for="amt15">$15</label></div>
-        <div class="amount-opt"><input type="radio" name="amount" id="amt20" value="20"><label for="amt20">$20</label></div>
-        <div class="amount-opt"><input type="radio" name="amount" id="amt25" value="25"><label for="amt25">$25</label></div>
-        <div class="amount-opt"><input type="radio" name="amount" id="amt50" value="50"><label for="amt50">$50</label></div>
+        <div class="amount-opt"><input type="radio" name="amount" id="amt5" value="5"><label for="amt5">&pound;5</label></div>
+        <div class="amount-opt"><input type="radio" name="amount" id="amt10" value="10" checked><label for="amt10">&pound;10</label></div>
+        <div class="amount-opt"><input type="radio" name="amount" id="amt15" value="15"><label for="amt15">&pound;15</label></div>
+        <div class="amount-opt"><input type="radio" name="amount" id="amt20" value="20"><label for="amt20">&pound;20</label></div>
+        <div class="amount-opt"><input type="radio" name="amount" id="amt25" value="25"><label for="amt25">&pound;25</label></div>
+        <div class="amount-opt"><input type="radio" name="amount" id="amt50" value="50"><label for="amt50">&pound;50</label></div>
       </div>
 
       <button type="submit" class="btn btn-gold"><i class="fa-brands fa-paypal"></i> Continue to PayPal</button>
@@ -174,7 +174,7 @@ h1{color:#fff;background:none;font-size:clamp(34px,6vw,58px);text-transform:uppe
 
   <div class="note">
     <i class="fa-solid fa-circle-info"></i>
-    100% of Pre-CU donations go directly to Ben's hosting costs for this server.
+    <strong>New server:</strong> 16-core AMD Ryzen processor, 128 GB RAM and 4 TB storage. Hosting costs &pound;165 per month, and 100% of donations go directly to Ben's hosting costs.
   </div>
 </main>
 
@@ -193,7 +193,7 @@ async function refreshStatus() {
     const data = await res.json();
 
     document.getElementById('donate-current').textContent = Number(data.current || 0).toFixed(2);
-    document.getElementById('donate-goal').textContent = Number(data.goal || 27).toFixed(0);
+    document.getElementById('donate-goal').textContent = Number(data.goal || 165).toFixed(0);
     document.getElementById('donate-pct').textContent = data.pct || 0;
 
     const blade = document.getElementById('donate-blade');
@@ -206,7 +206,7 @@ async function refreshStatus() {
         '<div class="donor-row"><span class="donor-rank">#' + (i + 1) + '</span>' +
         '<span class="donor-name">' + escapeHtml(d.username) + '</span>' +
         '<span class="donor-tier">' + escapeHtml(d.tier) + '</span>' +
-        '<span class="donor-total">$' + Number(d.total).toFixed(0) + '</span></div>'
+        '<span class="donor-total">&pound;' + Number(d.total).toFixed(0) + '</span></div>'
       ).join('');
     }
   } catch (e) {
@@ -219,7 +219,7 @@ setInterval(refreshStatus, 30000);
 document.getElementById('donateForm').addEventListener('submit', function(e) {
   e.preventDefault();
   const amount = document.querySelector('input[name="amount"]:checked').value;
-  window.location.href = PAYPAL_ME_URL + '/' + encodeURIComponent(amount) + 'USD';
+  window.location.href = PAYPAL_ME_URL + '/' + encodeURIComponent(amount) + 'GBP';
 });
 </script>
 </body>

@@ -1414,12 +1414,12 @@
       <div class="section-head">
         <div class="kicker">Support the galaxy</div>
         <h2>Keep the Servers Running</h2>
-        <p class="muted">SWGReturns is free to play. Community support helps cover hosting and service costs for the Pre-CU and NGE servers.</p>
+        <p class="muted">SWGReturns is free to play. Help fund our upgraded 16-core AMD Ryzen server with 128 GB RAM and 4 TB storage.</p>
       </div>
 
       <div class="donate-meter-card">
         <div class="donate-meter-label">Pre-CU Monthly Goal</div>
-        <div class="donate-meter-amounts">$<span id="precu-current">0</span> of $<span id="precu-goal">27</span> raised</div>
+        <div class="donate-meter-amounts">&pound;<span id="precu-current">0</span> of &pound;<span id="precu-goal">165</span> raised</div>
         <div class="saber-meter-wrap">
           <div class="saber-meter">
             <div class="saber-hilt"></div>
@@ -1706,7 +1706,7 @@
       const listEl = document.getElementById('precu-donor-list');
 
       if (current) current.textContent = Number(data.current || 0).toFixed(2);
-      if (goal) goal.textContent = Number(data.goal || 27).toFixed(0);
+      if (goal) goal.textContent = Number(data.goal || 165).toFixed(0);
       if (pctText) pctText.textContent = data.pct || 0;
       if (blade) {
         const pct = Math.max(4, Math.min(100, data.pct || 0));
@@ -1716,7 +1716,7 @@
         listEl.innerHTML = data.top_donors.map((d, i) =>
           '<div class="donor-teaser-row"><span class="dt-rank">#' + (i + 1) + '</span>' +
           '<span class="dt-name">' + escapeHtml(d.username) + '</span>' +
-          '<span class="dt-total">$' + Number(d.total).toFixed(0) + '</span></div>'
+          '<span class="dt-total">&pound;' + Number(d.total).toFixed(0) + '</span></div>'
         ).join('');
       }
     } catch (e) {
